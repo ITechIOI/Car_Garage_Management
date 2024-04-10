@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="Gara_Management.GUI.Item.itCar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gara_Management.GUI.Item"
+             mc:Ignorable="d" Foreground="{StaticResource sColor1}"
+             Width="716" Height="68">
+    <Grid Width="716" Height="54">
+    <Border BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}">
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="124"/>
+                <ColumnDefinition Width="204"/>
+                <ColumnDefinition Width="175"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="RE001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="122,0,0,0"/>
+            <TextBlock Grid.Column="1" Text="38-AA 99999" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="202,0,0,0"/>
+            <TextBlock Grid.Column="2" Text="03/02/2024" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="173,0,0,0"/>
+            <TextBlock Grid.Column="3" Text="11.206.000" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="178,0,0,0"/>
+            <TextBlock Grid.Column="3" Text="..." FontSize="36" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Width="54" Height="48" RenderTransformOrigin="0.5,0.5" Margin="153,0,0,0" Grid.ColumnSpan="2">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90.239"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+
+            </TextBlock>
+
+        </Grid>
+    </Border>
+    </Grid>
+</UserControl>
