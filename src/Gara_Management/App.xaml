@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:Gara_Management"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/UIColor.xaml"/>
+            
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+   
     </Application.Resources>
 </Application>
