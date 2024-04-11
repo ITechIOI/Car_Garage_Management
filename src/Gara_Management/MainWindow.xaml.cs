@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,7 +22,7 @@ namespace Gara_Management
     /// </summary>
     public partial class MainWindow : Window
     {
-        int scr = 0;
+        int scr = 1;
         Color color4= (Color)ColorConverter.ConvertFromString("#064469");
         Color color5= (Color)ColorConverter.ConvertFromString("#072D44");
 
@@ -29,7 +30,12 @@ namespace Gara_Management
         {
             InitializeComponent();
             DataContext = new scrHome();
+           
+            
         }
+
+  
+
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -66,7 +72,10 @@ namespace Gara_Management
         private void menuCars_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 2;
-            DataContext = new scrCars();
+           
+            scrCars scrCars = new scrCars();
+            DataContext = scrCars;
+            scrCars.ChangeToRepairCardScr += scrCars_ChangeToRepairCardScr;
             menuHome.Background = new SolidColorBrush(color5);
             menuCars.Background = new SolidColorBrush(color4);
             menuStore.Background = new SolidColorBrush(color5);
@@ -74,11 +83,25 @@ namespace Gara_Management
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
         }
+        private void scrRepairCard_changeToCardScr(object sender, EventArgs e)
+        {
+            scr = 2;
+            scrCars scrCars = new scrCars();       
+            DataContext = scrCars;
+            scrCars.ChangeToRepairCardScr += scrCars_ChangeToRepairCardScr;
+        }
+        public void scrCars_ChangeToRepairCardScr(object sender, EventArgs e)
+        {
+            scr = 2;
+            scrRepairCard scrRepairCard = new scrRepairCard();
+            DataContext = scrRepairCard;
+            scrRepairCard.changeToCarsScr += scrRepairCard_changeToCardScr;
+        }
+       
         private void menuCars_MouseLeave(object sender, MouseEventArgs e)
         {
             if (scr != 2)
                 menuCars.Background = new SolidColorBrush(color5);
-
         }
 
         private void menuStore_MouseEnter(object sender, MouseEventArgs e)

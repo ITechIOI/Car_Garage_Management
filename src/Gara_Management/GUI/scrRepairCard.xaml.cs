@@ -1,5 +1,4 @@
-﻿using Gara_Management.GUI.Item;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,27 +16,22 @@ using System.Windows.Shapes;
 namespace Gara_Management.GUI
 {
     /// <summary>
-    /// Interaction logic for scrCars.xaml
+    /// Interaction logic for scrRepairCard.xaml
     /// </summary>
-    public partial class scrCars : UserControl
+    public partial class scrRepairCard : UserControl
     {
-        Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
+         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
         Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
-
-        public event EventHandler ChangeToRepairCardScr;
-        public scrCars()
+        public EventHandler changeToCarsScr;
+        public scrRepairCard()
         {
             InitializeComponent();
-            Window window = Window.GetWindow(this);
+        }
 
-            for (int i = 0; i < 9; i++)
-            {
-                itCar itCar1 = new itCar();
-                ds_xe.Children.Add(itCar1);
-              
-            }
-           
+        private void bt_car_scr_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            changeToCarsScr?.Invoke(this, EventArgs.Empty);
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -58,13 +52,6 @@ namespace Gara_Management.GUI
             {
                 App.Current.Shutdown();
             }
-        }
-   
-        private void bt_repair_card_scr_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ChangeToRepairCardScr?.Invoke(this, EventArgs.Empty);
-
-
         }
     }
 }
