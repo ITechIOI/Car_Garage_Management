@@ -209,7 +209,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <!-- thoát ứng dụng -->
-            <Border x:Name="bd_exit" MouseEnter="bd_exit_MouseEnter" MouseLeave="bd_exit_MouseLeave"
+            <Border x:Name="bd_exit" Cursor="Hand" MouseEnter="bd_exit_MouseEnter" MouseLeave="bd_exit_MouseLeave"
      MouseDown="bd_exit_MouseDown" Margin="835,0,0,19" CornerRadius="5">
                 <Label x:Name="lb_exit" Content="X" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Width="50" Height="50" />
             </Border>
@@ -222,9 +222,9 @@
                 </Grid>
             </Border>
             <!-- Filter -->
-            <Image Grid.Row="1" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
+            <Image Grid.Row="1" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
             <!-- Tiếp nhận sửa chữa -->
-            <Image Grid.Row="1" Source="/Images/add_car.png" Margin="760,0,75,0" />
+            <Image Grid.Row="1" Cursor="Hand" Source="/Images/add_repair_card.png" Margin="760,0,75,0" Width="44" Height="44" />
             <!-- BẢng các xe đã tiếp nhận -->
             <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,174">
                 <Grid>
@@ -253,7 +253,7 @@
                     </Border>
 
                     <ScrollViewer Margin="0,66,0,0">
-                        <StackPanel x:Name="ds_xe" >
+                        <StackPanel x:Name="ds_phieuTN" >
 
                         </StackPanel>
 
@@ -261,7 +261,9 @@
                 </Grid>
 
             </Border>
-            <Border x:Name="bt_car_scr" Cursor="Hand" MouseDown="bt_car_scr_MouseDown" Grid.Row="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="618,508,143,90"/>
+            <Border x:Name="bt_car_scr" Cursor="Hand" MouseDown="bt_car_scr_MouseDown" Grid.Row="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="595,508,143,90">
+                <TextBlock Text="Danh sách xe" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
         </Grid>
 
     </Border>

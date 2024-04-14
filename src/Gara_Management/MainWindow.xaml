@@ -37,7 +37,7 @@
                     </Border>
 
                     <!-- Home -->
-                    <StackPanel x:Name="menuHome" Orientation="Horizontal"
+                    <StackPanel x:Name="menuHome" Orientation="Horizontal" Cursor="Hand"
                                 MouseEnter="menuHome_MouseEnter" MouseDown="menuHome_MouseDown"
                                 MouseLeave="menuHome_MouseLeave">
                         <Border Width="66">
@@ -53,7 +53,7 @@
                          />
                     </StackPanel>
                     <!-- Cars -->
-                    <StackPanel x:Name="menuCars" Orientation="Horizontal"
+                    <StackPanel x:Name="menuCars" Orientation="Horizontal" Cursor="Hand"
                                 MouseEnter="menuCars_MouseEnter" MouseDown="menuCars_MouseDown"
                                 MouseLeave="menuCars_MouseLeave">
                         <Border Width="66">
@@ -67,7 +67,7 @@
                                 VerticalContentAlignment="Center"  />
                     </StackPanel>
                     <!-- Store -->
-                    <StackPanel x:Name="menuStore" Orientation="Horizontal"
+                    <StackPanel x:Name="menuStore" Orientation="Horizontal" Cursor="Hand"
                                 MouseEnter="menuStore_MouseEnter" MouseDown="menuStore_MouseDown"
                                 MouseLeave="menuStore_MouseLeave">
                         <Border Width="66">
@@ -81,7 +81,7 @@
                                 VerticalContentAlignment="Center"  />
                     </StackPanel>
                     <!-- Revenue -->
-                    <StackPanel x:Name="menuRevenue" Orientation="Horizontal"
+                    <StackPanel x:Name="menuRevenue" Orientation="Horizontal" Cursor="Hand"
                                 MouseDown="menuRevenue_MouseDown" MouseEnter="menuRevenue_MouseEnter"
                                 MouseLeave="menuRevenue_MouseLeave">
                         <Border Width="66">
@@ -95,7 +95,7 @@
                                 VerticalContentAlignment="Center"   />
                     </StackPanel>
                     <!-- Customers -->
-                    <StackPanel x:Name="menuCustomers" Orientation="Horizontal"
+                    <StackPanel x:Name="menuCustomers" Orientation="Horizontal" Cursor="Hand"
                                 MouseDown="menuCustomers_MouseDown" MouseEnter="menuCustomers_MouseEnter"
                                 MouseLeave="menuCustomers_MouseLeave">
                         <Border Width="66">
@@ -110,7 +110,7 @@
                                 />
                     </StackPanel>
                     <!-- Account -->
-                    <StackPanel x:Name="menuAccount" Orientation="Horizontal"
+                    <StackPanel x:Name="menuAccount" Orientation="Horizontal" Cursor="Hand"
                                 MouseEnter="menuAccount_MouseEnter" MouseDown="menuAccount_MouseDown"
                                 MouseLeave="menuAccount_MouseLeave">
                         <Border Width="66">

@@ -47,5 +47,40 @@ namespace Gara_Management.GUI
                 App.Current.Shutdown();
             }
         }
+
+        private void bd_acceptCar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // tiếp nhận sửa chữa 
+        }
+
+        private void bd_paymentReceipt_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // lập phiếu thu tiền
+        }
+
+        private void bd_repairInvoice_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // Lập phiếu sửa chữa
+        }
+
+        private void bd_stockIn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // tạo phiếu nhập kho
+        }
+
+        private void bd_reportCreate_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // tạo báo cáo
+        }
+
+        private void bd_customerAdd_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // thêm khách hàng
+        }
+
+        private void bd_staffAdd_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            // thêm nhân viên
+        }
     }
 }

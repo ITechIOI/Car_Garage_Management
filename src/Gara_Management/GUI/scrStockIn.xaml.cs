@@ -17,28 +17,22 @@ using System.Windows.Shapes;
 namespace Gara_Management.GUI
 {
     /// <summary>
-    /// Interaction logic for scrCars.xaml
+    /// Interaction logic for scrStockIn.xaml
     /// </summary>
-    public partial class scrCars : UserControl
+    public partial class scrStockIn : UserControl
     {
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
-        Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
 
-
-        public event EventHandler changeToRepairCardScr;
-        public scrCars()
+        public EventHandler changeToStoreScr;
+        public scrStockIn()
         {
             InitializeComponent();
-           
-
-            for (int i = 0; i < 9; i++)
+            for(int i = 0; i < 10; i++)
             {
-                itCar itCar1 = new itCar();
-                ds_xe.Children.Add(itCar1);
-              
+                itStockIn it = new itStockIn();
+                ds_phieunhap.Children.Add(it);
             }
-           
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -60,22 +54,10 @@ namespace Gara_Management.GUI
                 App.Current.Shutdown();
             }
         }
-   
-        // nút chuyển màn hình sang danh sách phiếu sửa chữa
-        private void bt_repair_card_scr_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            changeToRepairCardScr?.Invoke(this, EventArgs.Empty);
-          
-        }
 
-        private void bd_acceptCar_MouseDown(object sender, MouseButtonEventArgs e)
+        private void bd_store_scr_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // tiếp nhận sửa chửa (giống bên home)
-        }
-
-        private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            // lọc 
+            changeToStoreScr?.Invoke(this, EventArgs.Empty);  
         }
     }
 }

@@ -55,11 +55,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\Card\crdRepair.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Item\itCar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Item\itRepairCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Item\itStockIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Item\itSupplies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -87,6 +99,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\scrStockIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\scrStore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,11 +115,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GUI\Card\crdRepair.xaml.cs">
+      <DependentUpon>crdRepair.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Item\itCar.xaml.cs">
       <DependentUpon>itCar.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Item\itRepairCard.xaml.cs">
       <DependentUpon>itRepairCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Item\itStockIn.xaml.cs">
+      <DependentUpon>itStockIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Item\itSupplies.xaml.cs">
+      <DependentUpon>itSupplies.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\scrAccount.xaml.cs">
       <DependentUpon>scrAccount.xaml</DependentUpon>
@@ -122,6 +147,9 @@
     </Compile>
     <Compile Include="GUI\scrRevenue.xaml.cs">
       <DependentUpon>scrRevenue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\scrStockIn.xaml.cs">
+      <DependentUpon>scrStockIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\scrStore.xaml.cs">
       <DependentUpon>scrStore.xaml</DependentUpon>
@@ -227,5 +255,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

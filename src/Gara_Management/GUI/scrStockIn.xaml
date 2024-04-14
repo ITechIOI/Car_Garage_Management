@@ -1,10 +1,11 @@
-﻿<UserControl x:Class="Gara_Management.GUI.scrCars"
+﻿<UserControl x:Class="Gara_Management.GUI.scrStockIn"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Gara_Management.GUI"
-                     Height="768" Width="885">
+             mc:Ignorable="d" 
+             Height="768" Width="885">
     <!-- design scroll bar -->
     <UserControl.Resources>
         <ControlTemplate x:Key="ScrollViewerControlTemplate" TargetType="{x:Type ScrollViewer}">
@@ -210,21 +211,21 @@
             </Grid.RowDefinitions>
             <!-- thoát ứng dụng -->
             <Border x:Name="bd_exit" Cursor="Hand" MouseEnter="bd_exit_MouseEnter" MouseLeave="bd_exit_MouseLeave"
-         MouseDown="bd_exit_MouseDown" Margin="835,0,0,19" CornerRadius="5">
+                 MouseDown="bd_exit_MouseDown" Margin="835,0,0,19" CornerRadius="5">
                 <Label x:Name="lb_exit" Content="X" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Width="50" Height="50" />
             </Border>
             <!-- Thanh tìm kiếm -->
             <Border Grid.Row="1" Margin="75,0,207,0" CornerRadius="20" Height="48" Background="{StaticResource sColor1}">
                 <Grid>
                     <TextBox Height="48" BorderThickness="0" Background="Transparent"
-                      FontSize="20" VerticalContentAlignment="Center" Padding="20,0,0,0" Margin="0,0,51,0"/>
+                  FontSize="20" VerticalContentAlignment="Center" Padding="20,0,0,0" Margin="0,0,51,0"/>
                     <Image Cursor="Hand" Source="/Images/ic_search.png" Margin="555,0,0,0"/>
                 </Grid>
             </Border>
             <!-- Filter -->
-            <Image Grid.Row="1" x:Name="bd_filter" MouseDown="bd_filter_MouseDown" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
+            <Image Grid.Row="1" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
             <!-- Tiếp nhận sửa chữa -->
-            <Image Grid.Row="1" x:Name="bd_acceptCar" MouseDown="bd_acceptCar_MouseDown" Cursor="Hand" Source="/Images/add_car.png" Margin="760,0,75,0" />
+            <Image Grid.Row="1" Cursor="Hand" Source="/Images/add_store.png" Margin="760,0,75,0" />
             <!-- BẢng các xe đã tiếp nhận -->
             <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,174">
                 <Grid>
@@ -232,42 +233,41 @@
                     <Border  BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="0,0,18,383" Height="52">
                         <Grid Height="52" >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="130"/>
-                                <ColumnDefinition Width="145"/>
-                                <ColumnDefinition Width="205"/>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="260"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="160"/>
                                 <ColumnDefinition />
 
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="STT" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
-                            <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="58,0,0,0"/>
-                            <TextBlock Grid.Column="1" Text="Biển số" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}" />
-                            <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="128,0,0,0"/>
-                            <TextBlock Grid.Column="2" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Hiệu xe" Foreground="{StaticResource sColor1}"/>
-                            <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="143,0,0,0"/>
-                            <TextBlock Grid.Column="3" Text="Họ tên" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
-                            <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="203,0,0,0"/>
-                            <TextBlock Grid.Column="4" Text="Tiền nợ" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
+                            <TextBlock Text="Mã lô" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
+                            <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="108,0,0,0"/>
+                            <TextBlock Grid.Column="1" Text="Nhà cung cấp" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}" />
+                            <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="258,0,0,0"/>
+                            <TextBlock Grid.Column="2"  Text="Ngày nhận" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
+                            <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="148,0,0,0"/>
+                            <TextBlock Grid.Column="3" Text="Tổng tiền" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
+                            <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="158,0,0,0"/>
 
 
                         </Grid>
                     </Border>
 
                     <ScrollViewer Margin="0,66,0,0">
-                        <StackPanel x:Name="ds_xe" >
+                        <StackPanel x:Name="ds_phieunhap" >
 
                         </StackPanel>
 
                     </ScrollViewer>
                 </Grid>
-             
+
             </Border>
-            <Border x:Name="bt_repair_card_scr" Cursor="Hand" MouseDown="bt_repair_card_scr_MouseDown" Grid.Row="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="595,508,143,90">
-                <TextBlock Text="Phiếu sửa chữa" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Border x:Name="bd_store_scr" MouseDown="bd_store_scr_MouseDown"  Cursor="Hand" Grid.Row="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="595,508,143,90">
+                <TextBlock Text="Xem kho" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
-           
+
         </Grid>
-       
+
     </Border>
-   
+
 </UserControl>

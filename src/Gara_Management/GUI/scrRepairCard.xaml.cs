@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI.Item;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,12 @@ namespace Gara_Management.GUI
         public scrRepairCard()
         {
             InitializeComponent();
+
+            for (int i = 0; i < 10; i++)
+            {
+                itRepairCard it = new itRepairCard();
+                ds_phieuTN.Children.Add(it);
+            }
         }
 
         private void bt_car_scr_MouseDown(object sender, MouseButtonEventArgs e)
