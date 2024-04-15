@@ -55,7 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\Card\crdAccept.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\crdReceipt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\crdRepair.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\crdStockIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,8 +131,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GUI\Card\crdAccept.xaml.cs">
+      <DependentUpon>crdAccept.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\crdReceipt.xaml.cs">
+      <DependentUpon>crdReceipt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Card\crdRepair.xaml.cs">
       <DependentUpon>crdRepair.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\crdStockIn.xaml.cs">
+      <DependentUpon>crdStockIn.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Item\itCar.xaml.cs">
       <DependentUpon>itCar.xaml</DependentUpon>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI.Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,19 @@ namespace Gara_Management.GUI.Item
         public itCar()
         {
             InitializeComponent();
+        }
+        
+        // phiếu thu tiền
+        private void bd_paymentReceipt_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdReceipt crdReceipt = new crdReceipt();
+            crdReceipt.ShowDialog();
+        }
+
+        private void bd_repairInvoice_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdRepair crdRepair = new crdRepair();
+            crdRepair.ShowDialog(); 
         }
     }
 }

@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace Gara_Management.GUI.Card
+{
+    /// <summary>
+    /// Interaction logic for crdAccept.xaml
+    /// </summary>
+    public partial class crdAccept : Window
+    {
+        private bool isChanged=false;  /* biếm kiểm tra các thông tin đã thay đổi hay chưa*/
+        // khi khởi tạo tự động có mã phiếu
+        public crdAccept()
+        {
+            InitializeComponent();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+      
+        private void bd_exit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        // kiểm tra các thông tin đã hợp lệ chưa
+        private bool isValid()
+        {
+            
+            return true;
+        }
+
+        // lưu phiếu, sau khi lưu nút sẽ trở thành nút sửa 
+        private void bd_save_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!isChanged)
+            {
+
+
+                isChanged = true;
+            }
+            else
+            {
+
+                
+            }
+        }
+
+        private void bd_print_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+          
+        }
+    }
+}

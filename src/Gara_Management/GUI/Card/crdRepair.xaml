@@ -5,14 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Gara_Management.GUI.Card"
         mc:Ignorable="d" Background="Transparent" AllowsTransparency="True"
-        Width="836" Height="522" WindowStyle="None" >
-    <Border Background="{StaticResource sColor4}" CornerRadius="10">
+        Width="836" Height="522" WindowStyle="None" WindowStartupLocation="CenterScreen" 
+        Foreground="{StaticResource sColor1}" FontSize="20">
+    <Border Background="{StaticResource sColor4}" CornerRadius="10" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="148"/>
+                <RowDefinition Height="58"/>
+                <RowDefinition Height="90"/>
                 <RowDefinition Height="302"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            <!-- exit -->
+            <Border x:Name="bd_exit" Cursor="Hand" 
+                    MouseDown="bd_exit_MouseDown" Margin="786,0,0,10" CornerRadius="5" Width="50">
+                <Label x:Name="lb_exit" Content="X" Foreground="{StaticResource sColor1}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Margin="0,-3,0,3"  />
+            </Border>
+            <!-- Title -->
+            <TextBlock Text="Phiếu sửa chữa" TextWrapping="Wrap" FontSize="30"
+           HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center"
+           FontWeight="Bold" Width="230" Margin="0,18,0,0"/>
+            <!-- in for-->
+            <!-- Mã phiếu -->
+            <Grid Grid.Row="1" Margin="100,0,556,45">
+                <TextBlock Text="Mã phiếu:" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBlock Text="RPC002" VerticalAlignment="Center" Margin="106,0,0,0"/>
+                <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
+            </Grid>
+            <!-- Biển số -->
+            <Grid Grid.Row="1" Margin="100,45,516,0">
+                <TextBlock Text="Biển số xe: " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBox Text="77-AA 77777" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
+                <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
+            </Grid>
+            <!-- Ngày sửa-->
+            <Grid Grid.Row="1" Margin="529,0,100,45">
+                <TextBlock Text="Ngày sửa: " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBox Text="12/01/2024" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
+                <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
+            </Grid>
+            <!-- bảng thông tin -->
         </Grid>
     </Border>
 </Window>
