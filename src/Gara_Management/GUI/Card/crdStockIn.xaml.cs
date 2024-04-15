@@ -15,24 +15,13 @@ using System.Windows.Shapes;
 namespace Gara_Management.GUI.Card
 {
     /// <summary>
-    /// Interaction logic for crdRepair.xaml
+    /// Interaction logic for crdStockIn.xaml
     /// </summary>
-    public partial class crdRepair : Window
+    public partial class crdStockIn : Window
     {
-        public crdRepair()
+        public crdStockIn()
         {
             InitializeComponent();
-        }
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-                DragMove();
-        }
-
-
-        private void bd_exit_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI.Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace Gara_Management.GUI.Item
         public itRepairCard()
         {
             InitializeComponent();
+        }
+
+        // xem chi tiết phiếu sửa chữa
+        private void bd_repair_detail_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdRepair crdRepair = new crdRepair();
+            crdRepair.ShowDialog();
         }
     }
 }

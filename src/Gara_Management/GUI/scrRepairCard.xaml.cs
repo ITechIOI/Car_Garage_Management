@@ -1,4 +1,5 @@
-﻿using Gara_Management.GUI.Item;
+﻿using Gara_Management.GUI.Card;
+using Gara_Management.GUI.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,12 @@ namespace Gara_Management.GUI
             {
                 App.Current.Shutdown();
             }
+        }
+
+        private void bd_repairInvoice_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdRepair crdRepair = new crdRepair();
+            crdRepair.ShowDialog(); 
         }
     }
 }

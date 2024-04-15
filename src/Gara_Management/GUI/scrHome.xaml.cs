@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI.Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,26 +52,35 @@ namespace Gara_Management.GUI
         private void bd_acceptCar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // tiếp nhận sửa chữa 
+            crdAccept crdAccept = new crdAccept();
+            crdAccept.ShowDialog();
         }
 
         private void bd_paymentReceipt_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // lập phiếu thu tiền
+            crdReceipt crdReceipt = new crdReceipt();
+            crdReceipt.ShowDialog();
         }
 
         private void bd_repairInvoice_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Lập phiếu sửa chữa
+            crdRepair crdRepair = new crdRepair();
+            crdRepair.ShowDialog();
         }
 
         private void bd_stockIn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // tạo phiếu nhập kho
+            crdStockIn crdStock = new crdStockIn();
+            crdStock.ShowDialog();
         }
 
         private void bd_reportCreate_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // tạo báo cáo
+           
         }
 
         private void bd_customerAdd_MouseDown(object sender, MouseButtonEventArgs e)

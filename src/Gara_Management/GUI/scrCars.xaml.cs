@@ -1,4 +1,5 @@
 ﻿using Gara_Management.GUI.Item;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +72,8 @@ namespace Gara_Management.GUI
         private void bd_acceptCar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // tiếp nhận sửa chửa (giống bên home)
+            crdAccept newCar = new crdAccept();
+            newCar.ShowDialog();
         }
 
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)

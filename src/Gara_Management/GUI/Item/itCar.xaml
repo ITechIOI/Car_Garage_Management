@@ -36,12 +36,12 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="123.403.000" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="137" Margin="0,6,0,0" />
                     <TextBlock Text="VNĐ" FontSize="14" Foreground="{StaticResource sColor1}" Margin="137,17,0,0" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" />
-                    <!-- nuta phiếu sửa chữa -->
-                    <Border Grid.Row="1" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Width="64" Margin="15,7,93,7">
+                    <!-- nuts hiển thị phiếu sửa chữa -->
+                    <Border x:Name="bd_repairInvoice" MouseDown="bd_repairInvoice_MouseDown" Grid.Row="1" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Width="64" Margin="15,7,93,7">
                         <TextBlock Text="Phiếu" FontSize="18" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
                     <!-- nút phiếu thu tiền-->
-                    <Border Grid.Row="1" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="94,7,14,7" Width="64">
+                    <Border x:Name="bd_paymentReceipt" MouseDown="bd_paymentReceipt_MouseDown" Grid.Row="1" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="94,7,14,7" Width="64">
                         <TextBlock Text="Tiền" FontSize="18" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
                     </Border>
