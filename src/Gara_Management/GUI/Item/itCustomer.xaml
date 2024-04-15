@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Gara_Management.GUI.Item.itCustomer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gara_Management.GUI.Item"
+             mc:Ignorable="d" Foreground="{StaticResource sColor1}" FontSize="20"
+             Width="716" Height="150">
+    <Grid Width="716" Height="140" >
+        <Border x:Name="bd_customer" Cursor="Hand" MouseDown="bd_customer_MouseDown" BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="34"/>
+                    <RowDefinition />
+                    <RowDefinition Height="34"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="CUS001" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <Rectangle Width="2" Margin="98,0,0,0" Fill="{StaticResource sColor5}"/>
+                    <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Họ tên:" Margin="14,0,0,0"/>
+                    <!-- Họ tên -->
+                    <TextBlock Grid.Column="1" Text="Nguyễn Thị Minh Khai" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="88,0,0,0"/>
+                    <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="0,0,198,0"/>
+                    <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Text="SĐT:" Margin="14,0,0,0"/>
+                    <!-- SĐT -->
+                    <TextBlock Grid.Column="2" Text="0987654321" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="62,0,0,0"/>
+                </Grid>
+                <Rectangle Grid.Row="1" Fill="{StaticResource sColor5}" Height="2" VerticalAlignment="Top"/>
+
+                <TextBlock Grid.Row="1" Text="Địa chỉ: " Margin="14,5,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="70"/>
+                <!--Địa chỉ-->
+                <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="7A/2 đường Nguyễn Du, phường Nguyễn Du, quận Nguyễn Du, tp Nguyễn Du" Margin="86,6,0,0"
+                           HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Rectangle Grid.Row="2" Fill="{StaticResource sColor5}" Height="2" VerticalAlignment="Top"/>
+                <TextBlock Grid.Row="2" Text="Nợ: " TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="524,0,0,0"/>
+                <!-- Tiền nợ-->
+                <TextBlock Grid.Row="2" Text="23.000.000vnđ" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="564,0,0,0"/>
+
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

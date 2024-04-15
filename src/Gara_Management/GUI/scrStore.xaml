@@ -224,9 +224,9 @@
             </Border>
             <!-- Filter -->
             <Image Grid.Row="1" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
-            <!-- Tiếp nhận sửa chữa -->
+            <!--  -->
             <Image Grid.Row="1" Cursor="Hand" Source="/Images/add_store.png" Margin="760,0,75,0" />
-            <!-- BẢng các xe đã tiếp nhận -->
+            <!-- BẢng các vật tư phụ tùng -->
             <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,174">
                 <Grid>
                     <!-- tên thành phần bảng -->
