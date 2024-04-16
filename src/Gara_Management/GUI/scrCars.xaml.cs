@@ -36,7 +36,7 @@ namespace Gara_Management.GUI
             for (int i = 0; i < 9; i++)
             {
                 itCar itCar1 = new itCar();
-                ds_xe.Children.Add(itCar1);
+                ds_acc.Children.Add(itCar1);
               
             }
            

@@ -72,6 +72,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Item\itAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Item\itCar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +155,9 @@
     </Compile>
     <Compile Include="GUI\Card\crdStockIn.xaml.cs">
       <DependentUpon>crdStockIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Item\itAccount.xaml.cs">
+      <DependentUpon>itAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Item\itCar.xaml.cs">
       <DependentUpon>itCar.xaml</DependentUpon>
