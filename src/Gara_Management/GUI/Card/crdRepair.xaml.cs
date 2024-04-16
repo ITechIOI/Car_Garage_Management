@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Gara_Management.GUI.Item;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,12 @@ namespace Gara_Management.GUI.Card
         public crdRepair()
         {
             InitializeComponent();
+            for (int i = 0; i < 4; i++)
+            {
+                itRepairCardDetail it = new itRepairCardDetail();
+                ds_suachua.Children.Add(it);
+            }
+
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -34,5 +42,31 @@ namespace Gara_Management.GUI.Card
         {
             this.Close();
         }
+
+        //
+        private void bd_print_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+
+        }
+
+        private void bd_add_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+            for(int i=0;i<ds_suachua.Children.Count;i++)
+            {
+                itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
+
+                if (child != null && !child.isValid())
+                {
+                    MessageBox.Show("thông báo gì đấy");
+                    return;
+                }
+            }
+            ds_suachua.Children.Add(new itRepairCardDetail());
+            
+          
+        }
+
     }
 }

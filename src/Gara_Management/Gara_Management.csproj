@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -83,7 +84,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Item\itRepairCardDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Item\itStockIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Item\itStockInDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,8 +161,14 @@
     <Compile Include="GUI\Item\itRepairCard.xaml.cs">
       <DependentUpon>itRepairCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Item\itRepairCardDetail.xaml.cs">
+      <DependentUpon>itRepairCardDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Item\itStockIn.xaml.cs">
       <DependentUpon>itStockIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Item\itStockInDetail.xaml.cs">
+      <DependentUpon>itStockInDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Item\itSupplies.xaml.cs">
       <DependentUpon>itSupplies.xaml</DependentUpon>

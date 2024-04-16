@@ -2,13 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Gara_Management"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/UIColor.xaml"/>
-            
             </ResourceDictionary.MergedDictionaries>
+            
         </ResourceDictionary>
    
     </Application.Resources>

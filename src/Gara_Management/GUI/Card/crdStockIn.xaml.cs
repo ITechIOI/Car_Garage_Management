@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI.Item;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,44 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class crdStockIn : Window
     {
+
+        // tùy vào cách dùng mà hiển thị sẽ khác nhau
         public crdStockIn()
         {
             InitializeComponent();
+            for(int  i = 0; i < 7; i++)
+            {
+                itStockInDetail it = new itStockInDetail();
+                ds_nhapkho.Children.Add(it);    
+            }
+        }
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+
+        private void bd_exit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        //
+        private void bd_print_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+
+        }
+        
+        private void bd_pay_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void bd_add_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
