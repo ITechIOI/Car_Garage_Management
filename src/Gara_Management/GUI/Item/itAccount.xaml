@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Gara_Management.GUI.Item"
-             mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="716">
+             mc:Ignorable="d" Foreground="{StaticResource sColor1}"
+             Height="100" Width="716">
     <Grid Width="716" Height="80">
         <Border BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}">
             <Grid >
