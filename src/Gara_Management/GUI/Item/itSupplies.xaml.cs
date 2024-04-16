@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI.Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,9 @@ namespace Gara_Management.GUI.Item
         private void bd_addSupplies_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // hiển thị phiếu đăng kí mua vật tư
+            crdStockIn crdStockIn = new crdStockIn("a","a");// ví dụ
+            crdStockIn.ShowDialog();
+
         }
     }
 }

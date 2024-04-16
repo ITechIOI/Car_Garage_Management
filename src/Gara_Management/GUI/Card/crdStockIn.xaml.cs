@@ -22,14 +22,31 @@ namespace Gara_Management.GUI.Card
     {
 
         // tùy vào cách dùng mà hiển thị sẽ khác nhau
+        // phiếu mới
         public crdStockIn()
         {
             InitializeComponent();
-            for(int  i = 0; i < 7; i++)
+
+        }
+        // xem phiếu đã có
+        public crdStockIn(string maphieu)
+        {
+            InitializeComponent();
+            for (int i = 0; i < 7; i++)
             {
                 itStockInDetail it = new itStockInDetail();
-                ds_nhapkho.Children.Add(it);    
+                ds_nhapkho.Children.Add(it);
             }
+        }
+        // hiển thị khi nhấn vào thêm 1 vật tư nào đó
+        public crdStockIn(string maVatTu, string a )
+        {
+            InitializeComponent();
+
+            itStockInDetail it = new itStockInDetail();
+            // thêm 
+            ds_nhapkho.Children.Add(it);
+
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -49,7 +66,7 @@ namespace Gara_Management.GUI.Card
 
 
         }
-        
+
         private void bd_pay_MouseDown(object sender, MouseButtonEventArgs e)
         {
 

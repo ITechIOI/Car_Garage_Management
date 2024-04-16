@@ -206,7 +206,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="69"/>
                 <RowDefinition Height="48"/>
-                <RowDefinition/>
+                <RowDefinition Height="488*"/>
+                <RowDefinition Height="163*"/>
             </Grid.RowDefinitions>
             <!-- thoát ứng dụng -->
             <Border x:Name="bd_exit" Cursor="Hand" MouseEnter="bd_exit_MouseEnter" MouseLeave="bd_exit_MouseLeave"
@@ -226,10 +227,10 @@
             <!-- Tiếp nhận sửa chữa -->
             <Image Grid.Row="1" x:Name="bd_acceptCar" MouseDown="bd_acceptCar_MouseDown" Cursor="Hand" Source="/Images/add_car.png" Margin="760,0,75,0" />
             <!-- BẢng các xe đã tiếp nhận -->
-            <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,174">
+            <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,11">
                 <Grid>
                     <!-- tên thành phần bảng -->
-                    <Border  BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="0,0,18,383" Height="52">
+                    <Border  BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="0,0,18,383">
                         <Grid Height="52" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60"/>
@@ -260,14 +261,17 @@
 
                     </ScrollViewer>
                 </Grid>
-             
+
             </Border>
-            <Border x:Name="bt_repair_card_scr" Cursor="Hand" MouseDown="bt_repair_card_scr_MouseDown" Grid.Row="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="595,508,143,90">
+            <!-- xem các phiếu sửa chữa-->
+            <Border x:Name="bt_repair_card_scr" Cursor="Hand" MouseDown="bt_repair_card_scr_MouseDown" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="629,20,109,90">
                 <TextBlock Text="Phiếu sửa chữa" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
-           
+            <TextBlock Grid.Row="3" Text="Tổng xe hiện tại: 99" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,95,0,0"/>
+            <TextBlock Grid.Row="3" Text="Số xe đã nhận hôm nay: 30" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="582,95,0,0"/>
+
         </Grid>
-       
+
     </Border>
-   
+
 </UserControl>

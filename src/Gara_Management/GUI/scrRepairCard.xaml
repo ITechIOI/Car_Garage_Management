@@ -206,7 +206,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="69"/>
                 <RowDefinition Height="48"/>
-                <RowDefinition/>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
             <!-- thoát ứng dụng -->
             <Border x:Name="bd_exit" Cursor="Hand" MouseEnter="bd_exit_MouseEnter" MouseLeave="bd_exit_MouseLeave"
@@ -224,9 +225,9 @@
             <!-- Filter -->
             <Image Grid.Row="1" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
             <!-- lập phiếu sửa chữa -->
-            <Image x:Name="bd_repairInvoice" MouseDown="bd_repairInvoice_MouseDown" Grid.Row="1" Cursor="Hand" Source="/Images/add_repair_card.png" Margin="760,0,75,0" Width="44" Height="44" />
+            <Image x:Name="bd_repairInvoice" MouseDown="bd_repairInvoice_MouseDown" Grid.Row="1" Cursor="Hand" Source="/Images/add_repair_card.png" Margin="763,2,78,2" Width="44" Height="44" />
             <!-- BẢng các phiếu sửa chữa -->
-            <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,174">
+            <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,6">
                 <Grid>
                     <!-- tên thành phần bảng -->
                     <Border  BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="0,0,18,383" Height="52">
@@ -261,9 +262,15 @@
                 </Grid>
 
             </Border>
-            <Border x:Name="bt_car_scr" Cursor="Hand" MouseDown="bt_car_scr_MouseDown" Grid.Row="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="595,508,143,90">
+            <!-- xem danh sách xe -->
+            <Border x:Name="bt_car_scr" Cursor="Hand" MouseDown="bt_car_scr_MouseDown" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="595,25,143,90">
                 <TextBlock Text="Danh sách xe" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
+
+            <!-- -->
+            <TextBlock Grid.Row="3" Text="Chưa thanh toán: 34" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,95,0,0"/>
+            <TextBlock Grid.Row="3" Text="// phần này thêm j không?" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,100,0"/>
+
         </Grid>
 
     </Border>

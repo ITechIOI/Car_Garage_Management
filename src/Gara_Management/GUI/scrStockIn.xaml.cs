@@ -1,4 +1,5 @@
 ﻿using Gara_Management.GUI.Item;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,10 +55,16 @@ namespace Gara_Management.GUI
                 App.Current.Shutdown();
             }
         }
-
+        // chuyển sang màn hình kho
         private void bd_store_scr_MouseDown(object sender, MouseButtonEventArgs e)
         {
             changeToStoreScr?.Invoke(this, EventArgs.Empty);  
+        }
+        // tạo phiêu nhập kho
+        private void bd_stockIn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdStockIn crdStockIn = new crdStockIn();
+            crdStockIn.ShowDialog();
         }
     }
 }

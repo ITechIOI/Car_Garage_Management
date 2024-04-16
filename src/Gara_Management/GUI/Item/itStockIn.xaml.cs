@@ -1,4 +1,5 @@
 ﻿using System;
+using Gara_Management.GUI.Card;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Gara_Management.GUI.Item
         public itStockIn()
         {
             InitializeComponent();
+        }
+
+        private void bd_StockInInfor_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdStockIn crdStockIn = new crdStockIn("ma","a");
+            crdStockIn.ShowDialog();
         }
     }
 }

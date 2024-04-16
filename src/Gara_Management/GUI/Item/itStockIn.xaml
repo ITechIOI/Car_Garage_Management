@@ -26,7 +26,7 @@
                 <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="148,0,0,0"/>
                 <TextBlock Grid.Column="3" Text="29.870.000" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="158,0,0,0"/>
-                <Border Grid.Column="4" Cursor="Hand">
+                <Border x:Name="bd_StockInInfor" MouseDown="bd_StockInInfor_MouseDown" Grid.Column="4" Cursor="Hand">
                     <TextBlock  Text="..." FontSize="36" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top"
                                 Width="28" Height="61" RenderTransformOrigin="0.5,0.5" Margin="5,-4,0,0"   >
                         <TextBlock.RenderTransform>

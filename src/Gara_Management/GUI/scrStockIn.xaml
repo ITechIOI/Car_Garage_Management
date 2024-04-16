@@ -207,7 +207,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="69"/>
                 <RowDefinition Height="48"/>
-                <RowDefinition/>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
             <!-- thoát ứng dụng -->
             <Border x:Name="bd_exit" Cursor="Hand" MouseEnter="bd_exit_MouseEnter" MouseLeave="bd_exit_MouseLeave"
@@ -225,9 +226,9 @@
             <!-- Filter -->
             <Image Grid.Row="1" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
             <!-- Tạo phiếu nhập kho -->
-            <Image Grid.Row="1" Cursor="Hand" Source="/Images/add_store.png" Margin="760,0,75,0" />
+            <Image Grid.Row="1" x:Name="bd_stockIn" MouseDown="bd_stockIn_MouseDown" Cursor="Hand" Source="/Images/add_store.png" Margin="760,0,75,0" />
             <!-- BẢng phiếu nhập kho-->
-            <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,174">
+            <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,6">
                 <Grid>
                     <!-- tên thành phần bảng -->
                     <Border  BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="0,0,18,383" Height="52">
@@ -262,9 +263,13 @@
                 </Grid>
 
             </Border>
-            <Border x:Name="bd_store_scr" MouseDown="bd_store_scr_MouseDown"  Cursor="Hand" Grid.Row="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="595,508,143,90">
+            <!-- xem kho -->
+            <Border x:Name="bd_store_scr" MouseDown="bd_store_scr_MouseDown"  Cursor="Hand" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="625,22,113,93">
                 <TextBlock Text="Xem kho" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
+            <!-- -->
+            <TextBlock Grid.Row="3" Text="Chưa thanh toán: 34" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,95,0,0"/>
+            <TextBlock Grid.Row="3" Text="Chưa đăng ký nhập: 3" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,100,0"/>
 
         </Grid>
 

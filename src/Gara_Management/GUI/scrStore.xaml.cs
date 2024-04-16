@@ -1,4 +1,5 @@
 ﻿using Gara_Management.GUI.Item;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,13 @@ namespace Gara_Management.GUI
         private void bd_stockIn_scr_MouseDown(object sender, MouseButtonEventArgs e)
         {
             changeToStockInScr?.Invoke(this, EventArgs.Empty); 
+        }
+
+        // tạo phiếu nhập kho
+        private void bd_stockIn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdStockIn crdStockIn = new crdStockIn();
+            crdStockIn.ShowDialog();
         }
     }
 }

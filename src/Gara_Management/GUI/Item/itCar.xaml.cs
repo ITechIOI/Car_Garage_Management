@@ -27,6 +27,7 @@ namespace Gara_Management.GUI.Item
             InitializeComponent();
         }
         
+
         // phiếu thu tiền
         private void bd_paymentReceipt_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -36,8 +37,16 @@ namespace Gara_Management.GUI.Item
 
         private void bd_repairInvoice_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdRepair crdRepair = new crdRepair();
+            crdRepair crdRepair = new crdRepair("Mã phiếu");
             crdRepair.ShowDialog(); 
+        }
+
+   
+
+        private void bd_acceptDetail_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdAccept crdAccept = new crdAccept("MÃ phiếu");
+            crdAccept.ShowDialog();
         }
     }
 }
