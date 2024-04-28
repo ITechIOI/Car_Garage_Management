@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI.Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,8 @@ namespace Gara_Management.GUI.Item
         // Hiển thị bảng thông tin khách hàng
         private void bd_customer_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            crdCustomer crdCustomer = new crdCustomer("makh");
+            crdCustomer.ShowDialog();   
         }
     }
 }
