@@ -224,7 +224,7 @@
                 </Grid>
             </Border>
             <!-- Filter -->
-            <Image Grid.Row="1" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
+            <Image x:Name="bd_filter" MouseDown="bd_filter_MouseDown" Grid.Row="1" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
             <!-- nhập kho -->
             <Image Grid.Row="1" x:Name="bd_stockIn" MouseDown="bd_stockIn_MouseDown" Cursor="Hand" Source="/Images/add_store.png" Margin="760,0,75,0" />
             <!-- BẢng các vật tư phụ tùng -->
@@ -272,6 +272,33 @@
             <TextBlock Grid.Row="3" Text="Số vật tư đã hết: 3" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,100,0"/>
 
 
+            <!-- Bộ lọc -->
+            <Border x:Name="filter" Visibility="Hidden" Background="White" HorizontalAlignment="Left" Height="203" Margin="405,10,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="337">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="83*"/>
+                        <RowDefinition Height="71*"/>
+                        <RowDefinition Height="49*"/>
+                    </Grid.RowDefinitions>
+                    <!-- lọc giá niêm iết-->
+                    <Grid Grid.Row="0">
+
+                        <CheckBox Content="Giá niêm yết" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="102" Margin="0,10,0,0"/>
+
+                        <ProgressBar Margin="0,53,0,5"/>
+                    </Grid>
+
+                    <!-- lọc số lượng -->
+                    <Grid Grid.Row="1">
+
+                        <CheckBox Content="Số lượng" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="102" Margin="0,10,0,0"/>
+
+                        <ProgressBar Margin="0,53,0,5"/>
+                    </Grid>
+                    <!-- ok-->
+                    <Button Grid.Row="2" Margin="110,10,111,0"/>
+                </Grid>
+            </Border>
         </Grid>
 
     </Border>

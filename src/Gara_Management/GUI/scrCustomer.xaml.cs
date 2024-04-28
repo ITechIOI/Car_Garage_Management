@@ -60,5 +60,10 @@ namespace Gara_Management.GUI
             crdCustomer crdCustomer = new crdCustomer();
             crdCustomer.ShowDialog();
         }
+
+        private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            filter.Visibility = Visibility.Visible;
+        }
     }
 }

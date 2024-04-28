@@ -223,7 +223,7 @@
                 </Grid>
             </Border>
             <!-- Filter -->
-            <Image Grid.Row="1" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
+            <Image  x:Name="bd_filter" MouseDown="bd_filter_MouseDown" Grid.Row="1" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
             <!-- Thêm khách hàng-->
             <Image x:Name="bd_add_customer" Grid.Row="1" Cursor="Hand" MouseDown="bd_add_customer_MouseDown" Source="/Images/add_customer.png" Margin="760,0,75,0" />
             <!-- BẢng các khách hàng -->
@@ -240,6 +240,25 @@
                     </ScrollViewer>
                 </Grid>
 
+            </Border>
+            <!-- Bộ lọc -->
+            <Border x:Name="filter" Visibility="Hidden" Background="White" HorizontalAlignment="Left" Height="128" Margin="405,10,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="337">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="93*"/>
+                        <RowDefinition Height="35*"/>
+
+                    </Grid.RowDefinitions>
+                    <!-- ltiền nợt-->
+                    <Grid Grid.Row="0">
+
+                        <CheckBox Content="Tiền nợ" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="102" Margin="0,10,0,0"/>
+
+                        <ProgressBar Margin="0,53,0,5"/>
+                    </Grid>
+                    <!-- ok-->
+                    <Button Grid.Row="1" Margin="110,10,111,0"/>
+                </Grid>
             </Border>
 
 

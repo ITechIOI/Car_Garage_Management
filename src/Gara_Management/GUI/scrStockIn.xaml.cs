@@ -66,5 +66,10 @@ namespace Gara_Management.GUI
             crdStockIn crdStockIn = new crdStockIn();
             crdStockIn.ShowDialog();
         }
+
+        private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            filter.Visibility = Visibility.Visible;
+        }
     }
 }

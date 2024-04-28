@@ -67,5 +67,10 @@ namespace Gara_Management.GUI
             crdRepair crdRepair = new crdRepair();
             crdRepair.ShowDialog(); 
         }
+
+        private void bd_filetr_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            filter.Visibility = Visibility.Visible;
+        }
     }
 }
