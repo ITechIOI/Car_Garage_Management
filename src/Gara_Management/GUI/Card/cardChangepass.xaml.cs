@@ -15,13 +15,18 @@ using System.Windows.Shapes;
 namespace Gara_Management.GUI.Card
 {
     /// <summary>
-    /// Interaction logic for cardInfoStaff.xaml
+    /// Interaction logic for cardChangepass.xaml
     /// </summary>
-    public partial class cardInfoStaff : Window
+    public partial class cardChangepass : Window
     {
-        public cardInfoStaff()
+        public cardChangepass()
         {
             InitializeComponent();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
 
         private void bt_exit_MouseDown(object sender, MouseButtonEventArgs e)
@@ -30,11 +35,6 @@ namespace Gara_Management.GUI.Card
         }
 
         private void bt_save_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //Ktra điều kiện
-        }
-
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
         }

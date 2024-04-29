@@ -91,6 +91,8 @@ namespace Gara_Management.GUI
         private void bd_staffAdd_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // thêm nhân viên
+            cardInfoStaff crdstaff = new cardInfoStaff();
+            crdstaff.ShowDialog();
         }
     }
 }

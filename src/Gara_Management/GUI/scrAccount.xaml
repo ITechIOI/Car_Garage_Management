@@ -215,15 +215,18 @@
                 <Label x:Name="lb_exit" Content="X" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Width="50" Height="50" />
             </Border>
             <!--Thanh tìm kiếm-->
-            <Border Grid.Row="1" Margin="75,0,207,0" CornerRadius="20" Height="48" Background="{StaticResource sColor1}">
+            <Border Grid.Row="1" Margin="124,0,207,0" CornerRadius="20" Height="48" Background="{StaticResource sColor1}">
                 <Grid>
                     <TextBox Height="48" BorderThickness="0" Background="Transparent"
-                      FontSize="20" VerticalContentAlignment="Center" Padding="20,0,0,0" Margin="0,0,51,0"/>
+                      FontSize="20" VerticalContentAlignment="Center" Padding="20,0,0,0" Margin="10,0,51,0" VerticalAlignment="Center"/>
                     <Image Cursor="Hand" Source="/Images/ic_search.png" Margin="555,0,0,0"/>
                 </Grid>
             </Border>
+            <!--Nút trở về thông tin chi tiết-->
+            <Image Grid.Row="1" x:Name="bt_detail" MouseDown="bt_detail_MouseDown"  Cursor="Hand" Source="/Images/ic_return.png" Margin="79,0,770,0"/>
+
             <!--Thêm tài khoản - nhân viên-->
-            <Image Grid.Row="1" x:Name="bd_filter" MouseDown="bd_filter_MouseDown" Cursor="Hand" Source="/Images/add_staff.png" Margin="694,0,143,0"/>
+            <Image Grid.Row="1" x:Name="bt_add_staff" MouseDown="bt_add_staff_MouseDown" Cursor="Hand" Source="/Images/add_staff.png" Margin="694,0,143,0" Height="48" VerticalAlignment="Bottom"/>
             <!--Bảng các tài khoản-->
             <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,174">
                 <Grid>
@@ -252,8 +255,8 @@
                         </Grid>
                     </Border>
 
-                    <ScrollViewer Margin="0,66,0,0">
-                        <StackPanel x:Name="ds_acc" >
+                    <ScrollViewer Margin="0,66,0,-101">
+                        <StackPanel x:Name="ds_acc" Height="473" >
 
                         </StackPanel>
 

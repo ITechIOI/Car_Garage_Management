@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI.Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Gara_Management.GUI
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
         Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
+        public EventHandler returntoListacc;
         public scrAccDetail()
         {
             InitializeComponent();
@@ -55,17 +57,20 @@ namespace Gara_Management.GUI
 
         private void bt_return_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            returntoListacc?.Invoke(this, new EventArgs());
 
         }
 
         private void bt_update_info_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            cardUpdateInfo crdupdate = new cardUpdateInfo();
+            crdupdate.ShowDialog();
         }
 
         private void bt_change_pass_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            cardChangepass crdchange = new cardChangepass();
+            crdchange.ShowDialog();
         }
     }
 }

@@ -208,7 +208,9 @@ namespace Gara_Management
         private void menuAccount_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 6;
-            DataContext = new scrAccount();
+            scrAccDetail scraccdt = new scrAccDetail();
+            DataContext = scraccdt;
+            scraccdt.returntoListacc += ChangetoscrListacc;
             menuHome.Background = new SolidColorBrush(color5);
             menuCars.Background = new SolidColorBrush(color5);
             menuStore.Background = new SolidColorBrush(color5);
@@ -216,13 +218,31 @@ namespace Gara_Management
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color4);
         }
+        // chuyển sang màn hình danh sách các nhân viên (chỉ Admin mới làm đc)
+        public void ChangetoscrListacc(object sender, EventArgs e)
+        {
+            scr = 6;
+            scrAccount scracc = new scrAccount();
+            DataContext = scracc;
+            scracc.returntoDetailAcc += ChangetoscrDetailAcc;
+        }
+
+        // chuyển trở về màn hình chi tiết thông tin cá nhân của người đăng nhập
+
+        public void ChangetoscrDetailAcc(object sender, EventArgs e)
+        {
+            scr = 6;
+            scrAccDetail scrAccDetail = new scrAccDetail();
+            DataContext = scrAccDetail;
+            scrAccDetail.returntoListacc += ChangetoscrListacc;
+        }
+
+
         // move chuột ra khỏi nút màn hình Account
         private void menuAccount_MouseLeave(object sender, MouseEventArgs e)
         {
             if (scr != 6)
                 menuAccount.Background = new SolidColorBrush(color5);
         }
-
-        
     }
 }

@@ -56,7 +56,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\Card\cardChangepass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\cardInfoStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\cardUpdateInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\cardViewInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,8 +168,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GUI\Card\cardChangepass.xaml.cs">
+      <DependentUpon>cardChangepass.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Card\cardInfoStaff.xaml.cs">
       <DependentUpon>cardInfoStaff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardUpdateInfo.xaml.cs">
+      <DependentUpon>cardUpdateInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardViewInfo.xaml.cs">
+      <DependentUpon>cardViewInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Card\crdAccept.xaml.cs">
       <DependentUpon>crdAccept.xaml</DependentUpon>
@@ -334,6 +355,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\ic_changepass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ic_detail.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

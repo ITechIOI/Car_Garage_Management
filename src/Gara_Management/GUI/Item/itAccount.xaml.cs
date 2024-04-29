@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI.Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,9 +26,10 @@ namespace Gara_Management.GUI.Item
             InitializeComponent();
         }
 
-        private void try_MouseDown(object sender, MouseButtonEventArgs e)
+        private void bt_view_info_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            cardViewInfo viewinfo = new cardViewInfo();
+            viewinfo.Show();
         }
     }
 }

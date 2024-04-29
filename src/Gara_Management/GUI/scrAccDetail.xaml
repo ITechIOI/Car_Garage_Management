@@ -231,7 +231,7 @@
                     </Grid>
                 </Border>
                 <!--Trở lại-->
-                <Image Grid.Row="1" x:Name="bt_return" MouseDown="bt_return_MouseDown"  Cursor="Hand" Source="/Images/ic_return.png" Margin="32,0,817,0"/>
+                <Image Grid.Row="1" x:Name="bt_return" MouseDown="bt_return_MouseDown"  Cursor="Hand" Source="/Images/ic_detail.png" Margin="32,0,817,0"/>
                 <!--ID-->
                 <Border Grid.Row="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="32,20,670,0" >
                     <TextBlock Text="ID" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>

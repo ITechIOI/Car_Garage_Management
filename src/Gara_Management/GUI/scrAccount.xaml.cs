@@ -26,8 +26,7 @@ namespace Gara_Management.GUI
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
         Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
 
-
-        public event EventHandler changeToRepairCardScr;
+        public event EventHandler returntoDetailAcc;
         public scrAccount()
         {
             InitializeComponent();
@@ -60,23 +59,16 @@ namespace Gara_Management.GUI
             }
         }
 
-        // nút chuyển màn hình sang danh sách phiếu sửa chữa
-        private void bt_repair_card_scr_MouseDown(object sender, MouseButtonEventArgs e)
+        private void bt_add_staff_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            changeToRepairCardScr?.Invoke(this, EventArgs.Empty);
+            cardInfoStaff crdstaff = new cardInfoStaff();
+            crdstaff.ShowDialog();
 
         }
 
-        private void bd_acceptCar_MouseDown(object sender, MouseButtonEventArgs e)
+        private void bt_detail_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // tiếp nhận sửa chửa (giống bên home)
-            crdAccept newCar = new crdAccept();
-            newCar.ShowDialog();
-        }
-
-        private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            // lọc 
+            returntoDetailAcc?.Invoke(this, new EventArgs());
         }
     }
 }
