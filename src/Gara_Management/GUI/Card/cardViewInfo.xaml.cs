@@ -1,5 +1,4 @@
-﻿using Gara_Management.GUI.Card;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,25 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Gara_Management.GUI.Item
+namespace Gara_Management.GUI.Card
 {
     /// <summary>
-    /// Interaction logic for itAccount.xaml
+    /// Interaction logic for cardViewInfo.xaml
     /// </summary>
-    public partial class itAccount : UserControl
+    public partial class cardViewInfo : Window
     {
-        public itAccount()
+        public cardViewInfo()
         {
             InitializeComponent();
         }
 
-        private void bt_view_info_MouseDown(object sender, MouseButtonEventArgs e)
+        private void bt_exit_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            cardViewInfo viewinfo = new cardViewInfo();
-            viewinfo.Show();
+            this.Close();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

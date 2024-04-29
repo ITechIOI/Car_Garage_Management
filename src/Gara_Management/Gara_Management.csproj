@@ -81,6 +81,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\Card\cardChangepass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\cardInfoStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\cardUpdateInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\cardViewInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\crdAccept.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Item\itSupplies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\scrAccDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +240,18 @@
     <Compile Include="DTO\Staff.cs" />
     <Compile Include="DTO\StaffPosition.cs" />
     <Compile Include="DTO\Supplier.cs" />
+    <Compile Include="GUI\Card\cardChangepass.xaml.cs">
+      <DependentUpon>cardChangepass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardInfoStaff.xaml.cs">
+      <DependentUpon>cardInfoStaff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardUpdateInfo.xaml.cs">
+      <DependentUpon>cardUpdateInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardViewInfo.xaml.cs">
+      <DependentUpon>cardViewInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Card\crdAccept.xaml.cs">
       <DependentUpon>crdAccept.xaml</DependentUpon>
     </Compile>
@@ -258,6 +290,9 @@
     </Compile>
     <Compile Include="GUI\Item\itSupplies.xaml.cs">
       <DependentUpon>itSupplies.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\scrAccDetail.xaml.cs">
+      <DependentUpon>scrAccDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\scrAccount.xaml.cs">
       <DependentUpon>scrAccount.xaml</DependentUpon>
@@ -385,6 +420,17 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\ic_return.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ic_update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ic_changepass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ic_detail.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

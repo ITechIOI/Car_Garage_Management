@@ -1,5 +1,4 @@
 ﻿using Gara_Management.GUI.Card;
-using Gara_Management.GUI.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,25 +17,17 @@ using System.Windows.Shapes;
 namespace Gara_Management.GUI
 {
     /// <summary>
-    /// Interaction logic for scrAccount.xaml
+    /// Interaction logic for scrAccDetail.xaml
     /// </summary>
-    public partial class scrAccount : UserControl
+    public partial class scrAccDetail : UserControl
     {
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
         Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
-
-        public event EventHandler returntoDetailAcc;
-        public scrAccount()
+        public EventHandler returntoListacc;
+        public scrAccDetail()
         {
             InitializeComponent();
-
-            for (int i = 0; i < 9; i++)
-            {
-                itAccount itAcc1 = new itAccount();
-                ds_acc.Children.Add(itAcc1);
-
-            }
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -59,16 +50,27 @@ namespace Gara_Management.GUI
             }
         }
 
-        private void bt_add_staff_MouseDown(object sender, MouseButtonEventArgs e)
+        private void bt_addAcc_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            cardInfoStaff crdstaff = new cardInfoStaff();
-            crdstaff.ShowDialog();
 
         }
 
-        private void bt_detail_MouseDown(object sender, MouseButtonEventArgs e)
+        private void bt_return_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            returntoDetailAcc?.Invoke(this, new EventArgs());
+            returntoListacc?.Invoke(this, new EventArgs());
+
+        }
+
+        private void bt_update_info_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            cardUpdateInfo crdupdate = new cardUpdateInfo();
+            crdupdate.ShowDialog();
+        }
+
+        private void bt_change_pass_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            cardChangepass crdchange = new cardChangepass();
+            crdchange.ShowDialog();
         }
     }
 }
