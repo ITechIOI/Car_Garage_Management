@@ -44,7 +44,7 @@
                 <Border Grid.Row="0"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Mã nhân viên:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBlock Text="NV001" VerticalAlignment="Center" Margin="156,0,0,0"/>
+                        <TextBlock Text="NV001" TextAlignment="Center" VerticalAlignment="Center" Margin="156,0,0,0"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="150,0,0,0"/>
                     </Grid>
                 </Border>
@@ -52,80 +52,80 @@
                 <Border Grid.Row="1"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Họ tên: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="104,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,-2"/>
                     </Grid>
                 </Border>
                 <!-- Ngày sinh  -->
                 <Border Grid.Row="2"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Ngày sinh: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="115,0,0,0"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="125,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="115,0,0,-2"/>
                     </Grid>
                 </Border>
                 <!-- Địa chỉ  -->
                 <Border Grid.Row="3"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Địa chỉ: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="100,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,-2"/>
                     </Grid>
                 </Border>
                 <!-- Email  -->
                 <Border Grid.Row="4"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Email: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="107,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,-2"/>
                     </Grid>
                 </Border>
                 <!-- SĐT  -->
                 <Border Grid.Row="5"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Số điện thoại: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="150,0,0,0"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="161,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="150,0,0,-2"/>
                     </Grid>
                 </Border>
                 <!-- Quyền  -->
                 <Border Grid.Row="6"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Quyền: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>
+                        <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="115,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <!--<Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>-->
                     </Grid>
                 </Border>
                 <!-- Gara  -->
                 <Border Grid.Row="7"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Gara: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>
+                            <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="115,0,8,0" Foreground="{StaticResource sColor1}"/>
+                        <!--<Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>-->
                     </Grid>
                 </Border>
                 <!-- Tài khoản  -->
                 <Border Grid.Row="8"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Tài khoản: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>
+                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="119,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="107,0,0,-2"/>
                     </Grid>
                 </Border>
                 <!-- Mật khẩu  -->
                 <Border Grid.Row="9"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Mật khẩu: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="118,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="107,0,0,-2"/>
                     </Grid>
                 </Border>
                 <!-- Nhập lại  -->
                 <Border Grid.Row="10"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Nhập lại: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="105,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="97,0,0,-2"/>
                     </Grid>
                 </Border>
 
