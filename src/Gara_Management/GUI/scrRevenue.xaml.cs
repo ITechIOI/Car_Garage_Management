@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI.Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,30 @@ namespace Gara_Management.GUI
         public scrRevenue()
         {
             InitializeComponent();
+        }
+
+        private void bt_revenue_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            cardRevenue revenue = new cardRevenue();
+            revenue.Show();
+        }
+
+        private void bt_inventory_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            cardInventoryReport inventory=new cardInventoryReport();
+            inventory.Show();
+        }
+
+        private void bt_exit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn có muốn thoát ứng dụng?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            // Kiểm tra xem người dùng đã chọn Yes hay không
+            if (result == MessageBoxResult.Yes)
+            {
+                App.Current.Shutdown();
+            }
+
         }
     }
 }

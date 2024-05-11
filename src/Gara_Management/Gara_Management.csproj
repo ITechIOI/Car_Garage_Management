@@ -89,6 +89,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Card\cardInventoryReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\cardRevenue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\cardUpdateInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -245,6 +253,12 @@
     </Compile>
     <Compile Include="GUI\Card\cardInfoStaff.xaml.cs">
       <DependentUpon>cardInfoStaff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardInventoryReport.xaml.cs">
+      <DependentUpon>cardInventoryReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardRevenue.xaml.cs">
+      <DependentUpon>cardRevenue.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Card\cardUpdateInfo.xaml.cs">
       <DependentUpon>cardUpdateInfo.xaml</DependentUpon>
