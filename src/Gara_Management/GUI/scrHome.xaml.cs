@@ -80,7 +80,9 @@ namespace Gara_Management.GUI
         private void bd_reportCreate_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // tạo báo cáo
-           
+            cardRevenue revenue = new cardRevenue();
+            revenue.Show();
+
         }
 
         private void bd_customerAdd_MouseDown(object sender, MouseButtonEventArgs e)

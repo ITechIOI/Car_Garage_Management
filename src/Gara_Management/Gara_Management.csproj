@@ -93,6 +93,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Card\cardLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\cardRevenue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -256,6 +260,9 @@
     </Compile>
     <Compile Include="GUI\Card\cardInventoryReport.xaml.cs">
       <DependentUpon>cardInventoryReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardLogin.xaml.cs">
+      <DependentUpon>cardLogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Card\cardRevenue.xaml.cs">
       <DependentUpon>cardRevenue.xaml</DependentUpon>
