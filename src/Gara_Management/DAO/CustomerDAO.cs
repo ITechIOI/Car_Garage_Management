@@ -23,10 +23,13 @@ namespace Gara_Management.DAO
             private set { instance = value; }
         }
 
-        public List<Customer> LoadCustomerList()
+        public List<Customer> LoadCustomerList(string gara)
         {
             List<Customer> customerList = new List<Customer>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM CUSTOMERS");
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT CUSTOMERS.ID_CUS, NAME_CUS, PHONE_NUMBER_CUS," +
+                " ADDRESS_CUS, DEBT, STATUS_CUSD FROM CUSTOMERS JOIN CUSTOMER_DETAILS " +
+                "ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS  " +
+                "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0");
             foreach (DataRow item in data.Rows)
             {
                 Customer customer = new Customer(item);
@@ -34,5 +37,31 @@ namespace Gara_Management.DAO
             }
             return customerList;
         }
+
+        public bool InSertCustomer(string gara, string name, string phone, string address)
+        {
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_INSERTCUSTOMER " +
+                "@gara = '" + gara + "', @name = N'" + name
+                +"', @phone = '" + phone + "', @address = N'"+address+ "'") > 0);
+        }
+        
+        public bool UpdateCustomer(string id, string name, string phone, string address)
+        {
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_UPDATECUSTOMER @id = '" + "', @name = N'" + name
+                + "', @phone = '" + phone + "', @address = N'" + address + "'") > 0);
+        }
+
+        public bool DeleteCustomer(string gara, string id)
+        {
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_DELETECUSTOMER" +
+                " @gara = '" + gara+ "', @id = '" + id + "'") > 0);
+        }
+
+        public bool UpdateDebtOfCustomer(string gara, string id, decimal updateMoney)
+        {
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_UPDATEDEBTOFCUSTOMER @gara = '" + gara + "', " +
+                "@id = '"+ id + "', @updateMoney = " + updateMoney.ToString()) > 0);
+        }
+
     }
 }

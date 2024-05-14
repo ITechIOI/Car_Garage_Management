@@ -227,7 +227,6 @@
     <Compile Include="DAO\RevenueDAO.cs" />
     <Compile Include="DAO\RevenueDetailDAO.cs" />
     <Compile Include="DAO\StaffDAO.cs" />
-    <Compile Include="DAO\StaffPositionDAO.cs" />
     <Compile Include="DAO\SupplierDAO.cs" />
     <Compile Include="DTO\Account.cs" />
     <Compile Include="DTO\BeginingInventory.cs" />
@@ -250,7 +249,6 @@
     <Compile Include="DTO\Revenue.cs" />
     <Compile Include="DTO\RevenueDetail.cs" />
     <Compile Include="DTO\Staff.cs" />
-    <Compile Include="DTO\StaffPosition.cs" />
     <Compile Include="DTO\Supplier.cs" />
     <Compile Include="GUI\Card\cardChangepass.xaml.cs">
       <DependentUpon>cardChangepass.xaml</DependentUpon>

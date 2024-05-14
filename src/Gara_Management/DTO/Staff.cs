@@ -30,8 +30,8 @@ namespace Gara_Management.DTO
         private decimal salary;
         public decimal Salary { get => salary; set => salary = value; }
 
-        private string iDPosition;
-        public string IDPosition { get => iDPosition; set => iDPosition = value; }
+        private string position;
+        public string Position { get => position; set => position = value; }
 
         private string iDGara;
         public string IDGara { get => iDGara; set => iDGara = value; }
@@ -39,7 +39,7 @@ namespace Gara_Management.DTO
         private bool statusStaff;
         public bool StatusStaff { get => statusStaff; set => statusStaff = value; }
 
-        public Staff(string iDStaff, string nameStaff, DateTime birthdayStaff, string addressStaff, string emailStaff, string phoneNumberStaff, decimal salary, string iDPosition, string iDGara, bool statusStaff)
+        public Staff(string iDStaff, string nameStaff, DateTime birthdayStaff, string addressStaff, string emailStaff, string phoneNumberStaff, decimal salary, string position, string iDGara, bool statusStaff)
         {
             this.IDStaff = iDStaff;
             this.NameStaff = nameStaff;
@@ -48,7 +48,7 @@ namespace Gara_Management.DTO
             this.EmailStaff = emailStaff;
             this.PhoneNumberStaff = phoneNumberStaff;
             this.Salary = salary;
-            this.IDPosition = iDPosition;
+            this.Position = position;
             this.IDGara = iDGara;
             this.StatusStaff = statusStaff;
         }
@@ -62,7 +62,7 @@ namespace Gara_Management.DTO
             this.EmailStaff = row["EMAIL_STAFF"].ToString();
             this.PhoneNumberStaff = row["PHONE_NUMBER_STAFF"].ToString();
             this.Salary = Convert.ToDecimal(row["SALARY"].ToString());
-            this.IDPosition = row["ID_POSITION"].ToString();
+            this.Position = row["NAME_POS"].ToString();
             this.IDGara = row["ID_GARA"].ToString();
             this.StatusStaff = Convert.ToBoolean(row["STATUS_STAFF"]);
         }

@@ -44,7 +44,7 @@ namespace Gara_Management.DTO
             this.PhoneNumberCus = row["PHONE_NUMBER_CUS"].ToString();
             this.AddressCus = row["ADDRESS_CUS"].ToString();
             this.Debt = Convert.ToDecimal(row["DEBT"].ToString());
-            this.StatusCus = Convert.ToBoolean(row["STATUS_CUS"].ToString());
+            this.StatusCus = Convert.ToBoolean(row["STATUS_CUSD"].ToString());
         }
     }
 }
