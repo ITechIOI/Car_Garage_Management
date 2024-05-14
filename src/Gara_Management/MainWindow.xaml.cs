@@ -244,5 +244,30 @@ namespace Gara_Management
             if (scr != 6)
                 menuAccount.Background = new SolidColorBrush(color5);
         }
+
+        private void menuStaff_MouseEnter(object sender, MouseEventArgs e)
+        {
+            menuStaff.Background = new SolidColorBrush(color4);
+        }
+
+        private void menuStaff_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            scr = 7;
+            DataContext = new scrAccount();
+            menuHome.Background = new SolidColorBrush(color5);
+            menuCars.Background = new SolidColorBrush(color5);
+            menuStore.Background = new SolidColorBrush(color5);
+            menuRevenue.Background = new SolidColorBrush(color5);
+            menuCustomers.Background = new SolidColorBrush(color5);
+            menuAccount.Background = new SolidColorBrush(color5);
+            menuStaff.Background = new SolidColorBrush(color4);
+        }
+
+        private void menuStaff_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (scr != 7)
+                menuStaff.Background = new SolidColorBrush(color5);
+
+        }
     }
 }

@@ -223,7 +223,7 @@
                 </Grid>
             </Border>
             <!--Nút trở về thông tin chi tiết-->
-            <Image Grid.Row="1" x:Name="bt_detail" MouseDown="bt_detail_MouseDown"  Cursor="Hand" Source="/Images/ic_return.png" Margin="79,0,770,0"/>
+            <!--<Image Grid.Row="1" x:Name="bt_detail" MouseDown="bt_detail_MouseDown"  Cursor="Hand" Source="/Images/ic_return.png" Margin="79,0,770,0"/>-->
 
             <!--Thêm tài khoản - nhân viên-->
             <Image Grid.Row="1" x:Name="bt_add_staff" MouseDown="bt_add_staff_MouseDown" Cursor="Hand" Source="/Images/add_staff.png" Margin="694,0,143,0" Height="48" VerticalAlignment="Bottom"/>
