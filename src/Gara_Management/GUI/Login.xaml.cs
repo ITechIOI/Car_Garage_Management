@@ -25,6 +25,12 @@ namespace Gara_Management.GUI
         {
             InitializeComponent();
         }
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
             bd_exit.Background = new SolidColorBrush(color3);

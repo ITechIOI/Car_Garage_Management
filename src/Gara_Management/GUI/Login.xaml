@@ -8,7 +8,7 @@
         mc:Ignorable="d" Background="Transparent"
          Height="400" Width="600">
 
-    <Border CornerRadius="10"  Background="{StaticResource sColor4}">
+    <Border MouseDown="Border_MouseDown" CornerRadius="10"  Background="{StaticResource sColor4}">
 
         <Grid  >
             <Grid.RowDefinitions>
