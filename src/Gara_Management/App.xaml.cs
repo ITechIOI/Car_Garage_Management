@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.GUI;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,6 @@ namespace Gara_Management
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

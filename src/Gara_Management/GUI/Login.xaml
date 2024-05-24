@@ -1,0 +1,42 @@
+﻿<Window x:Class="Gara_Management.GUI.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gara_Management.GUI"
+        WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True"
+        mc:Ignorable="d" Background="Transparent"
+         Height="400" Width="600">
+
+    <Border CornerRadius="10"  Background="{StaticResource sColor4}">
+
+        <Grid  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="23*"/>
+
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <!-- -->
+            <Border x:Name="bd_exit" Cursor="Hand" MouseEnter="bd_exit_MouseEnter" MouseLeave="bd_exit_MouseLeave"
+MouseDown="bd_exit_MouseDown" CornerRadius="5" Margin="560,0,0,35">
+                <Label x:Name="lb_exit" Content="X" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  />
+            </Border>
+            <!-- tài khoản -->
+            <TextBlock Grid.Row="1" Text="Username:" Margin="195,45,300,155" FontSize="18" />
+            <Border Grid.Row="1" CornerRadius="10" Background="{StaticResource sColor1}" Margin="195,75,195,130">
+                <TextBox Padding="6,0,0,0" FontSize="16"  VerticalContentAlignment="Center" x:Name="UsernameTextBox"   Background="Transparent" BorderThickness="0"/>
+            </Border>
+            <!-- mật khẩu -->
+            <TextBlock Grid.Row="1" Text="Password:" Margin="195,115,320,85" FontSize="18"/>
+            <Border Grid.Row="1" CornerRadius="10" Background="{StaticResource sColor1}" Margin="195,145,195,57">
+                <PasswordBox Padding="6,0,0,0" FontSize="16" VerticalContentAlignment="Center" x:Name="PasswordBox"  Background="Transparent" BorderThickness="0"/>
+            </Border>
+            <!-- nút đăng nhập -->
+            <Border x:Name="bt_login" Cursor="Hand" Grid.Row="2" CornerRadius="10" MouseDown="bt_login_MouseDown" MouseEnter="bt_login_MouseEnter"  Background="{StaticResource sColor5}" Margin="220,0,220,72" >
+                <TextBlock  Foreground="{StaticResource sColor1}"   Grid.Row="2" Text="Login" 
+                        Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16"  Margin="0,2,0,0"/>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

@@ -161,6 +161,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\scrAccDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -307,6 +311,9 @@
     </Compile>
     <Compile Include="GUI\Item\itSupplies.xaml.cs">
       <DependentUpon>itSupplies.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\scrAccDetail.xaml.cs">
       <DependentUpon>scrAccDetail.xaml</DependentUpon>
