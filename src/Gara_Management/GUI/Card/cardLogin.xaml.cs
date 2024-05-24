@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,9 +32,17 @@ namespace Gara_Management.GUI.Card
 
         private void bt_login_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.ShowDialog();
-
+            string username = usernameTextbox.Text;
+            string password = passwordTextBox.Text;
+            if (AccountDAO.Instance.CheckForLogin(username, password) != null)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Tài khoản hoặc mật khẩu không đúng. Vui lòng thử lại.");
+            }    
         }
     }
 }

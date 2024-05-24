@@ -34,7 +34,7 @@
                        HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left"
                        FontWeight="Bold" Width="120" Height="41"/>
                         <Border CornerRadius="20" Background="{StaticResource sColor1}" Margin="120,0,10,8">
-                            <TextBox BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBox Name="usernameTextbox" BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
                         </Border>
                     </Grid>
                 </Border>
@@ -45,7 +45,7 @@
                        HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Left"
                        FontWeight="Bold" Width="120" Height="41"/>
                         <Border CornerRadius="20" Background="{StaticResource sColor1}" Margin="120,0,10,8">
-                            <TextBox BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBox Name="passwordTextBox" BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
                         </Border>
                     </Grid>
                 </Border>

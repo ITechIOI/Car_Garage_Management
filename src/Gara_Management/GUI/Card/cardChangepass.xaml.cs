@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +38,26 @@ namespace Gara_Management.GUI.Card
 
         private void bt_save_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            string idStaff = idStaffTextbox.Text;
+            Account acc = AccountDAO.Instance.GetAccountByIDStaff(idStaff);
+            string password = oldPasswordTextbox.Text;
+            if (password != acc.Password)
+            {
+                MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng thử lại.");
+            }
+            else
+            {
+                if (newPasswordTextbox.Text != retypeNewPasswordTextbox.Text)
+                {
+                    MessageBox.Show("Mật khẩu mới không trùng khớp. Vui lòng thử lại.");
+                }
+                else
+                {
+                    AccountDAO.Instance.ChangePassword(acc.IDAcc, newPasswordTextbox.Text);
+                    MessageBox.Show("Thay đổi mật khẩu thành công.");
+                    this.Close();
+                }    
+            }
         }
     }
 }

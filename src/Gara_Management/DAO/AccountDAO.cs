@@ -24,16 +24,70 @@ namespace Gara_Management.DAO
             private set { instance = value; }
         }
 
-        public List<Account> LoadAccountList()
+        public Account CheckForLogin(string username, string password)
         {
-            List<Account> accountList = new List<Account>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM ACCOUNTS");
-            foreach (DataRow item in data.Rows)
+            DataTable data =  DataProvider.Instance.ExecuteQuery("SELECT * FROM ACCOUNTS " +
+                "WHERE USERNAME = '" + username + "' AND PASSWORD = '" + password + "'");
+            if (data.Rows.Count>0)
+                return new Account(data.Rows[0]);
+            return null;
+        }
+
+        public bool InsertAccount(string username, string password, string idStaff, bool accAuthor)
+        {
+            int author;
+            if (accAuthor)
             {
-                Account account = new Account(item);
-                accountList.Add(account);
+                author = 1;
             }
-            return accountList;
+            else
+            {
+                author = 0;
+            }
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_INSERTACCOUNT '" + 
+                username +"', '"+password+"', '"+idStaff+"', "+author) > 0);
+        }
+
+        public Account GetAccountByIDStaff(string idStaff)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM ACCOUNTS WHERE ID_STAFF = '" + idStaff + "'");
+            return new Account(data.Rows[0]);
+        }
+
+
+        public bool CheckExistedUsername(string username)
+        {
+            return (DataProvider.Instance.ExecuteQuery("SELECT * FROM ACCOUNTS " +
+                "WHERE USERNAME='" + username + "'").Rows.Count > 0);
+        }
+
+        public bool ResetPassword(string idAcc)
+        {
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_RESETPASSWORD '" + idAcc + "'") > 0);
+        }
+
+        public bool ChangePassword(string idAcc, string password)
+        {
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_CHANGEPASSWORD '" + idAcc + "', '" + password + "'") > 0);
+        }
+
+        public bool ChangeAccAuthorization(string idAcc, bool accAuthor)
+        {
+            int author;
+            if (accAuthor)
+            {
+                author = 1;
+            }
+            else
+            {
+                author = 0;
+            }
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_UPDATEAUTHOR '" + idAcc + "', " + author) > 0);
+        }
+
+        public bool DeleteAccount(string idAcc)
+        {
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_DELETEACCOUNTS '" + idAcc + "'") > 0);
         }
     }
 }
