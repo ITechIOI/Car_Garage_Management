@@ -1,4 +1,5 @@
-﻿using Gara_Management.GUI;
+﻿using Gara_Management.DTO;
+using Gara_Management.GUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,11 +28,13 @@ namespace Gara_Management
         Color color4= (Color)ColorConverter.ConvertFromString("#064469");
         Color color5= (Color)ColorConverter.ConvertFromString("#072D44");
 
-        public MainWindow()
+        Account acc;
+
+        public MainWindow(Account acc)
         {
             InitializeComponent();
             DataContext = new scrHome();
-           
+            this.acc = acc;
             
         }
 

@@ -27,7 +27,7 @@ namespace Gara_Management.DAO
         public Account CheckForLogin(string username, string password)
         {
             DataTable data =  DataProvider.Instance.ExecuteQuery("SELECT * FROM ACCOUNTS " +
-                "WHERE USERNAME = '" + username + "' AND PASSWORD = '" + password + "'");
+                "WHERE USERNAME = '" + username + "' AND PASSWORD = '" + password + "' AND STATUS_ACCOUNT=0");
             if (data.Rows.Count>0)
                 return new Account(data.Rows[0]);
             return null;
@@ -48,10 +48,10 @@ namespace Gara_Management.DAO
                 username +"', '"+password+"', '"+idStaff+"', "+author) > 0);
         }
 
-        public Account GetAccountByIDStaff(string idStaff)
+        public string GetIDAccountByIDStaff(string idStaff)
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM ACCOUNTS WHERE ID_STAFF = '" + idStaff + "'");
-            return new Account(data.Rows[0]);
+            return new Account(data.Rows[0]).IDStaff;
         }
 
 

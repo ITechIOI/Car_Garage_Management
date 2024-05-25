@@ -36,7 +36,7 @@ namespace Gara_Management.GUI.Card
             string password = passwordTextBox.Text;
             if (AccountDAO.Instance.CheckForLogin(username, password) != null)
             {
-                MainWindow mainWindow = new MainWindow();
+                MainWindow mainWindow = new MainWindow(AccountDAO.Instance.CheckForLogin(username, password));
                 mainWindow.ShowDialog();
             }
             else

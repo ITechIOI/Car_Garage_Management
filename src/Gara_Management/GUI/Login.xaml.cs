@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,8 +56,9 @@ namespace Gara_Management.GUI
 
         private bool IsLoginValid(string username, string password)
         {
-            // Kiểm tra thông tin đăng nhập. 
-            return username == "admin" && password == "password";
+            if (AccountDAO.Instance.CheckForLogin(username, password) != null)
+                return true;
+            return false;
         }
 
         private void bt_login_MouseEnter(object sender, MouseEventArgs e)
@@ -72,7 +74,7 @@ namespace Gara_Management.GUI
             {
 
                 // Mở cửa sổ chính của ứng dụng
-                MainWindow mainWindow = new MainWindow();
+                MainWindow mainWindow = new MainWindow(AccountDAO.Instance.CheckForLogin(username, password));
                 mainWindow.Show();
 
                 // Đóng cửa sổ đăng nhập
