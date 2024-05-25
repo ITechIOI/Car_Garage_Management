@@ -3,7 +3,7 @@
     
     <!-- main color -->
 
-    <Color x:Key="color1" >#D0D7E1</Color>
+    <!--<Color x:Key="color1" >#D0D7E1</Color>
     <Color x:Key="color2">#9CCDDB</Color> 
     <Color x:Key="color3">#5790AB</Color> 
     <Color x:Key="color4">#064469</Color> 
@@ -13,5 +13,17 @@
     <SolidColorBrush x:Key="sColor2" Color="#9CCDDB"/>
     <SolidColorBrush x:Key="sColor3" Color="#5790AB"/>
     <SolidColorBrush x:Key="sColor4" Color="#064469"/>
-    <SolidColorBrush x:Key="sColor5" Color="#072D44"/>
+    <SolidColorBrush x:Key="sColor5" Color="#072D44"/>-->
+
+    <Color x:Key="color1" >#E7F9FC</Color>
+    <Color x:Key="color2">#D2F2FF</Color>
+    <Color x:Key="color3">#C1EAFF</Color>
+    <Color x:Key="color4">#0083EE</Color>
+    <Color x:Key="color5">#218c74</Color>
+
+    <SolidColorBrush x:Key="sColor1" Color="#E7F9FC"/>
+    <SolidColorBrush x:Key="sColor2" Color="#D2F2FF"/>
+    <SolidColorBrush x:Key="sColor3" Color="#C1EAFF"/>
+    <SolidColorBrush x:Key="sColor4" Color="#0083EE"/>
+    <SolidColorBrush x:Key="sColor5" Color="#218c74"/>
 </ResourceDictionary>
