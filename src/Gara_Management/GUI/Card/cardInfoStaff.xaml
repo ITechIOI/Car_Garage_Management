@@ -37,8 +37,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+
                 </Grid.RowDefinitions>
                 <!-- MÃ nhân vien-->
                 <Border Grid.Row="0"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
@@ -92,15 +91,15 @@
                 <Border Grid.Row="6"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Quyền: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="115,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="168,0,10,0" Foreground="{StaticResource sColor1}"/>
                         <!--<Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>-->
                     </Grid>
                 </Border>
-                <!-- Gara  -->
+                <!-- Vị trí  -->
                 <Border Grid.Row="7"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
-                        <TextBlock Text="Gara: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                            <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="115,0,8,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBlock Text="Vị trí việc làm: " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="168,0,8,0" Foreground="{StaticResource sColor1}"/>
                         <!--<Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>-->
                     </Grid>
                 </Border>
@@ -112,22 +111,22 @@
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="107,0,0,-2"/>
                     </Grid>
                 </Border>
-                <!-- Mật khẩu  -->
+                <!-- Mật khẩu  --><!--
                 <Border Grid.Row="9"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Mật khẩu: " VerticalAlignment="Center" HorizontalAlignment="Left" />
                         <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="118,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="107,0,0,-2"/>
                     </Grid>
-                </Border>
-                <!-- Nhập lại  -->
+                </Border>-->
+                <!-- Nhập lại  --><!--
                 <Border Grid.Row="10"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Nhập lại: " VerticalAlignment="Center" HorizontalAlignment="Left" />
                         <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="105,0,10,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="97,0,0,-2"/>
                     </Grid>
-                </Border>
+                </Border>-->
 
             </Grid>
             <Border x:Name="bt_save" MouseDown="bt_save_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="330,18,33,18">
