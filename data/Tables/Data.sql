@@ -58,9 +58,9 @@ VALUES
 
 INSERT INTO CUSTOMERS 
 VALUES 
-('CUS1', N'Nguyễn Thị Thơm', '0343435645', N'123 CMT8, Phường 5, Quận 10, TP Hồ Chí Minh', 0, 0),
-('CUS2', N'Nguyễn Thị Mơ', '0232343564', N'234 Võ Nguyên Giáp, Phường 1, Quận 1, TP Hồ Chí Minh', 0, 0),
-('CUS3', N'Nguyễn Văn Dậu', '0943785645', N'Tân Lập, Đông Hòa, Dĩ An, Bình Dương', 0, 0)
+('CUS1', N'Nguyễn Thị Thơm', '0343435645', N'123 CMT8, Phường 5, Quận 10, TP Hồ Chí Minh', 0),
+('CUS2', N'Nguyễn Thị Mơ', '0232343564', N'234 Võ Nguyên Giáp, Phường 1, Quận 1, TP Hồ Chí Minh', 0),
+('CUS3', N'Nguyễn Văn Dậu', '0943785645', N'Tân Lập, Đông Hòa, Dĩ An, Bình Dương', 0)
 
 -- CUSTOMER_DETAILS
 INSERT INTO CUSTOMER_DETAILS(ID_CUS, ID_GARA) 
