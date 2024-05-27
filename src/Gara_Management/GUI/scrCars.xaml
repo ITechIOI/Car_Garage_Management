@@ -248,7 +248,7 @@
                             <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="143,0,0,0"/>
                             <TextBlock Grid.Column="3" Text="Họ tên" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
                             <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="203,0,0,0"/>
-                            <TextBlock Grid.Column="4" Text="Tiền nợ" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
+                            <TextBlock Grid.Column="4" Text="Tổng hóa đơn" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
 
 
                         </Grid>

@@ -51,7 +51,7 @@
                 <Border Grid.Row="1"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Họ tên: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="104,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="90,0,10,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,-2"/>
                     </Grid>
                 </Border>
@@ -59,7 +59,7 @@
                 <Border Grid.Row="2"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Ngày sinh: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="125,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="115,0,10,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="115,0,0,-2"/>
                     </Grid>
                 </Border>
@@ -67,7 +67,7 @@
                 <Border Grid.Row="3"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Địa chỉ: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="100,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="90,0,10,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,-2"/>
                     </Grid>
                 </Border>
@@ -75,7 +75,7 @@
                 <Border Grid.Row="4"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Email: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="107,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="90,0,10,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,-2"/>
                     </Grid>
                 </Border>
@@ -83,7 +83,7 @@
                 <Border Grid.Row="5"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Số điện thoại: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="161,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="150,0,10,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="150,0,0,-2"/>
                     </Grid>
                 </Border>
@@ -99,7 +99,7 @@
                 <Border Grid.Row="7"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Vị trí việc làm: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                            <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="168,0,8,0" Foreground="{StaticResource sColor1}"/>
+                        <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="168,0,8,0" Foreground="{StaticResource sColor1}"/>
                         <!--<Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="90,0,0,0"/>-->
                     </Grid>
                 </Border>

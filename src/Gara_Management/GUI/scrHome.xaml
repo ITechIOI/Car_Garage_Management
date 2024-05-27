@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Gara_Management.GUI"
         mc:Ignorable="d"
         Height="768" Width="885">
-    <Border Background="{StaticResource sColor3}" CornerRadius="5">
+    <Border Background="{StaticResource sColor1}" CornerRadius="5">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="117"/>
@@ -34,8 +34,8 @@
                 </Grid.RowDefinitions>
                 <!-- Tiếp nhận sửa chữa -->
                 <Border x:Name="bd_acceptCar" MouseDown="bd_acceptCar_MouseDown" Height="80" Width="225" Cursor="Hand" CornerRadius="10"
-                        Background="{StaticResource sColor4}"
-                        Grid.Row="1" Margin="35,0,35,84"
+                        Background="{StaticResource sColor5}"
+                        Grid.Row="1" Margin="35,0,35,84"  BorderBrush="Black" BorderThickness="3"
                         >
                     <Grid>
                         <TextBlock Text="Tiếp nhận sửa chữa" FontSize="24"
@@ -51,8 +51,8 @@
                 </Border>
                 <!-- Lập phiếu thu tiền -->
                 <Border x:Name="bd_paymentReceipt" MouseDown="bd_paymentReceipt_MouseDown" Height="80" Width="225" Cursor="Hand" CornerRadius="10"
-                        Background="{StaticResource sColor4}"
-                        Grid.Row="1" Grid.Column="1" Margin="35,0,35,84"
+                        Background="{StaticResource sColor5}"
+                        Grid.Row="1" Grid.Column="1" Margin="35,0,35,84" BorderBrush="Black" BorderThickness="3"
                         >
                     <Grid>
                         <TextBlock Text="Lập phiếu thu tiền" FontSize="24"
@@ -68,8 +68,8 @@
                 </Border>
                 <!-- Lập phiếu sửa chữa -->
                 <Border x:Name="bd_repairInvoice" MouseDown="bd_repairInvoice_MouseDown" Height="80" Width="225" Cursor="Hand" CornerRadius="10"
-                        Background="{StaticResource sColor4}"
-                        Grid.Row="1" Grid.Column="2" Margin="35,0,35,84"
+                        Background="{StaticResource sColor5}"
+                        Grid.Row="1" Grid.Column="2" Margin="35,0,35,84" BorderBrush="Black" BorderThickness="3"
                         >
                     <Grid>
                         <TextBlock Text="Lập phiếu sửa chữa" FontSize="24"
@@ -85,8 +85,8 @@
                 </Border>
                 <!-- Tạo phiếu nhập kho -->
                 <Border x:Name="bd_stockIn" MouseDown="bd_stockIn_MouseDown" Height="80" Width="225" Cursor="Hand" CornerRadius="10"
-                        Background="{StaticResource sColor4}"
-                        Grid.Row="2" Margin="35,0,35,84"
+                        Background="{StaticResource sColor5}"
+                        Grid.Row="2" Margin="35,0,35,84" BorderBrush="Black" BorderThickness="3"
                         >
                     <Grid>
                         <TextBlock Text="Tạo phiếu nhập kho" FontSize="24"
@@ -102,7 +102,7 @@
                 </Border>
                 <!--Lập báo cáo -->
                 <Border x:Name="bd_reportCreate" MouseDown="bd_reportCreate_MouseDown" Height="80" Width="225" Cursor="Hand" CornerRadius="10" Grid.Row="2" 
-                        Background="{StaticResource sColor4}" Grid.Column="1" Margin="35,0,35,84" >
+                        Background="{StaticResource sColor5}" Grid.Column="1" Margin="35,0,35,84" BorderBrush="Black" BorderThickness="3" >
                     <Grid>
                         <TextBlock Text="Lập phiếu báo cáo" FontSize="24" Width="145" TextWrapping="Wrap" 
                                    TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -113,7 +113,7 @@
                 </Border>
                 <!-- Thêm khách hàng -->
                 <Border x:Name="bd_customerAdd" MouseDown="bd_customerAdd_MouseDown" Height="80" Width="225" Cursor="Hand" CornerRadius="10" Grid.Row="2"  Margin="35,0,35,84"
-                        Background="{StaticResource sColor4}" Grid.Column="2" >
+                        Background="{StaticResource sColor5}" Grid.Column="2" BorderBrush="Black" BorderThickness="3" >
                     <Grid>
                         <TextBlock Text="Thêm khách hàng" FontSize="24" Width="145" TextWrapping="Wrap" 
                                    TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -124,8 +124,8 @@
                 </Border>
                 <!-- Thêm nhân viên-->
                 <Border x:Name="bd_staffAdd" MouseDown="bd_staffAdd_MouseDown" Height="80" Width="225" Cursor="Hand" CornerRadius="10"
-                        Background="{StaticResource sColor4}"
-                        Grid.Row="3" Margin="35,0,35,84"
+                        Background="{StaticResource sColor5}"
+                        Grid.Row="3" Margin="35,0,35,84" BorderBrush="Black" BorderThickness="3"
                         >
                     <Grid>
                         <TextBlock Text="Thêm     nhân viên" FontSize="24"
