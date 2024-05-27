@@ -25,8 +25,8 @@ namespace Gara_Management
     public partial class MainWindow : Window
     {
         int scr = 1;
-        Color color4= (Color)ColorConverter.ConvertFromString("#064469");
-        Color color5= (Color)ColorConverter.ConvertFromString("#072D44");
+        Color color4= (Color)ColorConverter.ConvertFromString("#079992"); /*#064469*/
+        Color color5= (Color)ColorConverter.ConvertFromString("#218c74");
 
         Account acc;
 

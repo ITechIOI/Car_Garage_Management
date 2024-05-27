@@ -21,8 +21,8 @@ namespace Gara_Management.GUI
     public partial class scrHome : UserControl
     {
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
-        Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
-        Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
+        Color color4 = (Color)ColorConverter.ConvertFromString("#079992");
+        Color color5 = (Color)ColorConverter.ConvertFromString("#218c74");
         public scrHome()
         {
             InitializeComponent();

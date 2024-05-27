@@ -231,7 +231,7 @@
             <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,174">
                 <Grid>
                     <!-- tên thành phần bảng -->
-                    <Border  BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="0,0,18,383" Height="52">
+                    <Border  BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="0,0,20,370">
                         <Grid Height="52" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="110"/>

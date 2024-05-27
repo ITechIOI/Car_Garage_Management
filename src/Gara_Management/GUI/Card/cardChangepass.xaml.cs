@@ -59,5 +59,17 @@ namespace Gara_Management.GUI.Card
             //    }    
             //}
         }
+
+        private void retypeNewPasswordTextbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (retypeNewPasswordTextbox.Text != newPasswordTextbox.Text)
+            {
+                txtb_warning.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtb_warning.Visibility = Visibility.Collapsed;
+            }    
+        }
     }
 }

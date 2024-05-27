@@ -18,12 +18,12 @@
     <Color x:Key="color1" >#E7F9FC</Color>
     <Color x:Key="color2">#D2F2FF</Color>
     <Color x:Key="color3">#C1EAFF</Color>
-    <Color x:Key="color4">#0083EE</Color>
+    <Color x:Key="color4">#079992</Color>
     <Color x:Key="color5">#218c74</Color>
 
     <SolidColorBrush x:Key="sColor1" Color="#E7F9FC"/>
     <SolidColorBrush x:Key="sColor2" Color="#D2F2FF"/>
     <SolidColorBrush x:Key="sColor3" Color="#C1EAFF"/>
-    <SolidColorBrush x:Key="sColor4" Color="#0083EE"/>
+    <SolidColorBrush x:Key="sColor4" Color="#079992"/>
     <SolidColorBrush x:Key="sColor5" Color="#218c74"/>
 </ResourceDictionary>
