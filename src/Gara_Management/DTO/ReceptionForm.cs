@@ -51,5 +51,18 @@ namespace Gara_Management.DTO
             this.ReceptionDate = Convert.ToDateTime(row["RECEPTION_DATE"].ToString());
             this.StatusRec = Convert.ToBoolean(row["STATUS_REC"].ToString());
         }
+
+        //kiểm tra có giống nhau không
+        public bool IsEqual(ReceptionForm other)
+        {
+            if (this.iDRec != other.iDRec) return false;
+            if (this.iDCus != other.iDCus) return false;
+            if (this.iDBrand != other.iDBrand) return false;
+            if (this.iDGara != other.iDGara) return false;
+            if (this.numberPlate != other.numberPlate) return false;
+            if (this.receptionDate != other.receptionDate) return false;
+            if (this.statusRec != other.statusRec) return false;
+            return true;
+        }
     }
 }
