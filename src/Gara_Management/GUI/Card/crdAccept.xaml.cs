@@ -221,7 +221,7 @@ namespace Gara_Management.GUI.Card
             tbx_PhoneCus.Text = customer.PhoneNumberCus;
             tbx_NumberPlate.Text = receptionForm.NumberPlate;
             cbx_CarBrand.Text = carBrand.NameBrand;
-            tbx_RecDate.Text = receptionForm.ReceptionDate.ToString("dd/MM/yyyy");
+            dpk_RecDate.Text = receptionForm.ReceptionDate.ToString();
         }
 
         //hiển thị id Rec trong database lên phiếu sửa chữa theo thông tin có sẵn
@@ -240,7 +240,7 @@ namespace Gara_Management.GUI.Card
             string iDBrand = CarBrandDAO.GetIDBrandByName(cbx_CarBrand.Text);
             string iDGara = "GR1";
             string numberPlate = tbx_NumberPlate.Text;
-            DateTime receptionDate = Convert.ToDateTime(tbx_RecDate.Text);
+            DateTime receptionDate = Convert.ToDateTime(dpk_RecDate.ToString());
             bool statusRec = false;
             receptionForm = new ReceptionForm(iDRec, iDCus, iDBrand, iDGara, numberPlate, receptionDate, statusRec);
         }
@@ -249,7 +249,7 @@ namespace Gara_Management.GUI.Card
         private void InitializeIDAndDate()
         {
             tbx_IDRec.Text = "REC" + (ReceptionFormDAO.GetMaxID() + 1).ToString();
-            tbx_RecDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            dpk_RecDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         //khởi tạo CarBrand combobox
