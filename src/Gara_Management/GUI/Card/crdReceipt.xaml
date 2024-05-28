@@ -80,8 +80,7 @@
                 <Border Grid.Row="5"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Ngày thu tiền: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="148,0,-4,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
+                        <DatePicker Background="Transparent" BorderThickness="0" Margin="148,0,-4,0" Foreground="{StaticResource sColor1}"/>
                     </Grid>
                 </Border>
                 <!-- Số tiền thu -->

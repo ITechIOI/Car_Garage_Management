@@ -235,9 +235,9 @@
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Ngày sửa-->
-            <Grid Grid.Row="1" Margin="529,0,100,45">
+            <Grid Grid.Row="1" Margin="529,0,52,45">
                 <TextBlock Text="Ngày sửa: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Text="12/01/2024" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
+                <DatePicker VerticalContentAlignment="Center"  Background="Transparent" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- bảng thông tin -->

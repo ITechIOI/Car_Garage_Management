@@ -234,9 +234,9 @@
                 <Rectangle Height="1" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Ngày nhập-->
-            <Grid Grid.Row="1" Margin="529,0,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="221">
+            <Grid Grid.Row="1" Margin="529,0,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="260">
                 <TextBlock Text="Ngày nhập: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Text="12/01/2024" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="106,0,10,0" Foreground="{StaticResource sColor1}"/>
+                <DatePicker VerticalContentAlignment="Center" Background="Transparent" Margin="106,0,0,0" Foreground="{StaticResource sColor1}" HorizontalAlignment="Left" Width="154"/>
                 <Rectangle Height="1" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Người kí nhận -->

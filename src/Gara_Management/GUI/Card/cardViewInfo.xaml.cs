@@ -44,7 +44,6 @@ namespace Gara_Management.GUI.Card
                 if (result == MessageBoxResult.Yes)
                 {
                     txtb_fullname.IsReadOnly = false;
-                    txtb_birthdate.IsReadOnly = false;
                     txtb_address.IsReadOnly = false;
                     txtb_email.IsReadOnly = false;
                     txtb_phonenumber.IsReadOnly = false;
@@ -54,7 +53,6 @@ namespace Gara_Management.GUI.Card
             else
             {
                 txtb_fullname.IsReadOnly = true;
-                txtb_birthdate.IsReadOnly = true;
                 txtb_address.IsReadOnly = true;
                 txtb_email.IsReadOnly = true;
                 txtb_phonenumber.IsReadOnly = true;
