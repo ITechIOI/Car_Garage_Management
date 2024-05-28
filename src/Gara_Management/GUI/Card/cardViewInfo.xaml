@@ -57,8 +57,7 @@
                 <Border Grid.Row="2"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Ngày sinh: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_birthdate" IsReadOnly="True" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="115,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="115,0,0,0"/>
+                        <DatePicker x:Name="txtb_birthdate" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="115,0,0,0" Foreground="{StaticResource sColor1}"/>
                     </Grid>
                 </Border>
                 <!-- Địa chỉ  -->
