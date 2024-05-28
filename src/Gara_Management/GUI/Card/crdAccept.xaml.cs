@@ -2,6 +2,7 @@
 using Gara_Management.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace Gara_Management.GUI.Card
         {
             InitializeComponent();
             InitializeIDAndDate();
+            LoadCarBrand();
         }
 
         // hiển thị lên phiếu đã có
@@ -62,7 +64,7 @@ namespace Gara_Management.GUI.Card
             // kiểm tra xem cần làm gì trước khi đóng
             if (check != null)
             {
-                if (check.Equals(receptionForm))
+                if (check.IsEqual(receptionForm))
                     isChanged = false;
                 else
                     isChanged = true;
@@ -90,7 +92,7 @@ namespace Gara_Management.GUI.Card
             }
 
             //nếu hãng xe ngoài danh sách tiếp nhận thì không tiếp nhận
-            if (GetIDBrandByName(tbx_CarBrand.Text) == null)
+            if (GetIDBrandByName(cbx_CarBrand.Text) == null)
             {
                 MessageBox.Show("Hãng xe không được tiếp nhận!", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -158,7 +160,7 @@ namespace Gara_Management.GUI.Card
             CreateRecptionFormFromCard(ref receptionForm);
             if (check != null)
             {
-                if (check.Equals(receptionForm))
+                if (check.IsEqual(receptionForm))
                     isChanged = false;
                 else
                     isChanged = true;
@@ -174,6 +176,7 @@ namespace Gara_Management.GUI.Card
                         if (i == 1)
                         {
                             MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                            check = receptionForm;
                             isChanged = false;
                         }
                     }
@@ -184,6 +187,7 @@ namespace Gara_Management.GUI.Card
                         {
                             MessageBox.Show("Thêm phiếu sửa chữa thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                             tbx_save.Text = "Sửa";
+                            check = receptionForm;
                             isChanged = false;
                         }
                     }
@@ -210,8 +214,7 @@ namespace Gara_Management.GUI.Card
         {
             tbx_IDRec.Text = IDRec;
 
-            string loadReceptionForm = "SELECT * FROM RECEPTION_FORMS WHERE ID_REC = '" + IDRec + "'";
-            receptionForm = new ReceptionForm(DataProvider.Instance.ExecuteQuery(loadReceptionForm).Rows[0]);
+            receptionForm = ReceptionForm.LoadReceptionFormByID(IDRec);
 
             string loadCustomer = "SELECT * FROM CUSTOMERS WHERE ID_CUS = '" + receptionForm.IDCus + "'";
             Customer customer = new Customer(DataProvider.Instance.ExecuteQuery(loadCustomer).Rows[0]);
@@ -222,7 +225,7 @@ namespace Gara_Management.GUI.Card
             tbx_NameCus.Text = customer.NameCus;
             tbx_PhoneCus.Text = customer.PhoneNumberCus;
             tbx_NumberPlate.Text = receptionForm.NumberPlate;
-            tbx_CarBrand.Text = carBrand.NameBrand;
+            cbx_CarBrand.Text = carBrand.NameBrand;
             tbx_RecDate.Text = receptionForm.ReceptionDate.ToString("dd/MM/yyyy");
         }
 
@@ -230,7 +233,7 @@ namespace Gara_Management.GUI.Card
         private string LoadReceptionFormByInfo()
         {
             string query = "EXEC USP_GET_IDRECEPTION @ID_CUS , @ID_GARA , @NUMBER_PLATES , @RECEPTION_DATE";
-            string id = DataProvider.Instance.ExecuteScalar(query, new object[] { receptionForm.IDCus, receptionForm.IDGara, receptionForm.NumberPlate, receptionForm.ReceptionDate }).ToString();
+            string id = DataProvider.Instance.ExecuteScalar(query, new object[] { receptionForm.IDCus, receptionForm.IDGara, receptionForm.NumberPlate, receptionForm.ReceptionDate }).ToString().Trim();
             LoadReceptionFormById(id, ref receptionForm);
             return id;
         }
@@ -240,7 +243,7 @@ namespace Gara_Management.GUI.Card
         {
             string iDRec = tbx_IDRec.Text;
             string iDCus = GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text);
-            string iDBrand = GetIDBrandByName(tbx_CarBrand.Text);
+            string iDBrand = GetIDBrandByName(cbx_CarBrand.Text);
             string iDGara = "GR1";
             string numberPlate = tbx_NumberPlate.Text;
             DateTime receptionDate = Convert.ToDateTime(tbx_RecDate.Text);
@@ -271,8 +274,8 @@ namespace Gara_Management.GUI.Card
         {
             string IDCheck = "SELECT * FROM RECEPTION_FORMS WHERE ID_REC = '" + receptionForm.IDRec + "'";
             object i = DataProvider.Instance.ExecuteScalar(IDCheck);
-            string InfoCheck = "EXEC USP_GET_IDRECEPTION @ID_CUS , @ID_GARA , @NUMBER_PLATES , @RECEPTION_DATE";
-            object j = DataProvider.Instance.ExecuteScalar(InfoCheck, new object[] { receptionForm.IDCus, receptionForm.IDGara, receptionForm.NumberPlate, receptionForm.ReceptionDate });
+            string InfoCheck = "EXEC USP_GET_IDRECEPTION @ID_CUS , @ID_GARA , @NUMBER_PLATES , @ID_BRAND , @RECEPTION_DATE";
+            object j = DataProvider.Instance.ExecuteScalar(InfoCheck, new object[] { receptionForm.IDCus, receptionForm.IDGara, receptionForm.NumberPlate, receptionForm.IDBrand, receptionForm.ReceptionDate });
             if (j != null)
             {
                 //thông tin phiếu trùng lặp
@@ -294,7 +297,7 @@ namespace Gara_Management.GUI.Card
             string query = "EXEC USP_GET_IDCUSTOMER @NAME_CUS , @PHONE_NUMBER_CUS";
             if (DataProvider.Instance.ExecuteScalar(query, new object[] { name, phone }) != null)
             {
-                id = DataProvider.Instance.ExecuteScalar(query, new object[] { name, phone }).ToString();
+                id = DataProvider.Instance.ExecuteScalar(query, new object[] { name, phone }).ToString().Trim();
             }
             else
             {
@@ -310,7 +313,7 @@ namespace Gara_Management.GUI.Card
             string query = "SELECT ID_BRAND FROM CAR_BRANDS WHERE NAME_BRAND = '" + name + "'";
             if (DataProvider.Instance.ExecuteScalar(query) != null)
             {
-                id = DataProvider.Instance.ExecuteScalar(query).ToString();
+                id = DataProvider.Instance.ExecuteScalar(query).ToString().Trim();
             }
             else
             {
@@ -325,6 +328,18 @@ namespace Gara_Management.GUI.Card
             string query = "SELECT dbo.GET_MAX_IDRECEPTION()";
             tbx_IDRec.Text = "REC" + (int.Parse(DataProvider.Instance.ExecuteScalar(query).ToString()) + 0).ToString();
             tbx_RecDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+        }
+
+        //khởi tạo CarBrand combobox
+        private void LoadCarBrand()
+        {
+            string query = "SELECT * FROM CAR_BRANDS";
+            List<CarBrand> carBrands = CarBrandDAO.Instance.LoadCarBrandList();
+            cbx_CarBrand.Items.Clear();
+            foreach (CarBrand item in carBrands)
+            {
+                cbx_CarBrand.Items.Add(item.NameBrand);
+            }
         }
     }
 }

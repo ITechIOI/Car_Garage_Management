@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.DAO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -43,13 +44,13 @@ namespace Gara_Management.DTO
 
         public ReceptionForm(DataRow row)
         {
-            this.IDRec = row["ID_REC"].ToString();
-            this.IDCus = row["ID_CUS"].ToString();
-            this.IDBrand = row["ID_BRAND"].ToString();
-            this.IDGara = row["ID_GARA"].ToString();
-            this.NumberPlate = row["NUMBER_PLATES"].ToString();
-            this.ReceptionDate = Convert.ToDateTime(row["RECEPTION_DATE"].ToString());
-            this.StatusRec = Convert.ToBoolean(row["STATUS_REC"].ToString());
+            this.IDRec = row["ID_REC"].ToString().Trim();
+            this.IDCus = row["ID_CUS"].ToString().Trim();
+            this.IDBrand = row["ID_BRAND"].ToString().Trim();
+            this.IDGara = row["ID_GARA"].ToString().Trim();
+            this.NumberPlate = row["NUMBER_PLATES"].ToString().Trim();
+            this.ReceptionDate = Convert.ToDateTime(row["RECEPTION_DATE"].ToString().Trim());
+            this.StatusRec = Convert.ToBoolean(row["STATUS_REC"].ToString().Trim());
         }
 
         //kiểm tra có giống nhau không
@@ -63,6 +64,14 @@ namespace Gara_Management.DTO
             if (this.receptionDate != other.receptionDate) return false;
             if (this.statusRec != other.statusRec) return false;
             return true;
+        }
+
+        //lấy thông tin Reception Form theo ID
+        public static ReceptionForm LoadReceptionFormByID(string id)
+        {
+            string loadReceptionForm = "SELECT * FROM RECEPTION_FORMS WHERE ID_REC = '" + id + "'";
+            ReceptionForm receptionForm = new ReceptionForm(DataProvider.Instance.ExecuteQuery(loadReceptionForm).Rows[0]);
+            return receptionForm;
         }
     }
 }

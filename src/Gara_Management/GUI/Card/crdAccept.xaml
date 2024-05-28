@@ -70,7 +70,7 @@
                 <Border Grid.Row="4"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Hiệu xe: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="88,0,0,4" Foreground="{StaticResource sColor1}"/>
+                        <ComboBox x:Name="cbx_CarBrand" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="88,0,0,4" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
                     </Grid>
                 </Border>
