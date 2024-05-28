@@ -35,5 +35,29 @@ namespace Gara_Management.DAO
             }
             return carBrandList;
         }
+
+        //lấy thông tin hãng theo id
+        public static CarBrand LoadCarBrandByID(string id)
+        {
+            string query = "SELECT * FROM CAR_BRANDS WHERE ID_BRAND = '" + id + "'";
+            CarBrand carBrand = new CarBrand(DataProvider.Instance.ExecuteQuery(query).Rows[0]);
+            return carBrand;
+        }
+
+        //lấy id hãng theo tên hãng
+        public static string GetIDBrandByName(string name)
+        {
+            string id;
+            string query = "SELECT ID_BRAND FROM CAR_BRANDS WHERE NAME_BRAND = '" + name + "'";
+            if (DataProvider.Instance.ExecuteScalar(query) != null)
+            {
+                id = DataProvider.Instance.ExecuteScalar(query).ToString().Trim();
+            }
+            else
+            {
+                id = null;
+            }
+            return id;
+        }
     }
 }

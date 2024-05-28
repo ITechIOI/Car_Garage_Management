@@ -84,7 +84,7 @@ namespace Gara_Management.GUI.Card
         private bool isValid()
         {
             //nếu khách hàng chưa đăng ký thì không tiếp nhận
-            if (GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text) == null)
+            if (CustomerDAO.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text) == null)
             {
                 MessageBox.Show("Người dùng chưa đăng ký!", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Error);
                 //chuyển qua form đăng ký
@@ -92,7 +92,7 @@ namespace Gara_Management.GUI.Card
             }
 
             //nếu hãng xe ngoài danh sách tiếp nhận thì không tiếp nhận
-            if (GetIDBrandByName(cbx_CarBrand.Text) == null)
+            if (CarBrandDAO.GetIDBrandByName(cbx_CarBrand.Text) == null)
             {
                 MessageBox.Show("Hãng xe không được tiếp nhận!", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -101,15 +101,14 @@ namespace Gara_Management.GUI.Card
             //xử lý thông tin trùng lặp ở phiếu mới
             if (tbx_save.Text == "Lưu")
             {
-                int i = IsExist(receptionForm);
+                int i = ReceptionFormDAO.IsExist(receptionForm);
                 switch (i)
                 {
                     case 1:
                         MessageBoxResult result1 = MessageBox.Show("Bạn có muốn tạo mã phiếu mới?", "Mã phiếu trùng lặp!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         if (result1 == MessageBoxResult.Yes)
                         {
-                            string query = "SELECT dbo.GET_MAX_IDRECEPTION()";
-                            tbx_IDRec.Text = "REC" + (int.Parse(DataProvider.Instance.ExecuteScalar(query).ToString()) + 1).ToString();
+                            tbx_IDRec.Text = "REC" + (ReceptionFormDAO.GetMaxID() + 1).ToString();
                             tbx_save.Text = "Lưu";
                         }
                         else if (result1 == MessageBoxResult.No)
@@ -138,13 +137,14 @@ namespace Gara_Management.GUI.Card
             //xử lý thông tin trùng lặp ở phiếu cũ
             if (tbx_save.Text == "Sửa")
             {
-                int i = IsExist(receptionForm);
+                int i = ReceptionFormDAO.IsExist(receptionForm);
                 if (i == 0)
                 {
                     MessageBoxResult result = MessageBox.Show("Bạn có muốn tải lại phiếu đã có?", "Thông tin trùng lặp!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (result == MessageBoxResult.Yes)
                     {
                         LoadReceptionFormByInfo();
+                        check = receptionForm;
                         isChanged = false;
                         tbx_save.Text = "Sửa";
                     }
@@ -172,7 +172,7 @@ namespace Gara_Management.GUI.Card
                 {
                     if (tbx_save.Text == "Sửa")
                     {
-                        int i = UpdateReceptionForm();
+                        int i = ReceptionFormDAO.UpdateReceptionForm(receptionForm);
                         if (i == 1)
                         {
                             MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -182,7 +182,7 @@ namespace Gara_Management.GUI.Card
                     }
                     else if (tbx_save.Text == "Lưu")
                     {
-                        int i = InsertReceptionForm();
+                        int i = ReceptionFormDAO.InsertReceptionForm(receptionForm);
                         if (i == 1)
                         {
                             MessageBox.Show("Thêm phiếu sửa chữa thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -212,16 +212,11 @@ namespace Gara_Management.GUI.Card
         //hiển thị dữ liệu từ RECEPTION_FORMS trong database lên phiếu sửa chữa theo id
         private void LoadReceptionFormById(string IDRec, ref ReceptionForm receptionForm)
         {
-            tbx_IDRec.Text = IDRec;
-
             receptionForm = ReceptionForm.LoadReceptionFormByID(IDRec);
+            Customer customer = CustomerDAO.LoadCustomerByID(receptionForm.IDCus);
+            CarBrand carBrand = CarBrandDAO.LoadCarBrandByID(receptionForm.IDBrand);
 
-            string loadCustomer = "SELECT * FROM CUSTOMERS WHERE ID_CUS = '" + receptionForm.IDCus + "'";
-            Customer customer = new Customer(DataProvider.Instance.ExecuteQuery(loadCustomer).Rows[0]);
-
-            string loadCarBrand = "SELECT * FROM CAR_BRANDS WHERE ID_BRAND = '" + receptionForm.IDBrand + "'";
-            CarBrand carBrand = new CarBrand(DataProvider.Instance.ExecuteQuery(loadCarBrand).Rows[0]);
-
+            tbx_IDRec.Text = IDRec;
             tbx_NameCus.Text = customer.NameCus;
             tbx_PhoneCus.Text = customer.PhoneNumberCus;
             tbx_NumberPlate.Text = receptionForm.NumberPlate;
@@ -232,8 +227,7 @@ namespace Gara_Management.GUI.Card
         //hiển thị id Rec trong database lên phiếu sửa chữa theo thông tin có sẵn
         private string LoadReceptionFormByInfo()
         {
-            string query = "EXEC USP_GET_IDRECEPTION @ID_CUS , @ID_GARA , @NUMBER_PLATES , @RECEPTION_DATE";
-            string id = DataProvider.Instance.ExecuteScalar(query, new object[] { receptionForm.IDCus, receptionForm.IDGara, receptionForm.NumberPlate, receptionForm.ReceptionDate }).ToString().Trim();
+            string id = ReceptionFormDAO.GetReceptionFormIDByInfo(receptionForm);
             LoadReceptionFormById(id, ref receptionForm);
             return id;
         }
@@ -242,8 +236,8 @@ namespace Gara_Management.GUI.Card
         private void CreateRecptionFormFromCard(ref ReceptionForm receptionForm)
         {
             string iDRec = tbx_IDRec.Text;
-            string iDCus = GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text);
-            string iDBrand = GetIDBrandByName(cbx_CarBrand.Text);
+            string iDCus = CustomerDAO.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text);
+            string iDBrand = CarBrandDAO.GetIDBrandByName(cbx_CarBrand.Text);
             string iDGara = "GR1";
             string numberPlate = tbx_NumberPlate.Text;
             DateTime receptionDate = Convert.ToDateTime(tbx_RecDate.Text);
@@ -251,89 +245,16 @@ namespace Gara_Management.GUI.Card
             receptionForm = new ReceptionForm(iDRec, iDCus, iDBrand, iDGara, numberPlate, receptionDate, statusRec);
         }
 
-        //thêm dữ liệu từ phiếu sửa chữa vào RECEPTION_FORMS
-        private int InsertReceptionForm()
-        {
-            int result = 0;
-            string query = "EXEC USP_INSERT_RECEPTIONFORM @ID_CUS , @ID_BRAND , @ID_GARA , @NUMBER_PLATES , @RECEPTION_DATE";
-            result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { receptionForm.IDCus, receptionForm.IDBrand, receptionForm.IDGara, receptionForm.NumberPlate, receptionForm.ReceptionDate });
-            return result;
-        }
-
-        private int UpdateReceptionForm()
-        {
-            int result = 0;
-            string query = "EXEC USP_UPDATE_RECEPTIONFORM @ID_REC , @ID_CUS , @ID_BRAND , @ID_GARA , @NUMBER_PLATES , @RECEPTION_DATE";
-            result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { receptionForm.IDRec, receptionForm.IDCus, receptionForm.IDBrand, receptionForm.IDGara, receptionForm.NumberPlate, receptionForm.ReceptionDate });
-            return result;
-
-        }
-
-        //kiểm tra xem thông tin có trùng lặp không 
-        private int IsExist(ReceptionForm receptionForm)
-        {
-            string IDCheck = "SELECT * FROM RECEPTION_FORMS WHERE ID_REC = '" + receptionForm.IDRec + "'";
-            object i = DataProvider.Instance.ExecuteScalar(IDCheck);
-            string InfoCheck = "EXEC USP_GET_IDRECEPTION @ID_CUS , @ID_GARA , @NUMBER_PLATES , @ID_BRAND , @RECEPTION_DATE";
-            object j = DataProvider.Instance.ExecuteScalar(InfoCheck, new object[] { receptionForm.IDCus, receptionForm.IDGara, receptionForm.NumberPlate, receptionForm.IDBrand, receptionForm.ReceptionDate });
-            if (j != null)
-            {
-                //thông tin phiếu trùng lặp
-                return 0;
-            }
-            else if (i != null)
-            {
-                //id Rec trùng lặp
-                return 1;
-            }
-            //không trùng lặp
-            return -1;
-        }
-
-        //lấy id khách hàng theo tên khách hàng và số điện thoại
-        private string GetIDCusByNameAndPhone(string name, string phone)
-        {
-            string id;
-            string query = "EXEC USP_GET_IDCUSTOMER @NAME_CUS , @PHONE_NUMBER_CUS";
-            if (DataProvider.Instance.ExecuteScalar(query, new object[] { name, phone }) != null)
-            {
-                id = DataProvider.Instance.ExecuteScalar(query, new object[] { name, phone }).ToString().Trim();
-            }
-            else
-            {
-                id = null;
-            }
-            return id;
-        }
-
-        //lấy id hãng theo tên hãng
-        private string GetIDBrandByName(string name)
-        {
-            string id;
-            string query = "SELECT ID_BRAND FROM CAR_BRANDS WHERE NAME_BRAND = '" + name + "'";
-            if (DataProvider.Instance.ExecuteScalar(query) != null)
-            {
-                id = DataProvider.Instance.ExecuteScalar(query).ToString().Trim();
-            }
-            else
-            {
-                id = null;
-            }
-            return id;
-        }
-
         //khởi tạo id Rec và ngày tiếp nhận
         private void InitializeIDAndDate()
         {
-            string query = "SELECT dbo.GET_MAX_IDRECEPTION()";
-            tbx_IDRec.Text = "REC" + (int.Parse(DataProvider.Instance.ExecuteScalar(query).ToString()) + 0).ToString();
+            tbx_IDRec.Text = "REC" + (ReceptionFormDAO.GetMaxID() + 1).ToString();
             tbx_RecDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
         //khởi tạo CarBrand combobox
         private void LoadCarBrand()
         {
-            string query = "SELECT * FROM CAR_BRANDS";
             List<CarBrand> carBrands = CarBrandDAO.Instance.LoadCarBrandList();
             cbx_CarBrand.Items.Clear();
             foreach (CarBrand item in carBrands)

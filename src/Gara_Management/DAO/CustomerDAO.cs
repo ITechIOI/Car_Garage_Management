@@ -38,13 +38,37 @@ namespace Gara_Management.DAO
             return customerList;
         }
 
+        //lấy thông tin khách hàng theo id
+        public static Customer LoadCustomerByID(string id)
+        {
+            string query = "SELECT * FROM CUSTOMERS WHERE ID_CUS = '" + id + "'";
+            Customer customer = new Customer(DataProvider.Instance.ExecuteQuery(query).Rows[0]);
+            return customer;
+        }
+
+        //lấy id khách hàng theo tên khách hàng và số điện thoại
+        public static string GetIDCusByNameAndPhone(string name, string phone)
+        {
+            string id;
+            string query = "EXEC USP_GET_IDCUSTOMER @NAME_CUS , @PHONE_NUMBER_CUS";
+            if (DataProvider.Instance.ExecuteScalar(query, new object[] { name, phone }) != null)
+            {
+                id = DataProvider.Instance.ExecuteScalar(query, new object[] { name, phone }).ToString().Trim();
+            }
+            else
+            {
+                id = null;
+            }
+            return id;
+        }
+
         public bool InSertCustomer(string gara, string name, string phone, string address)
         {
             return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_INSERTCUSTOMER " +
                 "@gara = '" + gara + "', @name = N'" + name
-                +"', @phone = '" + phone + "', @address = N'"+address+ "'") > 0);
+                + "', @phone = '" + phone + "', @address = N'" + address + "'") > 0);
         }
-        
+
         public bool UpdateCustomer(string id, string name, string phone, string address)
         {
             return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_UPDATECUSTOMER @id = '" + "', @name = N'" + name
@@ -54,13 +78,13 @@ namespace Gara_Management.DAO
         public bool DeleteCustomer(string gara, string id)
         {
             return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_DELETECUSTOMER" +
-                " @gara = '" + gara+ "', @id = '" + id + "'") > 0);
+                " @gara = '" + gara + "', @id = '" + id + "'") > 0);
         }
 
         public bool UpdateDebtOfCustomer(string gara, string id, decimal updateMoney)
         {
             return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_UPDATEDEBTOFCUSTOMER @gara = '" + gara + "', " +
-                "@id = '"+ id + "', @updateMoney = " + updateMoney.ToString()) > 0);
+                "@id = '" + id + "', @updateMoney = " + updateMoney.ToString()) > 0);
         }
 
     }
