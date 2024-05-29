@@ -36,12 +36,13 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!-- MÃ nhân vien-->
                 <Border Grid.Row="0"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Mã nhân viên:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBlock Background="Transparent" Margin="150,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBlock x:Name="txtb_idStaff" Background="Transparent" Margin="150,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="150,0,0,0"/>
                     </Grid>
                 </Border>
@@ -85,17 +86,25 @@
                     </Grid>
                 </Border>
                 <!-- Quyền  -->
-                <Border Grid.Row="6"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
+                <Border Grid.Row="9"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Quyền: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="148,0,8,0" Foreground="{StaticResource sColor1}"/>
+                        <ComboBox x:Name="cbx_accAuthor" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="148,0,8,0" Foreground="{StaticResource sColor1}"/>
                     </Grid>
                 </Border>
                 <!-- Vị trí việc làm  -->
-                <Border Grid.Row="7"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
+                <Border Grid.Row="6"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Vị trí việc làm: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <ComboBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="148,0,8,0" Foreground="{StaticResource sColor1}"/>
+                        <ComboBox x:Name="cbx_position" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="148,0,8,0" Foreground="{StaticResource sColor1}"/>
+                    </Grid>
+                </Border>
+                <!-- Lương  -->
+                <Border Grid.Row="7"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
+                    <Grid>
+                        <TextBlock Text="Lương " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <TextBox x:Name="tbtx_salary" TextAlignment="Center" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="100,0,10,0" Foreground="{StaticResource sColor1}" />
+                        <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="100,0,0,-2"/>
                     </Grid>
                 </Border>
                 <!-- Tài khoản  -->
@@ -110,8 +119,8 @@
             <Border x:Name="btn_edit" MouseDown="btn_edit_MouseDown" Grid.Row="2" CornerRadius="10" BorderBrush="Black" BorderThickness="2" Background="{StaticResource sColor5}" Margin="212,2,126,8">
                 <TextBlock Name="txtb_edit" Text="Chỉnh sửa" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
             </Border>
-            <Border x:Name="btn_update" MouseDown="btn_update_MouseDown" Grid.Row="2" CornerRadius="10" BorderBrush="Black" BorderThickness="2" Background="{StaticResource sColor5}" Margin="324,2,14,8">
-                <TextBlock Text="Cập nhật" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+            <Border x:Name="btn_delete" MouseDown="btn_delete_MouseDown" Grid.Row="2" CornerRadius="10" BorderBrush="Black" BorderThickness="2" Background="{StaticResource sColor5}" Margin="324,2,14,8">
+                <TextBlock x:Name="txtb_delete" Text="Xóa" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
             </Border>
         </Grid>
     </Border>

@@ -1,4 +1,6 @@
-﻿using Gara_Management.GUI.Card;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using Gara_Management.GUI.Item;
 using System;
 using System.Collections.Generic;
@@ -25,18 +27,23 @@ namespace Gara_Management.GUI
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
         Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
+        string gara;
 
         public event EventHandler returntoDetailAcc;
-        public scrAccount()
+        public scrAccount(string gara)
         {
             InitializeComponent();
-
-            for (int i = 0; i < 9; i++)
+            this.gara = gara;
+            List<Staff> staffs = StaffDAO.Instance.LoadStaffList(this.gara);
+            Account acc = null;
+            foreach (Staff item in staffs)
             {
-                itAccount itAcc1 = new itAccount();
+                acc = AccountDAO.Instance.GetAccountByIDStaff(item.IDStaff);
+                itAccount itAcc1 = new itAccount(item, acc);
                 ds_acc.Children.Add(itAcc1);
 
             }
+
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -61,7 +68,7 @@ namespace Gara_Management.GUI
 
         private void bt_add_staff_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            cardInfoStaff crdstaff = new cardInfoStaff();
+            cardInfoStaff crdstaff = new cardInfoStaff(gara);
             crdstaff.ShowDialog();
 
         }
@@ -70,5 +77,7 @@ namespace Gara_Management.GUI
         {
             returntoDetailAcc?.Invoke(this, new EventArgs());
         }
+
+        
     }
 }

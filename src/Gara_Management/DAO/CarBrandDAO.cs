@@ -24,10 +24,12 @@ namespace Gara_Management.DAO
             private set { instance = value; }
         }
 
-        public List<CarBrand> LoadCarBrandList()
+        public List<CarBrand> LoadCarBrandList(string gara)
         {
             List<CarBrand> carBrandList = new List<CarBrand>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM CAR_BRANDS");
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT CAR_BRANDS.ID_BRAND, NAME_BRAND, STATUS_DETAILS " +
+                "FROM CAR_BRANDS JOIN BRAND_DETAILS ON CAR_BRANDS.ID_BRAND = BRAND_DETAILS.ID_BRAND " +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_BRAND = 0 AND STATUS_DETAILS = 0");
             foreach (DataRow item in data.Rows)
             {
                 CarBrand carBrand = new CarBrand(item);
@@ -37,18 +39,22 @@ namespace Gara_Management.DAO
         }
 
         //lấy thông tin hãng theo id
-        public static CarBrand LoadCarBrandByID(string id)
+        public static CarBrand LoadCarBrandByID(string id, string gara)
         {
-            string query = "SELECT * FROM CAR_BRANDS WHERE ID_BRAND = '" + id + "'";
+            string query = "SELECT CAR_BRANDS.ID_BRAND, NAME_BRAND, STATUS_DETAILS " +
+                "FROM CAR_BRANDS JOIN BRAND_DETAILS ON CAR_BRANDS.ID_BRAND = BRAND_DETAILS.ID_BRAND" +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_BRAND = 0 AND STATUS_DETAILS = 0  ";
             CarBrand carBrand = new CarBrand(DataProvider.Instance.ExecuteQuery(query).Rows[0]);
             return carBrand;
         }
 
         //lấy id hãng theo tên hãng
-        public static string GetIDBrandByName(string name)
+        public static string GetIDBrandByName(string name, string gara)
         {
             string id;
-            string query = "SELECT ID_BRAND FROM CAR_BRANDS WHERE NAME_BRAND = '" + name + "'";
+            string query = "SELECT DISTINCT CAR_BRANDS.ID_BRAND " +
+                "FROM CAR_BRANDS JOIN BRAND_DETAILS ON CAR_BRANDS.ID_BRAND = BRAND_DETAILS.ID_BRAND " +
+                "WHERE NAME_BRAND = '" + name + "' AND STATUS_DETAILS = 0 AND ID_GARA = '" + gara + "'";
             if (DataProvider.Instance.ExecuteScalar(query) != null)
             {
                 id = DataProvider.Instance.ExecuteScalar(query).ToString().Trim();
@@ -58,6 +64,16 @@ namespace Gara_Management.DAO
                 id = null;
             }
             return id;
+        }
+
+        public bool InsertCarBrand(string name, string gara)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("EXEC USP_INSERT_CARBRAND N'" + name + "', '" + gara + "'") > 0;
+        }
+
+        public bool DeleteCarBrand(string brand, string gara)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("EXEC USP_DELETE_CARBRAND '" + brand + "', '" + gara + "'") > 0;
         }
     }
 }

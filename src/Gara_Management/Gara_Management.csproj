@@ -211,7 +211,6 @@
     </Compile>
     <Compile Include="DAO\AccountDAO.cs" />
     <Compile Include="DAO\BeginingInventoryDAO.cs" />
-    <Compile Include="DAO\BrandDetailDAO.cs" />
     <Compile Include="DAO\CarBrandDAO.cs" />
     <Compile Include="DAO\CarComponentDAO.cs" />
     <Compile Include="DAO\CarGaraDAO.cs" />
@@ -233,7 +232,6 @@
     <Compile Include="DAO\SupplierDAO.cs" />
     <Compile Include="DTO\Account.cs" />
     <Compile Include="DTO\BeginingInventory.cs" />
-    <Compile Include="DTO\BrandDetail.cs" />
     <Compile Include="DTO\CarBrand.cs" />
     <Compile Include="DTO\CarComponent.cs" />
     <Compile Include="DTO\CarGara.cs" />

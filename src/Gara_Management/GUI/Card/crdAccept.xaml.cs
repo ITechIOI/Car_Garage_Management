@@ -2,18 +2,9 @@
 using Gara_Management.DTO;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Gara_Management.GUI.Card
 {
@@ -25,19 +16,24 @@ namespace Gara_Management.GUI.Card
         private ReceptionForm receptionForm; /*biến lưu trữ thông tin của phiếu tiếp nhận*/
         private ReceptionForm check = null; /*biến kiểm tra các thông tin đã thay đổi hay chưa*/
         private bool isChanged = false;  /*biến kiểm tra các thông tin đã thay đổi hay chưa*/
+        string gara;
 
         // khi khởi tạo tự động có mã phiếu ( với phiếu mới) và ngày tiếp nhận
-        public crdAccept()
+        public crdAccept(string gara)
         {
             InitializeComponent();
             InitializeIDAndDate();
+            this.gara = gara;
             LoadCarBrand();
+          
         }
 
         // hiển thị lên phiếu đã có
-        public crdAccept(string a)
+        public crdAccept(string a, string gara)
         {
             InitializeComponent();
+            this.gara = gara;
+            LoadCarBrand();
             tbx_save.Text = "Sửa";
             // cho các textBox unenable
 
@@ -92,7 +88,7 @@ namespace Gara_Management.GUI.Card
             }
 
             //nếu hãng xe ngoài danh sách tiếp nhận thì không tiếp nhận
-            if (CarBrandDAO.GetIDBrandByName(cbx_CarBrand.Text) == null)
+            if (CarBrandDAO.GetIDBrandByName(cbx_CarBrand.Text, gara) == null)
             {
                 MessageBox.Show("Hãng xe không được tiếp nhận!", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -214,7 +210,7 @@ namespace Gara_Management.GUI.Card
         {
             receptionForm = ReceptionForm.LoadReceptionFormByID(IDRec);
             Customer customer = CustomerDAO.LoadCustomerByID(receptionForm.IDCus);
-            CarBrand carBrand = CarBrandDAO.LoadCarBrandByID(receptionForm.IDBrand);
+            CarBrand carBrand = CarBrandDAO.LoadCarBrandByID(receptionForm.IDBrand, gara);
 
             tbx_IDRec.Text = IDRec;
             tbx_NameCus.Text = customer.NameCus;
@@ -237,7 +233,7 @@ namespace Gara_Management.GUI.Card
         {
             string iDRec = tbx_IDRec.Text;
             string iDCus = CustomerDAO.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text);
-            string iDBrand = CarBrandDAO.GetIDBrandByName(cbx_CarBrand.Text);
+            string iDBrand = CarBrandDAO.GetIDBrandByName(cbx_CarBrand.Text, gara);
             string iDGara = "GR1";
             string numberPlate = tbx_NumberPlate.Text;
             DateTime receptionDate = Convert.ToDateTime(dpk_RecDate.ToString());
@@ -255,7 +251,7 @@ namespace Gara_Management.GUI.Card
         //khởi tạo CarBrand combobox
         private void LoadCarBrand()
         {
-            List<CarBrand> carBrands = CarBrandDAO.Instance.LoadCarBrandList();
+            List<CarBrand> carBrands = CarBrandDAO.Instance.LoadCarBrandList(gara);
             cbx_CarBrand.Items.Clear();
             foreach (CarBrand item in carBrands)
             {

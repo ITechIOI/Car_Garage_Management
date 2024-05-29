@@ -18,10 +18,10 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <!-- ID -->
-                <TextBlock Text="EM001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                <TextBlock x:Name="staffID" Text="EM001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  />
                 <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="108,0,0,0"/>
                 <!-- Họ tên -->
-                <TextBlock Grid.Column="1" Text="Lê Huy Hoàng" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" x:Name="staffName" Text="Lê Huy Hoàng" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="158,0,0,0"/>
                 <!-- Tài khoản -->
                 <TextBlock Grid.Column="2" Text="hoangngaongo" FontSize="20" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />

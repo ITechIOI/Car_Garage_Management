@@ -23,9 +23,11 @@ namespace Gara_Management.GUI
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#079992");
         Color color5 = (Color)ColorConverter.ConvertFromString("#218c74");
-        public scrHome()
+        string gara;
+        public scrHome(string gara)
         {
             InitializeComponent();
+            this.gara = gara;
         }
 
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
@@ -52,7 +54,7 @@ namespace Gara_Management.GUI
         private void bd_acceptCar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // tiếp nhận sửa chữa 
-            crdAccept crdAccept = new crdAccept();
+             crdAccept crdAccept = new crdAccept(gara);
             crdAccept.ShowDialog();
         }
 
@@ -95,7 +97,7 @@ namespace Gara_Management.GUI
         private void bd_staffAdd_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // thêm nhân viên
-            cardInfoStaff crdstaff = new cardInfoStaff();
+            cardInfoStaff crdstaff = new cardInfoStaff(gara);
             crdstaff.ShowDialog();
         }
     }

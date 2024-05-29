@@ -33,7 +33,7 @@ namespace Gara_Management.DAO
             return null;
         }
 
-        public bool InsertAccount(string username, string password, string idStaff, bool accAuthor)
+        public bool InsertAccount(string username, string idStaff, bool accAuthor)
         {
             int author;
             if (accAuthor)
@@ -45,13 +45,15 @@ namespace Gara_Management.DAO
                 author = 0;
             }
             return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_INSERTACCOUNT '" + 
-                username +"', '"+password+"', '"+idStaff+"', "+author) > 0);
+                username +"', '"+idStaff+"', "+author) > 0);
         }
 
-        public string GetIDAccountByIDStaff(string idStaff)
+        public Account GetAccountByIDStaff(string idStaff)
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM ACCOUNTS WHERE ID_STAFF = '" + idStaff + "'");
-            return new Account(data.Rows[0]).IDStaff;
+            if (data.Rows.Count == 0)
+                return null;
+            return new Account(data.Rows[0]);
         }
 
 

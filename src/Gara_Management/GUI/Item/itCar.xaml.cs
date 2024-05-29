@@ -21,10 +21,11 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itCar : UserControl
     {
-
-        public itCar()
+        string gara;
+        public itCar(string gara)
         {
             InitializeComponent();
+            this.gara = gara;
         }
         
 
@@ -45,7 +46,7 @@ namespace Gara_Management.GUI.Item
 
         private void bd_acceptDetail_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdAccept crdAccept = new crdAccept("MÃ phiếu");
+            crdAccept crdAccept = new crdAccept("MÃ phiếu", gara);
             crdAccept.ShowDialog();
         }
     }

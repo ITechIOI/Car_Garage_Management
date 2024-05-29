@@ -1,4 +1,5 @@
-﻿using Gara_Management.DTO;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
 using Gara_Management.GUI;
 using System;
 using System.Collections.Generic;
@@ -29,13 +30,14 @@ namespace Gara_Management
         Color color5= (Color)ColorConverter.ConvertFromString("#218c74");
 
         Account acc;
+        string gara;
 
         public MainWindow(Account acc)
         {
             InitializeComponent();
-            DataContext = new scrHome();
             this.acc = acc;
-            
+            gara = StaffDAO.Instance.GetIDGaraByIDStaff(this.acc.IDStaff);
+            DataContext = new scrHome(gara); ;
         }
 
   
@@ -55,7 +57,7 @@ namespace Gara_Management
         private void menuHome_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 1;
-            DataContext = new scrHome();
+            DataContext = new scrHome(gara);
             menuHome.Background = new SolidColorBrush(color4);
             menuCars.Background = new SolidColorBrush(color5);
             menuStore.Background = new SolidColorBrush(color5);
@@ -79,7 +81,7 @@ namespace Gara_Management
         private void menuCars_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 2;
-            scrCars scrCars = new scrCars();
+            scrCars scrCars = new scrCars(gara);
             DataContext = scrCars;
             scrCars.changeToRepairCardScr += scrCars_changeToRepairCardScr;
             menuHome.Background = new SolidColorBrush(color5);
@@ -93,7 +95,7 @@ namespace Gara_Management
         private void scrRepairCard_changeToCardScr(object sender, EventArgs e)
         {
             scr = 2;
-            scrCars scrCars = new scrCars();       
+            scrCars scrCars = new scrCars(gara);       
             DataContext = scrCars;
             scrCars.changeToRepairCardScr += scrCars_changeToRepairCardScr;
         }
@@ -225,7 +227,7 @@ namespace Gara_Management
         public void ChangetoscrListacc(object sender, EventArgs e)
         {
             scr = 6;
-            scrAccount scracc = new scrAccount();
+            scrAccount scracc = new scrAccount(gara);
             DataContext = scracc;
             scracc.returntoDetailAcc += ChangetoscrDetailAcc;
         }
@@ -256,7 +258,7 @@ namespace Gara_Management
         private void menuStaff_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 7;
-            DataContext = new scrAccount();
+            DataContext = new scrAccount(gara);
             menuHome.Background = new SolidColorBrush(color5);
             menuCars.Background = new SolidColorBrush(color5);
             menuStore.Background = new SolidColorBrush(color5);

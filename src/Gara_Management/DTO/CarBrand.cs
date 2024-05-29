@@ -29,7 +29,7 @@ namespace Gara_Management.DTO
         {
             this.IDBrand = row["ID_BRAND"].ToString().Trim();
             this.NameBrand = row["NAME_BRAND"].ToString().Trim();
-            this.StatusBrand = Convert.ToBoolean(row["STATUS_BRAND"].ToString().Trim());
+            this.StatusBrand = Convert.ToBoolean(row["STATUS_DETAILS"].ToString().Trim());
         }
     }
 }

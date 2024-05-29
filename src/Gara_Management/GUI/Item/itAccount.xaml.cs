@@ -1,4 +1,5 @@
-﻿using Gara_Management.GUI.Card;
+﻿using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,18 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itAccount : UserControl
     {
-        public itAccount()
+        Staff staff;
+        Account account;
+        public itAccount(Staff staff, Account account)
         {
             InitializeComponent();
+            this.staff = staff;
+            this.account = account;
         }
 
         private void bt_view_info_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            cardViewInfo viewinfo = new cardViewInfo();
+            cardViewInfo viewinfo = new cardViewInfo(staff, account);
             viewinfo.Show();
         }
     }

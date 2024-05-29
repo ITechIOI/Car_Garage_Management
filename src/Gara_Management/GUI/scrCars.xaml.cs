@@ -28,14 +28,15 @@ namespace Gara_Management.GUI
 
 
         public event EventHandler changeToRepairCardScr;
-        public scrCars()
+        string gara;
+        public scrCars(string gara)
         {
             InitializeComponent();
-           
+            this.gara = gara;
 
             for (int i = 0; i < 9; i++)
             {
-                itCar itCar1 = new itCar();
+                itCar itCar1 = new itCar(gara);
                 ds_acc.Children.Add(itCar1);
               
             }
@@ -72,7 +73,7 @@ namespace Gara_Management.GUI
         private void bd_acceptCar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // tiếp nhận sửa chửa (giống bên home)
-            crdAccept newCar = new crdAccept();
+            crdAccept newCar = new crdAccept(gara);
             newCar.ShowDialog();
         }
 
