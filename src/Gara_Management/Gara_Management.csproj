@@ -75,6 +75,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -101,11 +104,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Card\cardSuccessful.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\cardUpdateInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Card\cardViewInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\cardWelcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\cardWrong.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,11 +282,20 @@
     <Compile Include="GUI\Card\cardRevenue.xaml.cs">
       <DependentUpon>cardRevenue.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Card\cardSuccessful.xaml.cs">
+      <DependentUpon>cardSuccessful.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Card\cardUpdateInfo.xaml.cs">
       <DependentUpon>cardUpdateInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Card\cardViewInfo.xaml.cs">
       <DependentUpon>cardViewInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardWelcome.xaml.cs">
+      <DependentUpon>cardWelcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardWrong.xaml.cs">
+      <DependentUpon>cardWrong.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Card\crdAccept.xaml.cs">
       <DependentUpon>crdAccept.xaml</DependentUpon>
@@ -461,6 +485,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\image_garage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\preview.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\check.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\img_wrong.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\img_welcome.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

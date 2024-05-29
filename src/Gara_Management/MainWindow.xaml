@@ -30,9 +30,14 @@
                     <SolidColorBrush Color="{StaticResource color5}"/>
                 </Border.Background>
                 <!-- logo -->
-                <StackPanel>
-                    <Border Height="195">
-                        <Image  Source="/Images/ic_logo.png" Width="109" Margin="0,43,0,43"/>
+                <StackPanel >
+                    <Border Height="195" CornerRadius="20">
+                        <Rectangle Margin="0,24,0,24" Width="165" >
+                            <Rectangle.Fill>
+                                <ImageBrush  ImageSource="/Images/image_garage.jpg"/>
+
+                            </Rectangle.Fill>
+                        </Rectangle>
 
                     </Border>
 

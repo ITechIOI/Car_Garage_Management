@@ -113,6 +113,10 @@
             <Border x:Name="btn_update" MouseDown="btn_update_MouseDown" Grid.Row="2" CornerRadius="10" BorderBrush="Black" BorderThickness="2" Background="{StaticResource sColor5}" Margin="324,2,14,8">
                 <TextBlock Text="Cập nhật" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
             </Border>
+            <Border x:Name="btn_resetpass" MouseDown="btn_resetpass_MouseDown" Grid.Row="2" CornerRadius="10" BorderBrush="Black" BorderThickness="2" Background="{StaticResource sColor5}" Margin="20,2,312,8">
+                <TextBlock Text="Khởi tạo lại" FontSize="20" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
         </Grid>
     </Border>
 

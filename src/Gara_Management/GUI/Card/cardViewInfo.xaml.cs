@@ -66,5 +66,10 @@ namespace Gara_Management.GUI.Card
         {
 
         }
+
+        private void btn_resetpass_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
