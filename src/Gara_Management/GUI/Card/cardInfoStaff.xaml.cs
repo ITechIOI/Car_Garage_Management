@@ -42,51 +42,60 @@ namespace Gara_Management.GUI.Card
         {
             if (staffIDBorder.Visibility == Visibility.Hidden)
             {
-                string name = staffNameTextBox.Text;
-                DateTime birthday = DateTime.Parse(staffBirthdayPicker.SelectedDate.ToString());
-                string address = staffAddressTextBox.Text;
-                string email = staffEmailTextBox.Text;
-                string phone = staffPhoneTextbox.Text;
-                int salary = int.Parse(staffSalaryTextbox.Text);
-                string position = cbx_position.SelectedItem.ToString();
-                if (StaffDAO.Instance.CheckExistIDStaff(name, phone, gara) != "")
+                if (staffNameTextBox.Text == "" || staffBirthdayPicker.SelectedDate == null || 
+                    staffAddressTextBox.Text == "" || staffEmailTextBox.Text == "" || staffPhoneTextbox.Text == ""
+                    || cbx_position.SelectedItem == null || staffSalaryTextbox.Text =="")
                 {
-                    MessageBox.Show("Nhân viên đã tồn tại.");
-                }
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin.");
+                }    
                 else
                 {
-                    bool res = StaffDAO.Instance.InsertStaff(name, birthday.ToString("dd/MM/yyyy"), address, email, phone, salary, position, gara);
-                    if (usernameTextBox.Text != String.Empty)
+                    int salary;
+                    if (!int.TryParse(staffSalaryTextbox.Text,out salary))
                     {
-                        string id = StaffDAO.Instance.CheckExistIDStaff(name, phone, gara);
-                        bool author;
-                        if (cbx_accAuthor.SelectedItem.ToString() == "Admin")
-                        {
-                            author = false;
-                        }    
-                        else
-                        {
-                            author = true;
-                        }
-                        if (AccountDAO.Instance.CheckExistedUsername(usernameTextBox.Text))
-                        {
-                            MessageBox.Show("Tài khoản bị trùng vui lòng thử lại.");
-                        }
-                        else
-                        {
-                            res = res && AccountDAO.Instance.InsertAccount(usernameTextBox.Text, id, author);
-                        }
-                    }
-                    if (res)
-                    {
-                        MessageBox.Show("Thêm nhân viên thành công!");
-                        this.Close();
-                    }
+                        MessageBox.Show("Lương phải là một số nguyên");
+                    }    
                     else
                     {
-                        MessageBox.Show("Thêm nhân viên không thành công. Vui lòng thử lại!");
-                    }
-                }
+                        if (StaffDAO.Instance.CheckExistIDStaff(staffNameTextBox.Text, staffPhoneTextbox.Text, gara) != "")
+                        {
+                            MessageBox.Show("Nhân viên đã tồn tại.");
+                        }
+                        else
+                        {
+                            DateTime birthday = DateTime.Parse(staffBirthdayPicker.SelectedDate.ToString());
+                            bool res = StaffDAO.Instance.InsertStaff(staffNameTextBox.Text, 
+                                birthday.ToString("dd/MM/yyyy"), staffAddressTextBox.Text,
+                                staffEmailTextBox.Text, staffPhoneTextbox.Text, salary, 
+                                cbx_position.SelectedItem.ToString(), gara);
+                            if (usernameTextBox.Text != "")
+                            {
+                                if (AccountDAO.Instance.CheckExistedUsername(usernameTextBox.Text))
+                                {
+                                    MessageBox.Show("Tài khoản bị trùng vui lòng thử lại.");
+                                }
+                                else
+                                {
+                                    string id = StaffDAO.Instance.CheckExistIDStaff(staffNameTextBox.Text,
+                                        staffPhoneTextbox.Text, gara);
+                                    bool author;
+                                    if (cbx_accAuthor.SelectedItem.ToString() == "Admin") { author = false; }
+                                    else { author = true;}
+                                    res = res && AccountDAO.Instance.InsertAccount(usernameTextBox.Text, id, author);
+                                }
+                            }
+                            if (res)
+                            {
+                                MessageBox.Show("Thêm nhân viên thành công!");
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Thêm nhân viên không thành công. Vui lòng thử lại!");
+                            }
+                        }    
+                    }    
+                }  
             }
             //else
             //{

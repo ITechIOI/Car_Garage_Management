@@ -28,8 +28,10 @@ namespace Gara_Management.GUI.Card
             InitializeComponent();
             this.staff = staff;
             this.account = account;
+            SetComponentReadOnly(true);
             LoadAccAuthor();
             LoadPosition();
+            LoadStaffInfo();  
         }
 
         private void bt_exit_MouseDown(object sender, MouseButtonEventArgs e)
@@ -51,21 +53,15 @@ namespace Gara_Management.GUI.Card
                 // Kiểm tra xem người dùng đã chọn Yes hay không
                 if (result == MessageBoxResult.Yes)
                 {
-                    txtb_fullname.IsReadOnly = false;
-                    txtb_address.IsReadOnly = false;
-                    txtb_email.IsReadOnly = false;
-                    txtb_phonenumber.IsReadOnly = false;
-                    tbtx_salary.IsReadOnly = false;
+                    SetComponentReadOnly(false);
                     txtb_edit.Text = "Hủy";
                     txtb_delete.Text = "Cập nhật";
                 }
             }
             else
             {
-                txtb_fullname.IsReadOnly = true;
-                txtb_address.IsReadOnly = true;
-                txtb_email.IsReadOnly = true;
-                txtb_phonenumber.IsReadOnly = true;
+                SetComponentReadOnly(true);
+                LoadStaffInfo();
                 txtb_edit.Text = "Chỉnh sửa";
                 txtb_delete.Text = "Xóa";
             }
@@ -96,40 +92,56 @@ namespace Gara_Management.GUI.Card
             }
             else
             {
-                if (account == null && txtb_account.Text != "")
+                if (txtb_fullname.Text == "" || txtb_address.Text == "" || txtb_email.Text == "" 
+                    || tbtx_salary.Text == "" || txtb_birthdate.SelectedDate == null || 
+                    cbx_position.SelectedItem == null)
                 {
-                    bool author;
-                    if (cbx_accAuthor.SelectedItem.ToString() == "Admin")
-                        author = false;
-                    else author = true;
-                    if (AccountDAO.Instance.InsertAccount(txtb_account.Text, staff.IDStaff, author))
-                    {
-                        MessageBox.Show("Thêm tài khoản thành công.");
-                    }
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin");
                 }
                 else
                 {
-                    bool res = true;
-                    if (txtb_account.Text != "")
+                    if (account != null && txtb_account.Text != "")
                     {
+                        bool res = true;
                         bool author;
                         if (cbx_accAuthor.SelectedItem.ToString() == "Admin")
                             author = false;
                         else author = true;
                         res = AccountDAO.Instance.ChangeAccAuthorization(account.IDAcc, author);
-                    }
-                    DateTime birthday = DateTime.Parse(txtb_birthdate.SelectedDate.ToString());
-                    if (res && StaffDAO.Instance.UpdateStaff(txtb_idStaff.Text, txtb_fullname.Text,
-                        birthday.ToString("dd/MM/yyyy"), txtb_address.Text, txtb_email.Text,
-                        txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
-                    {
-                        MessageBox.Show("Cập nhật thông tin nhân viên thành công.");
+                        DateTime birthday = DateTime.Parse(txtb_birthdate.SelectedDate.ToString());
+                        if (res && StaffDAO.Instance.UpdateStaff(txtb_idStaff.Text, txtb_fullname.Text,
+                            birthday.ToString("dd/MM/yyyy"), txtb_address.Text, txtb_email.Text,
+                            txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
+                        {
+                            MessageBox.Show("Cập nhật thông tin nhân viên thành công.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật thông tin không thành công.");
+                        }
+                        
                     }
                     else
                     {
-                        MessageBox.Show("Cập nhật thông tin không thành công.");
+                        bool author;
+                        if (cbx_accAuthor.SelectedItem.ToString() == "Admin")
+                            author = false;
+                        else author = true;
+                        bool res = AccountDAO.Instance.InsertAccount(txtb_account.Text, staff.IDStaff, author);
+                        DateTime birthday = DateTime.Parse(txtb_birthdate.SelectedDate.ToString());
+                        if (res && StaffDAO.Instance.UpdateStaff(txtb_idStaff.Text, txtb_fullname.Text,
+                            birthday.ToString("dd/MM/yyyy"), txtb_address.Text, txtb_email.Text,
+                            txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
+                        {
+                            MessageBox.Show("Thêm tài khoản mới và cập nhật thông tin nhân viên thành công.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật thông tin không thành công.");
+                        }
                     }
-                }    
+                }
+                
             }    
         }
         private void LoadAccAuthor()
@@ -149,9 +161,37 @@ namespace Gara_Management.GUI.Card
             }
         }
 
-        private void btn_resetpass_MouseDown(object sender, MouseButtonEventArgs e)
+        private void LoadStaffInfo()
+        {
+            if (account != null)
+            {
+                txtb_account.IsReadOnly = true;
+            }    
+            else
+            {
+                txtb_account.IsReadOnly= false;
+            }    
+        }
+        private void SetComponentReadOnly(bool bo)
         {
 
+            txtb_fullname.IsReadOnly = bo;
+            txtb_address.IsReadOnly = bo;
+            txtb_email.IsReadOnly = bo;
+            txtb_phonenumber.IsReadOnly = bo;
+            tbtx_salary.IsReadOnly = bo;
+        }
+
+        private void btn_resetpass_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (AccountDAO.Instance.ResetPassword(account.IDAcc))
+            {
+                MessageBox.Show("Đặt lại mật khẩu thành công.");
+            }    
+            else
+            {
+                MessageBox.Show("Đặt lại mật khẩu không thành công. Vui lòng thử lại.");
+            }    
         }
     }
 }

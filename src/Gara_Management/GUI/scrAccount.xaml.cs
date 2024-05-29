@@ -34,15 +34,7 @@ namespace Gara_Management.GUI
         {
             InitializeComponent();
             this.gara = gara;
-            List<Staff> staffs = StaffDAO.Instance.LoadStaffList(this.gara);
-            Account acc = null;
-            foreach (Staff item in staffs)
-            {
-                acc = AccountDAO.Instance.GetAccountByIDStaff(item.IDStaff);
-                itAccount itAcc1 = new itAccount(item, acc);
-                ds_acc.Children.Add(itAcc1);
-
-            }
+            LoadListStaff();
 
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
@@ -70,12 +62,24 @@ namespace Gara_Management.GUI
         {
             cardInfoStaff crdstaff = new cardInfoStaff(gara);
             crdstaff.ShowDialog();
+            LoadListStaff();
 
         }
 
         private void bt_detail_MouseDown(object sender, MouseButtonEventArgs e)
         {
             returntoDetailAcc?.Invoke(this, new EventArgs());
+        }
+        private void LoadListStaff()
+        {
+            List<Staff> staffs = StaffDAO.Instance.LoadStaffList(this.gara);
+            Account acc = null;
+            foreach (Staff item in staffs)
+            {
+                acc = AccountDAO.Instance.GetAccountByIDStaff(item.IDStaff);
+                itAccount itAcc1 = new itAccount(item, acc);
+                ds_acc.Children.Add(itAcc1);
+            }
         }
 
         

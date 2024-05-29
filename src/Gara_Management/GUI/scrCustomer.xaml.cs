@@ -31,12 +31,8 @@ namespace Gara_Management.GUI
         {
             InitializeComponent();
             this.gara = gara;
-            List<Customer> customers = CustomerDAO.Instance.LoadCustomerList(this.gara);
-            foreach (Customer customer in customers) 
-            {
-                itCustomer it = new itCustomer(customer, this.gara);
-                ds_khachhang.Children.Add(it);
-            }            
+            LoadListCustomer();
+                  
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -64,11 +60,21 @@ namespace Gara_Management.GUI
         {
             crdCustomer crdCustomer = new crdCustomer(gara);
             crdCustomer.ShowDialog();
+            LoadListCustomer();
         }
 
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
             filter.Visibility = Visibility.Visible;
+        }
+        private void LoadListCustomer()
+        {
+            List<Customer> customers = CustomerDAO.Instance.LoadCustomerList(this.gara);
+            foreach (Customer customer in customers)
+            {
+                itCustomer it = new itCustomer(customer, this.gara);
+                ds_khachhang.Children.Add(it);
+            }
         }
     }
 }

@@ -70,7 +70,7 @@
                     <Grid Height="auto">
 
                         <TextBlock Text="Địa chỉ: " VerticalAlignment="Top" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_address1" Text="hoo" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Foreground="{StaticResource sColor1}"  Margin="77,0,0,136"/>
+                        <TextBox x:Name="txtb_address1" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Foreground="{StaticResource sColor1}"  Margin="77,0,0,136"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,31,0,0"/>
 
                         <TextBlock Text="phường/xã: " VerticalAlignment="Top" HorizontalAlignment="Left" Margin="77,41,0,0" />
