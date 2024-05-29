@@ -93,7 +93,7 @@ namespace Gara_Management.DAO
         public string CheckExistIDStaff(string name, string phone, string gara)
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT ID_STAFF FROM STAFFS WHERE NAME_STAFF = N'" + name 
-                + "' AND PHONE_NUMBER_STAFF = '" + phone + "' AND ID_GARA = '"+ gara + "'");
+                + "' AND PHONE_NUMBER_STAFF = '" + phone + "' AND ID_GARA = '"+ gara + "' AND STATUS_STAFF = 0");
             if (data.Rows.Count == 0)
             {
                 return "";
