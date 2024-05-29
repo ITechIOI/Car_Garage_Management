@@ -90,7 +90,7 @@ namespace Gara_Management.GUI
         private void bd_customerAdd_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // thêm khách hàng
-            crdCustomer crdCustomer = new crdCustomer();    
+            crdCustomer crdCustomer = new crdCustomer(gara);    
             crdCustomer.ShowDialog();
         }
 

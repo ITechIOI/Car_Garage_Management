@@ -1,4 +1,5 @@
-﻿using Gara_Management.GUI.Card;
+﻿using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,19 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itCustomer : UserControl
     {
-        public itCustomer()
+        Customer customer;
+        string gara;
+        public itCustomer(Customer customer, string gara)
         {
             InitializeComponent();
+            this.customer = customer;
+            this.gara = gara;
         }
 
         // Hiển thị bảng thông tin khách hàng
         private void bd_customer_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdCustomer crdCustomer = new crdCustomer("makh");
+            crdCustomer crdCustomer = new crdCustomer(customer, gara);
             crdCustomer.ShowDialog();   
         }
     }

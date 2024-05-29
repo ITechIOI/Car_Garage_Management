@@ -1,4 +1,6 @@
-﻿using Gara_Management.GUI.Card;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using Gara_Management.GUI.Item;
 using System;
 using System.Collections.Generic;
@@ -24,14 +26,17 @@ namespace Gara_Management.GUI
     {
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
-        public scrCustomer()
+        string gara;
+        public scrCustomer(string gara)
         {
             InitializeComponent();
-            for (int i = 0; i < 10; i++)
+            this.gara = gara;
+            List<Customer> customers = CustomerDAO.Instance.LoadCustomerList(this.gara);
+            foreach (Customer customer in customers) 
             {
-                itCustomer it=new itCustomer();
+                itCustomer it = new itCustomer(customer, this.gara);
                 ds_khachhang.Children.Add(it);
-            }
+            }            
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -57,7 +62,7 @@ namespace Gara_Management.GUI
         // hiển thị bảng thêm 1 khách hàng
         private void bd_add_customer_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdCustomer crdCustomer = new crdCustomer();
+            crdCustomer crdCustomer = new crdCustomer(gara);
             crdCustomer.ShowDialog();
         }
 

@@ -189,7 +189,7 @@ namespace Gara_Management
         private void menuCustomers_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 5;
-            DataContext = new scrCustomer();
+            DataContext = new scrCustomer(gara);
             menuHome.Background = new SolidColorBrush(color5);
             menuCars.Background = new SolidColorBrush(color5);
             menuStore.Background = new SolidColorBrush(color5);
