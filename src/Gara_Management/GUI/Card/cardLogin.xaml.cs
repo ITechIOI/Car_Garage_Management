@@ -27,21 +27,35 @@ namespace Gara_Management.GUI.Card
 
         private void bt_exit_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+            MessageBoxResult result = MessageBox.Show("Bạn có muốn thoát ứng dụng?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            // Kiểm tra xem người dùng đã chọn Yes hay không
+            if (result == MessageBoxResult.Yes)
+            {
+                App.Current.Shutdown();
+            }
         }
 
         private void bt_login_MouseDown(object sender, MouseButtonEventArgs e)
         {
             string username = usernameTextbox.Text;
-            string password = passwordTextBox.Text;
+            string password = passwordTextBox.Password;
             if (AccountDAO.Instance.CheckForLogin(username, password) != null)
             {
                 MainWindow mainWindow = new MainWindow(AccountDAO.Instance.CheckForLogin(username, password));
-                mainWindow.ShowDialog();
+                cardSuccessful success = new cardSuccessful();
+                success.Show();
+                success.Closed += (s, args) =>
+                {
+                    this.Hide();
+                    // Khi cửa sổ success đóng, hiển thị mainWindow
+                    mainWindow.ShowDialog();
+                };
             }
             else
             {
-                MessageBox.Show("Tài khoản hoặc mật khẩu không đúng. Vui lòng thử lại.");
+                cardWrong wrong = new cardWrong();
+                wrong.Show();
             }    
         }
     }

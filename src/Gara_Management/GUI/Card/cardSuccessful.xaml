@@ -1,0 +1,21 @@
+﻿<Window x:Class="Gara_Management.GUI.Card.cardSuccessful"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gara_Management.GUI.Card"
+        xmlns:WpfAnimatedGif="clr-namespace:WpfAnimatedGif;assembly=WpfAnimatedGif"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True" 
+        Title="cardSuccessful" Height="200" Width="500">
+    <Border CornerRadius="20" Background="White" BorderThickness="5" BorderBrush="{StaticResource sColor5}">
+        <Grid>
+            <Ellipse Margin="47,32,307,31" Fill="{StaticResource sColor5}"/>
+            <Border Background="White" Margin="61,48,321,46" CornerRadius="120" ClipToBounds="True">
+                <Image Name="img_gif" Stretch="Fill" Margin="-96,-77,-96,-83"/>
+            </Border>
+            <TextBlock Text="Thao tác 
+                       thành công!!!" FontSize="32" Foreground="{StaticResource sColor5}" TextWrapping="Wrap" FontWeight="Bold" FontFamily="Sans serif" Margin="227,48,45,53"/>
+        </Grid>
+    </Border>
+</Window>

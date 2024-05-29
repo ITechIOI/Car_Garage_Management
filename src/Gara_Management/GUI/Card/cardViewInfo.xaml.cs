@@ -148,5 +148,10 @@ namespace Gara_Management.GUI.Card
                 cbx_position.Items.Add(position);
             }
         }
+
+        private void btn_resetpass_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
