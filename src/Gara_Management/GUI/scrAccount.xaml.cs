@@ -26,7 +26,7 @@ namespace Gara_Management.GUI
     {
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
-        Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
+        Color color5 = (Color)ColorConverter.ConvertFromString("#218c74");
         string gara;
 
         public event EventHandler returntoDetailAcc;

@@ -31,7 +31,27 @@ namespace Gara_Management.GUI.Card
             SetComponentReadOnly(true);
             LoadAccAuthor();
             LoadPosition();
-            LoadStaffInfo();  
+            LoadStaffInfo();
+            txtb_idStaff.Text = this.staff.IDStaff;
+            txtb_fullname.Text=this.staff.NameStaff;
+            txtb_birthdate.Text = this.staff.BirthdayStaff.ToString();
+            txtb_address.Text = this.staff.AddressStaff;
+            txtb_email.Text = this.staff.EmailStaff;
+            txtb_phonenumber.Text = this.staff.PhoneNumberStaff;
+            cbx_position.Text = this.staff.Position;
+            tbtx_salary.Text = this.staff.Salary.ToString();
+            if (this.account != null)
+            {
+                txtb_account.Text = this.account.UserName;
+                if (this.account.AccAuthorization == false)
+                {
+                    cbx_accAuthor.Text = "Quản lý";
+                }
+                else
+                {
+                    cbx_accAuthor.Text = "Nhân viên";
+                }
+            }    
         }
 
         private void bt_exit_MouseDown(object sender, MouseButtonEventArgs e)
@@ -147,8 +167,8 @@ namespace Gara_Management.GUI.Card
         private void LoadAccAuthor()
         {
             cbx_accAuthor.Items.Clear();
-            cbx_accAuthor.Items.Add("Admin");
-            cbx_accAuthor.Items.Add("Staff");
+            cbx_accAuthor.Items.Add("Quản lý");
+            cbx_accAuthor.Items.Add("Nhân viên");
         }
 
         private void LoadPosition()

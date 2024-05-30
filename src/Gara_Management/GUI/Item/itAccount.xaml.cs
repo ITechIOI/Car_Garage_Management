@@ -29,6 +29,23 @@ namespace Gara_Management.GUI.Item
             InitializeComponent();
             this.staff = staff;
             this.account = account;
+            staffID.Text = this.staff.IDStaff;
+            staffName.Text = this.staff.NameStaff;
+            staffPhonenumber.Text = this.staff.PhoneNumberStaff;
+            if (this.account != null)
+            {
+                staffUsername.Text = this.account.UserName;
+                if (this.account.AccAuthorization == false)
+                {
+                    staffRole.Text = "Quản lý";
+                }
+                else
+                {
+                    staffRole.Text = "Nhân viên";
+                }
+            }    
+
+
         }
 
         private void bt_view_info_MouseDown(object sender, MouseButtonEventArgs e)

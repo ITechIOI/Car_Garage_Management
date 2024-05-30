@@ -18,19 +18,19 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <!-- ID -->
-                <TextBlock x:Name="staffID" Text="EM001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                <TextBlock x:Name="staffID" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  />
                 <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="108,0,0,0"/>
                 <!-- Họ tên -->
-                <TextBlock Grid.Column="1" x:Name="staffName" Text="Lê Huy Hoàng" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" x:Name="staffName" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="158,0,0,0"/>
                 <!-- Tài khoản -->
-                <TextBlock Grid.Column="2" Text="hoangngaongo" FontSize="20" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="2" x:Name="staffUsername" TextWrapping="Wrap" FontSize="20" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="143,0,0,0"/>
                 <!-- Số điện thoại -->
-                <TextBlock Grid.Column="3" Text="0123456789" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="3" x:Name="staffPhonenumber" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="158,0,0,0"/>
                 <!-- Quyền -->
-                <TextBlock Grid.Column="4" Text="Employee" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="4" x:Name="staffRole" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="4" Width="2" Fill="{StaticResource sColor5}" Margin="108,0,0,0"/>
                 <Border x:Name="bt_view_info" MouseDown="bt_view_info_MouseDown" Grid.Column="5" Cursor="Hand">
                     <TextBlock  Text="..." FontSize="40"
