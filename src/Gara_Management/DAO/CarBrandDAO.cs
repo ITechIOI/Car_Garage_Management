@@ -42,7 +42,7 @@ namespace Gara_Management.DAO
         public static CarBrand LoadCarBrandByID(string id, string gara)
         {
             string query = "SELECT CAR_BRANDS.ID_BRAND, NAME_BRAND, STATUS_DETAILS " +
-                "FROM CAR_BRANDS JOIN BRAND_DETAILS ON CAR_BRANDS.ID_BRAND = BRAND_DETAILS.ID_BRAND" +
+                "FROM CAR_BRANDS JOIN BRAND_DETAILS ON CAR_BRANDS.ID_BRAND = BRAND_DETAILS.ID_BRAND " +
                 "WHERE ID_GARA = '" + gara + "' AND STATUS_BRAND = 0 AND STATUS_DETAILS = 0  ";
             CarBrand carBrand = new CarBrand(DataProvider.Instance.ExecuteQuery(query).Rows[0]);
             return carBrand;
