@@ -1,4 +1,5 @@
 ﻿using Gara_Management.DTO;
+using Gara_Management.GUI.Item;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -35,5 +36,33 @@ namespace Gara_Management.DAO
             }
             return repairPaymentDetailList;
         }
+
+        //Lấy thông tin từ database theo IDREC vào itRepairCardDetail
+        public static List<itRepairCardDetail> LoadItRepairCardDetail(string id)
+        {
+            int stt = 1;
+            List<itRepairCardDetail> list = new List<itRepairCardDetail>();
+            string query = "EXEC USP_LOAD_REPAIR_CARD_DETAILS @ID_REC";
+            DataTable dataTable = DataProvider.Instance.ExecuteQuery(query, new object[] { id });
+            foreach (DataRow row in dataTable.Rows)
+            {
+                itRepairCardDetail item = new itRepairCardDetail();
+                item.SetValue(stt, row);
+                item.DisableEditing();
+                list.Add(item);
+                stt++;
+            }
+            return list;
+        }
+
+        //Thêm dòng dữ liệu vào REPAIR PAYMENT DETAILS
+        private void InsertRepairCardDetail(string id, itRepairCardDetail item)
+        {
+            string query = "EXEC USP_INSERT_REPAIR_CARD_DETAILS @ID_REC , @REPAIR_DESCRIPTION , @NAME_COM ,  @CUR_PRICE , @COM_QUANTITY , @WAGE";
+            DataProvider.Instance.ExecuteQuery(query, new object[] { id, item.tbx_description.Text, item.tbx_name.Text, item.tbx_price.Text, item.tbx_quantity.Text, item.tbx_wage.Text });
+        }
+
+        //Cập nhật dữ liệu 
+
     }
 }

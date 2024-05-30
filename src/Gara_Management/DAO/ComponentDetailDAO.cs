@@ -36,5 +36,16 @@ namespace Gara_Management.DAO
             return componentDetailList;
         }
 
+        //Lấy IDCom theo thông tin
+        public static string GetComponentIDByInfo(string idGara, string name, string wage, string price)
+        {
+            string query = "EXEC USP_GET_IDCOMPONENT @ID_GARA = '" + idGara + "', @NAME_COM = N'" + name + "', @WAGE = '" + wage + "', @CUR_PRICE = '" + price + "'";
+            object idCom = DataProvider.Instance.ExecuteScalar(query);
+            if (idCom != null)
+            {
+                return idCom.ToString();
+            }
+            return "";
+        }
     }
 }

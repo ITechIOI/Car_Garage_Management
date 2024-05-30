@@ -225,19 +225,19 @@
             <!-- Mã phiếu -->
             <Grid Grid.Row="1" Margin="100,0,556,45">
                 <TextBlock Text="Mã phiếu:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBlock Text="RPC002" VerticalAlignment="Center" Margin="106,0,0,0"/>
+                <TextBlock x:Name="tbl_IDRec" Text="REC1" VerticalAlignment="Center" Margin="106,0,0,0"/>
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Biển số -->
             <Grid Grid.Row="1" Margin="100,45,516,0">
                 <TextBlock Text="Biển số xe: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Text="77-AA 77777" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
+                <TextBox x:Name="tbx_NumberPlate" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Ngày sửa-->
             <Grid Grid.Row="1" Margin="529,0,52,45">
                 <TextBlock Text="Ngày sửa: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <DatePicker VerticalContentAlignment="Center"  Background="Transparent" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
+                <DatePicker x:Name="dpk_RecDate" VerticalContentAlignment="Center"  Background="Transparent" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- bảng thông tin -->
@@ -285,7 +285,7 @@
                     <!-- tổng tiền -->
                     <TextBlock Text="Tổng tiền:" Grid.Row="2" HorizontalAlignment="Left" TextAlignment="Center" Margin="0,5,0,0" Width="103"/>
 
-                    <TextBlock Text="123.456.798" Grid.Row="2" HorizontalAlignment="Left" TextAlignment="Center" Margin="646,5,0,5" Width="122"/>
+                    <TextBlock x:Name="tbl_totalPayment" Text="123.456.798" Grid.Row="2" HorizontalAlignment="Left" TextAlignment="Center" Margin="646,5,0,5" Width="122"/>
                     <!-- mấy cái cột -->
                     <Rectangle Grid.Column="0" Grid.RowSpan="2" Margin="41,0,0,0" Width="2" Fill="{StaticResource sColor1}" HorizontalAlignment="Left"/>
                     <Rectangle Grid.RowSpan="2" Margin="176,0,0,0" Width="2" Fill="{StaticResource sColor1}" HorizontalAlignment="Left"/>

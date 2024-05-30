@@ -65,13 +65,5 @@ namespace Gara_Management.DTO
             if (this.statusRec != other.statusRec) return false;
             return true;
         }
-
-        //lấy thông tin Reception Form theo ID
-        public static ReceptionForm LoadReceptionFormByID(string id)
-        {
-            string loadReceptionForm = "SELECT * FROM RECEPTION_FORMS WHERE ID_REC = '" + id + "'";
-            ReceptionForm receptionForm = new ReceptionForm(DataProvider.Instance.ExecuteQuery(loadReceptionForm).Rows[0]);
-            return receptionForm;
-        }
     }
 }

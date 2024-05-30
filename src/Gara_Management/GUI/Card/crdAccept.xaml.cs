@@ -209,7 +209,7 @@ namespace Gara_Management.GUI.Card
         //hiển thị dữ liệu từ RECEPTION_FORMS trong database lên phiếu sửa chữa theo id
         private void LoadReceptionFormById(string IDRec, ref ReceptionForm receptionForm)
         {
-            receptionForm = ReceptionForm.LoadReceptionFormByID(IDRec);
+            receptionForm = ReceptionFormDAO.LoadReceptionFormByID(IDRec);
             Customer customer = CustomerDAO.LoadCustomerByID(receptionForm.IDCus);
             CarBrand carBrand = CarBrandDAO.LoadCarBrandByID(receptionForm.IDBrand, gara);
 
