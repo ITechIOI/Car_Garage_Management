@@ -29,6 +29,11 @@ namespace Gara_Management.GUI.Item
             InitializeComponent();
             this.customer = customer;
             this.gara = gara;
+            txtb_IDcus.Text=this.customer.IDCus;
+            txt_namecus.Text = this.customer.NameCus;
+            txtb_phonenumbercus.Text = this.customer.PhoneNumberCus;
+            txtb_addresscus.Text = this.customer.AddressCus;
+            txtb_debtcus.Text = this.customer.Debt.ToString();
         }
 
         // Hiển thị bảng thông tin khách hàng

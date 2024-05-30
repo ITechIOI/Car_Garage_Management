@@ -20,26 +20,26 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="200"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="CUS001" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <TextBlock x:Name="txtb_IDcus" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     <Rectangle Width="2" Margin="98,0,0,0" Fill="{StaticResource sColor5}"/>
                     <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Họ tên:" Margin="14,0,0,0"/>
                     <!-- Họ tên -->
-                    <TextBlock Grid.Column="1" Text="Nguyễn Thị Minh Khai" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="88,0,0,0"/>
+                    <TextBlock x:Name="txt_namecus" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="88,0,0,0"/>
                     <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="0,0,198,0"/>
                     <TextBlock Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Text="SĐT:" Margin="14,0,0,0"/>
                     <!-- SĐT -->
-                    <TextBlock Grid.Column="2" Text="0987654321" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="62,0,0,0"/>
+                    <TextBlock x:Name="txtb_phonenumbercus" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="62,0,0,0"/>
                 </Grid>
                 <Rectangle Grid.Row="1" Fill="{StaticResource sColor5}" Height="2" VerticalAlignment="Top"/>
 
                 <TextBlock Grid.Row="1" Text="Địa chỉ: " Margin="14,5,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="70"/>
                 <!--Địa chỉ-->
-                <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="7A/2 đường Nguyễn Du, phường Nguyễn Du, quận Nguyễn Du, tp Nguyễn Du" Margin="86,6,0,0"
+                <TextBlock x:Name="txtb_addresscus" Grid.Row="1" TextWrapping="Wrap" Margin="86,6,0,0"
                            HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Rectangle Grid.Row="2" Fill="{StaticResource sColor5}" Height="2" VerticalAlignment="Top"/>
                 <TextBlock Grid.Row="2" Text="Nợ: " TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="524,0,0,0"/>
                 <!-- Tiền nợ-->
-                <TextBlock Grid.Row="2" Text="23.000.000vnđ" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="564,0,0,0"/>
+                <TextBlock x:Name="txtb_debtcus" Grid.Row="2" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="564,0,0,0"/>
 
             </Grid>
         </Border>
