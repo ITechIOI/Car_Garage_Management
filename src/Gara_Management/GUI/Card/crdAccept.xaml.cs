@@ -123,6 +123,7 @@ namespace Gara_Management.GUI.Card
                         if (result3 == MessageBoxResult.Yes)
                         {
                             LoadReceptionFormByInfo();
+                            check = receptionForm;
                             isChanged = false;
                             tbx_save.Text = "Sửa";
                         }
