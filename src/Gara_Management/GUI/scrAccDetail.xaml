@@ -237,14 +237,14 @@
                     <TextBlock Text="ID" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="2" CornerRadius="20" Background="{StaticResource sColor1}" Margin="224,20,450,0">
-                    <TextBox BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtb_idStaff" BorderThickness="0" IsReadOnly="True" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
                 </Border>
                 <!--Quyền-->
                 <Border Grid.Row="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="466,20,237,0" >
                     <TextBlock Text="Quyền" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="2" CornerRadius="20" Background="{StaticResource sColor1}" Margin="660,20,14,0">
-                    <TextBox BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtb_author" IsReadOnly="True" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
                 </Border>
                 
                 <!--Tài khoản-->
@@ -252,15 +252,15 @@
                     <TextBlock Text="Tài khoản" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="3" CornerRadius="20" Background="{StaticResource sColor1}" Margin="224,10,450,0">
-                    <TextBox BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtb_username" IsReadOnly="True" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
                 </Border>
 
-                <!--Gara-->
+                <!--Vị trí việc làm-->
                 <Border Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="466,10,237,0" >
-                    <TextBlock Text="Garage" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Vị trí" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="3" CornerRadius="20" Background="{StaticResource sColor1}" Margin="660,10,14,0">
-                    <TextBox BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtb_position" IsReadOnly="True" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
                 </Border>
 
 
@@ -269,15 +269,24 @@
                     <TextBlock Text="Họ tên" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="4" CornerRadius="20" Background="{StaticResource sColor1}" Margin="224,10,450,0">
-                    <TextBox BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtb_name" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
                 </Border>
+
+                <!--Lương-->
+                <Border Grid.Row="4" CornerRadius="10" Background="{StaticResource sColor4}" Margin="466,10,237,0" >
+                    <TextBlock Text="Tiền lương" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Border>
+                <Border Grid.Row="4" CornerRadius="20" Background="{StaticResource sColor1}" Margin="660,10,14,0">
+                    <TextBox x:Name="txtb_salary" IsReadOnly="True" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                </Border>
+
 
                 <!--Ngày sinh-->
                 <Border Grid.Row="5" CornerRadius="10" Background="{StaticResource sColor4}" Margin="32,10,670,0" >
                     <TextBlock Text="Ngày sinh" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="5" CornerRadius="20" Background="{StaticResource sColor1}" Margin="224,10,450,0">
-                    <TextBox BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtb_birthday" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
                 </Border>
 
                 <!--Địa chỉ-->
@@ -285,7 +294,7 @@
                     <TextBlock Text="Địa chỉ" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="6" CornerRadius="20" Background="{StaticResource sColor1}" Margin="224,10,450,0">
-                    <TextBox BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtb_address" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
                 </Border>
 
                 <!--Email-->
@@ -293,7 +302,7 @@
                     <TextBlock Text="Email" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="7" CornerRadius="20" Background="{StaticResource sColor1}" Margin="224,10,450,0">
-                    <TextBox BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtb_email" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
                 </Border>
 
                 <!--Số điện thoại-->
@@ -301,7 +310,7 @@
                     <TextBlock Text="Số điện thoại" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="8" CornerRadius="20" Background="{StaticResource sColor1}" Margin="224,10,450,0">
-                    <TextBox BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtb_phone" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
                 </Border>
 
                 <!--Nút cập nhật thông tin-->

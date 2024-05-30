@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,17 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class cardUpdateInfo : Window
     {
-        public cardUpdateInfo()
+        Staff staff;//thông tin cũ
+        Account account;
+        Staff staff1;//chứa thông tin cần thay đổi
+        public cardUpdateInfo(Staff staff, Account account, Staff staff1)
         {
             InitializeComponent();
+            this.staff = staff;
+            this.account = account;
+            this.staff1 = staff1;
+            txtb_idStaff.Text = staff.IDStaff;
+            txtb_name.Text = staff.NameStaff;
         }
 
         private void bt_exit_MouseDown(object sender, MouseButtonEventArgs e)
@@ -31,7 +41,24 @@ namespace Gara_Management.GUI.Card
 
         private void bt_save_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (txtb_password.Text != account.Password)
+            {
+                MessageBox.Show("Sai mật khẩu vui lòng thử lại");
+            }    
+            else
+            {
+                if (StaffDAO.Instance.UpdateStaff(staff1.IDStaff, staff1.NameStaff, staff1.BirthdayStaff.ToString("dd/MM/yyyy"),
+                    staff1.AddressStaff, staff1.EmailStaff, staff1.PhoneNumberStaff, int.Parse(staff1.Salary.ToString()),
+                    staff1.Position))
+                {
+                    MessageBox.Show("Cập nhật thông tin thành công.");
+                    this.Close();
+                }    
+                else
+                {
+                    MessageBox.Show("Cập nhật thông tin thất bại. Vui lòng thử lại.");
+                }    
+            }    
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

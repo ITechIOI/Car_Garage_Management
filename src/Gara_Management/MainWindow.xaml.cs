@@ -31,13 +31,15 @@ namespace Gara_Management
 
         Account acc;
         string gara;
+        Staff staff;
 
         public MainWindow(Account acc)
         {
             InitializeComponent();
             this.acc = acc;
             gara = StaffDAO.Instance.GetIDGaraByIDStaff(this.acc.IDStaff);
-            DataContext = new scrHome(gara); ;
+            DataContext = new scrHome(gara); 
+            staff = StaffDAO.Instance.GetStaffById(this.acc.IDStaff);
         }
 
   
@@ -213,7 +215,7 @@ namespace Gara_Management
         private void menuAccount_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 6;
-            scrAccDetail scraccdt = new scrAccDetail();
+            scrAccDetail scraccdt = new scrAccDetail(staff, acc, gara);
             DataContext = scraccdt;
             scraccdt.returntoListacc += ChangetoscrListacc;
             menuHome.Background = new SolidColorBrush(color5);
@@ -230,6 +232,7 @@ namespace Gara_Management
             scrAccount scracc = new scrAccount(gara);
             DataContext = scracc;
             scracc.returntoDetailAcc += ChangetoscrDetailAcc;
+            acc = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
         }
 
         // chuyển trở về màn hình chi tiết thông tin cá nhân của người đăng nhập
@@ -237,9 +240,10 @@ namespace Gara_Management
         public void ChangetoscrDetailAcc(object sender, EventArgs e)
         {
             scr = 6;
-            scrAccDetail scrAccDetail = new scrAccDetail();
+            scrAccDetail scrAccDetail = new scrAccDetail(staff, acc, gara);
             DataContext = scrAccDetail;
             scrAccDetail.returntoListacc += ChangetoscrListacc;
+            acc = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
         }
 
 

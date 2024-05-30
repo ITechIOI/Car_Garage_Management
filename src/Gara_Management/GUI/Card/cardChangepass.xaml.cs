@@ -21,9 +21,15 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class cardChangepass : Window
     {
-        public cardChangepass()
+        Staff staff;
+        Account account;
+        public cardChangepass(Staff staff, Account account)
         {
             InitializeComponent();
+            this.staff = staff;
+            this.account = account;
+            idStaffTextbox.Text = this.staff.IDStaff;
+            nameStaffTextbox.Text = this.staff.NameStaff;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -38,26 +44,25 @@ namespace Gara_Management.GUI.Card
 
         private void bt_save_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //string idStaff = idStaffTextbox.Text;
-            //Account acc = AccountDAO.Instance.GetAccountByIDStaff(idStaff);
-            //string password = oldPasswordTextbox.Text;
-            //if (password != acc.Password)
-            //{
-            //    MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng thử lại.");
-            //}
-            //else
-            //{
-            //    if (newPasswordTextbox.Text != retypeNewPasswordTextbox.Text)
-            //    {
-            //        MessageBox.Show("Mật khẩu mới không trùng khớp. Vui lòng thử lại.");
-            //    }
-            //    else
-            //    {
-            //        AccountDAO.Instance.ChangePassword(acc.IDAcc, newPasswordTextbox.Text);
-            //        MessageBox.Show("Thay đổi mật khẩu thành công.");
-            //        this.Close();
-            //    }    
-            //}
+            string idstaff = staff.IDStaff;
+            string password = oldPasswordTextbox.Text;
+            if (password != account.Password)
+            {
+                MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng thử lại.");
+            }
+            else
+            {
+                if (newPasswordTextbox.Text != retypeNewPasswordTextbox.Text)
+                {
+                    MessageBox.Show("Mật khẩu mới không trùng khớp. Vui lòng thử lại.");
+                }
+                else
+                {
+                    AccountDAO.Instance.ChangePassword(account.IDAcc, newPasswordTextbox.Text);
+                    MessageBox.Show("Thay đổi mật khẩu thành công.");
+                    this.Close();
+                }
+            }
         }
 
         private void retypeNewPasswordTextbox_TextChanged(object sender, TextChangedEventArgs e)

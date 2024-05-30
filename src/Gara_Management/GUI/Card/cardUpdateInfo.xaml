@@ -34,7 +34,7 @@
                 <Border Grid.Row="0"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Mã nhân viên:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBlock Text="NV001" VerticalAlignment="Center" Margin="156,0,0,0"/>
+                        <TextBlock x:Name="txtb_idStaff" Text="NV001" VerticalAlignment="Center" Margin="156,0,0,0"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="150,34,0,0"/>
                     </Grid>
                 </Border>
@@ -42,7 +42,7 @@
                 <Border Grid.Row="1"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Họ tên:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="101,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox x:Name="txtb_name" IsReadOnly="True" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="101,0,10,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="101,34,0,0"/>
                     </Grid>
                 </Border>
@@ -53,7 +53,7 @@
                        HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Left"
                        FontWeight="Bold" Width="340"/>
                         <Border CornerRadius="20" Background="{StaticResource sColor1}" Margin="16,42,12,18">
-                            <TextBox BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <TextBox x:Name="txtb_password" BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
                         </Border>
                     </Grid>
                 </Border>

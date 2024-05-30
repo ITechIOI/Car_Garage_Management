@@ -1,4 +1,6 @@
-﻿using Gara_Management.GUI.Card;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +27,15 @@ namespace Gara_Management.GUI
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
         Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
         public EventHandler returntoListacc;
-        public scrAccDetail()
+        string gara;
+        Staff staff;
+        Account account;
+        public scrAccDetail(Staff staff, Account account, string gara)
         {
             InitializeComponent();
+            this.staff = staff;
+            this.account = account;
+            this.gara = gara;
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -63,14 +71,17 @@ namespace Gara_Management.GUI
 
         private void bt_update_info_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            cardUpdateInfo crdupdate = new cardUpdateInfo();
+            Staff staff1 = new Staff(txtb_idStaff.Text, txtb_name.Text, DateTime.Parse(txtb_birthday.Text), txtb_address.Text,
+                txtb_email.Text, txtb_phone.Text, decimal.Parse(txtb_salary.Text), txtb_position.Text, gara, false);
+            cardUpdateInfo crdupdate = new cardUpdateInfo(staff, account, staff1);
             crdupdate.ShowDialog();
         }
 
         private void bt_change_pass_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            cardChangepass crdchange = new cardChangepass();
+            cardChangepass crdchange = new cardChangepass(staff, account);
             crdchange.ShowDialog();
+            account = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
         }
     }
 }
