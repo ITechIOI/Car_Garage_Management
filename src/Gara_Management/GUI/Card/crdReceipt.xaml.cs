@@ -24,6 +24,7 @@ namespace Gara_Management.GUI.Card
         public crdReceipt()
         {
             InitializeComponent();
+            pk_dateReceipt.SelectedDate = DateTime.Now;
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {

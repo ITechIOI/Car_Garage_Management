@@ -238,6 +238,7 @@
     <Compile Include="DAO\GRNDetailDAO.cs" />
     <Compile Include="DAO\IncurredCostDAO.cs" />
     <Compile Include="DAO\InventoryManagementDAO.cs" />
+    <Compile Include="DAO\ReceiptDAO.cs" />
     <Compile Include="DAO\ReceptionFormDAO.cs" />
     <Compile Include="DAO\RepairPaymentBillDAO.cs" />
     <Compile Include="DAO\RepairPaymentDetailDAO.cs" />
@@ -258,6 +259,7 @@
     <Compile Include="DTO\GRNDetail.cs" />
     <Compile Include="DTO\IncurredCost.cs" />
     <Compile Include="DTO\InventoryManagement.cs" />
+    <Compile Include="DTO\Receipt.cs" />
     <Compile Include="DTO\ReceptionForm.cs" />
     <Compile Include="DTO\RepairPaymentBill.cs" />
     <Compile Include="DTO\RepairPaymentDetail.cs" />
