@@ -36,6 +36,23 @@ namespace Gara_Management.GUI
             this.staff = staff;
             this.account = account;
             this.gara = gara;
+            txtb_idStaff.Text = this.staff.IDStaff;
+            txtb_username.Text = this.account.UserName;
+            txtb_name.Text = this.staff.NameStaff;
+            txtb_birthday.Text = this.staff.BirthdayStaff.ToString();
+            txtb_address.Text = this.staff.AddressStaff;
+            txtb_email.Text = this.staff.EmailStaff;
+            txtb_phone.Text = this.staff.PhoneNumberStaff;
+            txtb_position.Text = this.staff.Position;
+            if (this.account.AccAuthorization == false)
+            {
+                txtb_author.Text = "Quản lý";
+            }
+            else
+            {
+                txtb_author.Text = "Nhân viên";
+            }
+            txtb_salary.Text = this.staff.Salary.ToString();
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
