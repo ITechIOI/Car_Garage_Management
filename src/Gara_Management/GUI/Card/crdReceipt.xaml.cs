@@ -34,7 +34,7 @@ namespace Gara_Management.GUI.Card
             this.staff = staff;
             txtb_bill.Text = "0";
             txtb_idReceipt.Text = DateTime.Now.ToString("dd") + DateTime.Now.ToString("MM")
-                + DateTime.Now.ToString("YYYY") + DateTime.Now.ToString("HH") + DateTime.Now.ToString("mm")
+                + DateTime.Now.ToString("yyyy") + DateTime.Now.ToString("HH") + DateTime.Now.ToString("mm")
                 + DateTime.Now.ToString("ss");
         }
 

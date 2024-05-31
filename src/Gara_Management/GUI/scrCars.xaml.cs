@@ -87,7 +87,7 @@ namespace Gara_Management.GUI
             foreach (ReceptionForm item in list)
             {
                 Customer cus = CustomerDAO.Instance.LoadCustomerByID(item.IDCus, gara);
-                itCar itCar1 = new itCar(gara, account, cus);
+                itCar itCar1 = new itCar(gara, account, cus, item.IDRec);
                 ds_acc.Children.Add(itCar1);
 
             }

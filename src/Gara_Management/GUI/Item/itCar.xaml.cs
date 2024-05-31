@@ -26,12 +26,14 @@ namespace Gara_Management.GUI.Item
         string gara;
         Account account;
         Customer customer;
-        public itCar(string gara, Account acc, Customer cus)
+        string idRec;
+        public itCar(string gara, Account acc, Customer cus, string idRec)
         {
             InitializeComponent();
             this.gara = gara;
             this.account = acc;
             this.customer = cus;
+            this.idRec = idRec;
         }
         
 
@@ -45,7 +47,7 @@ namespace Gara_Management.GUI.Item
 
         private void bd_repairInvoice_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdRepair crdRepair = new crdRepair("Mã phiếu");
+            crdRepair crdRepair = new crdRepair(idRec);
             crdRepair.ShowDialog(); 
         }
 
@@ -53,7 +55,7 @@ namespace Gara_Management.GUI.Item
 
         private void bd_acceptDetail_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdAccept crdAccept = new crdAccept("MÃ phiếu", gara);
+            crdAccept crdAccept = new crdAccept(idRec, gara);
             crdAccept.ShowDialog();
         }
     }
