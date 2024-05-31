@@ -34,12 +34,13 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!-- MÃ Phiếu-->
                 <Border Grid.Row="0"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Mã phiếu:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBlock x:Name="txtb_idReceipt" Text="MON223" VerticalAlignment="Center" Margin="106,0,0,0"/>
+                        <TextBlock x:Name="txtb_idReceipt"  Text="MON223" VerticalAlignment="Center" Margin="106,0,0,0"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
                     </Grid>
                 </Border>
@@ -47,7 +48,7 @@
                 <Border Grid.Row="1"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Họ tên: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_nameCus" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox x:Name="txtb_nameCus"  VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="82,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
                     </Grid>
                 </Border>
@@ -55,32 +56,39 @@
                 <Border Grid.Row="2"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="SĐT: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_phoneCus" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="54,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox x:Name="txtb_phoneCus"  VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="54,0,0,0" Foreground="{StaticResource sColor1}" TextChanged="txtb_phoneCus_TextChanged"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
                     </Grid>
                 </Border>
-                <!-- Số nợ -->
+                <!-- Nợ trước -->
                 <Border Grid.Row="3"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
-                        <TextBlock Text="Tiền nợ: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_debtCus" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="86,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBlock Text="Nợ trước: " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <TextBox x:Name="txtb_debtCus" IsReadOnly="True" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="86,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
                     </Grid>
                 </Border>
-               
-                <!-- ngày thu tiền -->
+                <!-- Bill hiện tại -->
                 <Border Grid.Row="4"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
+                    <Grid>
+                        <TextBlock Text="Hiện tại: " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <TextBox x:Name="txtb_bill" IsReadOnly="True" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="86,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
+                    </Grid>
+                </Border>
+                <!-- ngày thu tiền -->
+                <Border Grid.Row="5"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Ngày thu tiền: " VerticalAlignment="Center" HorizontalAlignment="Left" />
                         <DatePicker x:Name="pk_dateReceipt" Background="Transparent" BorderThickness="0" Margin="148,0,-4,0" Foreground="Black"/>
                     </Grid>
                 </Border>
                 <!-- Số tiền thu -->
-                <Border Grid.Row="5"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
+                <Border Grid.Row="6"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Số tiền thu:  " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="128,0,-4,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle x:Name="txtb_proceeds" Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
+                        <TextBox x:Name="txtb_proceeds" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="128,0,-4,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle  Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
                     </Grid>
                 </Border>
             </Grid>

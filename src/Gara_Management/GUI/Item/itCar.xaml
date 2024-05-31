@@ -35,7 +35,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="123.403.000" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="137" Margin="0,6,0,0" />
+                    <TextBlock x:Name="txtb_total" Text="123403000" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="137" Margin="0,6,0,0" />
                     <TextBlock Text="VNĐ" FontSize="14" Foreground="{StaticResource sColor1}" Margin="137,17,0,0" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" />
                     <!-- nuts hiển thị phiếu sửa chữa -->
                     <Border x:Name="bd_repairInvoice" MouseDown="bd_repairInvoice_MouseDown" Grid.Row="1" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Width="64" Margin="15,7,93,7">

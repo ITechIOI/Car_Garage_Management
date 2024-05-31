@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Gara_Management.DTO;
+using Gara_Management.DAO;
 
 namespace Gara_Management.GUI
 {
@@ -27,19 +29,16 @@ namespace Gara_Management.GUI
         Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
 
 
+
         public event EventHandler changeToRepairCardScr;
         string gara;
-        public scrCars(string gara)
+        Account account;
+        public scrCars(string gara, Account account)
         {
             InitializeComponent();
             this.gara = gara;
-
-            for (int i = 0; i < 9; i++)
-            {
-                itCar itCar1 = new itCar(gara);
-                ds_acc.Children.Add(itCar1);
-              
-            }
+            this.account = account;
+            LoadListReceipt();
            
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
@@ -81,6 +80,17 @@ namespace Gara_Management.GUI
         {
             // lọc 
             filter.Visibility = Visibility.Visible;
+        }
+        private void LoadListReceipt()
+        {
+            List<ReceptionForm> list = ReceptionFormDAO.Instance.LoadReceptionFormtList(gara);
+            foreach (ReceptionForm item in list)
+            {
+                Customer cus = CustomerDAO.Instance.LoadCustomerByID(item.IDCus, gara);
+                itCar itCar1 = new itCar(gara, account, cus);
+                ds_acc.Children.Add(itCar1);
+
+            }
         }
     }
 }

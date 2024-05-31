@@ -1,4 +1,6 @@
-﻿using Gara_Management.GUI.Card;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,17 +24,22 @@ namespace Gara_Management.GUI.Item
     public partial class itCar : UserControl
     {
         string gara;
-        public itCar(string gara)
+        Account account;
+        Customer customer;
+        public itCar(string gara, Account acc, Customer cus)
         {
             InitializeComponent();
             this.gara = gara;
+            this.account = acc;
+            this.customer = cus;
         }
         
 
         // phiếu thu tiền
         private void bd_paymentReceipt_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdReceipt crdReceipt = new crdReceipt();
+            Staff staff = StaffDAO.Instance.GetStaffById(account.IDStaff);
+            crdReceipt crdReceipt = new crdReceipt(gara, staff,customer, int.Parse(txtb_total.Text));
             crdReceipt.ShowDialog();
         }
 

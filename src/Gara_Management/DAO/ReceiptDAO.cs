@@ -36,5 +36,12 @@ namespace Gara_Management.DAO
             return list;
         }
 
+        public bool InsertReceipt(string id, string idCus, string gara, string receiptDate, string staff, decimal proceeds)
+        {
+            string query = "EXEC USP_INSERTRECEIPT '" + id + "', '" + idCus + "', '" + gara + "', '" +
+                receiptDate + "', '" + staff + "', " + proceeds;
+            return (DataProvider.Instance.ExecuteNonQuery(query) > 0);
+        }
+
     }
 }

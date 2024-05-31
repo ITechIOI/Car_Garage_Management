@@ -38,7 +38,7 @@ namespace Gara_Management
             InitializeComponent();
             this.acc = acc;
             gara = StaffDAO.Instance.GetIDGaraByIDStaff(this.acc.IDStaff);
-            DataContext = new scrHome(gara); 
+            DataContext = new scrHome(gara, acc); 
             staff = StaffDAO.Instance.GetStaffById(this.acc.IDStaff);
         }
 
@@ -59,7 +59,7 @@ namespace Gara_Management
         private void menuHome_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 1;
-            DataContext = new scrHome(gara);
+            DataContext = new scrHome(gara, acc);
             menuHome.Background = new SolidColorBrush(color4);
             menuCars.Background = new SolidColorBrush(color5);
             menuStore.Background = new SolidColorBrush(color5);
@@ -83,7 +83,7 @@ namespace Gara_Management
         private void menuCars_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 2;
-            scrCars scrCars = new scrCars(gara);
+            scrCars scrCars = new scrCars(gara, acc);
             DataContext = scrCars;
             scrCars.changeToRepairCardScr += scrCars_changeToRepairCardScr;
             menuHome.Background = new SolidColorBrush(color5);
@@ -97,7 +97,7 @@ namespace Gara_Management
         private void scrRepairCard_changeToCardScr(object sender, EventArgs e)
         {
             scr = 2;
-            scrCars scrCars = new scrCars(gara);       
+            scrCars scrCars = new scrCars(gara,acc);       
             DataContext = scrCars;
             scrCars.changeToRepairCardScr += scrCars_changeToRepairCardScr;
         }

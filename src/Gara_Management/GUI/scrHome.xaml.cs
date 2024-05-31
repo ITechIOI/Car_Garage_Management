@@ -1,4 +1,6 @@
-﻿using Gara_Management.GUI.Card;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +26,12 @@ namespace Gara_Management.GUI
         Color color4 = (Color)ColorConverter.ConvertFromString("#079992");
         Color color5 = (Color)ColorConverter.ConvertFromString("#218c74");
         string gara;
-        public scrHome(string gara)
+        Account account;
+        public scrHome(string gara, Account acc)
         {
             InitializeComponent();
             this.gara = gara;
+            this.account = acc;
         }
 
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
@@ -61,7 +65,8 @@ namespace Gara_Management.GUI
         private void bd_paymentReceipt_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // lập phiếu thu tiền
-            crdReceipt crdReceipt = new crdReceipt();
+            Staff staff = StaffDAO.Instance.GetStaffById(account.IDStaff);
+            crdReceipt crdReceipt = new crdReceipt(gara,staff);
             crdReceipt.ShowDialog();
         }
 

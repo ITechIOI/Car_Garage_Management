@@ -24,10 +24,10 @@ namespace Gara_Management.DAO
             private set { instance = value; }
         }
 
-        public List<ReceptionForm> LoadReceptionFormtList()
+        public List<ReceptionForm> LoadReceptionFormtList(string gara)
         {
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM RECEPTION_FORMS");
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM RECEPTION_FORMS WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0");
             foreach (DataRow item in data.Rows)
             {
                 ReceptionForm receptionForm = new ReceptionForm(item);
@@ -95,7 +95,10 @@ namespace Gara_Management.DAO
         public static ReceptionForm LoadReceptionFormByID(string id)
         {
             string loadReceptionForm = "SELECT * FROM RECEPTION_FORMS WHERE ID_REC = '" + id + "'";
-            ReceptionForm receptionForm = new ReceptionForm(DataProvider.Instance.ExecuteQuery(loadReceptionForm).Rows[0]);
+            DataTable data = DataProvider.Instance.ExecuteQuery(loadReceptionForm);
+            if (data.Rows.Count == 0)
+                return null;
+            ReceptionForm receptionForm = new ReceptionForm(data.Rows[0]);
             return receptionForm;
         }
 

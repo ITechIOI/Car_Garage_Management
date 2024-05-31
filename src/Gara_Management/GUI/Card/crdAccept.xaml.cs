@@ -80,7 +80,7 @@ namespace Gara_Management.GUI.Card
         private bool isValid()
         {
             //nếu khách hàng chưa đăng ký thì không tiếp nhận
-            if (CustomerDAO.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text) == null)
+            if (CustomerDAO.Instance.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text) == null)
             {
                 MessageBox.Show("Người dùng chưa đăng ký!", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Error);
                 //chuyển qua form đăng ký
@@ -210,7 +210,7 @@ namespace Gara_Management.GUI.Card
         private void LoadReceptionFormById(string IDRec, ref ReceptionForm receptionForm)
         {
             receptionForm = ReceptionFormDAO.LoadReceptionFormByID(IDRec);
-            Customer customer = CustomerDAO.LoadCustomerByID(receptionForm.IDCus);
+            Customer customer = CustomerDAO.Instance.LoadCustomerByID(receptionForm.IDCus, gara);
             CarBrand carBrand = CarBrandDAO.LoadCarBrandByID(receptionForm.IDBrand, gara);
 
             tbx_IDRec.Text = IDRec;
@@ -233,7 +233,7 @@ namespace Gara_Management.GUI.Card
         private void CreateRecptionFormFromCard(ref ReceptionForm receptionForm)
         {
             string iDRec = tbx_IDRec.Text;
-            string iDCus = CustomerDAO.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text);
+            string iDCus = CustomerDAO.Instance.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text);
             string iDBrand = CarBrandDAO.GetIDBrandByName(cbx_CarBrand.Text, gara);
             string iDGara = "GR1";
             string numberPlate = tbx_NumberPlate.Text;

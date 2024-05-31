@@ -39,15 +39,19 @@ namespace Gara_Management.DAO
         }
 
         //lấy thông tin khách hàng theo id
-        public static Customer LoadCustomerByID(string id)
+        public Customer LoadCustomerByID(string id, string gara)
         {
-            string query = "SELECT * FROM CUSTOMERS WHERE ID_CUS = '" + id + "'";
-            Customer customer = new Customer(DataProvider.Instance.ExecuteQuery(query).Rows[0]);
-            return customer;
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT CUSTOMERS.ID_CUS, NAME_CUS, PHONE_NUMBER_CUS," +
+                 " ADDRESS_CUS, DEBT, STATUS_CUSD FROM CUSTOMERS JOIN CUSTOMER_DETAILS " +
+                 "ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS  " +
+                 "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0 AND CUSTOMERS.ID_CUS = '" + id + "'");
+            if (data.Rows.Count == 0)
+                return null;
+            return new Customer(data.Rows[0]);
         }
 
         //lấy id khách hàng theo tên khách hàng và số điện thoại
-        public static string GetIDCusByNameAndPhone(string name, string phone)
+        public string GetIDCusByNameAndPhone(string name, string phone)
         {
             string id;
             string query = "EXEC USP_GET_IDCUSTOMER @NAME_CUS , @PHONE_NUMBER_CUS";
@@ -60,6 +64,22 @@ namespace Gara_Management.DAO
                 id = null;
             }
             return id;
+        }
+
+        public List<Customer> GetCustomerByPhone(string phone, string gara)
+        {
+            List<Customer> customerList = new List<Customer>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT CUSTOMERS.ID_CUS, NAME_CUS, PHONE_NUMBER_CUS," +
+                " ADDRESS_CUS, DEBT, STATUS_CUSD FROM CUSTOMERS JOIN CUSTOMER_DETAILS " +
+                "ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS  " +
+                "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0 AND PHONE_NUMBER_CUS LIKE '%"
+                + phone +"%'");
+            foreach (DataRow item in data.Rows)
+            {
+                Customer customer = new Customer(item);
+                customerList.Add(customer);
+            }
+            return customerList;
         }
 
         public bool InSertCustomer(string gara, string name, string phone, string address)
