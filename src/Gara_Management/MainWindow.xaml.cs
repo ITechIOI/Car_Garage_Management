@@ -105,7 +105,7 @@ namespace Gara_Management
         public void scrCars_changeToRepairCardScr(object sender, EventArgs e)
         {
             scr = 2;
-            scrRepairCard scrRepairCard = new scrRepairCard();
+            scrRepairCard scrRepairCard = new scrRepairCard(gara);
             DataContext = scrRepairCard;
             scrRepairCard.changeToCarsScr += scrRepairCard_changeToCardScr;
         }

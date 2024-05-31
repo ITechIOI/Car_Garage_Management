@@ -38,7 +38,7 @@ namespace Gara_Management.GUI.Card
                 + DateTime.Now.ToString("ss");
         }
 
-        public crdReceipt(string gara, Staff staff, Customer cus, int bill)
+        public crdReceipt(string gara, Staff staff, Customer cus, decimal bill)
         {
             InitializeComponent();
             pk_dateReceipt.SelectedDate = DateTime.Now;
@@ -94,7 +94,7 @@ namespace Gara_Management.GUI.Card
                     }    
                     else
                     {
-                        CustomerDAO.Instance.UpdateDebtOfCustomer(gara, cus.IDCus, int.Parse(txtb_bill.Text));
+                        CustomerDAO.Instance.UpdateDebtOfCustomer(gara, cus.IDCus, decimal.Parse(txtb_bill.Text));
                         DateTime date = DateTime.Parse(pk_dateReceipt.SelectedDate.ToString());
                         if (ReceiptDAO.Instance.InsertReceipt(txtb_idReceipt.Text, cus.IDCus, gara,
                             date.ToString("dd/MM/yyyy HH:mm:ss"), staff.IDStaff, proceeds))

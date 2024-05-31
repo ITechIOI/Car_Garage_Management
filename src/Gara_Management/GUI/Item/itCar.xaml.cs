@@ -34,6 +34,8 @@ namespace Gara_Management.GUI.Item
             this.account = acc;
             this.customer = cus;
             this.idRec = idRec;
+            RepairPaymentBill bill = RepairPaymentBillDAO.Instance.GetRepairPaymentBillByIDRec(gara, idRec);
+            txtb_total.Text = bill.TotalPayment.ToString();
         }
         
 
@@ -41,7 +43,7 @@ namespace Gara_Management.GUI.Item
         private void bd_paymentReceipt_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Staff staff = StaffDAO.Instance.GetStaffById(account.IDStaff);
-            crdReceipt crdReceipt = new crdReceipt(gara, staff,customer, int.Parse(txtb_total.Text));
+            crdReceipt crdReceipt = new crdReceipt(gara, staff,customer, decimal.Parse(txtb_total.Text));
             crdReceipt.ShowDialog();
         }
 

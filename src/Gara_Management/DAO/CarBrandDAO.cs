@@ -39,7 +39,7 @@ namespace Gara_Management.DAO
         }
 
         //lấy thông tin hãng theo id
-        public static CarBrand LoadCarBrandByID(string id, string gara)
+        public CarBrand LoadCarBrandByID(string id, string gara)
         {
             string query = "SELECT CAR_BRANDS.ID_BRAND, NAME_BRAND, STATUS_DETAILS " +
                 "FROM CAR_BRANDS JOIN BRAND_DETAILS ON CAR_BRANDS.ID_BRAND = BRAND_DETAILS.ID_BRAND " +
@@ -49,7 +49,7 @@ namespace Gara_Management.DAO
         }
 
         //lấy id hãng theo tên hãng
-        public static string GetIDBrandByName(string name, string gara)
+        public string GetIDBrandByName(string name, string gara)
         {
             string id;
             string query = "SELECT DISTINCT CAR_BRANDS.ID_BRAND " +

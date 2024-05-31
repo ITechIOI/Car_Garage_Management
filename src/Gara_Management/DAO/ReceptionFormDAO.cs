@@ -26,8 +26,12 @@ namespace Gara_Management.DAO
 
         public List<ReceptionForm> LoadReceptionFormtList(string gara)
         {
+            string query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
+                "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
+                "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL";
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM RECEPTION_FORMS WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0");
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
                 ReceptionForm receptionForm = new ReceptionForm(item);
@@ -92,7 +96,7 @@ namespace Gara_Management.DAO
         }
 
         //lấy thông tin Reception Form theo ID
-        public static ReceptionForm LoadReceptionFormByID(string id)
+        public ReceptionForm LoadReceptionFormByID(string id)
         {
             string loadReceptionForm = "SELECT * FROM RECEPTION_FORMS WHERE ID_REC = '" + id + "'";
             DataTable data = DataProvider.Instance.ExecuteQuery(loadReceptionForm);

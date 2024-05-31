@@ -25,6 +25,7 @@ namespace Gara_Management.GUI.Card
             InitializeIDAndDate();
             this.gara = gara;
             LoadCarBrand();
+            dpk_RecDate.SelectedDate = DateTime.Now;
           
         }
 
@@ -88,7 +89,7 @@ namespace Gara_Management.GUI.Card
             }
 
             //nếu hãng xe ngoài danh sách tiếp nhận thì không tiếp nhận
-            if (CarBrandDAO.GetIDBrandByName(cbx_CarBrand.Text, gara) == null)
+            if (CarBrandDAO.Instance.GetIDBrandByName(cbx_CarBrand.Text, gara) == null)
             {
                 MessageBox.Show("Hãng xe không được tiếp nhận!", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
@@ -209,9 +210,9 @@ namespace Gara_Management.GUI.Card
         //hiển thị dữ liệu từ RECEPTION_FORMS trong database lên phiếu sửa chữa theo id
         private void LoadReceptionFormById(string IDRec, ref ReceptionForm receptionForm)
         {
-            receptionForm = ReceptionFormDAO.LoadReceptionFormByID(IDRec);
+            receptionForm = ReceptionFormDAO.Instance.LoadReceptionFormByID(IDRec);
             Customer customer = CustomerDAO.Instance.LoadCustomerByID(receptionForm.IDCus, gara);
-            CarBrand carBrand = CarBrandDAO.LoadCarBrandByID(receptionForm.IDBrand, gara);
+            CarBrand carBrand = CarBrandDAO.Instance.LoadCarBrandByID(receptionForm.IDBrand, gara);
 
             tbx_IDRec.Text = IDRec;
             tbx_NameCus.Text = customer.NameCus;
@@ -234,7 +235,7 @@ namespace Gara_Management.GUI.Card
         {
             string iDRec = tbx_IDRec.Text;
             string iDCus = CustomerDAO.Instance.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text);
-            string iDBrand = CarBrandDAO.GetIDBrandByName(cbx_CarBrand.Text, gara);
+            string iDBrand = CarBrandDAO.Instance.GetIDBrandByName(cbx_CarBrand.Text, gara);
             string iDGara = "GR1";
             string numberPlate = tbx_NumberPlate.Text;
             DateTime receptionDate = Convert.ToDateTime(dpk_RecDate.ToString());

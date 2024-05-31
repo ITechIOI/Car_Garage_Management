@@ -38,7 +38,7 @@ namespace Gara_Management.DAO
         }
 
         //Lấy thông tin từ database theo IDREC vào itRepairCardDetail
-        public static List<itRepairCardDetail> LoadItRepairCardDetail(string id)
+        public List<itRepairCardDetail> LoadItRepairCardDetail(string id)
         {
             int stt = 1;
             List<itRepairCardDetail> list = new List<itRepairCardDetail>();

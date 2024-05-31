@@ -24,10 +24,13 @@ namespace Gara_Management.DAO
             private set { instance = value; }
         }
 
-        public List<RepairPaymentBill> LoadRepairPaymentBillList()
+        public List<RepairPaymentBill> LoadRepairPaymentBillList(string gara)
         {
+            string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, " +
+                "TOTAL_PAYMENT, PAID, STATUS_BILL FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS " +
+                "ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC WHERE ID_GARA = '" + gara + "'";
             List<RepairPaymentBill> repairPaymentBillList = new List<RepairPaymentBill>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM REPAIR_PAYMENT_BILL");
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
             {
                 RepairPaymentBill repairPaymentBill = new RepairPaymentBill(item);
@@ -36,6 +39,17 @@ namespace Gara_Management.DAO
             return repairPaymentBillList;
         }
 
+        public RepairPaymentBill GetRepairPaymentBillByIDRec(string gara, string idRec)
+        {
+            string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, " +
+                "TOTAL_PAYMENT, PAID, STATUS_BILL FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS " +
+                "ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC WHERE ID_GARA = '" + gara +
+                "' AND REPAIR_PAYMENT_BILL.ID_REC = '" + idRec + "'";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            if (data.Rows.Count == 0)
+                return null;
+            return new RepairPaymentBill(data.Rows[0]);
+        }
 
     }
 }

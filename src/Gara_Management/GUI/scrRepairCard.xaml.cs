@@ -26,15 +26,12 @@ namespace Gara_Management.GUI
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
         Color color5 = (Color)ColorConverter.ConvertFromString("#072D44");
         public EventHandler changeToCarsScr;
-        public scrRepairCard()
+        string gara; 
+        public scrRepairCard(string gara)
         {
             InitializeComponent();
-
-            for (int i = 0; i < 10; i++)
-            {
-                itRepairCard it = new itRepairCard();
-                ds_phieuTN.Children.Add(it);
-            }
+            this.gara = gara;
+            LoadListRepair();
         }
 
         private void bt_car_scr_MouseDown(object sender, MouseButtonEventArgs e)
@@ -71,6 +68,14 @@ namespace Gara_Management.GUI
         private void bd_filetr_MouseDown(object sender, MouseButtonEventArgs e)
         {
             filter.Visibility = Visibility.Visible;
+        }
+        private void LoadListRepair()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                itRepairCard it = new itRepairCard();
+                ds_phieuTN.Children.Add(it);
+            }
         }
     }
 }
