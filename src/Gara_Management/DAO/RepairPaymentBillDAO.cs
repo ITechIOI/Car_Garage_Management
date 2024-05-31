@@ -51,5 +51,24 @@ namespace Gara_Management.DAO
             return new RepairPaymentBill(data.Rows[0]);
         }
 
+
+        //lấy thông tin RepairPaymentBill theo idRec
+        public RepairPaymentBill LoadRepairPaymentBillByIDRec(string idRec)
+        {
+            string query = "SELECT * FROM REPAIR_PAYMENT_BILL WHERE ID_REC = '" + idRec + "'";
+            if (DataProvider.Instance.ExecuteScalar(query) != null)
+            {
+                RepairPaymentBill repairPaymentBill = new RepairPaymentBill(DataProvider.Instance.ExecuteQuery(query).Rows[0]);
+                return repairPaymentBill;
+            }
+            return null;
+        }
+
+        //tạo RepairPaymentBill cho ReceptionForm chưa có
+        public void CreateNewRepairPaymentBill(string idRec)
+        {
+            string query = "EXEC USP_CREATE_REPAIRPAYMENTBILL @ID_REC = '" + idRec + "'";
+            DataProvider.Instance.ExecuteQuery(query);
+        }
     }
 }

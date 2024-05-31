@@ -1,4 +1,5 @@
 ﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,14 +26,30 @@ namespace Gara_Management.GUI.Item
         public string numberPlate;
         public string recDate;
         public string idGara;
+        public string idBill;
 
         public itRepairCardDetail()
         {
             InitializeComponent();
         }
 
-        public void CreateNewRepairCardDetail(int id)
+        public void CreateNewRepairCardDetail(int id, string idRec)
         {
+            ReceptionForm receptionForm = ReceptionFormDAO.Instance.LoadReceptionFormByID(idRec);
+            numberPlate = receptionForm.NumberPlate;
+            recDate = receptionForm.ReceptionDate.ToString();
+            idGara = receptionForm.IDGara;
+            RepairPaymentBill repairPaymentBill = RepairPaymentBillDAO.Instance.LoadRepairPaymentBillByIDRec(idRec);
+            if (repairPaymentBill != null)
+            {
+                idBill = repairPaymentBill.IDBill;
+            }
+            else
+            {
+                RepairPaymentBillDAO.Instance.CreateNewRepairPaymentBill(idRec);
+                repairPaymentBill = RepairPaymentBillDAO.Instance.LoadRepairPaymentBillByIDRec(idRec);
+                idBill = repairPaymentBill.IDBill;
+            }
             tbl_stt.Text = id.ToString();
         }
 
@@ -61,6 +78,7 @@ namespace Gara_Management.GUI.Item
             numberPlate = row["NUMBER_PLATES"].ToString();
             recDate = row["RECEPTION_DATE"].ToString();
             idGara = row["ID_GARA"].ToString();
+            idBill = row["ID_BILL"].ToString();
             tbl_stt.Text = id.ToString();
             tbx_description.Text = row["REPAIR_DESCRIPTION"].ToString().Trim();
             tbx_name.Text = row["NAME_COM"].ToString().Trim();
@@ -70,11 +88,30 @@ namespace Gara_Management.GUI.Item
             tbx_total.Text = (float.Parse(row["TOTAL_PRICE"].ToString())).ToString("N");
         }
 
+        //Lấy RPDOrdinalNum
+        public string GetRPDOrdinalNum()
+        {
+            string idCom = ComponentDetailDAO.GetComponentIDByInfo(this.idGara, this.tbx_name.Text, this.tbx_wage.Text, this.tbx_price.Text);
+            string ordinalNum = RepairPaymentDetailDAO.GetRPDOrdinalNum(idBill, idCom);
+            return ordinalNum;
+        }
+
         //Kiểm tra thông tin có hợp lệ không (vật tư có tồn tại không)
         public bool isValid()
         {
             string idCom = ComponentDetailDAO.GetComponentIDByInfo(this.idGara, this.tbx_name.Text, this.tbx_wage.Text, this.tbx_price.Text);
             if (idCom != "")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        //Kiểm tra chi tiết sửa chữa đã tồn tại chưa
+        public bool isExist()
+        {
+            string ordinalNum = GetRPDOrdinalNum();
+            if (ordinalNum != "")
             {
                 return true;
             }

@@ -37,6 +37,18 @@ namespace Gara_Management.DAO
             return repairPaymentDetailList;
         }
 
+        //Lấy RPDOrdinalNum theo IDBill và IDCom
+        public static string GetRPDOrdinalNum(string idBill, string idCom)
+        {
+            string query = "SELECT dbo.GET_RPD_ORDINALNUM('" + idBill + "', '" + idCom + "')";
+            object ordinalNum = DataProvider.Instance.ExecuteScalar(query);
+            if (ordinalNum != null)
+            {
+                return ordinalNum.ToString();
+            }
+            return "";
+        }
+
         //Lấy thông tin từ database theo IDREC vào itRepairCardDetail
         public List<itRepairCardDetail> LoadItRepairCardDetail(string id)
         {
@@ -55,14 +67,19 @@ namespace Gara_Management.DAO
             return list;
         }
 
-        //Thêm dòng dữ liệu vào REPAIR PAYMENT DETAILS
-        private void InsertRepairCardDetail(string id, itRepairCardDetail item)
+        //Thêm dữ liệu vào REPAIR PAYMENT DETAILS
+        public bool InsertRepairCardDetail(string idRec, itRepairCardDetail item)
         {
             string query = "EXEC USP_INSERT_REPAIR_CARD_DETAILS @ID_REC , @REPAIR_DESCRIPTION , @NAME_COM ,  @CUR_PRICE , @COM_QUANTITY , @WAGE";
-            DataProvider.Instance.ExecuteQuery(query, new object[] { id, item.tbx_description.Text, item.tbx_name.Text, item.tbx_price.Text, item.tbx_quantity.Text, item.tbx_wage.Text });
+            return (DataProvider.Instance.ExecuteNonQuery(query, new object[] { idRec, item.tbx_description.Text, item.tbx_name.Text, item.tbx_price.Text, item.tbx_quantity.Text, item.tbx_wage.Text }) > 0);
         }
 
-        //Cập nhật dữ liệu 
+        //Cập nhật dữ liệu REPAIR PAYMENT DETAILS
+        public bool UpdateRepairCardDetail(string ordinalNum, itRepairCardDetail item)
+        {
+            string query = "EXEC USP_UPDATE_REPAIR_CAR_DETAILS @RPD_ORDINAL_NUM , @REPAIR_DESCRIPTION , @COM_QUANTITY";
+            return (DataProvider.Instance.ExecuteNonQuery(query, new object[] { ordinalNum, item.tbx_description.Text, item.tbx_quantity.Text }) > 0);
+        }
 
     }
 }
