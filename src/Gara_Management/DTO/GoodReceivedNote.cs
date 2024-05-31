@@ -15,9 +15,6 @@ namespace Gara_Management.DTO
         private string supplier;
         public string Supplier { get => supplier; set => supplier = value; }
 
-        private string iDGara;
-        public string IDGara { get => iDGara; set => iDGara = value; }
-
         private DateTime importTime;
         public DateTime ImportTime { get => importTime; set => importTime = value; }
 
@@ -30,11 +27,10 @@ namespace Gara_Management.DTO
         private bool statusGRN;
         public bool StatusGRN { get => statusGRN; set => statusGRN = value; }
 
-        public GoodReceivedNote(string lotNumber, string supplier, string iDGara, DateTime importTime, string dataEntryStaff, decimal totalPaymentGRN, bool statusGRN)
+        public GoodReceivedNote(string lotNumber, string supplier, DateTime importTime, string dataEntryStaff, decimal totalPaymentGRN, bool statusGRN)
         {
             this.LotNumber = lotNumber;
             this.Supplier = supplier;
-            this.IDGara = iDGara;
             this.ImportTime = importTime;
             this.DataEntryStaff = dataEntryStaff;
             this.TotalPaymentGRN = totalPaymentGRN;
@@ -45,7 +41,6 @@ namespace Gara_Management.DTO
         {
             this.LotNumber = row["LOTNUMBER"].ToString();
             this.Supplier = row["SUPPLIER"].ToString();
-            this.IDGara = row["ID_GARA"].ToString();
             this.ImportTime = Convert.ToDateTime(row["IMPORT_TIME"].ToString());
             this.DataEntryStaff = row["DATA_ENTRY_STAFF"].ToString();
             this.TotalPaymentGRN = Convert.ToDecimal(row["TOTAL_PAYMENT_GRN"].ToString());

@@ -229,7 +229,6 @@
     <Compile Include="DAO\CarBrandDAO.cs" />
     <Compile Include="DAO\CarComponentDAO.cs" />
     <Compile Include="DAO\CarGaraDAO.cs" />
-    <Compile Include="DAO\ComponentDetailDAO.cs" />
     <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\EndingInventoryDAO.cs" />
@@ -237,7 +236,6 @@
     <Compile Include="DAO\GoodReceivedNoteDAO.cs" />
     <Compile Include="DAO\GRNDetailDAO.cs" />
     <Compile Include="DAO\IncurredCostDAO.cs" />
-    <Compile Include="DAO\InventoryManagementDAO.cs" />
     <Compile Include="DAO\ReceiptDAO.cs" />
     <Compile Include="DAO\ReceptionFormDAO.cs" />
     <Compile Include="DAO\RepairPaymentBillDAO.cs" />
@@ -251,14 +249,12 @@
     <Compile Include="DTO\CarBrand.cs" />
     <Compile Include="DTO\CarComponent.cs" />
     <Compile Include="DTO\CarGara.cs" />
-    <Compile Include="DTO\ComponentDetail.cs" />
     <Compile Include="DTO\Customer.cs" />
     <Compile Include="DTO\EndingInventory.cs" />
     <Compile Include="DTO\GaraQuantityRule.cs" />
     <Compile Include="DTO\GoodReceivedNote.cs" />
     <Compile Include="DTO\GRNDetail.cs" />
     <Compile Include="DTO\IncurredCost.cs" />
-    <Compile Include="DTO\InventoryManagement.cs" />
     <Compile Include="DTO\Receipt.cs" />
     <Compile Include="DTO\ReceptionForm.cs" />
     <Compile Include="DTO\RepairPaymentBill.cs" />

@@ -24,10 +24,12 @@ namespace Gara_Management.DAO
             private set { instance = value; }
         }
 
-        public List<GoodReceivedNote> LoadGoodReceivedNoteList()
+        public List<GoodReceivedNote> LoadGoodReceivedNoteList(string gara)
         {
             List<GoodReceivedNote> goodReceivedNoteList = new List<GoodReceivedNote>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM GOOD_RECEIVED_NOTES");
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT LOTNUMBER, SUPPLIER, IMPORT_TIME, " +
+                "DATA_ENTRY_STAFF, TOTAL_PAYMENT_GRN, STATUS_GRN FROM GOOD_RECEIVED_NOTES " +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_GRN = 0");
             foreach (DataRow item in data.Rows)
             {
                 GoodReceivedNote goodReceivedNote = new GoodReceivedNote(item);

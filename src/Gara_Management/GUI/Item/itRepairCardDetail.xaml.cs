@@ -91,7 +91,7 @@ namespace Gara_Management.GUI.Item
         //Lấy RPDOrdinalNum
         public string GetRPDOrdinalNum()
         {
-            string idCom = ComponentDetailDAO.GetComponentIDByInfo(this.idGara, this.tbx_name.Text, this.tbx_wage.Text, this.tbx_price.Text);
+            string idCom = CarComponentDAO.Instance.GetComponentIDByInfo(this.idGara, this.tbx_name.Text, this.tbx_wage.Text, this.tbx_price.Text);
             string ordinalNum = RepairPaymentDetailDAO.GetRPDOrdinalNum(idBill, idCom);
             return ordinalNum;
         }
@@ -99,7 +99,7 @@ namespace Gara_Management.GUI.Item
         //Kiểm tra thông tin có hợp lệ không (vật tư có tồn tại không)
         public bool isValid()
         {
-            string idCom = ComponentDetailDAO.GetComponentIDByInfo(this.idGara, this.tbx_name.Text, this.tbx_wage.Text, this.tbx_price.Text);
+            string idCom = CarComponentDAO.Instance.GetComponentIDByInfo(this.idGara, this.tbx_name.Text, this.tbx_wage.Text, this.tbx_price.Text);
             if (idCom != "")
             {
                 return true;

@@ -36,5 +36,17 @@ namespace Gara_Management.DAO
             return gRNDetailList;
         }
 
+        public List<GRNDetail> LoadGRNDetailListByLotNumber(string lot)
+        {
+            List<GRNDetail> gRNDetailList = new List<GRNDetail>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM GRN_DETAILS WHERE LOTNUMBER = '" + lot + "'");
+            foreach (DataRow item in data.Rows)
+            {
+                GRNDetail gRNDetail = new GRNDetail(item);
+                gRNDetailList.Add(gRNDetail);
+            }
+            return gRNDetailList;
+        }
+
     }
 }

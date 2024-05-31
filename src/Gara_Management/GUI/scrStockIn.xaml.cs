@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Gara_Management.DTO;
+using Gara_Management.DAO;
 
 namespace Gara_Management.GUI
 {
@@ -24,16 +26,13 @@ namespace Gara_Management.GUI
     {
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
-
+        string gara;
         public EventHandler changeToStoreScr;
-        public scrStockIn()
+        public scrStockIn(string gara)
         {
             InitializeComponent();
-            for(int i = 0; i < 10; i++)
-            {
-                itStockIn it = new itStockIn();
-                ds_phieunhap.Children.Add(it);
-            }
+            this.gara = gara;
+            LoadListGoodReceivedNote();
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -70,6 +69,15 @@ namespace Gara_Management.GUI
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
             filter.Visibility = Visibility.Visible;
+        }
+        private void LoadListGoodReceivedNote()
+        {
+            List<GoodReceivedNote> list = GoodReceivedNoteDAO.Instance.LoadGoodReceivedNoteList(gara);
+            foreach (GoodReceivedNote good in list) 
+            {
+                itStockIn it = new itStockIn(good);
+                ds_phieunhap.Children.Add(it);
+            }
         }
     }
 }

@@ -36,5 +36,13 @@ namespace Gara_Management.DAO
             return supplierList;
         }
 
+        public Supplier GetSupplierByID(string id)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM SUPPLIERS WHERE ID_SUPPLIER = '" + id + "'");
+            if (data.Rows.Count == 0)
+                return null;
+            return new Supplier(data.Rows[0]);
+        }
+
     }
 }

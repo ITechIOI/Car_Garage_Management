@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,15 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itStockInDetail : UserControl
     {
+        GRNDetail detail;
         public itStockInDetail()
         {
             InitializeComponent();
+        }
+        public itStockInDetail(GRNDetail detail)
+        {
+            InitializeComponent();
+            this.detail = detail;
         }
     }
 }

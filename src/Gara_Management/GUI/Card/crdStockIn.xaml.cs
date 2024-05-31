@@ -1,4 +1,6 @@
-﻿using Gara_Management.GUI.Item;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using Gara_Management.GUI.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,17 +31,19 @@ namespace Gara_Management.GUI.Card
 
         }
         // xem phiếu đã có
-        public crdStockIn(string maphieu)
+        public crdStockIn(GoodReceivedNote grn)
         {
             InitializeComponent();
-            for (int i = 0; i < 7; i++)
+            Supplier supplier = SupplierDAO.Instance.GetSupplierByID(grn.Supplier);
+            List<GRNDetail> list = GRNDetailDAO.Instance.LoadGRNDetailListByLotNumber(grn.LotNumber);
+            foreach (GRNDetail detail in list)
             {
-                itStockInDetail it = new itStockInDetail();
+                itStockInDetail it = new itStockInDetail(detail);
                 ds_nhapkho.Children.Add(it);
             }
         }
         // hiển thị khi nhấn vào thêm 1 vật tư nào đó
-        public crdStockIn(string maVatTu, string a )
+        public crdStockIn(string maVatTu, string gara)
         {
             InitializeComponent();
 
@@ -76,5 +80,6 @@ namespace Gara_Management.GUI.Card
         {
 
         }
+        
     }
 }

@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Gara_Management.DTO;
+using Gara_Management.DAO;
 
 namespace Gara_Management.GUI
 {
@@ -24,16 +26,13 @@ namespace Gara_Management.GUI
     {
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
-
+        string gara;
         public EventHandler changeToStockInScr;
-        public scrStore()
+        public scrStore(string gara)
         {
             InitializeComponent();
-            for (int i = 0; i < 10; i++)
-            {
-                itSupplies it = new itSupplies();
-                ds_phutung.Children.Add(it);
-            }
+            this.gara = gara;
+            LoadListComponent();
         }
         
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
@@ -73,6 +72,15 @@ namespace Gara_Management.GUI
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Visibility visibility = Visibility.Visible;
+        }
+        private void LoadListComponent()
+        {
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentList(gara);
+            foreach (CarComponent car in list) 
+            {
+                itSupplies it = new itSupplies(car, gara);
+                ds_phutung.Children.Add(it);
+            }
         }
     }
 }

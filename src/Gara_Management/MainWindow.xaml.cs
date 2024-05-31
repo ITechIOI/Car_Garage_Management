@@ -125,7 +125,7 @@ namespace Gara_Management
         private void menuStore_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 3;
-            scrStore scrStore = new scrStore();
+            scrStore scrStore = new scrStore(gara);
             DataContext = scrStore;
             scrStore.changeToStockInScr += scrStore_changeToStockInScr;
             menuHome.Background = new SolidColorBrush(color5);
@@ -139,7 +139,7 @@ namespace Gara_Management
         public void scrStore_changeToStockInScr(object sender, EventArgs e)
         {
             scr = 3;
-            scrStockIn scrStockIn = new scrStockIn();
+            scrStockIn scrStockIn = new scrStockIn(gara);
             DataContext = scrStockIn;
             scrStockIn.changeToStoreScr += scrStockIn_changeToStoreScr;
         }
@@ -147,7 +147,7 @@ namespace Gara_Management
         public void scrStockIn_changeToStoreScr(object sender, EventArgs e)
         {
             scr = 3;
-            scrStore scrStore = new scrStore();
+            scrStore scrStore = new scrStore(gara);
             DataContext = scrStore;
             scrStore.changeToStockInScr += scrStore_changeToStockInScr;
         }

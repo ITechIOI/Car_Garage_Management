@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Gara_Management.DTO;
+using Gara_Management.DAO;
 
 namespace Gara_Management.GUI.Item
 {
@@ -21,14 +23,17 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itStockIn : UserControl
     {
-        public itStockIn()
+        GoodReceivedNote grn;
+        public itStockIn(GoodReceivedNote grn)
         {
             InitializeComponent();
+            this.grn = grn;
+            Supplier supplier = SupplierDAO.Instance.GetSupplierByID(grn.Supplier);
         }
 
         private void bd_StockInInfor_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdStockIn crdStockIn = new crdStockIn("ma","a");
+            crdStockIn crdStockIn = new crdStockIn(grn);
             crdStockIn.ShowDialog();
         }
     }

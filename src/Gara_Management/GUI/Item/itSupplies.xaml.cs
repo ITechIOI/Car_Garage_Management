@@ -1,4 +1,5 @@
-﻿using Gara_Management.GUI.Card;
+﻿using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,19 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itSupplies : UserControl
     {
-        public itSupplies()
+        CarComponent com;
+        string gara;
+        public itSupplies(CarComponent com, string gara)
         {
             InitializeComponent();
+            this.com = com;
+            this.gara = gara;
         }
 
         private void bd_addSupplies_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // hiển thị phiếu đăng kí mua vật tư
-            crdStockIn crdStockIn = new crdStockIn("a","a");// ví dụ
+            crdStockIn crdStockIn = new crdStockIn(com.IDCom, gara);// ví dụ
             crdStockIn.ShowDialog();
 
         }
