@@ -286,7 +286,7 @@
                     <TextBlock Text="Ngày sinh" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
                 <Border Grid.Row="5" CornerRadius="20" Background="{StaticResource sColor1}" Margin="224,10,450,0">
-                    <TextBox x:Name="txtb_birthday" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
+                    <DatePicker x:Name="txtb_birthday" BorderThickness="0" Background="Transparent" FontSize="30" VerticalAlignment="Center"/>
                 </Border>
 
                 <!--Địa chỉ-->
