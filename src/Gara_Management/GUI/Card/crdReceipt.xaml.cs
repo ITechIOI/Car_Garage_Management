@@ -48,7 +48,7 @@ namespace Gara_Management.GUI.Card
             fadeInStoryboard.Begin(this);
         }
 
-        public crdReceipt(string gara, Staff staff, Customer cus, int bill)
+        public crdReceipt(string gara, Staff staff, Customer cus, decimal bill)
         {
             InitializeComponent();
             pk_dateReceipt.SelectedDate = DateTime.Now;
