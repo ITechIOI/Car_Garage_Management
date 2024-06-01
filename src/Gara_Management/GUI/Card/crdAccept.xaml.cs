@@ -24,7 +24,6 @@ namespace Gara_Management.GUI.Card
         {
             InitializeComponent();
             this.Opacity = 0;
-            this.Close();
             InitializeIDAndDate();
             this.gara = gara;
             LoadCarBrand();
