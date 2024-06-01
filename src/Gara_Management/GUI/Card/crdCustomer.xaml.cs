@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -32,11 +33,21 @@ namespace Gara_Management.GUI.Card
         public crdCustomer(string gara)
         {
             InitializeComponent();
+            this.Opacity = 0;
             this.gara = gara;
             idCustomerBorder.Visibility = Visibility.Hidden;
             debtBorder.Visibility = Visibility.Hidden;
             tbx_save.Text = "Thêm";
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Lấy storyboard từ resource
+            Storyboard fadeInStoryboard = (Storyboard)this.Resources["FadeInStoryboard"];
+            // Bắt đầu storyboard
+            fadeInStoryboard.Begin(this);
+        }
+
         // xem khách hàng đã có
         public crdCustomer(Customer customer, string gara)
         {

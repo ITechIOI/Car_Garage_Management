@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -29,6 +30,7 @@ namespace Gara_Management.GUI.Card
         public crdReceipt(string gara, Staff staff)
         {
             InitializeComponent();
+            this.Opacity = 0;
             pk_dateReceipt.SelectedDate = DateTime.Now;
             this.gara = gara;
             this.staff = staff;
@@ -36,6 +38,14 @@ namespace Gara_Management.GUI.Card
             txtb_idReceipt.Text = DateTime.Now.ToString("dd") + DateTime.Now.ToString("MM")
                 + DateTime.Now.ToString("yyyy") + DateTime.Now.ToString("HH") + DateTime.Now.ToString("mm")
                 + DateTime.Now.ToString("ss");
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Lấy storyboard từ resource
+            Storyboard fadeInStoryboard = (Storyboard)this.Resources["FadeInStoryboard"];
+            // Bắt đầu storyboard
+            fadeInStoryboard.Begin(this);
         }
 
         public crdReceipt(string gara, Staff staff, Customer cus, int bill)

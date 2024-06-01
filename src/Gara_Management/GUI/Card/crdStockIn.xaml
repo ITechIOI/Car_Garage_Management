@@ -6,8 +6,14 @@
         xmlns:local="clr-namespace:Gara_Management.GUI.Card"
         mc:Ignorable="d" Background="Transparent" AllowsTransparency="True"
         Width="836" Height="567" WindowStyle="None" WindowStartupLocation="CenterScreen" 
-        Foreground="{StaticResource sColor1}" FontSize="20">
+        Foreground="{StaticResource sColor1}" FontSize="20"
+        x:Name="StockIn" Loaded="Window_Loaded">
     <Window.Resources>
+            <Storyboard x:Key="FadeInStoryboard">
+                <DoubleAnimation Storyboard.TargetName="StockIn"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.5"/>
+            </Storyboard>
         <ControlTemplate x:Key="ScrollViewerControlTemplate" TargetType="{x:Type ScrollViewer}">
             <Grid x:Name="Grid" Background="{TemplateBinding Background}">
                 <Grid.ColumnDefinitions>

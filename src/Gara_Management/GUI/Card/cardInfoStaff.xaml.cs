@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -26,11 +27,20 @@ namespace Gara_Management.GUI.Card
         public cardInfoStaff(string gara)
         {
             InitializeComponent();
+            this.Opacity = 0;
             staffIDBorder.Visibility = Visibility.Hidden;
             staffBirthdayPicker.SelectedDateFormat = new DatePickerFormat();
             LoadAccAuthor();
             LoadPosition();
             this.gara = gara;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Lấy storyboard từ resource
+            Storyboard fadeInStoryboard = (Storyboard)this.Resources["FadeInStoryboard"];
+            // Bắt đầu storyboard
+            fadeInStoryboard.Begin(this);
         }
 
         private void bt_exit_MouseDown(object sender, MouseButtonEventArgs e)
