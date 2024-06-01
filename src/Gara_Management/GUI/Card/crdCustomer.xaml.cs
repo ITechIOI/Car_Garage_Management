@@ -3,6 +3,7 @@ using Gara_Management.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 using System.Threading.Tasks;
@@ -64,6 +65,16 @@ namespace Gara_Management.GUI.Card
             txtb_debt.IsEnabled = false;
             tbx_save.Text = "Sửa";
             // cho mấy textbox unenable, ấn sửa mới enable
+            txtb_idCustomer.Text = this.customer.IDCus;
+            txtb_name.Text = this.customer.NameCus;
+            txtb_phone.Text = this.customer.PhoneNumberCus;
+            string cutaddress = this.customer.AddressCus;
+            string[] parts = cutaddress.Split(new string[] { ", " }, System.StringSplitOptions.None);
+            txtb_address1.Text = parts[0];
+            txtb_address2.Text = parts[1];
+            txtb_address3.Text = parts[2];
+            txtb_address4.Text = parts[3];
+            txtb_debt.Text = this.customer.Debt.ToString();
         }
 
 

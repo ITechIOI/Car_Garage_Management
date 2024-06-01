@@ -10,7 +10,15 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        Title="MainWindow"  Height="768"  Width="1080">
+        Title="MainWindow"  Height="768"  Width="1080"
+        x:Name="mainWindow" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetName="mainWindow"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
 
     <!-- 5790AB -->
     <Border  CornerRadius="5" MouseDown="Border_MouseDown">

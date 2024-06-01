@@ -13,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -36,13 +37,21 @@ namespace Gara_Management
         public MainWindow(Account acc)
         {
             InitializeComponent();
+            this.Opacity = 0;
             this.acc = acc;
             gara = StaffDAO.Instance.GetIDGaraByIDStaff(this.acc.IDStaff);
             DataContext = new scrHome(gara, acc); 
             staff = StaffDAO.Instance.GetStaffById(this.acc.IDStaff);
         }
 
-  
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Lấy storyboard từ resource
+            Storyboard fadeInStoryboard = (Storyboard)this.Resources["FadeInStoryboard"];
+            // Bắt đầu storyboard
+            fadeInStoryboard.Begin(this);
+        }
+
         // di chuyển màn hình
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
