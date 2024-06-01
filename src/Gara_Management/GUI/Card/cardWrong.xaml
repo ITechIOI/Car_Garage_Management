@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:Gara_Management.GUI.Card"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="Transparent" AllowsTransparency="True" 
-        Height="200" Width="500">
+        Height="200" Width="500"
+        x:Name="Wrong" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetName="Wrong"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
     <Border CornerRadius="20" Background="White" BorderThickness="5" BorderBrush="{StaticResource sColor5}">
         <Grid>
             <Ellipse Margin="10,8,294,12" Fill="{StaticResource sColor5}"/>

@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -23,8 +24,18 @@ namespace Gara_Management.GUI.Card
         public cardWrong()
         {
             InitializeComponent();
+            this.Opacity = 0;
             StartCloseTimer();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Lấy storyboard từ resource
+            Storyboard fadeInStoryboard = (Storyboard)this.Resources["FadeInStoryboard"];
+            // Bắt đầu storyboard
+            fadeInStoryboard.Begin(this);
+        }
+
         private void StartCloseTimer()
         {
             //Chỉnh thời gian hiển thị 2s

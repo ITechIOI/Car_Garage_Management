@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -32,7 +33,17 @@ namespace Gara_Management.GUI.Card
             //ImageBehavior.SetAnimatedSource(img_gif, image);
             SetGifInImage();
             StartCloseTimer();
+            this.Opacity = 0;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Lấy storyboard từ resource
+            Storyboard fadeInStoryboard = (Storyboard)this.Resources["FadeInStoryboard"];
+            // Bắt đầu storyboard
+            fadeInStoryboard.Begin(this);
+        }
+
         private void SetGifInImage()
         {
             var gifUri = new Uri("pack://application:,,,/Images/check.gif", UriKind.Absolute);

@@ -7,7 +7,15 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="Transparent" AllowsTransparency="True"
         Foreground="{StaticResource sColor1}" FontSize="22" 
-        Height="450" Width="450">
+        Height="450" Width="450"
+        x:Name="UpdateInfo" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetName="UpdateInfo"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
     <Border Background="{StaticResource sColor4}" CornerRadius="10" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.RowDefinitions>

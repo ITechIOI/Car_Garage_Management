@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace Gara_Management.GUI.Card
 {
@@ -22,11 +23,20 @@ namespace Gara_Management.GUI.Card
         public crdAccept(string gara)
         {
             InitializeComponent();
+            this.Opacity = 0;
             InitializeIDAndDate();
             this.gara = gara;
             LoadCarBrand();
             dpk_RecDate.SelectedDate = DateTime.Now;
           
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Lấy storyboard từ resource
+            Storyboard fadeInStoryboard = (Storyboard)this.Resources["FadeInStoryboard"];
+            // Bắt đầu storyboard
+            fadeInStoryboard.Begin(this);
         }
 
         // hiển thị lên phiếu đã có

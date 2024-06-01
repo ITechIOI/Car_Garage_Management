@@ -7,7 +7,16 @@
         xmlns:WpfAnimatedGif="clr-namespace:WpfAnimatedGif;assembly=WpfAnimatedGif"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="Transparent" AllowsTransparency="True" 
-        Title="cardSuccessful" Height="200" Width="500">
+        Title="cardSuccessful" Height="200" Width="500"
+        x:Name="Successful"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetName="Successful"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
     <Border CornerRadius="20" Background="White" BorderThickness="5" BorderBrush="{StaticResource sColor5}">
         <Grid>
             <Ellipse Margin="47,32,307,31" Fill="{StaticResource sColor5}"/>

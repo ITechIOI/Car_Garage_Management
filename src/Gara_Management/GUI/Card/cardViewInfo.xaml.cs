@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -26,6 +27,7 @@ namespace Gara_Management.GUI.Card
         public cardViewInfo(Staff staff, Account account)
         {
             InitializeComponent();
+            this.Opacity = 0;
             this.staff = staff;
             this.account = account;
             SetComponentReadOnly(true);
@@ -52,6 +54,14 @@ namespace Gara_Management.GUI.Card
                     cbx_accAuthor.Text = "Nhân viên";
                 }
             }    
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Lấy storyboard từ resource
+            Storyboard fadeInStoryboard = (Storyboard)this.Resources["FadeInStoryboard"];
+            // Bắt đầu storyboard
+            fadeInStoryboard.Begin(this);
         }
 
         private void bt_exit_MouseDown(object sender, MouseButtonEventArgs e)

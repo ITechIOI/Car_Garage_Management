@@ -10,7 +10,15 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        Title="MainWindow"  Height="768"  Width="1080">
+        Title="MainWindow"  Height="768"  Width="1080"
+        x:Name="mainWindow" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetName="mainWindow"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
 
     <!-- 5790AB -->
     <Border  CornerRadius="5" MouseDown="Border_MouseDown">
@@ -49,7 +57,7 @@
                             <Image Source="/Images/ic_home.png" Margin="12,0,12,0" Height="42"/>
 
                         </Border>
-                        <Label Content="Home" Background="Transparent"
+                        <Label Content="Trang chủ" Background="Transparent"
                                 Height="66" FontSize="24" Width="123"
                                 HorizontalContentAlignment="Left"
                                 VerticalContentAlignment="Center"
@@ -65,7 +73,7 @@
                             <Image Source="/Images/ic_car.png" Margin="12,0,12,0" Height="42"/>
 
                         </Border>
-                        <Label Content="Cars" Background="Transparent"
+                        <Label Content="Xe" Background="Transparent"
                                 Height="66" FontSize="24" Width="123"
                                 BorderThickness="0"
                                 HorizontalContentAlignment="Left"
@@ -79,7 +87,7 @@
                             <Image Source="/Images/ic_store.png" Margin="12,0,12,0"  Stretch="UniformToFill" Height="42" Width="42"/>
 
                         </Border>
-                        <Label Content="Store" Background="Transparent"
+                        <Label Content="Kho" Background="Transparent"
                                 Height="66" FontSize="24" Width="123"
                                 BorderThickness="0"
                                 HorizontalContentAlignment="Left"
@@ -93,7 +101,7 @@
                             <Image Source="/Images/ic_revenue.png"  Margin="6,0,6,0" Height="42" Width="42"/>
 
                         </Border>
-                        <Label Content="Revenue" Background="Transparent"
+                        <Label Content="Doanh thu" Background="Transparent"
                                 Height="66" FontSize="24" Width="123"
                                 BorderThickness="0"
                                 HorizontalContentAlignment="Left"
@@ -107,7 +115,7 @@
                             <Image Source="/Images/ic_customer.png" Margin="6,0,6,0" Height="42" Width="42"/>
 
                         </Border>
-                        <Label Content="Customer" Background="Transparent"
+                        <Label Content="Khách hàng" Background="Transparent"
                                 Height="66" FontSize="24" Width="123"
                                 BorderThickness="0"
                                 HorizontalContentAlignment="Left"
@@ -122,7 +130,7 @@
                             <Image Source="/Images/ic_account.png" Margin="4,0,8,0" Height="42" Width="42"/>
 
                         </Border>
-                        <Label Content="Profile" Background="Transparent"
+                        <Label Content="Hồ sơ" Background="Transparent"
                                 Height="66" FontSize="24" Width="123"
                                 BorderThickness="0"
                                 HorizontalContentAlignment="Left"
@@ -134,7 +142,7 @@
                         <Border Width="66">
                             <Image Source="/Images/ic_staff.png" Margin="4,0,8,0" Height="42" Width="42"/>
                         </Border>
-                        <Label Content="Staff" Background="Transparent"
+                        <Label Content="Nhân viên" Background="Transparent"
                                Height="66" FontSize="24" Width="123"
                                BorderThickness="0"
                                HorizontalContentAlignment="Left"

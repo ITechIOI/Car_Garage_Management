@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -28,8 +29,18 @@ namespace Gara_Management.GUI.Card
         public crdStockIn()
         {
             InitializeComponent();
+            this.Opacity = 0;
 
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Lấy storyboard từ resource
+            Storyboard fadeInStoryboard = (Storyboard)this.Resources["FadeInStoryboard"];
+            // Bắt đầu storyboard
+            fadeInStoryboard.Begin(this);
+        }
+
         // xem phiếu đã có
         public crdStockIn(GoodReceivedNote grn)
         {
