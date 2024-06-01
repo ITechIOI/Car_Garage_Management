@@ -51,11 +51,11 @@
 
             <Border x:Name="bt_login" MouseDown="bt_login_MouseDown" Grid.Row="1" Cursor="Hand" CornerRadius="10" BorderThickness="2" Background="{StaticResource sColor5}" Margin="134,325,217,212" Grid.Column="1">
 
-                <TextBlock Text="Login" FontWeight="Bold" TextAlignment="Center" Margin="0,2,-2,-4"/>
+                <TextBlock Text="Đăng nhập" FontWeight="Bold" TextAlignment="Center" Margin="0,2,-2,-4"/>
             </Border>
             <Border x:Name="bt_exit1" MouseDown="bt_exit_MouseDown" Grid.Row="1" Cursor="Hand" CornerRadius="10" BorderThickness="2" Background="{StaticResource sColor5}" Margin="328,325,30,212" Grid.Column="1">
 
-                <TextBlock Text="Exit" FontWeight="Bold"  TextAlignment="Center" Margin="0,2,0,-2"/>
+                <TextBlock Text="Thoát" FontWeight="Bold"  TextAlignment="Center" Margin="0,2,0,-2"/>
             </Border>
 
         </Grid>

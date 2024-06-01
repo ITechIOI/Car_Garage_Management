@@ -29,6 +29,10 @@ namespace Gara_Management.GUI.Item
             InitializeComponent();
             this.com = com;
             this.gara = gara;
+            txtb_idComponent.Text = this.com.IDCom;
+            txtb_nameComponent.Text = this.com.NameCom;
+            txtb_price.Text = this.com.CurPrice.ToString();
+            txtb_amount.Text = this.com.ComQuantity.ToString();
         }
 
         private void bd_addSupplies_MouseDown(object sender, MouseButtonEventArgs e)

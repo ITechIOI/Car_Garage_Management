@@ -18,13 +18,13 @@
                     <ColumnDefinition/>
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="ITM001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_idComponent" Text="ITM001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="122,0,0,0"/>
-                <TextBlock Grid.Column="1" Text="Đèn pha màu mè" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_nameComponent" Grid.Column="1" Text="Đèn pha màu mè" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="258,0,0,0"/>
-                <TextBlock Grid.Column="2" Text="3.000.000" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_price" Grid.Column="2" Text="3.000.000" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="168,0,0,0"/>
-                <TextBlock Grid.Column="3" Text="1000" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_amount" Grid.Column="3" Text="1000" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="108,0,0,0"/>
                 <Border x:Name="bd_addSupplies" MouseDown="bd_addSupplies_MouseDown" Grid.Column="4" Cursor="Hand" CornerRadius="10" Background="{StaticResource sColor3}" Margin="8,10,10,10" Width="30" Height="30">
                     <TextBlock Text="+" FontSize="24" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="{StaticResource sColor1}" Margin="0,-3,0,0" />

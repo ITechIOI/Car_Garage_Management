@@ -19,18 +19,18 @@
                     <ColumnDefinition/>
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" />
-                <TextBox  Grid.Column="1" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
+                <TextBlock x:Name="txtb_orderednum" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" />
+                <TextBox x:Name="txtb_idStock" Grid.Column="1" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
                         BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" />
-                <TextBox  Grid.Column="2" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
-                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
-                <TextBox  Grid.Column="3" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
-                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
-                <TextBox  Grid.Column="4" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
-                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="65"/>
+                <TextBox x:Name="txtb_name" Grid.Column="2" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
+                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="220"/>
+                <TextBox x:Name="txtb_price" Grid.Column="3" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
+                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110"/>
+                <TextBox x:Name="txtb_amount" Grid.Column="4" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
+                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90"/>
                 <TextBox  Grid.Column="5" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
                         BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100"/>
-                <TextBox  Grid.Column="6" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
+                <TextBox x:Name="txtb_sumofmoney" Grid.Column="6" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
                         BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="116"/>
                 <Rectangle Grid.ColumnSpan="7" Height="1.5" Fill="{StaticResource sColor1}" VerticalAlignment="Bottom" Margin="0,0,0,-1"/>
 

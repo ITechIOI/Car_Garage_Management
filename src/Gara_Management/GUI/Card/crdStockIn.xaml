@@ -229,26 +229,26 @@
             <!-- in for-->
             <!-- Mã Lô -->
             <Grid Grid.Row="1" Margin="100,0,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="141">
-                <TextBlock Text="Mã lô:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBlock Text="RPC002" VerticalAlignment="Center" Margin="60,0,-1,0"/>
+                <TextBlock Text="Mã lô:" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />
+                <TextBlock x:Name="txtb_idLot" VerticalAlignment="Center" Margin="70,0,-1,0"/>
                 <Rectangle Height="1" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Nahf cung cấp -->
             <Grid Grid.Row="1" Margin="100,40,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="650">
-                <TextBlock Text="Nhà cung cấp: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="132,0,0,0" Foreground="{StaticResource sColor1}" Text="Nhà cung cấp 1"/>
+                <TextBlock Text="Nhà cung cấp: " VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"/>
+                <TextBox x:Name="txtb_namesupplier" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="154,0,0,0" Foreground="{StaticResource sColor1}" />
                 <Rectangle Height="1" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Ngày nhập-->
             <Grid Grid.Row="1" Margin="529,0,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="260">
-                <TextBlock Text="Ngày nhập: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <DatePicker VerticalContentAlignment="Center" Background="Transparent" Margin="106,0,0,0" Foreground="{StaticResource sColor1}" HorizontalAlignment="Left" Width="154"/>
+                <TextBlock Text="Ngày nhập: " VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />
+                <DatePicker x:Name="txtb_date" VerticalContentAlignment="Center" Background="Transparent" Margin="106,0,0,0" Foreground="{StaticResource sColor5}" HorizontalAlignment="Left" Width="154"/>
                 <Rectangle Height="1" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Người kí nhận -->
             <Grid Grid.Row="1" Margin="100,80,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="650" Grid.RowSpan="2">
-                <TextBlock Text="Người kí nhận: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="132,0,0,0" Foreground="{StaticResource sColor1}" Text="Lê minh Kha"/>
+                <TextBlock Text="Người kí nhận: " VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />
+                <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="145,0,0,0" Foreground="{StaticResource sColor1}" />
                 <Rectangle Height="1" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- bảng thông tin -->
@@ -269,17 +269,17 @@
                             <ColumnDefinition Width="130*"/>
                         </Grid.ColumnDefinitions>
                         <!-- -->
-                        <TextBlock Text="STT" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Text="STT" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" />
                         <!-- -->
-                        <TextBlock Grid.Column="1" Text="Mã phụ tùng" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="1" Text="Mã phụ tùng" FontWeight="DemiBold" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <!-- -->
-                        <TextBlock Grid.Column="2" Text="Tên phụ tùng" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        <TextBlock Grid.Column="3" Text="Đơn giá" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="2" Text="Tên phụ tùng" FontWeight="DemiBold" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="3" Text="Đơn giá" FontWeight="DemiBold" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <!-- -->
-                        <TextBlock Grid.Column="4" Text="Số lượng" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="4" Text="Số lượng" FontWeight="DemiBold" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <!-- -->
                         <!-- -->
-                        <TextBlock Grid.Column="6" Text="Thành tiền" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="6" Text="Thành tiền" FontWeight="DemiBold" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Grid>
                     <Rectangle Height="2" Fill="{StaticResource sColor1}" VerticalAlignment="Bottom" Margin="0,0,0,-1"/>
                     <Rectangle Height="2" Grid.Row="1" Fill="{StaticResource sColor1}" VerticalAlignment="Bottom" Margin="0,0,0,-1"/>
@@ -290,9 +290,9 @@
                         </StackPanel>
                     </ScrollViewer>
                     <!-- tổng tiền -->
-                    <TextBlock Text="Tổng tiền:" Grid.Row="2" HorizontalAlignment="Left" TextAlignment="Center" Margin="0,5,0,0" Width="103"/>
+                    <TextBlock Text="Tổng tiền:" FontWeight="DemiBold" Grid.Row="2" HorizontalAlignment="Left" TextAlignment="Center" Margin="0,5,0,0" Width="103"/>
 
-                    <TextBlock Text="123.456.798" Grid.Row="2" HorizontalAlignment="Left" TextAlignment="Center" Margin="652,5,0,5" Width="130"/>
+                    <TextBlock x:Name="txtb_totalsum" Text="123.456" Grid.Row="2" HorizontalAlignment="Left" TextAlignment="Center" Margin="652,5,0,5" Width="130"/>
                     <!-- cột -->
                     <Rectangle Grid.Column="0" Grid.RowSpan="2" Margin="46,0,0,0" Width="2" Fill="{StaticResource sColor1}" HorizontalAlignment="Left"/>
                     <Rectangle Grid.RowSpan="2" Margin="180,0,0,0" Width="2" Fill="{StaticResource sColor1}" HorizontalAlignment="Left"/>
@@ -306,13 +306,13 @@
 
             <!-- -->
             <Border x:Name="bd_add" MouseDown="bd_add_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="100,17,612,17">
-                <TextBlock Text="thêm" TextAlignment="Center" Margin="0,2,0,-2"/>
+                <TextBlock Text="Thêm" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
             </Border>
             <Border x:Name="bd_pay" MouseDown="bd_pay_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="465,17,247,17">
-                <TextBlock Text="Thanh toán" TextAlignment="Center" Margin="0,2,0,-2"/>
+                <TextBlock Text="Thanh toán" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
             </Border>
             <Border x:Name="bd_print" MouseDown="bd_print_MouseDown" Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="611,17,101,17">
-                <TextBlock Text="In phiếu" TextAlignment="Center" Margin="0,2,0,-2"/>
+                <TextBlock Text="In phiếu" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
             </Border>
         </Grid>
     </Border>

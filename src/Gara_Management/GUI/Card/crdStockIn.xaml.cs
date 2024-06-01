@@ -46,12 +46,19 @@ namespace Gara_Management.GUI.Card
         {
             InitializeComponent();
             Supplier supplier = SupplierDAO.Instance.GetSupplierByID(grn.Supplier);
+            txtb_idLot.Text = grn.LotNumber;
+            txtb_date.Text = grn.ImportTime.ToString();
+            txtb_namesupplier.Text = supplier.NameSupplier;
+
+            decimal price = 0;
             List<GRNDetail> list = GRNDetailDAO.Instance.LoadGRNDetailListByLotNumber(grn.LotNumber);
             foreach (GRNDetail detail in list)
             {
                 itStockInDetail it = new itStockInDetail(detail);
+                price = price + detail.GRNTotalPayment;
                 ds_nhapkho.Children.Add(it);
             }
+            txtb_totalsum.Text = price.ToString();
         }
         // hiển thị khi nhấn vào thêm 1 vật tư nào đó
         public crdStockIn(string maVatTu, string gara)

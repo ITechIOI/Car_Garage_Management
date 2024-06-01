@@ -1,5 +1,7 @@
-﻿using Gara_Management.DTO;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +32,13 @@ namespace Gara_Management.GUI.Item
         {
             InitializeComponent();
             this.detail = detail;
+            txtb_orderednum.Text=this.detail.GRNOrdinalNum.ToString();
+            txtb_idStock.Text = this.detail.IDCom;
+            txtb_price.Text = this.detail.ComPrice.ToString();
+            txtb_amount.Text=this.detail.ComQuantity.ToString();
+            object nameCom = DataProvider.Instance.ExecuteScalar("SELECT NAME_COM from CAR_COMPONENTS WHERE ID_COM='" + this.detail.IDCom + "'");
+            txtb_name.Text = nameCom.ToString();
+            txtb_sumofmoney.Text=this.detail.GRNTotalPayment.ToString();
         }
     }
 }
