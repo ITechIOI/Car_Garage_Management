@@ -71,5 +71,12 @@ namespace Gara_Management.GUI
         {
             filter.Visibility = Visibility.Visible;
         }
+        private void apply_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            filter.Visibility = Visibility.Hidden;
+            //
+
+
+        }
     }
 }

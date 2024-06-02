@@ -1,7 +1,4 @@
-﻿using Gara_Management.DAO;
-using Gara_Management.DTO;
-using Gara_Management.GUI.Card;
-using Gara_Management.GUI.Item;
+﻿using Gara_Management.GUI.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,22 +14,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Gara_Management.GUI
+namespace Gara_Management.GUI.Card
 {
     /// <summary>
-    /// Interaction logic for scrCustomer.xaml
+    /// Interaction logic for scrMoney.xaml
     /// </summary>
-    public partial class scrCustomer : UserControl
+    public partial class scrMoney : UserControl
     {
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
-        string gara;
-        public scrCustomer(string gara)
+
+        public EventHandler changeToRevenueScr;
+        public scrMoney()
         {
             InitializeComponent();
-            this.gara = gara;
-            LoadListCustomer();
-                  
+            for (int i = 0; i < 10; i++)
+            {
+                itMoney it = new itMoney();
+                ds_phieuthu.Children.Add(it);
+            }
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -54,27 +54,21 @@ namespace Gara_Management.GUI
                 App.Current.Shutdown();
             }
         }
-
-        // hiển thị bảng thêm 1 khách hàng
-        private void bd_add_customer_MouseDown(object sender, MouseButtonEventArgs e)
+        // chuyển sang màn hình revenue
+        private void bd_revenue_scr_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdCustomer crdCustomer = new crdCustomer(gara);
-            crdCustomer.ShowDialog();
-            LoadListCustomer();
+            changeToRevenueScr?.Invoke(this, EventArgs.Empty);
         }
+        // tạo phiếu thu tiền 
+        private void bd_receipt_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
 
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
             filter.Visibility = Visibility.Visible;
-        }
-        private void LoadListCustomer()
-        {
-            List<Customer> customers = CustomerDAO.Instance.LoadCustomerList(this.gara);
-            foreach (Customer customer in customers)
-            {
-                itCustomer it = new itCustomer(customer, this.gara);
-                ds_khachhang.Children.Add(it);
-            }
         }
         private void apply_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -83,5 +77,8 @@ namespace Gara_Management.GUI
 
 
         }
+
+     
     }
 }
+
