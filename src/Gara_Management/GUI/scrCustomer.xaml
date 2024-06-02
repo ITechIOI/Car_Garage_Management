@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Gara_Management.GUI"
+              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              Height="768" Width="885">
     <!-- design scroll bar -->
@@ -242,22 +243,38 @@
 
             </Border>
             <!-- Bộ lọc -->
-            <Border x:Name="filter" Visibility="Hidden" Background="White" HorizontalAlignment="Left" Height="128" Margin="405,10,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="337">
+            <Border x:Name="filter" Visibility="Hidden" Background="{StaticResource sColor5}" HorizontalAlignment="Left" Height="150" Margin="405,10,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="337">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="93*"/>
-                        <RowDefinition Height="35*"/>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="3*"/>
 
                     </Grid.RowDefinitions>
                     <!-- ltiền nợt-->
                     <Grid Grid.Row="0">
 
-                        <CheckBox Content="Tiền nợ" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="102" Margin="0,10,0,0"/>
+                        <CheckBox Content="Tiền nợ" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="102" Margin="10,0,0,0"/>
 
-                        <ProgressBar Margin="0,53,0,5"/>
+                        <Grid>
+                            <xctk:RangeSlider  x:Name="rangeSlider" 
+        Minimum="0" 
+        Maximum="100000000" 
+        LowerValue="20000" 
+        HigherValue="80000000"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center" Width="316"/>
+                            <TextBlock FontSize="16" Text="{Binding ElementName=rangeSlider, Path=LowerValue, StringFormat='Min: {0:N0}'}"
+HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,73,0,0" />
+
+                            <TextBlock  HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="16"
+ Text="{Binding ElementName=rangeSlider, Path=HigherValue, StringFormat='Max: {0:N0}'}"
+ Margin="0,73,10,0" />
+                        </Grid>
                     </Grid>
                     <!-- ok-->
-                    <Button Grid.Row="1" Margin="110,10,111,0"/>
+                    <Border Cursor="Hand" Grid.Row="4" x:Name="apply"  MouseDown="apply_MouseDown" Margin="110,7,127,10" CornerRadius="10" Background="{StaticResource sColor3}">
+                        <TextBlock  Text="Áp dụng" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"  Background="Transparent" />
+                    </Border>
                 </Grid>
             </Border>
 

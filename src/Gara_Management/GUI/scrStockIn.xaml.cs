@@ -79,5 +79,12 @@ namespace Gara_Management.GUI
                 ds_phieunhap.Children.Add(it);
             }
         }
+        private void apply_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            filter.Visibility = Visibility.Hidden;
+            //
+
+
+        }
     }
 }

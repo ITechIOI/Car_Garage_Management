@@ -71,7 +71,14 @@ namespace Gara_Management.GUI
         // lọc
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Visibility visibility = Visibility.Visible;
+            filter.Visibility = Visibility.Visible;
+        }
+        private void apply_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            filter.Visibility = Visibility.Hidden;
+            //
+
+
         }
         private void LoadListComponent()
         {

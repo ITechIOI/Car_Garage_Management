@@ -77,5 +77,13 @@ namespace Gara_Management.GUI
                 ds_phieuTN.Children.Add(it);
             }
         }
+        // áp dụng lọc
+        private void apply_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            filter.Visibility = Visibility.Hidden;
+            //
+
+
+        }
     }
 }

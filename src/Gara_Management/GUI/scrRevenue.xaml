@@ -61,7 +61,10 @@
                     </Rectangle>
                 </Grid>
             </Border>
-
+<!-- chuyển mh-->
+            <Border x:Name="bt_money_scr" Cursor="Hand" MouseDown="bt_money_scr_MouseDown"  Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="580,352,110,84">
+                <TextBlock Text="Lịch sử thu tiền" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
         </Grid>
     </Border>
 </UserControl>
