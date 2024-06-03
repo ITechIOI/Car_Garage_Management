@@ -86,11 +86,34 @@ namespace Gara_Management.GUI
         private void LoadListComponent()
         {
             List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentList(gara);
+            ds_phutung.Children.Clear();
             foreach (CarComponent car in list) 
             {
                 itSupplies it = new itSupplies(car, gara,acc);
                 ds_phutung.Children.Add(it);
             }
+        }
+        private void LoadListComponentByName()
+        {
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentListByName(gara, txtb_findComponent.Text);
+            ds_phutung.Children.Clear();
+            foreach (CarComponent car in list)
+            {
+                itSupplies it = new itSupplies(car, gara, acc);
+                ds_phutung.Children.Add(it);
+            }
+        }
+
+        private void txtb_findComponent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtb_findComponent.Text == "")
+            {
+                LoadListComponent();
+            }    
+            else
+            {
+                LoadListComponentByName();
+            }    
         }
     }
 }

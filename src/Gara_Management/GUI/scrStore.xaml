@@ -219,8 +219,8 @@
             <!-- Thanh tìm kiếm -->
             <Border Grid.Row="1" Margin="75,0,207,0" CornerRadius="20" Height="48" Background="{StaticResource sColor1}">
                 <Grid>
-                    <TextBox Height="48" BorderThickness="0" Background="Transparent"
-                     FontSize="20" VerticalContentAlignment="Center" Padding="20,0,0,0" Margin="0,0,51,0"/>
+                    <TextBox x:Name="txtb_findComponent" Height="48" BorderThickness="0" Background="Transparent"
+                     FontSize="20" VerticalContentAlignment="Center" Padding="20,0,0,0" Margin="0,0,51,0" TextChanged="txtb_findComponent_TextChanged"/>
                     <Image Cursor="Hand" Source="/Images/ic_search.png" Margin="555,0,0,0"/>
                 </Grid>
             </Border>
