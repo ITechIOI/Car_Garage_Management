@@ -102,7 +102,7 @@
                 </Border>
                 <!--Lập báo cáo -->
                 <Border x:Name="bd_reportCreate" MouseDown="bd_reportCreate_MouseDown" Height="80" Width="225" Cursor="Hand" CornerRadius="10" Grid.Row="2" 
-                        Background="{StaticResource sColor5}" Grid.Column="1" Margin="35,0,35,84" BorderBrush="Black" BorderThickness="3" >
+                        Background="{StaticResource sColor5}" Grid.Column="2" Margin="35,0,35,84" BorderBrush="Black" BorderThickness="3" >
                     <Grid>
                         <TextBlock Text="Lập phiếu báo cáo" FontSize="24" Width="145" TextWrapping="Wrap" 
                                    TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -113,7 +113,7 @@
                 </Border>
                 <!-- Thêm khách hàng -->
                 <Border x:Name="bd_customerAdd" MouseDown="bd_customerAdd_MouseDown" Height="80" Width="225" Cursor="Hand" CornerRadius="10" Grid.Row="2"  Margin="35,0,35,84"
-                        Background="{StaticResource sColor5}" Grid.Column="2" BorderBrush="Black" BorderThickness="3" >
+                        Background="{StaticResource sColor5}" Grid.Column="1" BorderBrush="Black" BorderThickness="3" >
                     <Grid>
                         <TextBlock Text="Thêm khách hàng" FontSize="24" Width="145" TextWrapping="Wrap" 
                                    TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center"/>

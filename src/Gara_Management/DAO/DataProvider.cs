@@ -10,7 +10,7 @@ namespace Gara_Management.DAO
 {
     public class DataProvider
     {
-        private string connectionSTR = "Data Source=DESKTOP-AKCMBE2;Initial Catalog=CAR_GARAGE_MANAGEMENT;Integrated Security=True";
+        private string connectionSTR = "Data Source=.\\sqlexpress;Initial Catalog=CAR_GARAGE_MANAGEMENT;Integrated Security=True";
         //Data Source=DESKTOP-AKCMBE2;Initial Catalog=CAR_GARAGE_MANAGEMENT;Integrated Security=True
         //Data Source=.\\sqlexpress;Initial Catalog=CAR_GARAGE_MANAGEMENT;Integrated Security=True
         private static DataProvider instance;
