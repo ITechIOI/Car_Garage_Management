@@ -107,5 +107,21 @@ namespace Gara_Management.DAO
                 "@id = '" + id + "', @updateMoney = " + updateMoney.ToString()) > 0);
         }
 
+        public List<Customer> LoadCustomerListByName(string gara, string name)
+        {
+            List<Customer> customerList = new List<Customer>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT CUSTOMERS.ID_CUS, NAME_CUS, PHONE_NUMBER_CUS," +
+                " ADDRESS_CUS, DEBT, STATUS_CUSD FROM CUSTOMERS JOIN CUSTOMER_DETAILS " +
+                "ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS  " +
+                "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0 " +
+                "AND DBO.[non_unicode_convert](NAME_CUS) LIKE DBO.[non_unicode_convert](N'%" + name + "%')");
+            foreach (DataRow item in data.Rows)
+            {
+                Customer customer = new Customer(item);
+                customerList.Add(customer);
+            }
+            return customerList;
+        }
+
     }
 }
