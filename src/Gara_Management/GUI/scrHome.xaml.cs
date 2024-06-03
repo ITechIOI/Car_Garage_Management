@@ -30,6 +30,11 @@ namespace Gara_Management.GUI
         public scrHome(string gara, Account acc)
         {
             InitializeComponent();
+            if (acc.AccAuthorization)
+            {
+                bd_staffAdd.Visibility = Visibility.Collapsed;
+                bd_reportCreate.Visibility = Visibility.Collapsed;
+            }    
             this.gara = gara;
             this.account = acc;
         }

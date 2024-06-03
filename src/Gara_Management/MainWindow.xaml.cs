@@ -38,6 +38,11 @@ namespace Gara_Management
         public MainWindow(Account acc)
         {
             InitializeComponent();
+            if (acc.AccAuthorization)
+            {
+                menuRevenue.Visibility = Visibility.Collapsed;
+                menuStaff.Visibility = Visibility.Collapsed;
+            }    
             this.Opacity = 0;
             this.acc = acc;
             gara = StaffDAO.Instance.GetIDGaraByIDStaff(this.acc.IDStaff);
