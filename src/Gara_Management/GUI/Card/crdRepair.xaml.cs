@@ -164,7 +164,7 @@ namespace Gara_Management.GUI.Card
                     }
                     else
                     {
-                        if (!RepairPaymentDetailDAO.Instance.UpdateRepairCardDetail(tbl_IDRec.Text, child))
+                        if (!RepairPaymentDetailDAO.Instance.InsertRepairCardDetail(tbl_IDRec.Text, child))
                             status = false;
                     }
                 }
