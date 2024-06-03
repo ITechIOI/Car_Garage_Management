@@ -8,7 +8,7 @@
              Foreground="{StaticResource sColor1}"
              Width="716" Height="68">
     <Grid Width="716" Height="54">
-        <Border BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}">
+        <Border BorderBrush="{StaticResource sColor5}" BorderThickness="2" MouseDown="Border_MouseDown" CornerRadius="10" Background="{StaticResource sColor4}">
             <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="124"/>
