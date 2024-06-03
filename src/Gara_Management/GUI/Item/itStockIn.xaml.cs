@@ -28,9 +28,8 @@ namespace Gara_Management.GUI.Item
         {
             InitializeComponent();
             this.grn = grn;
-            Supplier supplier = SupplierDAO.Instance.GetSupplierByID(grn.Supplier);
             txtb_idLot.Text = this.grn.LotNumber;
-            txtb_namesupplier.Text = supplier.NameSupplier;
+            txtb_namesupplier.Text = grn.Supplier;
             txtb_date.Text = this.grn.ImportTime.ToString();
             txtb_sumofmoney.Text=this.grn.TotalPaymentGRN.ToString();
         }

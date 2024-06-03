@@ -27,11 +27,13 @@ namespace Gara_Management.GUI
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
         string gara;
+        Account acc;
         public EventHandler changeToStockInScr;
-        public scrStore(string gara)
+        public scrStore(string gara, Account account)
         {
             InitializeComponent();
             this.gara = gara;
+            this.acc = account;
             LoadListComponent();
         }
         
@@ -65,8 +67,9 @@ namespace Gara_Management.GUI
         // tạo phiếu nhập kho
         private void bd_stockIn_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdStockIn crdStockIn = new crdStockIn();
+            crdStockIn crdStockIn = new crdStockIn(gara, acc);
             crdStockIn.ShowDialog();
+            LoadListComponent();
         }
         // lọc
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
@@ -78,7 +81,7 @@ namespace Gara_Management.GUI
             List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentList(gara);
             foreach (CarComponent car in list) 
             {
-                itSupplies it = new itSupplies(car, gara);
+                itSupplies it = new itSupplies(car, gara,acc);
                 ds_phutung.Children.Add(it);
             }
         }

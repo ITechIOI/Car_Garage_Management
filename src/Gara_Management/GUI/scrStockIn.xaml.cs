@@ -27,11 +27,13 @@ namespace Gara_Management.GUI
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
         string gara;
+        Account acc;
         public EventHandler changeToStoreScr;
-        public scrStockIn(string gara)
+        public scrStockIn(string gara, Account acc)
         {
             InitializeComponent();
             this.gara = gara;
+            this.acc = acc;
             LoadListGoodReceivedNote();
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
@@ -62,8 +64,9 @@ namespace Gara_Management.GUI
         // tạo phiêu nhập kho
         private void bd_stockIn_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdStockIn crdStockIn = new crdStockIn();
+            crdStockIn crdStockIn = new crdStockIn(gara, acc);
             crdStockIn.ShowDialog();
+            LoadListGoodReceivedNote();
         }
 
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)

@@ -80,7 +80,7 @@ namespace Gara_Management.GUI
         private void bd_stockIn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // tạo phiếu nhập kho
-            crdStockIn crdStock = new crdStockIn();
+            crdStockIn crdStock = new crdStockIn(gara,account);
             crdStock.ShowDialog();
         }
 
