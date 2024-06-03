@@ -21,11 +21,15 @@ namespace Gara_Management.GUI
     /// </summary>
     public partial class scrRevenue : UserControl
     {
+        public EventHandler changeMoneyScr;
         public scrRevenue()
         {
             InitializeComponent();
         }
-
+        private void bt_money_scr_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            changeMoneyScr?.Invoke(this, EventArgs.Empty);
+        }
         private void bt_revenue_MouseDown(object sender, MouseButtonEventArgs e)
         {
             cardRevenue revenue = new cardRevenue();
@@ -49,5 +53,7 @@ namespace Gara_Management.GUI
             }
 
         }
+
+       
     }
 }

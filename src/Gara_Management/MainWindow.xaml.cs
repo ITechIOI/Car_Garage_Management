@@ -1,6 +1,7 @@
 ﻿using Gara_Management.DAO;
 using Gara_Management.DTO;
 using Gara_Management.GUI;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -176,13 +177,31 @@ namespace Gara_Management
         private void menuRevenue_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 4;
-            DataContext = new scrRevenue();
+            scrRevenue scrRevenue = new scrRevenue();
+            DataContext = scrRevenue;
+            scrRevenue.changeMoneyScr += scr_Revenue_changeToMoneyScr;
             menuHome.Background = new SolidColorBrush(color5);
             menuCars.Background = new SolidColorBrush(color5);
             menuStore.Background = new SolidColorBrush(color5);
             menuRevenue.Background = new SolidColorBrush(color4);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
+        }
+        // thay đổi từ màn hình Revenue sang Money
+        public void scr_Revenue_changeToMoneyScr(object sender, EventArgs e)
+        {
+            scr = 4;
+            scrMoney scrMoney = new scrMoney();
+            DataContext = scrMoney;
+            scrMoney.changeToRevenueScr += scrMoney_changeToRevenueScr ;
+        }
+        // thay đổi từ màn hình Money sang Revenue
+        public void scrMoney_changeToRevenueScr(object sender, EventArgs e)
+        {
+            scr = 4;
+            scrRevenue scrRevenue = new scrRevenue();
+            DataContext = scrRevenue;
+            scrRevenue.changeMoneyScr += scr_Revenue_changeToMoneyScr;
         }
         // move chuột ra khỏi nút màn hình Revenue
         private void menuRevenue_MouseLeave(object sender, MouseEventArgs e)
