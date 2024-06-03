@@ -58,5 +58,14 @@ namespace Gara_Management.GUI.Card
                 wrong.Show();
             }    
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                // Giả lập sự kiện MouseDown cho Border
+                bt_login_MouseDown(bt_login, null);
+            }
+        }
     }
 }
