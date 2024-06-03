@@ -1,6 +1,7 @@
 ﻿using Gara_Management.DAO;
 using Gara_Management.DTO;
 using Gara_Management.GUI;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,11 @@ namespace Gara_Management
         public MainWindow(Account acc)
         {
             InitializeComponent();
+            if (acc.AccAuthorization)
+            {
+                menuRevenue.Visibility = Visibility.Collapsed;
+                menuStaff.Visibility = Visibility.Collapsed;
+            }    
             this.Opacity = 0;
             this.acc = acc;
             gara = StaffDAO.Instance.GetIDGaraByIDStaff(this.acc.IDStaff);
@@ -134,7 +140,7 @@ namespace Gara_Management
         private void menuStore_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 3;
-            scrStore scrStore = new scrStore(gara);
+            scrStore scrStore = new scrStore(gara,acc);
             DataContext = scrStore;
             scrStore.changeToStockInScr += scrStore_changeToStockInScr;
             menuHome.Background = new SolidColorBrush(color5);
@@ -148,7 +154,7 @@ namespace Gara_Management
         public void scrStore_changeToStockInScr(object sender, EventArgs e)
         {
             scr = 3;
-            scrStockIn scrStockIn = new scrStockIn(gara);
+            scrStockIn scrStockIn = new scrStockIn(gara, acc);
             DataContext = scrStockIn;
             scrStockIn.changeToStoreScr += scrStockIn_changeToStoreScr;
         }
@@ -156,7 +162,7 @@ namespace Gara_Management
         public void scrStockIn_changeToStoreScr(object sender, EventArgs e)
         {
             scr = 3;
-            scrStore scrStore = new scrStore(gara);
+            scrStore scrStore = new scrStore(gara, acc);
             DataContext = scrStore;
             scrStore.changeToStockInScr += scrStore_changeToStockInScr;
         }
@@ -176,13 +182,31 @@ namespace Gara_Management
         private void menuRevenue_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 4;
-            DataContext = new scrRevenue();
+            scrRevenue scrRevenue = new scrRevenue();
+            DataContext = scrRevenue;
+            scrRevenue.changeMoneyScr += scr_Revenue_changeToMoneyScr;
             menuHome.Background = new SolidColorBrush(color5);
             menuCars.Background = new SolidColorBrush(color5);
             menuStore.Background = new SolidColorBrush(color5);
             menuRevenue.Background = new SolidColorBrush(color4);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
+        }
+        // thay đổi từ màn hình Revenue sang Money
+        public void scr_Revenue_changeToMoneyScr(object sender, EventArgs e)
+        {
+            scr = 4;
+            scrMoney scrMoney = new scrMoney();
+            DataContext = scrMoney;
+            scrMoney.changeToRevenueScr += scrMoney_changeToRevenueScr ;
+        }
+        // thay đổi từ màn hình Money sang Revenue
+        public void scrMoney_changeToRevenueScr(object sender, EventArgs e)
+        {
+            scr = 4;
+            scrRevenue scrRevenue = new scrRevenue();
+            DataContext = scrRevenue;
+            scrRevenue.changeMoneyScr += scr_Revenue_changeToMoneyScr;
         }
         // move chuột ra khỏi nút màn hình Revenue
         private void menuRevenue_MouseLeave(object sender, MouseEventArgs e)

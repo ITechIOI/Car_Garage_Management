@@ -24,11 +24,13 @@ namespace Gara_Management.GUI.Item
     {
         CarComponent com;
         string gara;
-        public itSupplies(CarComponent com, string gara)
+        Account account;
+        public itSupplies(CarComponent com, string gara, Account account)
         {
             InitializeComponent();
             this.com = com;
             this.gara = gara;
+            this.account = account;
             txtb_idComponent.Text = this.com.IDCom;
             txtb_nameComponent.Text = this.com.NameCom;
             txtb_price.Text = this.com.CurPrice.ToString();
@@ -38,7 +40,7 @@ namespace Gara_Management.GUI.Item
         private void bd_addSupplies_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // hiển thị phiếu đăng kí mua vật tư
-            crdStockIn crdStockIn = new crdStockIn(com.IDCom, gara);// ví dụ
+            crdStockIn crdStockIn = new crdStockIn(com.IDCom, gara, account);// ví dụ
             crdStockIn.ShowDialog();
 
         }

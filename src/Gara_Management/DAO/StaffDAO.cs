@@ -40,6 +40,21 @@ namespace Gara_Management.DAO
             }
             return staffList;
         }
+        public List<Staff> LoadStaffListByName(string gara, string name)
+        {
+            List<Staff> staffList = new List<Staff>();
+            string query = "SELECT ID_STAFF, NAME_STAFF, BIRTHDAY_STAFF, ADDRESS_STAFF, EMAIL_STAFF, " +
+                "PHONE_NUMBER_STAFF, SALARY, NAME_POS, ID_GARA, STATUS_STAFF FROM STAFFS JOIN STAFF_POSITION " +
+                "ON STAFF_POSITION.ID_POS=STAFFS.ID_POSITION WHERE ID_GARA = '" + gara + "' AND STATUS_STAFF=0 " +
+                "AND DBO.[non_unicode_convert](NAME_STAFF) LIKE DBO.[non_unicode_convert](N'%" + name + "%')";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                Staff staff = new Staff(item);
+                staffList.Add(staff);
+            }
+            return staffList;
+        }
 
         public Staff GetStaffById(string id)
         {

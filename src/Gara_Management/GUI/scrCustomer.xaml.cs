@@ -70,11 +70,41 @@ namespace Gara_Management.GUI
         private void LoadListCustomer()
         {
             List<Customer> customers = CustomerDAO.Instance.LoadCustomerList(this.gara);
+            ds_khachhang.Children.Clear();
             foreach (Customer customer in customers)
             {
                 itCustomer it = new itCustomer(customer, this.gara);
                 ds_khachhang.Children.Add(it);
             }
+        }
+        private void apply_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            filter.Visibility = Visibility.Hidden;
+            //
+
+
+        }
+        private void LoadListCustomerByName()
+        {
+            List<Customer> customers = CustomerDAO.Instance.LoadCustomerListByName(this.gara, txtb_findCustomer.Text);
+            ds_khachhang.Children.Clear();
+            foreach (Customer customer in customers)
+            {
+                itCustomer it = new itCustomer(customer, this.gara);
+                ds_khachhang.Children.Add(it);
+            }
+        }
+
+        private void txtb_findCustomer_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtb_findCustomer.Text == "")
+            {
+                LoadListCustomer();
+            }    
+            else
+            {
+                LoadListCustomerByName();
+            }    
         }
     }
 }

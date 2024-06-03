@@ -30,6 +30,11 @@ namespace Gara_Management.GUI
         public scrHome(string gara, Account acc)
         {
             InitializeComponent();
+            if (acc.AccAuthorization)
+            {
+                bd_staffAdd.Visibility = Visibility.Collapsed;
+                bd_reportCreate.Visibility = Visibility.Collapsed;
+            }    
             this.gara = gara;
             this.account = acc;
         }
@@ -80,7 +85,7 @@ namespace Gara_Management.GUI
         private void bd_stockIn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // tạo phiếu nhập kho
-            crdStockIn crdStock = new crdStockIn();
+            crdStockIn crdStock = new crdStockIn(gara,account);
             crdStock.ShowDialog();
         }
 

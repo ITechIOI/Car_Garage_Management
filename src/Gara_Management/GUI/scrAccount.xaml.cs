@@ -73,6 +73,19 @@ namespace Gara_Management.GUI
         private void LoadListStaff()
         {
             List<Staff> staffs = StaffDAO.Instance.LoadStaffList(this.gara);
+            ds_acc.Children.Clear();
+            Account acc = null;
+            foreach (Staff item in staffs)
+            {
+                acc = AccountDAO.Instance.GetAccountByIDStaff(item.IDStaff);
+                itAccount itAcc1 = new itAccount(item, acc);
+                ds_acc.Children.Add(itAcc1);
+            }
+        }
+        private void LoadListStaffByName()
+        {
+            List<Staff> staffs = StaffDAO.Instance.LoadStaffListByName(this.gara, txtb_findStaff.Text);
+            ds_acc.Children.Clear();
             Account acc = null;
             foreach (Staff item in staffs)
             {
@@ -82,6 +95,16 @@ namespace Gara_Management.GUI
             }
         }
 
-        
+        private void txtb_findStaff_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtb_findStaff.Text == "")
+            {
+                LoadListStaff();
+            }    
+            else
+            {
+                LoadListStaffByName();
+            }    
+        }
     }
 }

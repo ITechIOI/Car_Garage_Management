@@ -92,5 +92,19 @@ namespace Gara_Management.GUI
 
             }
         }
+
+        private void filter_LostFocus(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        // áp dụng lọc
+        private void apply_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            filter.Visibility = Visibility.Hidden;
+            //
+
+
+        }
     }
 }

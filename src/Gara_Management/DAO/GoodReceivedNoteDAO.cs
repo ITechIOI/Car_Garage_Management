@@ -37,6 +37,29 @@ namespace Gara_Management.DAO
             }
             return goodReceivedNoteList;
         }
+        public bool InsertGoodReceivedNote(string lotNumber, string supplier, string gara, string importTime, string staff)
+        {
+            string query = "EXEC USP_INSERTGRN '" + lotNumber + "', N'" + supplier + "', '" + gara + "', '" +
+                importTime + "', '" + staff + "'";
+            return (DataProvider.Instance.ExecuteNonQuery(query) > 0);
+        }
+        public bool UpdateGoodReceivedNote(string lotNumber, string supplier, string gara, string importTime, string staff)
+        {
+            string query = "EXEC USP_UPDATEGRN '" + lotNumber + "', N'" + supplier + "', '" + gara + "', '" + 
+                importTime + "', '" + staff + "'";
+            return (DataProvider.Instance.ExecuteNonQuery(query) > 0);
+        }
 
+        public bool DeleteGoodReceivedNote(string lotNumber)
+        {
+            string query = "EXEC USP_DELETEGRN '" + lotNumber + "'";
+            return (DataProvider.Instance.ExecuteNonQuery(query) > 0);
+        }
+
+        public int GetMaxLotNumber()
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT LOTNUMBER = dbo.GET_MAX_LOTNUMBER()");
+            return int.Parse(data.Rows[0]["LOTNUMBER"].ToString());
+        }
     }
 }

@@ -3,6 +3,7 @@ using Gara_Management.DTO;
 using Gara_Management.GUI.Item;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,13 +25,24 @@ namespace Gara_Management.GUI.Card
     public partial class crdStockIn : Window
     {
 
+        string gara;
+        Account acc;
+        int i = 0;
+        bool check = false;
+        List<GRNDetail> list = new List<GRNDetail>();
+
         // tùy vào cách dùng mà hiển thị sẽ khác nhau
         // phiếu mới
-        public crdStockIn()
+        public crdStockIn(string gara, Account acc)
         {
             InitializeComponent();
             this.Opacity = 0;
-
+            this.gara = gara;
+            this.acc = acc;
+            txtb_idLot.Text = "LOT" + (GoodReceivedNoteDAO.Instance.GetMaxLotNumber() + 1);
+            txtb_staff.Text = StaffDAO.Instance.GetStaffById(acc.IDStaff).NameStaff;
+            txtb_date.SelectedDate = DateTime.Now;
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -45,29 +57,41 @@ namespace Gara_Management.GUI.Card
         public crdStockIn(GoodReceivedNote grn)
         {
             InitializeComponent();
-            Supplier supplier = SupplierDAO.Instance.GetSupplierByID(grn.Supplier);
+            add_button.Text = "Sửa";
+            bd_pay.Visibility = Visibility.Hidden;
             txtb_idLot.Text = grn.LotNumber;
             txtb_date.Text = grn.ImportTime.ToString();
-            txtb_namesupplier.Text = supplier.NameSupplier;
-
+            txtb_namesupplier.Text = grn.Supplier;
+            txtb_staff.Text = StaffDAO.Instance.GetStaffById(AccountDAO.Instance.GetIDStaffByIDAcc(grn.DataEntryStaff.ToString())).NameStaff;
             decimal price = 0;
-            List<GRNDetail> list = GRNDetailDAO.Instance.LoadGRNDetailListByLotNumber(grn.LotNumber);
+            list.Clear();
+            list = GRNDetailDAO.Instance.LoadGRNDetailListByLotNumber(grn.LotNumber);
             foreach (GRNDetail detail in list)
             {
-                itStockInDetail it = new itStockInDetail(detail);
-                price = price + detail.GRNTotalPayment;
+                itStockInDetail it = new itStockInDetail(detail, gara);
                 ds_nhapkho.Children.Add(it);
+                price = price + detail.GRNTotalPayment;
             }
             txtb_totalsum.Text = price.ToString();
+            i = ds_nhapkho.Children.Count;
         }
         // hiển thị khi nhấn vào thêm 1 vật tư nào đó
-        public crdStockIn(string maVatTu, string gara)
+        public crdStockIn(string idComponent, string gara, Account acc)
         {
             InitializeComponent();
-
-            itStockInDetail it = new itStockInDetail();
+            this.gara = gara;
+            this.acc = acc;
+            txtb_idLot.Text = "LOT" + (GoodReceivedNoteDAO.Instance.GetMaxLotNumber() + 1);
+            txtb_staff.Text = StaffDAO.Instance.GetStaffById(acc.IDStaff).NameStaff;
+            txtb_date.SelectedDate = DateTime.Now;
+            i++;
+            GRNDetail detail = new GRNDetail(i, txtb_idLot.Text, idComponent, 1000, 1, 1000, false);
+            list.Clear();
+            list.Add(detail);
+            itStockInDetail it = new itStockInDetail(detail, gara);
             // thêm 
             ds_nhapkho.Children.Add(it);
+  
 
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -91,13 +115,126 @@ namespace Gara_Management.GUI.Card
 
         private void bd_pay_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (!check)
+                InsertGoodReceivedNote();
+            else
+                UpdateGoodReceivedNote();
         }
 
         private void bd_add_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            if (add_button.Text == "Thêm")
+            {
+                i++;
+                itStockInDetail it = new itStockInDetail(i, gara);
+                ds_nhapkho.Children.Add(it);
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Bạn có muốn cập nhật phiếu nhập này?", "Thông báo", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    add_button.Text = "Thêm";
+                    check = true;
+                    i = ds_nhapkho.Children.Count;
+                    bd_pay.Visibility = Visibility.Visible;
+                }
+            }
         }
+        public List<itStockInDetail> getListItem(StackPanel stack)
+        {
+            var list = new List<itStockInDetail>();
+            foreach (UIElement item in stack.Children)
+            {
+                if (item is itStockInDetail detail)
+                {
+                    list.Add(detail);
+                }   
+            }
+            return list;
+        }
+        private void InsertGoodReceivedNote()
+        {
+            if (txtb_namesupplier.Text == "")
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Cảnh báo");
+            }    
+            else
+            {
+                if (ds_nhapkho.Children.Count == 0)
+                {
+                    MessageBox.Show("Phiếu nhập phải có ít nhất một mặt hàng.", "Cảnh báo");
+                }    
+                else
+                {
+                    DateTime date = DateTime.Parse(txtb_date.SelectedDate.ToString());
+                    bool res = GoodReceivedNoteDAO.Instance.InsertGoodReceivedNote(txtb_idLot.Text, txtb_namesupplier.Text, gara,
+                        date.ToString("dd/MM/yyyy"), acc.IDAcc);
+                    List<itStockInDetail> list = getListItem(ds_nhapkho);
+                    foreach (itStockInDetail item in list)
+                    {
+                        res = res && GRNDetailDAO.Instance.InsertGRNDetail(txtb_idLot.Text,
+                            CarComponentDAO.Instance.GetComponentIDByName(gara, item.txtb_name.Text),
+                            decimal.Parse(item.txtb_price.Text), int.Parse(item.txtb_amount.Text));
+                    }
+                    if (res)
+                    {
+                        MessageBox.Show("Thêm phiếu nhập thành công.", "Thông báo");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thêm phiếu nhập thất bại. Vui lòng thử lại.", "Thông báo");
+                    }    
+
+                }    
+            }    
+        }
+        private void UpdateGoodReceivedNote()
+        {
+            if (txtb_namesupplier.Text == "")
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Cảnh báo");
+            }
+            else
+            {
+                if (ds_nhapkho.Children.Count == 0)
+                {
+                    MessageBox.Show("Phiếu nhập phải có ít nhất một mặt hàng.", "Cảnh báo");
+                }
+                else
+                {
+                    DateTime date = DateTime.Parse(txtb_date.SelectedDate.ToString());
+                    bool res = GoodReceivedNoteDAO.Instance.UpdateGoodReceivedNote(txtb_idLot.Text, txtb_namesupplier.Text, gara,
+                        date.ToString("dd/MM/yyyy"), acc.IDAcc);
+                    List<itStockInDetail> list = getListItem(ds_nhapkho);
+                    foreach (itStockInDetail item in list)
+                    {
+                        if (GRNDetailDAO.Instance.CheckExistedGRNDetail(txtb_idLot.Text, item.txtb_idStock.Text))
+                        {
+                            res = res && GRNDetailDAO.Instance.UpdateGRNDetail(txtb_idLot.Text, 
+                                CarComponentDAO.Instance.GetComponentIDByName(gara, item.txtb_name.Text),
+                            decimal.Parse(item.txtb_price.Text), int.Parse(item.txtb_amount.Text));
+                        }    
+                        else
+                        {
+                            res = res && GRNDetailDAO.Instance.InsertGRNDetail(txtb_idLot.Text, item.txtb_idStock.Text,
+                            decimal.Parse(item.txtb_price.Text), int.Parse(item.txtb_amount.Text));
+                        }    
+                    }
+                    if (res)
+                    {
+                        MessageBox.Show("Cập nhật phiếu nhập thành công.", "Thông báo");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cập nhật phiếu nhập thất bại. Vui lòng thử lại.", "Thông báo");
+                    }
+
+                }
+            }
+        }
+
         
     }
 }

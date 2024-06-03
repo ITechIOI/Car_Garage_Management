@@ -56,6 +56,14 @@ namespace Gara_Management.DAO
             return new Account(data.Rows[0]);
         }
 
+        public string GetIDStaffByIDAcc(string id)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM ACCOUNTS WHERE ID_ACC = '" + id + "'");
+            if (data.Rows.Count == 0)
+                return null;
+            return new Account(data.Rows[0]).IDStaff;
+        }
+
 
         public bool CheckExistedUsername(string username)
         {

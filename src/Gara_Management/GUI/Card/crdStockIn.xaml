@@ -236,7 +236,7 @@
             <!-- Nahf cung cấp -->
             <Grid Grid.Row="1" Margin="100,40,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="650">
                 <TextBlock Text="Nhà cung cấp: " VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold"/>
-                <TextBox x:Name="txtb_namesupplier" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="154,0,0,0" Foreground="{StaticResource sColor1}" />
+                <TextBox x:Name="txtb_namesupplier" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="154,0,0,0" Foreground="{StaticResource sColor1}"  />
                 <Rectangle Height="1" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Ngày nhập-->
@@ -248,7 +248,7 @@
             <!-- Người kí nhận -->
             <Grid Grid.Row="1" Margin="100,80,0,0" Height="45" VerticalAlignment="Top" HorizontalAlignment="Left" Width="650" Grid.RowSpan="2">
                 <TextBlock Text="Người kí nhận: " VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="DemiBold" />
-                <TextBox VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="145,0,0,0" Foreground="{StaticResource sColor1}" />
+                <TextBox x:Name="txtb_staff" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="145,0,0,0" Foreground="{StaticResource sColor1}" />
                 <Rectangle Height="1" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- bảng thông tin -->
@@ -306,7 +306,7 @@
 
             <!-- -->
             <Border x:Name="bd_add" MouseDown="bd_add_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="100,17,612,17">
-                <TextBlock Text="Thêm" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
+                <TextBlock x:Name="add_button" Text="Thêm" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
             </Border>
             <Border x:Name="bd_pay" MouseDown="bd_pay_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="465,17,247,17">
                 <TextBlock Text="Thanh toán" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>

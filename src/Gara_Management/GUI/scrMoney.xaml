@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="Gara_Management.GUI.scrStore"
+﻿<UserControl x:Class="Gara_Management.GUI.Card.scrMoney"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Gara_Management.GUI"
-              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:local="clr-namespace:Gara_Management.GUI.Card"
+                xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              Height="768" Width="885">
     <!-- design scroll bar -->
@@ -213,50 +213,48 @@
             </Grid.RowDefinitions>
             <!-- thoát ứng dụng -->
             <Border x:Name="bd_exit" Cursor="Hand" MouseEnter="bd_exit_MouseEnter" MouseLeave="bd_exit_MouseLeave"
-                    MouseDown="bd_exit_MouseDown" Margin="835,0,0,19" CornerRadius="5">
+              MouseDown="bd_exit_MouseDown" Margin="835,0,0,19" CornerRadius="5">
                 <Label x:Name="lb_exit" Content="X" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Width="50" Height="50" />
             </Border>
             <!-- Thanh tìm kiếm -->
             <Border Grid.Row="1" Margin="75,0,207,0" CornerRadius="20" Height="48" Background="{StaticResource sColor1}">
                 <Grid>
-                    <TextBox x:Name="txtb_findComponent" Height="48" BorderThickness="0" Background="Transparent"
-                     FontSize="20" VerticalContentAlignment="Center" Padding="20,0,0,0" Margin="0,0,51,0" TextChanged="txtb_findComponent_TextChanged"/>
+                    <TextBox Height="48" BorderThickness="0" Background="Transparent"
+               FontSize="20" VerticalContentAlignment="Center" Padding="20,0,0,0" Margin="0,0,51,0"/>
                     <Image Cursor="Hand" Source="/Images/ic_search.png" Margin="555,0,0,0"/>
                 </Grid>
             </Border>
             <!-- Filter -->
             <Image x:Name="bd_filter" MouseDown="bd_filter_MouseDown" Grid.Row="1" Cursor="Hand" Source="/Images/ic_filter.png" Margin="694,0,143,0"/>
-            <!-- nhập kho -->
-            <Image Grid.Row="1" x:Name="bd_stockIn" MouseDown="bd_stockIn_MouseDown" Cursor="Hand" Source="/Images/add_store.png" Margin="760,0,75,0" />
-            <!-- BẢng các vật tư phụ tùng -->
+            <!-- T -->
+            <Image Grid.Row="1" x:Name="bd_receipt" MouseDown="bd_receipt_MouseDown"  Cursor="Hand" Source="/Images/add_receipt.png" Margin="760,0,75,0" />
+            <!-- BẢng phiếu nhập kho-->
             <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,6">
                 <Grid>
                     <!-- tên thành phần bảng -->
                     <Border  BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}" Margin="0,0,18,383" Height="52">
                         <Grid Height="52" >
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="124"/>
-                                <ColumnDefinition Width="260"/>
-                                <ColumnDefinition Width="170"/>
-                                <ColumnDefinition Width="110"/>
-                                <ColumnDefinition />
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="280"/>
+                                <ColumnDefinition Width="140"/>
+                                <ColumnDefinition/>
 
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Mã số" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
-                            <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="122,0,0,0"/>
-                            <TextBlock Grid.Column="1" Text="Tên phụ tùng" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}" />
-                            <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="258,0,0,0"/>
-                            <TextBlock Grid.Column="2"  Text="Giá niêm yết" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
-                            <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="168,0,0,0"/>
-                            <TextBlock Grid.Column="3" Text="Số lượng" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
-                            <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="108,0,0,0"/>
+                            <TextBlock Text="Mã phiếu" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
+                            <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="118,0,0,0"/>
+                            <TextBlock Grid.Column="1" Text="Họ tên" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}" />
+                            <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="278,0,0,0"/>
+                            <TextBlock Grid.Column="2"  Text="Ngày thu" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
+                            <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="138,0,0,0"/>
+                            <TextBlock Grid.Column="3" Text="Số tiền thu" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource sColor1}"/>
 
 
                         </Grid>
                     </Border>
 
                     <ScrollViewer Margin="0,66,0,0">
-                        <StackPanel x:Name="ds_phutung" >
+                        <StackPanel x:Name="ds_phieuthu" >
 
                         </StackPanel>
 
@@ -264,64 +262,59 @@
                 </Grid>
 
             </Border>
-            <Border x:Name="bd_stockIn_scr" MouseDown="bd_stockIn_scr_MouseDown" Cursor="Hand" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="641,28,97,87">
-                <TextBlock Text="Phiếu nhập kho" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <!-- xem  -->
+            <Border x:Name="bd_revenue_scr" MouseDown="bd_revenue_scr_MouseDown"  Cursor="Hand" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="625,22,113,93">
+                <TextBlock Text="Xem kho" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
-
-            <!-- xem các phiếu nhập -->
-            <TextBlock Grid.Row="3" Text="Tổng loại vật tư: 200" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,95,0,0"/>
-            <TextBlock Grid.Row="3" Text="Số vật tư đã hết: 3" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,100,0"/>
-
+            <!-- -->
+            <TextBlock Grid.Row="3" Text="Chưa thanh toán: 34" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,95,0,0"/>
+            <TextBlock Grid.Row="3" Text="Chưa đăng ký nhập: 3" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,100,0"/>
 
             <!-- Bộ lọc -->
-            <Border x:Name="filter" Visibility="Hidden" Background="{StaticResource sColor5}" HorizontalAlignment="Left" Height="260" Margin="405,10,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="337">
+            <Border x:Name="filter" CornerRadius="10" Background="{StaticResource sColor5}" Visibility="Hidden" HorizontalAlignment="Left" Height="250" Margin="405,10,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="337">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="100*"/>
-                        <RowDefinition Height="100*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="85*"/>
+
                         <RowDefinition Height="40*"/>
                     </Grid.RowDefinitions>
-                    <!-- lọc giá niêm iết-->
-                    <Grid Grid.Row="0">
-
-                        <CheckBox Content="Giá niêm yết" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="215"/>
-
-                        <Grid>
-                            <xctk:RangeSlider  x:Name="rangeSlider" 
-        Minimum="0" 
-        Maximum="100000000" 
-        LowerValue="20000" 
-        HigherValue="80000000"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center" Width="316"/>
-                            <TextBlock FontSize="16" Text="{Binding ElementName=rangeSlider, Path=LowerValue, StringFormat='Min: {0:N0}'}"
-HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,73,0,0" />
-
-                            <TextBlock  HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="16"
- Text="{Binding ElementName=rangeSlider, Path=HigherValue, StringFormat='Max: {0:N0}'}"
- Margin="0,73,10,0" />
-                        </Grid>
+                    <!-- lọc NCC -->
+                  
+                    <!-- lọc ngày nhập -->
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="175*"/>
+                            <ColumnDefinition Width="162*"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Content="Ngày thu" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="136" Margin="10,5,0,0"/>
+                        <DatePicker Margin="168,9,10,9" Grid.ColumnSpan="2" />
                     </Grid>
-
-                    <!-- lọc số lượng -->
+                    <!-- đến ngày (  nếu chọn ngày thu mới được chọn đến ngày )-->
                     <Grid Grid.Row="1">
 
-                        <CheckBox Content="Số lượng" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="168"/>
+                        <CheckBox Content="Đến ngày"  FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="38" HorizontalAlignment="Left" Width="156" Margin="10,0,0,0" />
+                        <DatePicker Margin="166,12,10,0" />
+                    </Grid>
+                    <!-- lọc tiền  -->
+                    <Grid Grid.Row="2">
 
+                        <CheckBox Content="Số tiền thu" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="175" Margin="10,0,0,0"/>
                         <Grid>
-                            <xctk:RangeSlider  x:Name="rangeSlider2" 
-        Minimum="0" 
-        Maximum="100" 
-        LowerValue="2" 
-        HigherValue="80"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center" Width="316"/>
-                            <TextBlock FontSize="16" Text="{Binding ElementName=rangeSlider2, Path=LowerValue, StringFormat='Min: {0:N0}'}"
-HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,73,0,0" />
+                            <xctk:RangeSlider  x:Name="rangeSlider" 
+              Minimum="0" 
+              Maximum="100000000" 
+              LowerValue="20000" 
+              HigherValue="80000000"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center" Width="316"/>
+                            <TextBlock FontSize="16" Text="{Binding ElementName=rangeSlider, Path=LowerValue, StringFormat='Min: {0:N0}'}"
+      HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,73,0,0" />
 
                             <TextBlock  HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="16"
- Text="{Binding ElementName=rangeSlider2, Path=HigherValue, StringFormat='Max: {0:N0}'}"
- Margin="0,73,10,0" />
+       Text="{Binding ElementName=rangeSlider, Path=HigherValue, StringFormat='Max: {0:N0}'}"
+       Margin="0,73,10,0" />
                         </Grid>
                     </Grid>
                     <!-- ok-->
