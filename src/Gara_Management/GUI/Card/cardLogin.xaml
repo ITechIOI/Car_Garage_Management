@@ -7,7 +7,8 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="Transparent" AllowsTransparency="True"
         Foreground="{StaticResource sColor1}" FontSize="22" 
-        Height="768" Width="1080">
+        Height="768" Width="1080"
+        KeyDown="Window_KeyDown">
     <Border Background="{StaticResource sColor1}" CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
