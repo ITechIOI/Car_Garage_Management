@@ -36,9 +36,7 @@ namespace Gara_Management.GUI.Card
         {
             InitializeComponent();
             this.Opacity = 0;
-            bd_add.Visibility = Visibility.Hidden;
-            tbl_IDRec.Text = "REC1";
-            LoadRepairCardDetails(tbl_IDRec.Text);
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -54,6 +52,7 @@ namespace Gara_Management.GUI.Card
         {
             InitializeComponent();
             bd_add.Visibility = Visibility.Hidden;
+            tbl_IDRec.IsReadOnly = true;
             tbl_IDRec.Text = maphieu;
             LoadRepairCardDetails(tbl_IDRec.Text);
         }

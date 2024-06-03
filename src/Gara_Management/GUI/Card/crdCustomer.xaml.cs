@@ -41,6 +41,18 @@ namespace Gara_Management.GUI.Card
             tbx_save.Text = "Thêm";
         }
 
+        public crdCustomer(string gara, string name, string phone)
+        {
+            InitializeComponent();
+            this.Opacity = 0;
+            this.gara = gara;
+            idCustomerBorder.Visibility = Visibility.Hidden;
+            debtBorder.Visibility = Visibility.Hidden;
+            txtb_name.Text = name;
+            txtb_phone.Text = phone;
+            tbx_save.Text = "Thêm";
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Lấy storyboard từ resource
@@ -164,7 +176,10 @@ namespace Gara_Management.GUI.Card
                             txtb_debt.IsEnabled = false;
                             tbx_save.Text = "Sửa";
                         }    
-                            
+                        else
+                        {
+                            MessageBox.Show("Cập nhật thông tin khách hàng không thành công. Vui lòng thử lại");
+                        }    
                     }    
 
                 }    

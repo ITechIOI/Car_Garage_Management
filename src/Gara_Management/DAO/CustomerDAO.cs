@@ -91,8 +91,8 @@ namespace Gara_Management.DAO
 
         public bool UpdateCustomer(string id, string name, string phone, string address)
         {
-            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_UPDATECUSTOMER @id = '" + "', @name = N'" + name
-                + "', @phone = '" + phone + "', @address = N'" + address + "'") > 0);
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_UPDATECUSTOMER '" + id + "', N'" + name
+                + "', '" + phone + "', N'" + address + "'") > 0);
         }
 
         public bool DeleteCustomer(string gara, string id)
