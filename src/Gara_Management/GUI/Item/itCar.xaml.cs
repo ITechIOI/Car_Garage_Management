@@ -35,7 +35,8 @@ namespace Gara_Management.GUI.Item
             this.customer = cus;
             this.idRec = idRec;
             RepairPaymentBill bill = RepairPaymentBillDAO.Instance.GetRepairPaymentBillByIDRec(gara, idRec);
-            txtb_total.Text = bill.TotalPayment.ToString();
+            if (bill != null) { txtb_total.Text = bill.TotalPayment.ToString(); }
+            else { txtb_total.Text = "0"; }
         }
         
 

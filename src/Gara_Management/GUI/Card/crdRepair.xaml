@@ -231,7 +231,7 @@
             <!-- Mã phiếu -->
             <Grid Grid.Row="1" Margin="100,0,556,45">
                 <TextBlock Text="Mã phiếu:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBlock x:Name="tbl_IDRec" Text="REC1" VerticalAlignment="Center" Margin="106,0,0,0"/>
+                <TextBox x:Name="tbl_IDRec" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Biển số -->

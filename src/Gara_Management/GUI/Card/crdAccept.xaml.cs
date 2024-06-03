@@ -93,8 +93,13 @@ namespace Gara_Management.GUI.Card
             //nếu khách hàng chưa đăng ký thì không tiếp nhận
             if (CustomerDAO.Instance.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text) == null)
             {
-                MessageBox.Show("Người dùng chưa đăng ký!", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBoxResult result = MessageBox.Show("Người dùng chưa đăng ký! Bạn có muốn tạo khách hàng mới không?", "Lỗi!", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 //chuyển qua form đăng ký
+                if (result == MessageBoxResult.OK)
+                {
+                    crdCustomer crdCustomer = new crdCustomer(gara, tbx_NameCus.Text, tbx_PhoneCus.Text);
+                    crdCustomer.ShowDialog();
+                }    
                 return false;
             }
 
