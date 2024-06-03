@@ -44,5 +44,11 @@ namespace Gara_Management.GUI.Item
             crdStockIn.ShowDialog();
 
         }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            cardComponentDetail componentDetail=new cardComponentDetail();
+            componentDetail.ShowDialog();
+        }
     }
 }

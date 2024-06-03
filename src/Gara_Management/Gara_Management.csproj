@@ -103,6 +103,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Card\cardComponentDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\cardInfoStaff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -286,6 +290,9 @@
     <Compile Include="DTO\Staff.cs" />
     <Compile Include="GUI\Card\cardChangepass.xaml.cs">
       <DependentUpon>cardChangepass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardComponentDetail.xaml.cs">
+      <DependentUpon>cardComponentDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Card\cardInfoStaff.xaml.cs">
       <DependentUpon>cardInfoStaff.xaml</DependentUpon>
