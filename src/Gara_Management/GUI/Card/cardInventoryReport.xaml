@@ -40,13 +40,13 @@
                 <DataGrid></DataGrid>
             </Border>
             <Border x:Name="bt_previous" MouseDown="bt_previous_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="10,0,646,35">
-                <TextBlock Text="Previous" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Trước" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
             </Border>
-            <Border x:Name="bt_next" MouseDown="bt_next_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="544,0,112,35">
-                <TextBlock Text="Next" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
+            <Border x:Name="bt_next" MouseDown="bt_next_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="646,0,10,35">
+                <TextBlock Text="Sau" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
             </Border>
-            <Border x:Name="bt_report" MouseDown="bt_report_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="646,0,10,35">
-                <TextBlock Text="Report" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
+            <Border x:Name="bt_report" MouseDown="bt_report_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="544,0,112,35">
+                <TextBlock Text="Kết xuất" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
             </Border>
             <Border Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="326,0,330,35">
                 <TextBlock Text="1" FontSize="25" TextAlignment="Center" Foreground="Black" FontStyle="Italic" FontWeight="DemiBold"/>
