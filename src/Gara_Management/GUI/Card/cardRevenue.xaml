@@ -38,7 +38,7 @@
             <Border Grid.Row="0" Background="{StaticResource sColor1}" Margin="31,73,449,0" CornerRadius="10">
                 <Grid>
                     <TextBlock FontSize="25" Text="Số lượt sửa:" Foreground="Black" FontWeight="Bold" Margin="10,5,83,5"></TextBlock>
-                    <TextBlock FontSize="25" Text="150" Foreground="Black" Margin="182,5,-2,-5"></TextBlock>
+                    <TextBlock x:Name="tbl_numberOfRepairs" FontSize="25" Text="150" Foreground="Black" Margin="182,5,-2,-5"></TextBlock>
                 </Grid>
             </Border>
             <Border Grid.Row="0" Background="{StaticResource sColor1}" Margin="518,20,60,3" CornerRadius="10">

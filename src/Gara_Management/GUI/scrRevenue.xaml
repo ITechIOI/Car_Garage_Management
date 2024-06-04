@@ -17,13 +17,13 @@
             <Border Grid.Row="1" Margin="45,4,549,8" CornerRadius="20" Background="{StaticResource sColor1}">
                 <Grid>
                     <TextBlock Text="Từ: " FontSize="30" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-                    <DatePicker FontSize="25" Margin="78,10,0,0" RenderTransformOrigin="0.491,0.873"/>
+                    <DatePicker x:Name="dpk_startDate" FontSize="25" Margin="78,10,0,0" RenderTransformOrigin="0.491,0.873" CalendarClosed="dpk_CalendarClosed"/>
                 </Grid>
             </Border>
             <Border Grid.Row="1" Margin="517,4,77,8" CornerRadius="20" Background="{StaticResource sColor1}">
                 <Grid>
                     <TextBlock Text="Đến: " FontSize="30" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-                    <DatePicker FontSize="25" Margin="78,10,0,0" RenderTransformOrigin="0.491,0.873"/>
+                    <DatePicker x:Name="dpk_endDate" FontSize="25" Margin="78,10,0,0" RenderTransformOrigin="0.491,0.873" CalendarClosed="dpk_CalendarClosed"/>
                 </Grid>
             </Border>
             <Border x:Name="bt_revenue" MouseDown="bt_revenue_MouseDown" Grid.Row="2" CornerRadius="20" Background="{StaticResource sColor4}" Margin="27,10,605,10">
@@ -39,7 +39,7 @@
                             </TransformGroup>
                         </Rectangle.RenderTransform>
                     </Rectangle>
-                    <TextBlock Text="115K" FontSize="35" Background="Transparent" Foreground="{StaticResource sColor1}" TextAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="tbl_revenue" Text="115K" FontSize="35" Background="Transparent" Foreground="{StaticResource sColor1}" TextAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Center"/>
                 </Grid>
             </Border>
             <Border x:Name="bt_exit" Cursor="Hand" Grid.Row="0" 
@@ -60,7 +60,7 @@
                             </TransformGroup>
                         </Rectangle.RenderTransform>
                     </Rectangle>
-                    <TextBlock Text="115K" FontSize="35" Background="Transparent" Foreground="{StaticResource sColor1}" TextAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="tbl_spend" Text="115K" FontSize="35" Background="Transparent" Foreground="{StaticResource sColor1}" TextAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Center"/>
 
                 </Grid>
             </Border>

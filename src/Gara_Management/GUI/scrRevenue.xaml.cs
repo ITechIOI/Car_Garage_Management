@@ -75,9 +75,11 @@ namespace Gara_Management.GUI
             {
                 spend = spend + Convert.ToDecimal(row[5].ToString());
             }
+            tbl_revenue.Text = revenue.ToString();
+            tbl_spend.Text = spend.ToString();
         }
 
-        private void dpk__CalendarClosed(object sender, RoutedEventArgs e)
+        private void dpk_CalendarClosed(object sender, RoutedEventArgs e)
         {
             revenue = 0;
             spend = 0;
@@ -91,6 +93,8 @@ namespace Gara_Management.GUI
             {
                 spend = spend + Convert.ToDecimal(row[5].ToString());
             }
+            tbl_revenue.Text = revenue.ToString();
+            tbl_spend.Text = spend.ToString();
         }
     }
 }
