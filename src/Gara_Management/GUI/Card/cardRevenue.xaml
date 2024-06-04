@@ -32,24 +32,24 @@
             <Border Grid.Row="0" Background="{StaticResource sColor1}" Margin="31,13,361,60" CornerRadius="10">
                 <Grid>
                     <TextBlock FontSize="25" Text="Doanh thu:" Foreground="Black" FontWeight="Bold" Margin="10,5,102,5"></TextBlock>
-                    <TextBlock FontSize="25" Text="250000000" Foreground="Black" Margin="170,5,10,-5"></TextBlock>
+                    <TextBlock x:Name="tbl_totalRevenue" FontSize="25" Text="250000000" Foreground="Black" Margin="170,5,10,-5"></TextBlock>
                 </Grid>
             </Border>
             <Border Grid.Row="0" Background="{StaticResource sColor1}" Margin="31,73,486,0" CornerRadius="10">
                 <Grid>
                     <TextBlock FontSize="25" Text="Số xe:" Foreground="Black" FontWeight="Bold" Margin="10,5,102,5"></TextBlock>
-                    <TextBlock FontSize="25" Text="150" Foreground="Black" Margin="116,5,64,-5"></TextBlock>
+                    <TextBlock x:Name="tbl_numberOfRepairs" FontSize="25" Text="150" Foreground="Black" Margin="116,5,64,-5"></TextBlock>
                 </Grid>
             </Border>
             <Border Grid.Row="0" Background="{StaticResource sColor1}" Margin="518,20,60,3" CornerRadius="10">
                 <Grid>
                     <TextBlock Text="Tháng" FontSize="20" Foreground="Black" Margin="0,0,0,62" TextAlignment="Center" FontWeight="Bold" ></TextBlock>
                     <Rectangle Fill="Black" Height="2" Margin="0,33,0,62"></Rectangle>
-                    <TextBlock Text="5" FontSize="40" Foreground="Black" TextAlignment="Center" FontWeight="DemiBold" Margin="0,35,0,5"></TextBlock>
+                    <TextBlock x:Name="tbl_month" Text="5" FontSize="40" Foreground="Black" TextAlignment="Center" FontWeight="DemiBold" Margin="0,35,0,5"></TextBlock>
                 </Grid>
             </Border>
             <Border Grid.Row="1" CornerRadius="10" Margin="10,10,10,10">
-                <DataGrid></DataGrid>
+                <DataGrid x:Name="dgr_revenue"/>
             </Border>
             <Border x:Name="bt_previous" MouseDown="bt_previous_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="10,0,646,35">
                 <TextBlock Text="Previous" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>

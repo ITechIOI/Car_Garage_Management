@@ -17,18 +17,18 @@
             <Border Grid.Row="1" Margin="45,4,549,8" CornerRadius="20" Background="{StaticResource sColor1}">
                 <Grid>
                     <TextBlock Text="From: " FontSize="30" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-                    <DatePicker FontSize="25" Margin="78,10,0,0" RenderTransformOrigin="0.491,0.873"/>
+                    <DatePicker x:Name="dpk_startDate" FontSize="25" Margin="78,10,0,0" RenderTransformOrigin="0.491,0.873" CalendarClosed="dpk__CalendarClosed"/>
                 </Grid>
             </Border>
             <Border Grid.Row="1" Margin="517,4,77,8" CornerRadius="20" Background="{StaticResource sColor1}">
                 <Grid>
                     <TextBlock Text="To: " FontSize="30" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-                    <DatePicker FontSize="25" Margin="78,10,0,0" RenderTransformOrigin="0.491,0.873"/>
+                    <DatePicker x:Name="dpk_endDate" FontSize="25" Margin="78,10,0,0" RenderTransformOrigin="0.491,0.873" CalendarClosed="dpk__CalendarClosed"/>
                 </Grid>
             </Border>
             <Border x:Name="bt_revenue" MouseDown="bt_revenue_MouseDown" Grid.Row="2" CornerRadius="20" Background="{StaticResource sColor4}" Margin="27,10,605,10">
                 <Grid>
-                    <TextBlock Text="Revenue" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Revenue" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center"/>
                     <Rectangle Fill="{StaticResource sColor1}" Margin="0,39,0,90" RenderTransformOrigin="0.5,0.5" >
                         <Rectangle.RenderTransform>
                             <TransformGroup>
@@ -48,7 +48,7 @@
 
             <Border x:Name="bt_inventory" MouseDown="bt_inventory_MouseDown" Grid.Row="2" CornerRadius="20" Background="{StaticResource sColor4}" Margin="613,10,19,10">
                 <Grid>
-                    <TextBlock Text="Inventory Report" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text="Inventory Report" FontSize="30" Foreground="{StaticResource sColor1}" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Center"/>
                     <Rectangle Fill="{StaticResource sColor1}" Margin="0,39,0,90" RenderTransformOrigin="0.5,0.5" >
                         <Rectangle.RenderTransform>
                             <TransformGroup>
@@ -61,7 +61,7 @@
                     </Rectangle>
                 </Grid>
             </Border>
-<!-- chuyển mh-->
+            <!-- chuyển mh-->
             <Border x:Name="bt_money_scr" Cursor="Hand" MouseDown="bt_money_scr_MouseDown"  Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="580,352,110,84">
                 <TextBlock Text="Lịch sử thu tiền" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>

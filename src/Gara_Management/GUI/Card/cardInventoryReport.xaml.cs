@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,17 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class cardInventoryReport : Window
     {
-        public cardInventoryReport()
+        private string gara;
+        private DateTime startDate;
+        private DateTime endDate;
+        public cardInventoryReport(string gara, DateTime startDate, DateTime endDate)
         {
             InitializeComponent();
             this.Opacity = 0;
+            this.gara = gara;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            LoadSpendDetails();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -54,6 +62,10 @@ namespace Gara_Management.GUI.Card
 
         }
 
+        private void LoadSpendDetails()
+        {
+            dgr_SpendDetails.ItemsSource = RevenueDetailDAO.Instance.LoadSpendDetailListByPeriod(gara, startDate.Date.ToString("MM/dd/yyyy"), endDate.Date.ToString("MM/dd/yyyy")).DefaultView;
+        }
 
     }
 }
