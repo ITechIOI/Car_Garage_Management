@@ -114,9 +114,9 @@
                 <TextBlock x:Name="tbx_save" Text="Lưu" FontWeight="Bold" TextAlignment="Center"/>
             </Border>
 
-            <Border x:Name="bt_delete" MouseDown="bd_save_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="68,25,525,24">
+            <Border x:Name="bt_delete" MouseDown="bt_delete_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="68,25,525,24">
 
-                <TextBlock x:Name="txtb_delete" Text="Xóa" FontWeight="Bold" TextAlignment="Center"/>
+                <TextBlock x:Name="txtb_delete" Text="Xóa" FontWeight="Bold" TextAlignment="Center" Height="32" VerticalAlignment="Center" HorizontalAlignment="Left" Width="78"/>
             </Border>
 
 

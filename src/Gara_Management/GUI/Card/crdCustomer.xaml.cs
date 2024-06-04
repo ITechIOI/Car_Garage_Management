@@ -38,6 +38,7 @@ namespace Gara_Management.GUI.Card
             this.gara = gara;
             idCustomerBorder.Visibility = Visibility.Hidden;
             debtBorder.Visibility = Visibility.Hidden;
+            bt_delete.Visibility = Visibility.Hidden;
             tbx_save.Text = "Thêm";
         }
 
@@ -48,6 +49,7 @@ namespace Gara_Management.GUI.Card
             this.gara = gara;
             idCustomerBorder.Visibility = Visibility.Hidden;
             debtBorder.Visibility = Visibility.Hidden;
+            bt_delete.Visibility = Visibility.Hidden;
             txtb_name.Text = name;
             txtb_phone.Text = phone;
             tbx_save.Text = "Thêm";
@@ -187,7 +189,22 @@ namespace Gara_Management.GUI.Card
             }
         }
 
-
+        private void bt_delete_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa khách hàng này?", "Thông báo", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                if (CustomerDAO.Instance.DeleteCustomer(gara, txtb_idCustomer.Text))
+                {
+                    MessageBox.Show("Xóa khách hàng thành công.", "Thông báo");
+                    this.Close();
+                }    
+                else
+                {
+                    MessageBox.Show("Xóa khách hàng không thành công. Vui lòng thử lại sau.");
+                }    
+            }   
+        }
     }
 
 }
