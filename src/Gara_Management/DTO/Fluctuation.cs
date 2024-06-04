@@ -11,7 +11,7 @@ namespace Gara_Management.DTO
     internal class Fluctuation
     {
         private string idCus;
-        public string IDCus { get => idCus; set => idCus = value; }'
+        public string IDCus { get => idCus; set => idCus = value; }
         private string content;
         public string Content { get => content; set  => content = value; }
         private string id;
