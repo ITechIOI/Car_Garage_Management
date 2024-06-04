@@ -68,12 +68,17 @@ namespace Gara_Management.DAO
 
         public bool InsertCarBrand(string name, string gara)
         {
-            return DataProvider.Instance.ExecuteNonQuery("EXEC USP_INSERT_CARBRAND N'" + name + "', '" + gara + "'") > 0;
+            return DataProvider.Instance.ExecuteNonQuery("EXEC INSERT_CAR_BRANDS N'" + name + "', '" + gara + "'") > 0;
         }
 
         public bool DeleteCarBrand(string brand, string gara)
         {
-            return DataProvider.Instance.ExecuteNonQuery("EXEC USP_DELETE_CARBRAND '" + brand + "', '" + gara + "'") > 0;
+            return DataProvider.Instance.ExecuteNonQuery("EXEC DELETE_CAR_BRANDS '" + brand + "', '" + gara + "'") > 0;
+        }
+
+        public bool UpdateCarBrand(string id, string name)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("EXEC UPDATE_CAR_BRANDS '" + id + "', N'" + name + "'" ) > 0;
         }
     }
 }

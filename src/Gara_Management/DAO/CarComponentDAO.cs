@@ -98,5 +98,20 @@ namespace Gara_Management.DAO
             return new CarComponent(data.Rows[0]).IDCom;
         }
 
+        public bool InsertCarComponent(string name, string gara, decimal wage)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("EXEC INSERT_CARCOMPONENT N'" + name + "', '" + gara + "', " + wage) > 0;  
+        }
+
+        public bool UpdateCarComponent(string id, string name, string gara, decimal wage, decimal curPrice)
+        {
+            string query = "EXEC UPDATE_CARCOMPONENT '" + id + "', N'" + name + "', '" + gara + "', " + wage + ", " + curPrice;
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
+        }
+        public bool DeleteCarComponent(string id, string gara)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("EXEC DELETE_CARCOMPONENT '" + id + "', '" + gara + "'") > 0;
+        }
+
     }
 }
