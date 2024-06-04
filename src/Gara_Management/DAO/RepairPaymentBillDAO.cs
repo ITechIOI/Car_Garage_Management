@@ -28,7 +28,8 @@ namespace Gara_Management.DAO
         {
             string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, " +
                 "TOTAL_PAYMENT, PAID, STATUS_BILL FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS " +
-                "ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC WHERE ID_GARA = '" + gara + "'";
+                "ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC WHERE ID_GARA = '" + gara + "' " +
+                "AND STATUS_BILL = 0 AND STATUS_REC = 0";
             List<RepairPaymentBill> repairPaymentBillList = new List<RepairPaymentBill>();
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
@@ -39,6 +40,21 @@ namespace Gara_Management.DAO
             return repairPaymentBillList;
         }
 
+        public List<RepairPaymentBill> LoadRepairPaymentBillListByNumberPlate(string gara, string numberPlate)
+        {
+            string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, " +
+                "TOTAL_PAYMENT, PAID, STATUS_BILL FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS " +
+                "ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC WHERE ID_GARA = '" + gara + "' " +
+                "AND STATUS_BILL = 0 AND STATUS_REC = 0 AND NUMBER_PLATES LIKE '%" + numberPlate + "%'";
+            List<RepairPaymentBill> repairPaymentBillList = new List<RepairPaymentBill>();
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                RepairPaymentBill repairPaymentBill = new RepairPaymentBill(item);
+                repairPaymentBillList.Add(repairPaymentBill);
+            }
+            return repairPaymentBillList;
+        }
         public RepairPaymentBill GetRepairPaymentBillByIDRec(string gara, string idRec)
         {
             string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, " +

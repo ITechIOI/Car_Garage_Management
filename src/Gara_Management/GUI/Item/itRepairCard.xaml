@@ -18,13 +18,13 @@
                     <ColumnDefinition/>
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="RE001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name='txtb_idRec' Text="RE001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="122,0,0,0"/>
-                <TextBlock Grid.Column="1" Text="38-AA 99999" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_numberPlate" Grid.Column="1" Text="38-AA 99999" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="202,0,0,0"/>
-                <TextBlock Grid.Column="2" Text="03/02/2024" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_completeDate" Grid.Column="2" Text="03/02/2024" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="173,0,0,0"/>
-                <TextBlock Grid.Column="3" Text="11.206.000" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_totalBill" Grid.Column="3" Text="11.206.000" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="178,0,0,0"/>
                 <Border x:Name="bd_repair_detail" MouseDown="bd_repair_detail_MouseDown" Grid.Column="4" Cursor="Hand">
                     <TextBlock  Text="..." FontSize="36" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top"

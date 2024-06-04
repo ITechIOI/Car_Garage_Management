@@ -18,16 +18,16 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <!-- STT -->
-                <TextBlock Text="99" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                <TextBlock x:Name="txtb_ordinalNum" Text="99" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  />
                 <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="48,0,0,0"/>
                 <!-- Biển số -->
-                <TextBlock Grid.Column="1" Text="38-AA 99999" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_numberPlate" Grid.Column="1" Text="38-AA 99999" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="108,0,0,0"/>
                 <!-- Hiệu xe -->
-                <TextBlock Grid.Column="2" Text="Mitsubiki" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_carBrand" Grid.Column="2" Text="Mitsubiki" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="138,0,0,0"/>
                 <!-- Tên chủ xe -->
-                <TextBlock Grid.Column="3" Text="Nguyễn Thị Minh Kha Kha" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_cus" Grid.Column="3" Text="Nguyễn Thị Minh Kha Kha" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="203,0,0,0"/>
                 <!-- Tiền nợ -->
                 <Grid Grid.Column="4">

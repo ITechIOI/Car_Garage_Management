@@ -1,4 +1,6 @@
-﻿using Gara_Management.GUI.Card;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using Gara_Management.GUI.Item;
 using System;
 using System.Collections.Generic;
@@ -71,9 +73,12 @@ namespace Gara_Management.GUI
         }
         private void LoadListRepair()
         {
-            for (int i = 0; i < 10; i++)
+            List<RepairPaymentBill> list = RepairPaymentBillDAO.Instance.LoadRepairPaymentBillList(gara);
+            ds_phieuTN.Children.Clear();
+            foreach (RepairPaymentBill bill in list)
             {
-                itRepairCard it = new itRepairCard();
+                ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
+                itRepairCard it = new itRepairCard(recept, bill);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -84,6 +89,29 @@ namespace Gara_Management.GUI
             //
 
 
+        }
+        private void LoadListRepairByNumberPlate()
+        {
+            List<RepairPaymentBill> list = RepairPaymentBillDAO.Instance.LoadRepairPaymentBillListByNumberPlate(gara, txtb_findBill.Text);
+            ds_phieuTN.Children.Clear();
+            foreach (RepairPaymentBill bill in list)
+            {
+                ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
+                itRepairCard it = new itRepairCard(recept, bill);
+                ds_phieuTN.Children.Add(it);
+            }
+        }
+
+        private void txtb_findBill_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtb_findBill.Text == "")
+            {
+                LoadListRepair();
+            }    
+            else
+            {
+                LoadListRepairByNumberPlate();
+            }    
         }
     }
 }

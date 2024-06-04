@@ -84,10 +84,25 @@ namespace Gara_Management.GUI
         private void LoadListReceipt()
         {
             List<ReceptionForm> list = ReceptionFormDAO.Instance.LoadReceptionFormtList(gara);
+            ds_acc.Children.Clear();
+            int i = 1;
             foreach (ReceptionForm item in list)
             {
                 Customer cus = CustomerDAO.Instance.LoadCustomerByID(item.IDCus, gara);
-                itCar itCar1 = new itCar(gara, account, cus, item.IDRec);
+                itCar itCar1 = new itCar(gara, account, cus, item.IDRec, i++);
+                ds_acc.Children.Add(itCar1);
+
+            }
+        }
+        private void LoadListReceiptByName()
+        {
+            List<ReceptionForm> list = ReceptionFormDAO.Instance.LoadReceptionFormtListByNameCus(gara, txtb_findCar.Text);
+            ds_acc.Children.Clear();
+            int i = 1;
+            foreach (ReceptionForm item in list)
+            {
+                Customer cus = CustomerDAO.Instance.LoadCustomerByID(item.IDCus, gara);
+                itCar itCar1 = new itCar(gara, account, cus, item.IDRec, i++);
                 ds_acc.Children.Add(itCar1);
 
             }
@@ -105,6 +120,23 @@ namespace Gara_Management.GUI
             //
 
 
+        }
+
+        private void txtb_findCar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtb_findCar_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+            if (txtb_findCar.Text =="")
+            {
+                LoadListReceipt();
+            }    
+            else
+            {
+                LoadListReceiptByName();
+            }    
         }
     }
 }
