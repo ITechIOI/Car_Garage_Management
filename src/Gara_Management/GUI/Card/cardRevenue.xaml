@@ -35,10 +35,10 @@
                     <TextBlock x:Name="tbl_totalRevenue" FontSize="25" Text="250000000" Foreground="Black" Margin="170,5,10,-5"></TextBlock>
                 </Grid>
             </Border>
-            <Border Grid.Row="0" Background="{StaticResource sColor1}" Margin="31,73,486,0" CornerRadius="10">
+            <Border Grid.Row="0" Background="{StaticResource sColor1}" Margin="31,73,449,0" CornerRadius="10">
                 <Grid>
-                    <TextBlock FontSize="25" Text="Số xe:" Foreground="Black" FontWeight="Bold" Margin="10,5,102,5"></TextBlock>
-                    <TextBlock x:Name="tbl_numberOfRepairs" FontSize="25" Text="150" Foreground="Black" Margin="116,5,64,-5"></TextBlock>
+                    <TextBlock FontSize="25" Text="Số lượt sửa:" Foreground="Black" FontWeight="Bold" Margin="10,5,83,5"></TextBlock>
+                    <TextBlock FontSize="25" Text="150" Foreground="Black" Margin="182,5,-2,-5"></TextBlock>
                 </Grid>
             </Border>
             <Border Grid.Row="0" Background="{StaticResource sColor1}" Margin="518,20,60,3" CornerRadius="10">
@@ -52,13 +52,13 @@
                 <DataGrid x:Name="dgr_revenue"/>
             </Border>
             <Border x:Name="bt_previous" MouseDown="bt_previous_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="10,0,646,35">
-                <TextBlock Text="Previous" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Trước" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
             </Border>
-            <Border x:Name="bt_next" MouseDown="bt_next_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="544,0,112,35">
-                <TextBlock Text="Next" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
+            <Border x:Name="bt_next" MouseDown="bt_next_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="646,0,10,35">
+                <TextBlock Text="Sau" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
             </Border>
-            <Border x:Name="bt_report" MouseDown="bt_report_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="646,0,10,35">
-                <TextBlock Text="Report" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
+            <Border x:Name="bt_report" MouseDown="bt_report_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="544,0,112,35">
+                <TextBlock Text="Kết xuất" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>
             </Border>
             <Border Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="326,0,330,35">
                 <TextBlock Text="1" FontSize="25" TextAlignment="Center" Foreground="Black" FontStyle="Italic" FontWeight="DemiBold"/>
