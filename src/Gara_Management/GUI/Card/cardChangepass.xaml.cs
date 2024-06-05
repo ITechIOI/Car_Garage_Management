@@ -61,15 +61,22 @@ namespace Gara_Management.GUI.Card
             }
             else
             {
-                if (newPasswordTextbox.Text != retypeNewPasswordTextbox.Text)
+                if (newPasswordTextbox.Text.Length < 8)
                 {
-                    MessageBox.Show("Mật khẩu mới không trùng khớp. Vui lòng thử lại.");
+                    MessageBox.Show("Mật khẩu mới phải hơn 8 kí tự.");
                 }
                 else
                 {
-                    AccountDAO.Instance.ChangePassword(account.IDAcc, newPasswordTextbox.Text);
-                    MessageBox.Show("Thay đổi mật khẩu thành công.");
-                    this.Close();
+                    if (newPasswordTextbox.Text != retypeNewPasswordTextbox.Text)
+                    {
+                        MessageBox.Show("Mật khẩu mới không trùng khớp. Vui lòng thử lại.");
+                    }
+                    else
+                    {
+                        AccountDAO.Instance.ChangePassword(account.IDAcc, newPasswordTextbox.Text);
+                        MessageBox.Show("Thay đổi mật khẩu thành công.");
+                        this.Close();
+                    }
                 }
             }
         }
