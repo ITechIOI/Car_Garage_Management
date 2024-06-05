@@ -33,12 +33,14 @@ namespace Gara_Management.GUI
         public event EventHandler changeToRepairCardScr;
         string gara;
         Account account;
-        string brand;
-        int maxDebt;
-        int minDebt;
+        string brand = "";
+        int maxDebt = -1;
+        int minDebt = -1;
         public scrCars(string gara, Account account)
         {
             InitializeComponent();
+            rangeSlider.Minimum = ReceptionFormDAO.Instance.GetMinDebt(gara);
+            rangeSlider.Maximum = ReceptionFormDAO.Instance.GetMaxDebt(gara);
             ckb_debt.IsChecked = false;
             this.gara = gara;
             this.account = account;
@@ -82,8 +84,32 @@ namespace Gara_Management.GUI
 
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // lọc 
-            filter.Visibility = Visibility.Visible;
+            if (minDebt == -1 && maxDebt == -1)
+            {
+                rangeSlider.LowerValue = rangeSlider.Minimum;
+                rangeSlider.HigherValue = rangeSlider.Maximum;
+                ckb_debt.IsChecked = false;
+                filter.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                rangeSlider.LowerValue = minDebt;
+                rangeSlider.HigherValue = maxDebt;
+                ckb_debt.IsChecked = true;
+                if (brand == "")
+                {
+                    cbx_carBrand.SelectedItem = null;
+                    ckb_carBrand.IsChecked = false;
+                }    
+                else
+                {
+                    cbx_carBrand.SelectedItem = brand;
+                    ckb_carBrand.IsChecked = true;
+                }    
+                filter.Visibility = Visibility.Visible;
+            } 
+                
+            
         }
         private void LoadListReceipt()
         {
@@ -216,8 +242,8 @@ namespace Gara_Management.GUI
                 else
                 {
                     brand = cbx_carBrand.SelectedItem.ToString();
-                    maxDebt = 0;
-                    minDebt = 0;
+                    maxDebt = -1;
+                    minDebt = -1;
                     LoadListReceiptByCarBrand();
                 }
             }    
@@ -249,8 +275,8 @@ namespace Gara_Management.GUI
                     else
                     {
                         brand = "";
-                        maxDebt = 0;
-                        minDebt = 0;
+                        maxDebt = -1;
+                        minDebt = -1;
                         LoadListReceipt();
                     }    
                 }    

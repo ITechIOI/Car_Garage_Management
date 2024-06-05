@@ -42,6 +42,18 @@ namespace Gara_Management.DAO
             return receptionFormList;
         }
 
+        public int GetMaxDebt(string gara)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT DBO.GET_MAX_TOTALPAYMENT('" + gara + "') TOTALPAYMENT");
+            return (int)Convert.ToDecimal(data.Rows[0]["TOTALPAYMENT"].ToString());
+        }
+        public int GetMinDebt(string gara)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT DBO.GET_MIN_TOTALPAYMENT('" + gara + "') TOTALPAYMENT");
+            return (int)Convert.ToDecimal(data.Rows[0]["TOTALPAYMENT"].ToString());
+        }
+
+
         public List<ReceptionForm> LoadReceptionFormtListByNameCus(string gara, string name)
         {
             string query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
