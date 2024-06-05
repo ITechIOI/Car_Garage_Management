@@ -39,7 +39,6 @@ namespace Gara_Management.GUI
         public scrCars(string gara, Account account)
         {
             InitializeComponent();
-            rangeSlider.Minimum = ReceptionFormDAO.Instance.GetMinDebt(gara);
             rangeSlider.Maximum = ReceptionFormDAO.Instance.GetMaxDebt(gara);
             ckb_debt.IsChecked = false;
             this.gara = gara;
@@ -88,28 +87,25 @@ namespace Gara_Management.GUI
             {
                 rangeSlider.LowerValue = rangeSlider.Minimum;
                 rangeSlider.HigherValue = rangeSlider.Maximum;
-                ckb_debt.IsChecked = false;
-                filter.Visibility = Visibility.Visible;
+                ckb_debt.IsChecked = false;                
             }
             else
             {
                 rangeSlider.LowerValue = minDebt;
                 rangeSlider.HigherValue = maxDebt;
-                ckb_debt.IsChecked = true;
-                if (brand == "")
-                {
-                    cbx_carBrand.SelectedItem = null;
-                    ckb_carBrand.IsChecked = false;
-                }    
-                else
-                {
-                    cbx_carBrand.SelectedItem = brand;
-                    ckb_carBrand.IsChecked = true;
-                }    
-                filter.Visibility = Visibility.Visible;
-            } 
-                
-            
+                ckb_debt.IsChecked = true;               
+            }
+            if (brand == "")
+            {
+                cbx_carBrand.SelectedItem = null;
+                ckb_carBrand.IsChecked = false;
+            }
+            else
+            {
+                cbx_carBrand.SelectedItem = brand;
+                ckb_carBrand.IsChecked = true;
+            }
+            filter.Visibility = Visibility.Visible;
         }
         private void LoadListReceipt()
         {
@@ -196,7 +192,6 @@ namespace Gara_Management.GUI
         }
         private void LoadListReceiptByNameAndDebt()
         {
-            string brand = CarBrandDAO.Instance.GetIDBrandByName(cbx_carBrand.SelectedItem.ToString(), gara);
             List<ReceptionForm> list = ReceptionFormDAO.Instance.LoadReceptionFormtListByCusAndDebt(gara,
                 txtb_findCar.Text, minDebt, maxDebt);
             ds_acc.Children.Clear();

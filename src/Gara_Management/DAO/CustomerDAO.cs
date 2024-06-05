@@ -129,7 +129,7 @@ namespace Gara_Management.DAO
                 " ADDRESS_CUS, DEBT, STATUS_CUSD FROM CUSTOMERS JOIN CUSTOMER_DETAILS " +
                 "ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS  " +
                 "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0 " +
-                "AND DEBT IN (" + minDebt + ", " + maxDebt + ")");
+                "AND DEBT BETWEEN " + minDebt + " AND " + maxDebt);
             foreach (DataRow item in data.Rows)
             {
                 Customer customer = new Customer(item);
@@ -145,7 +145,7 @@ namespace Gara_Management.DAO
                 "ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS  " +
                 "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0 " +
                 "AND DBO.[non_unicode_convert](NAME_CUS) LIKE DBO.[non_unicode_convert](N'%" + name + "%') " +
-                "AND DEBT IN (" + minDebt + ", " + maxDebt + ")");
+                "AND DEBT BETWEEN " + minDebt + " AND " + maxDebt);
             foreach (DataRow item in data.Rows)
             {
                 Customer customer = new Customer(item);
@@ -158,14 +158,27 @@ namespace Gara_Management.DAO
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT MAX( DEBT) DEBT " +
                 "FROM CUSTOMERS JOIN CUSTOMER_DETAILS ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS " +
                 "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0");
-            return (int)Convert.ToDecimal(data.Rows[0]["DEBT"].ToString());
+
+            string s = data.Rows[0]["DEBT"].ToString();
+            decimal d;
+            if (Decimal.TryParse(s, out d))
+            {
+                return (int)d;
+            }
+            return 0;
         }
         public int GetMinDebt(string gara)
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT MIN( DEBT) DEBT " +
                 "FROM CUSTOMERS JOIN CUSTOMER_DETAILS ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS " +
                 "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0");
-            return (int)Convert.ToDecimal(data.Rows[0]["DEBT"].ToString());
+            string s = data.Rows[0]["DEBT"].ToString();
+            decimal d;
+            if (Decimal.TryParse(s, out d))
+            {
+                return (int)d;
+            }
+            return 0;
         }
 
     }

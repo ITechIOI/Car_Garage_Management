@@ -35,7 +35,6 @@ namespace Gara_Management.GUI
             this.gara = gara;
             LoadListCustomer();
             rangeSlider.Maximum = CustomerDAO.Instance.GetMaxDebt(gara);
-            rangeSlider.Minimum = CustomerDAO.Instance.GetMinDebt(gara);
             ckb_Debt.IsChecked = false;
                   
         }
