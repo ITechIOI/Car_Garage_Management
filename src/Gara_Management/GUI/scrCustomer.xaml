@@ -253,16 +253,18 @@
                     <!-- ltiền nợt-->
                     <Grid Grid.Row="0">
 
-                        <CheckBox Content="Tiền nợ" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="102" Margin="10,0,0,0"/>
+                        <CheckBox x:Name="ckb_Debt" Content="Tiền nợ" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="102" Margin="10,0,0,0"/>
 
                         <Grid>
                             <xctk:RangeSlider  x:Name="rangeSlider" 
-        Minimum="0" 
-        Maximum="100000000" 
-        LowerValue="20000" 
-        HigherValue="80000000"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center" Width="316"/>
+                                                Minimum="0" 
+                                                Maximum="100000000" 
+                                                LowerValue="20000" 
+                                                HigherValue="80000000"
+                                                HorizontalAlignment="Center"
+                                                HigherValueChanged="rangeSlider_HigherValueChanged"
+                                                LowerValueChanged="rangeSlider_HigherValueChanged"
+                                                VerticalAlignment="Center" Width="316"/>
                             <TextBlock FontSize="16" Text="{Binding ElementName=rangeSlider, Path=LowerValue, StringFormat='Min: {0:N0}'}"
 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,73,0,0" />
 
