@@ -31,7 +31,7 @@ namespace Gara_Management.DAO
                 "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
                 "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL" +
                 " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
-                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL)";
+                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_GARA = '" + gara + "'";
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
@@ -51,9 +51,181 @@ namespace Gara_Management.DAO
                 "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
                 "LIKE [DBO].[non_unicode_convert]('%" + name + "%') AND STATUS_CUS = 0)" +
                 " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
-                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_CUS IN (SELECT ID_CUS FROM CUSTOMERS " +
+                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_GARA = '" + gara +"' AND ID_CUS IN (SELECT ID_CUS FROM CUSTOMERS " +
                 "WHERE [DBO].[non_unicode_convert](NAME_CUS) LIKE [DBO].[non_unicode_convert]('%" + name + "%')" +
                 " AND STATUS_CUS = 0)";
+            List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                ReceptionForm receptionForm = new ReceptionForm(item);
+                receptionFormList.Add(receptionForm);
+            }
+            return receptionFormList;
+        }
+
+
+        public List<ReceptionForm> LoadReceptionFormtListByCarBrand(string gara, string brand)
+        {
+            string query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
+               "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
+               "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+               "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_BRAND = '" + brand + "'" +
+               " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
+               "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_BRAND = '" + brand + "' AND ID_GARA = '" + gara + "'";
+            List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                ReceptionForm receptionForm = new ReceptionForm(item);
+                receptionFormList.Add(receptionForm);
+            }
+            return receptionFormList;
+        }
+        public List<ReceptionForm> LoadReceptionFormtListByDebt(string gara, int minDebt, int maxDebt)
+        {
+            string query;
+            if (minDebt == 0)
+            {
+                query = "SELECT RECEPTION_FORMS.ID_REC,  ID_CUS, ID_BRAND, ID_GARA, NUMBER_PLATES,RECEPTION_DATE, STATUS_REC " +
+                "FROM RECEPTION_FORMS JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+                "WHERE ID_GARA = 'GR1' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND TOTAL_PAYMENT IN(" + minDebt + ", " +
+                maxDebt + ") " + "UNION SELECT* FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN(SELECT ID_REC " +
+                "FROM REPAIR_PAYMENT_BILL WHERE TOTAL_PAYMENT NOT IN (" + minDebt + ", " + maxDebt + ")) AND ID_GARA = '" + gara + "'";
+            }
+            else
+            {
+                query = "SELECT RECEPTION_FORMS.ID_REC,  ID_CUS, ID_BRAND, ID_GARA, NUMBER_PLATES,RECEPTION_DATE, STATUS_REC " +
+                "FROM RECEPTION_FORMS JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+                "WHERE ID_GARA = 'GR1' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND TOTAL_PAYMENT IN(" + minDebt + ", " +
+                maxDebt + ") ";
+            }    
+            List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                ReceptionForm receptionForm = new ReceptionForm(item);
+                receptionFormList.Add(receptionForm);
+            }
+            return receptionFormList;
+        }
+        public List<ReceptionForm> LoadReceptionFormtListByCarBrandAndDebt(string gara, string brand, int minDebt, int maxDebt)
+        {
+            string query;
+            if (minDebt == 0)
+            {
+                query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
+               "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
+               "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+               "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_BRAND = '" + brand +
+               "' AND TOTAL_PAYMENT IN (" + minDebt + ", " + maxDebt + ")" +
+               " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
+               "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL WHERE TOTAL_PAYMENT NOT IN(" + minDebt + ", " + maxDebt +
+               ")) AND ID_BRAND = '" + brand + "' AND ID_GARA = '" + gara + "'";
+            }
+            else
+            {
+                query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
+               "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
+               "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+               "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_BRAND = '" + brand +
+               "' AND TOTAL_PAYMENT IN (" + minDebt + ", " + maxDebt + ")";
+            }    
+            List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                ReceptionForm receptionForm = new ReceptionForm(item);
+                receptionFormList.Add(receptionForm);
+            }
+            return receptionFormList;
+        }
+
+        public List<ReceptionForm> LoadReceptionFormtListByCusCarBrandAndDebt(string gara,string cus, string brand, int minDebt, int maxDebt)
+        {
+            string query;
+            if (minDebt == 0)
+            {
+                query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
+               "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
+               "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+               "WHERE ID_GARA = '" + gara + "' AND ID_CUS IN " + "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
+               "LIKE [DBO].[non_unicode_convert]('%" + cus + "%')) AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_BRAND = '" + brand +
+               "' AND TOTAL_PAYMENT IN (" + minDebt + ", " + maxDebt + ")" +
+               " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
+               "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL WHERE TOTAL_PAYMENT NOT IN(" + minDebt + ", " + maxDebt +
+               ")) AND ID_BRAND = '" + brand + "' AND ID_GARA = '" + gara + "' AND ID_CUS IN " +
+               "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
+               "LIKE [DBO].[non_unicode_convert]('%" + cus + "%'))";
+            }
+            else
+            {
+                query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
+               "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
+               "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+               "WHERE ID_GARA = '" + gara + "' AND ID_CUS IN (SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) "
+               +"LIKE [DBO].[non_unicode_convert]('%" + cus + "%'))  AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL " +
+               "AND ID_BRAND = '" + brand +"' AND TOTAL_PAYMENT IN (" + minDebt + ", " + maxDebt + ")";
+            }
+            List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                ReceptionForm receptionForm = new ReceptionForm(item);
+                receptionFormList.Add(receptionForm);
+            }
+            return receptionFormList;
+        }
+
+        public List<ReceptionForm> LoadReceptionFormtListByCusAndDebt(string gara, string cus, int minDebt, int maxDebt)
+        {
+            string query;
+            if (minDebt == 0)
+            {
+                query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
+               "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
+               "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+               "WHERE ID_GARA = '" + gara + "' AND ID_CUS IN " + "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
+               "LIKE [DBO].[non_unicode_convert]('%" + cus + "%')) AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL" +
+               " AND TOTAL_PAYMENT IN (" + minDebt + ", " + maxDebt + ")" +
+               " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
+               "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL WHERE TOTAL_PAYMENT NOT IN(" + minDebt + ", " + maxDebt +
+               ")) AND ID_GARA = '" + gara + "' AND ID_CUS IN " +
+               "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
+               "LIKE [DBO].[non_unicode_convert]('%" + cus + "%'))";
+            }
+            else
+            {
+                query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
+               "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
+               "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+               "WHERE ID_GARA = '" + gara + "' AND ID_CUS IN (SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) "
+               + "LIKE [DBO].[non_unicode_convert]('%" + cus + "%'))  AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL " +
+               "AND TOTAL_PAYMENT IN (" + minDebt + ", " + maxDebt + ")";
+            }
+
+            List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                ReceptionForm receptionForm = new ReceptionForm(item);
+                receptionFormList.Add(receptionForm);
+            }
+            return receptionFormList;
+        }
+        public List<ReceptionForm> LoadReceptionFormtListByCusAndCarBrand(string gara, string cus, string brand)
+        {
+                string query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
+                   "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
+                   "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+                   "WHERE ID_GARA = '" + gara + "' AND ID_CUS IN " + "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
+                   "LIKE [DBO].[non_unicode_convert]('%" + cus + "%')) AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_BRAND = '" + brand +
+                   "' UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
+                   "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_BRAND = '" + 
+                   brand + "' AND ID_GARA = '" + gara + "' AND ID_CUS IN " +
+                   "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
+                   "LIKE [DBO].[non_unicode_convert]('%" + cus + "%'))";
+            
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
