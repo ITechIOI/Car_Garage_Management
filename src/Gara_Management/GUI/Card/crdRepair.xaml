@@ -243,7 +243,7 @@
             <!-- Ngày sửa-->
             <Grid Grid.Row="1" Margin="529,0,52,45">
                 <TextBlock Text="Ngày sửa: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <DatePicker x:Name="dpk_RecDate" VerticalContentAlignment="Center"  Background="Transparent" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
+                <DatePicker Foreground="{StaticResource sColor5}" x:Name="dpk_RecDate" VerticalContentAlignment="Center" Background="Transparent" Margin="99,0,0,0"/>
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- bảng thông tin -->

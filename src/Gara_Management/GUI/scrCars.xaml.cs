@@ -365,5 +365,11 @@ namespace Gara_Management.GUI
         {
             ckb_debt.IsChecked = true;
         }
+
+        private void btn_carbrand_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            cardCarBrand cardCarBrand = new cardCarBrand();
+            cardCarBrand.ShowDialog();
+        }
     }
 }

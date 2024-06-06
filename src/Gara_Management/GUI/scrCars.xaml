@@ -324,6 +324,10 @@
                 </Grid>
 
             </Border>
+            <Border x:Name="btn_carbrand" Cursor="Hand" MouseDown="btn_carbrand_MouseDown" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="89,20,649,90">
+                <TextBlock Text="Thương hiệu xe" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
             <!-- xem các phiếu sửa chữa-->
             <Border x:Name="bt_repair_card_scr" Cursor="Hand" MouseDown="bt_repair_card_scr_MouseDown" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="629,20,109,90">
                 <TextBlock Text="Phiếu sửa chữa" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>

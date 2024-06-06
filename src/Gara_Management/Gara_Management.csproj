@@ -99,6 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\Card\cardCarBrand.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\cardChangepass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Card\crdStockIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Item\itCarBrand.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -290,6 +298,9 @@
     <Compile Include="DTO\Revenue.cs" />
     <Compile Include="DTO\RevenueDetail.cs" />
     <Compile Include="DTO\Staff.cs" />
+    <Compile Include="GUI\Card\cardCarBrand.xaml.cs">
+      <DependentUpon>cardCarBrand.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Card\cardChangepass.xaml.cs">
       <DependentUpon>cardChangepass.xaml</DependentUpon>
     </Compile>
@@ -337,6 +348,9 @@
     </Compile>
     <Compile Include="GUI\Card\crdStockIn.xaml.cs">
       <DependentUpon>crdStockIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Item\itCarBrand.xaml.cs">
+      <DependentUpon>itCarBrand.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\scrMoney.xaml.cs">
       <DependentUpon>scrMoney.xaml</DependentUpon>

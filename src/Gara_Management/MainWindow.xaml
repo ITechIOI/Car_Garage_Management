@@ -97,12 +97,12 @@
                     <StackPanel x:Name="menuCustomers" Orientation="Horizontal" Cursor="Hand"
                                 MouseDown="menuCustomers_MouseDown" MouseEnter="menuCustomers_MouseEnter"
                                 MouseLeave="menuCustomers_MouseLeave">
-                        <Border Width="66">
+                        <Border Width="57">
                             <Image Source="/Images/ic_customer.png" Margin="6,0,6,0" Height="42" Width="42"/>
 
                         </Border>
                         <Label Content="Khách hàng" Background="Transparent"
-                                Height="66" FontSize="24" Width="123"
+                                Height="66" FontSize="24" Width="146"
                                 BorderThickness="0"
                                 HorizontalContentAlignment="Left"
                                 VerticalContentAlignment="Center" 
