@@ -7,6 +7,67 @@
              mc:Ignorable="d" VerticalAlignment="Top"
              Foreground="{StaticResource sColor1}"
              Width="782"  FontSize="20" >
+    <UserControl.Resources>
+        <!-- Custom Style for ComboBox -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton"
+                            Content="{TemplateBinding SelectionBoxItem}"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="0"
+                            IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                            ClickMode="Press"
+                            Padding="5"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            >
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="Border"
+                                  Background="{TemplateBinding Background}"
+                                  BorderBrush="{TemplateBinding BorderBrush}"
+                                  BorderThickness="{TemplateBinding BorderThickness}"
+                                  CornerRadius="10">
+                                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <Popup x:Name="Popup"
+                     Placement="Bottom"
+                     IsOpen="{TemplateBinding IsDropDownOpen}"
+                     AllowsTransparency="True"
+                     Focusable="False"
+                     PopupAnimation="Slide">
+                                <Grid x:Name="DropDown"
+                        SnapsToDevicePixels="True"
+                        MinWidth="{TemplateBinding ActualWidth}"
+                        MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder"
+                              Background="White"
+                              BorderBrush="Transparent"
+                              BorderThickness="0"
+                              CornerRadius="10">
+                                        <ScrollViewer Margin="4">
+                                            <StackPanel IsItemsHost="True"
+                                          KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        </ScrollViewer>
+                                    </Border>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Item Template for ComboBox Items -->
+        <DataTemplate x:Key="ComboBoxItemTemplate">
+            <TextBlock Text="{Binding}" Padding="5"/>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid Width="782" >
         <Border  >
             <Grid >
@@ -21,9 +82,13 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="txtb_orderednum" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" />
                 <TextBox x:Name="txtb_idStock" Grid.Column="1" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
-                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" TextChanged="txtb_idStock_TextChanged" />
-                <TextBox x:Name="txtb_name" Grid.Column="2" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
-                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="220"/>
+                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" />
+              <!--  <TextBox x:Name="txtb_name" Grid.Column="2" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
+                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="220"/> -->
+                <ComboBox Grid.Column="2" Height="30" Width="240"  ItemTemplate="{StaticResource ComboBoxItemTemplate}"
+          ItemsSource="{Binding Items}"  Background="{StaticResource sColor2}" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                </ComboBox>
                 <TextBox x:Name="txtb_price" Grid.Column="3" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
                         BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" TextChanged="txtb_price_TextChanged"/>
                 <TextBox x:Name="txtb_amount" Grid.Column="4" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
