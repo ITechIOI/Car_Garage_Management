@@ -65,9 +65,12 @@
                 </Grid>
             </Border>
             <!-- chuyển mh-->
-            <Border x:Name="bt_money_scr" Cursor="Hand" MouseDown="bt_money_scr_MouseDown"  Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="580,352,110,84">
+            <Border x:Name="bt_money_scr" Cursor="Hand" MouseDown="bt_money_scr_MouseDown"  Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="642,402,47,34">
                 <TextBlock Text="Lịch sử thu tiền" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
+            <Grid Grid.Row="3" Margin="45,10,19,117">
+                
+            </Grid>
         </Grid>
     </Border>
 </UserControl>
