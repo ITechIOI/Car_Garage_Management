@@ -35,13 +35,13 @@
                        HorizontalAlignment="Left" VerticalAlignment="Top"
                        FontWeight="Bold" Width="142" Height="41" Margin="-1,43,0,0"/>
                 <Border CornerRadius="20" Background="{StaticResource sColor1}" Margin="146,29,-1,87" BorderBrush="Black" BorderThickness="2">
-                    <TextBox x:Name="usernameTextbox" BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                    <TextBox x:Name="usernameTextbox" KeyDown="usernameTextbox_KeyDown" BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
                 </Border>
                 <Label Content="Mật khẩu:" FontSize="25" Foreground="{StaticResource sColor5}"
                        HorizontalAlignment="Left" VerticalAlignment="Top"
                        FontWeight="Bold" Width="141" Height="41" Margin="0,113,0,0"/>
                 <Border CornerRadius="20" Background="{StaticResource sColor1}" Margin="146,99,-1,17" BorderBrush="Black" BorderThickness="2">
-                    <PasswordBox x:Name="passwordTextBox" BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                    <PasswordBox x:Name="passwordTextBox" KeyDown="usernameTextbox_KeyDown" BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
                 </Border>
 
             </Grid>

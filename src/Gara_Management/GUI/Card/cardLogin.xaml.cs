@@ -58,5 +58,15 @@ namespace Gara_Management.GUI.Card
                 wrong.Show();
             }    
         }
+
+      
+        private void usernameTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                // Giả lập click vào nút "Đăng nhập"
+                bt_login_MouseDown(sender, null);
+            }
+        }
     }
 }
