@@ -28,7 +28,7 @@ namespace Gara_Management.GUI.Card
             this.gara = gara;
             LoadCarBrand();
             dpk_RecDate.SelectedDate = DateTime.Now;
-          
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -99,7 +99,7 @@ namespace Gara_Management.GUI.Card
                 {
                     crdCustomer crdCustomer = new crdCustomer(gara, tbx_NameCus.Text, tbx_PhoneCus.Text);
                     crdCustomer.ShowDialog();
-                }    
+                }
                 return false;
             }
 
@@ -279,6 +279,7 @@ namespace Gara_Management.GUI.Card
         //hiển thị họ tên khách hàng khi nhập sdt
         private void tbx_PhoneCus_TextChanged(object sender, TextChangedEventArgs e)
         {
+            isChanged = true;
             Customer customer = CustomerDAO.Instance.GetCustomerByPhone(tbx_PhoneCus.Text, gara)[0];
             tbx_NameCus.Text = customer.NameCus;
         }

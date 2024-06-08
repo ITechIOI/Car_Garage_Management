@@ -36,7 +36,7 @@ namespace Gara_Management.GUI.Card
         {
             InitializeComponent();
             this.Opacity = 0;
-            
+            bd_add.Visibility = Visibility.Hidden;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -130,20 +130,27 @@ namespace Gara_Management.GUI.Card
         //Lấy thông tin từ database theo IDREC
         private void LoadRepairCardDetails(string id)
         {
-            stt = 1;
-            totalPrice = 0;
-            string numberPlate = "", recDate = "";
-            detailList = RepairPaymentDetailDAO.Instance.LoadItRepairCardDetail(id);
-            receptionForm = ReceptionFormDAO.Instance.LoadReceptionFormByID(id);
-            tbx_NumberPlate.Text = receptionForm.NumberPlate;
-            dpk_RecDate.Text = receptionForm.ReceptionDate.ToString();
-            foreach (itRepairCardDetail item in detailList)
+            if (ReceptionFormDAO.Instance.LoadReceptionFormByID(id) != null)
             {
-                ds_suachua.Children.Add(item);
-                totalPrice = totalPrice + float.Parse(item.tbx_total.Text.ToString());
-                stt++;
+                stt = 1;
+                totalPrice = 0;
+                string numberPlate = "", recDate = "";
+                detailList = RepairPaymentDetailDAO.Instance.LoadItRepairCardDetail(id);
+                receptionForm = ReceptionFormDAO.Instance.LoadReceptionFormByID(id);
+                tbx_NumberPlate.Text = receptionForm.NumberPlate;
+                dpk_RecDate.Text = receptionForm.ReceptionDate.ToString();
+                foreach (itRepairCardDetail item in detailList)
+                {
+                    ds_suachua.Children.Add(item);
+                    totalPrice = totalPrice + float.Parse(item.tbx_total.Text.ToString());
+                    stt++;
+                }
+                tbl_totalPayment.Text = totalPrice.ToString("N");
             }
-            tbl_totalPayment.Text = totalPrice.ToString("N");
+            else
+            {
+                MessageBox.Show("Không tìm thấy mã phiếu sửa chữa!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
 
@@ -178,6 +185,16 @@ namespace Gara_Management.GUI.Card
                 MessageBox.Show("Cập nhật phiếu sửa chữa thất bại!");
             ds_suachua.Children.Clear();
             LoadRepairCardDetails(tbl_IDRec.Text);
+        }
+
+        //Sau khi nhập IDRec nhấn enter để load chi tiết sửa chữa tương ứng
+        private void tbl_IDRec_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ds_suachua.Children.Clear();
+                LoadRepairCardDetails(tbl_IDRec.Text);
+            }
         }
     }
 }

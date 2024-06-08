@@ -284,7 +284,7 @@
                     <!-- lọc giá niêm iết-->
                     <Grid Grid.Row="0">
 
-                        <CheckBox Content="Giá niêm yết" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="215"/>
+                        <CheckBox x:Name="ckb_price" Content="Giá niêm yết" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="215"/>
 
                         <Grid>
                             <xctk:RangeSlider  x:Name="rangeSlider" 
@@ -306,7 +306,7 @@ HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,73,0,0" />
                     <!-- lọc số lượng -->
                     <Grid Grid.Row="1">
 
-                        <CheckBox Content="Số lượng" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="168"/>
+                        <CheckBox x:Name="ckb_quantity" Content="Số lượng" FontSize="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="168"/>
 
                         <Grid>
                             <xctk:RangeSlider  x:Name="rangeSlider2" 
