@@ -25,16 +25,13 @@ namespace Gara_Management.GUI
     {
         private decimal revenue = 0;
         private decimal spend = 0;
-        public EventHandler changeMoneyScr;
+     
         public scrRevenue()
         {
             InitializeComponent();
             InitializeInfo();
         }
-        private void bt_money_scr_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            changeMoneyScr?.Invoke(this, EventArgs.Empty);
-        }
+    
         private void bt_revenue_MouseDown(object sender, MouseButtonEventArgs e)
         {
             cardRevenue revenue = new cardRevenue("GR1", dpk_startDate.SelectedDate.Value, dpk_endDate.SelectedDate.Value);

@@ -44,7 +44,7 @@ namespace Gara_Management.GUI.Item
             txtb_price.Text = this.detail.ComPrice.ToString();
             txtb_amount.Text=this.detail.ComQuantity.ToString();
             object nameCom = DataProvider.Instance.ExecuteScalar("SELECT NAME_COM from CAR_COMPONENTS WHERE ID_COM='" + this.detail.IDCom + "'");
-            //txtb_name.Text = nameCom.ToString();
+            txtb_name.Text = nameCom.ToString();
             txtb_sumofmoney.Text=this.detail.GRNTotalPayment.ToString();
         }
 

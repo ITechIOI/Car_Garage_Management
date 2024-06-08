@@ -83,12 +83,12 @@
                 <TextBlock x:Name="txtb_orderednum" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" />
                 <TextBox x:Name="txtb_idStock" Grid.Column="1" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
                         BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" />
-              <!--  <TextBox x:Name="txtb_name" Grid.Column="2" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
-                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="220"/> -->
-                <ComboBox Grid.Column="2" Height="30" Width="240"  ItemTemplate="{StaticResource ComboBoxItemTemplate}"
+                <TextBox x:Name="txtb_name" Grid.Column="2" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
+                        BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="220"/>
+               <!-- <ComboBox Grid.Column="2" Height="30" Width="240"  ItemTemplate="{StaticResource ComboBoxItemTemplate}"
           ItemsSource="{Binding Items}"  Background="{StaticResource sColor2}" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                </ComboBox>
+                </ComboBox> -->
                 <TextBox x:Name="txtb_price" Grid.Column="3" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
                         BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" TextChanged="txtb_price_TextChanged"/>
                 <TextBox x:Name="txtb_amount" Grid.Column="4" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"

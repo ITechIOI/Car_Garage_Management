@@ -155,6 +155,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Card\crdMoney.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\crdReceipt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -339,6 +343,9 @@
     </Compile>
     <Compile Include="GUI\Card\crdCustomer.xaml.cs">
       <DependentUpon>crdCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\crdMoney.xaml.cs">
+      <DependentUpon>crdMoney.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Card\crdReceipt.xaml.cs">
       <DependentUpon>crdReceipt.xaml</DependentUpon>

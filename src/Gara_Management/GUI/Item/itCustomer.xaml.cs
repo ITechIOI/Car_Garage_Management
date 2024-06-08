@@ -42,5 +42,11 @@ namespace Gara_Management.GUI.Item
             crdCustomer crdCustomer = new crdCustomer(customer, gara);
             crdCustomer.ShowDialog();   
         }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdMoney crdMoney = new crdMoney();
+            crdMoney.ShowDialog();
+        }
     }
 }

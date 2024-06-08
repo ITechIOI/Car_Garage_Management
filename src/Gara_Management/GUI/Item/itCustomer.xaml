@@ -37,11 +37,12 @@
                 <TextBlock x:Name="txtb_addresscus" Grid.Row="1" TextWrapping="Wrap" Margin="86,6,0,0"
                            HorizontalAlignment="Left" VerticalAlignment="Top"/>
                 <Rectangle Grid.Row="2" Fill="{StaticResource sColor5}" Height="2" VerticalAlignment="Top"/>
-                <TextBlock Grid.Row="2" Text="Nợ: " TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="524,0,0,0"/>
-                <!-- Tiền nợ-->
-                <TextBlock x:Name="txtb_debtcus" Grid.Row="2" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="564,0,0,0"/>
+
 
             </Grid>
         </Border>
+        <!-- Tiền nợ-->
+        <TextBlock Text="Nợ: " TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="527,107,0,0" MouseDown="TextBlock_MouseDown"/>
+        <TextBlock x:Name="txtb_debtcus" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="564,107,0,0" MouseDown="TextBlock_MouseDown"/>
     </Grid>
 </UserControl>
