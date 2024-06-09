@@ -27,6 +27,7 @@ namespace Gara_Management.GUI.Card
         string gara;
         Customer cus;
         Staff staff;
+        private PrintDialog printDialog;
         public crdReceipt(string gara, Staff staff)
         {
             InitializeComponent();
@@ -87,20 +88,20 @@ namespace Gara_Management.GUI.Card
             int proceeds;
             if (txtb_nameCus.Text == "" || txtb_proceeds.Text == "")
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin.");
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Thông báo");
             }
             else
             {
                 if (!int.TryParse(txtb_proceeds.Text, out proceeds))
                 {
-                    MessageBox.Show("Số tiền thu phải là một số nguyên");
+                    MessageBox.Show("Số tiền thu phải là một số nguyên", "Thông báo");
                 }    
                 else
                 {
                     decimal debt = decimal.Parse(txtb_debtCus.Text) + decimal.Parse(txtb_bill.Text);
                     if (proceeds > debt)
                     {
-                        MessageBox.Show("Số tiền thu không được lớn hơn số tiền nợ " + debt);
+                        MessageBox.Show("Số tiền thu không được lớn hơn số tiền nợ " + debt, "Thông báo");
                     }    
                     else
                     {
@@ -109,22 +110,23 @@ namespace Gara_Management.GUI.Card
                         if (ReceiptDAO.Instance.InsertReceipt(txtb_idReceipt.Text, cus.IDCus, gara,
                             date.ToString("dd/MM/yyyy HH:mm:ss"), staff.IDStaff, proceeds))
                         {
-                            MessageBox.Show("Lập phiếu thu tiền thành công");
-
+                            if (MessageBox.Show("Lập phiếu thu tiền thành công. Bạn có muốn in phiếu thu?", "Thông báo", 
+                                MessageBoxButton.YesNo)==MessageBoxResult.Yes)
+                            {
+                                PrintReceipt();
+                            }
+                            this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Lập phiếu thu tiền không thành công vui lòng thử lại");
+                            MessageBox.Show("Lập phiếu thu tiền không thành công vui lòng thử lại", "Thông báo");
                         }
                     }    
                 }    
             }
         }
 
-        private void bd_print_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
+        
 
         private void txtb_phoneCus_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -138,6 +140,41 @@ namespace Gara_Management.GUI.Card
             }
             txtb_nameCus.Text = cus.NameCus;
             txtb_debtCus.Text = cus.Debt.ToString();
+        }
+        private void PrintReceipt()
+        {
+            CarGara carGara = CarGaraDAO.Instance.GetCarGaraByID(this.gara);
+            FlowDocument flowDocument = new FlowDocument();
+            Paragraph gara = new Paragraph();
+            gara.Inlines.Add(new Run("GARA OTO\nĐịa chỉ: " + carGara.AddressGara + "\nSố điện thoại: " + carGara.PhoneNumberGara));
+            gara.TextAlignment = TextAlignment.Center;
+            gara.FontSize = 15;
+            flowDocument.Blocks.Add(gara);
+
+            Paragraph title = new Paragraph();
+            title.Inlines.Add(new Run("PHIẾU THU TIỀN"));
+            title.FontSize = 20;
+            title.TextAlignment = TextAlignment.Center;
+            title.FontWeight = FontWeights.Bold;
+            flowDocument.Blocks.Add(title);
+
+            Paragraph info = new Paragraph();
+            DateTime date = DateTime.Parse(pk_dateReceipt.SelectedDate.ToString());
+            string sInfo = "Mã phiếu: " +txtb_idReceipt.Text + "\nHọ tên: " + cus.NameCus + "\nSố điện thoại: " + cus.PhoneNumberCus + "\nĐịa chỉ: " + cus.AddressCus
+                + "\nNgày thu tiền: " + date.ToString("dd/MM/yyyy") + "\nSố tiền thu: " + txtb_proceeds.Text;
+            info.Inlines.Add(sInfo);
+            info.Margin = new Thickness(15);
+            flowDocument.Blocks.Add(info);
+
+
+            // Mở hộp thoại chọn máy in
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                // In hóa đơn
+                printDialog.PrintDocument(((IDocumentPaginatorSource)flowDocument).DocumentPaginator, "Hóa đơn"); 
+                
+            }
         }
     }
 }

@@ -24,6 +24,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
+
             <!-- exit -->
             <Border x:Name="bt_exit" Cursor="Hand" 
                     MouseDown="bt_exit_MouseDown" Margin="400,0,0,77" CornerRadius="5" Width="50">

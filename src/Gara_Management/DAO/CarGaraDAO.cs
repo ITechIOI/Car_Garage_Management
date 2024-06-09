@@ -35,6 +35,15 @@ namespace Gara_Management.DAO
             }
             return carGaraList;
         }
+        public CarGara GetCarGaraByID(string gara)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("select * from CAR_GARA WHERE ID_GARA = '" + gara + "'");
+            if (data.Rows.Count == 0)
+            {
+                return null;
+            }
+            return new CarGara(data.Rows[0]);
+        }
 
     }
 }

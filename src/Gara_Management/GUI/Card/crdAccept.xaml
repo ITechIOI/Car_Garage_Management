@@ -93,12 +93,9 @@
             </Grid>
 
 
-            <Border x:Name="bd_save" MouseDown="bd_save_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="90,25,275,24">
+            <Border x:Name="bd_save" MouseDown="bd_save_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="275,25,90,24">
 
                 <TextBlock x:Name="tbx_save" Text="Lưu" TextAlignment="Center"/>
-            </Border>
-            <Border x:Name="bd_print" MouseDown="bd_print_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="275,25,90,24">
-                <TextBlock Text="In" TextAlignment="Center"/>
             </Border>
         </Grid>
     </Border>
