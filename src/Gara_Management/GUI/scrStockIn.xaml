@@ -332,7 +332,7 @@
             <TextBlock Grid.Row="3" Text="Chưa đăng ký nhập: 3" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,100,0"/>
 
             <!-- Bộ lọc -->
-            <Border x:Name="filter" CornerRadius="10" Background="{StaticResource sColor5}" Visibility="Hidden" HorizontalAlignment="Left" Height="300" Margin="405,10,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="337">
+            <Border x:Name="filter" CornerRadius="10" Background="{StaticResource sColor5}" HorizontalAlignment="Left" Height="300" Margin="405,10,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="337" Visibility="Hidden">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40*"/>
@@ -348,8 +348,8 @@
                             <ColumnDefinition Width="160"/>
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <CheckBox Content="Nhà cung cấp" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" Margin="8,5,0,0"/>
-                        <ComboBox Grid.Column="1" ItemTemplate="{StaticResource ComboBoxItemTemplate}"
+                        <CheckBox x:Name="ckb_supplier" Content="Nhà cung cấp" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" Margin="8,5,0,0"/>
+                        <ComboBox x:Name="cbx_supplier" Grid.Column="1" ItemTemplate="{StaticResource ComboBoxItemTemplate}"
  HorizontalAlignment="Center" VerticalAlignment="Center"
 ItemsSource="{Binding Items}"  Background="{StaticResource sColor2}" Width="158" Height="29">
 
@@ -361,19 +361,19 @@ ItemsSource="{Binding Items}"  Background="{StaticResource sColor2}" Width="158"
                             <ColumnDefinition Width="175*"/>
                             <ColumnDefinition Width="162*"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Content="Ngày sửa" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="136" Margin="10,5,0,0"/>
-                        <DatePicker Margin="168,9,10,9" Grid.ColumnSpan="2" />
+                        <CheckBox x:Name="ckb_startDate" Content="Từ ngày" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="136" Margin="10,5,0,0"/>
+                        <DatePicker x:Name="dpk_startDate" Margin="168,9,10,9" Grid.ColumnSpan="2" />
                     </Grid>
                     <!-- đến ngày (  nếu chọn ngày nhập mới được chọn đến ngày )-->
                     <Grid Grid.Row="2">
 
-                        <CheckBox Content="Đến ngày"  FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="38" HorizontalAlignment="Left" Width="156" Margin="10,0,0,0" />
-                        <DatePicker Margin="166,12,10,0" />
+                        <CheckBox x:Name="ckb_endDate" Content="Đến ngày"  FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="38" HorizontalAlignment="Left" Width="156" Margin="10,0,0,0" />
+                        <DatePicker x:Name="dpk_endDate" Margin="166,12,10,0" />
                     </Grid>
                     <!-- lọc tiền  -->
                     <Grid Grid.Row="3">
 
-                        <CheckBox Content="Tổng tiền" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="115" Margin="10,0,0,0"/>
+                        <CheckBox x:Name="ckb_price" Content="Tổng tiền" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="115" Margin="10,0,0,0"/>
                         <Grid>
                             <xctk:RangeSlider  x:Name="rangeSlider" 
               Minimum="0" 
