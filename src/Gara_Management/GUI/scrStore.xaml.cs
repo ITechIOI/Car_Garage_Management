@@ -26,8 +26,11 @@ namespace Gara_Management.GUI
     {
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
+
         string gara;
         Account acc;
+        int minQuan = -1, maxQuan = -1;
+        int minPrice = -1, maxPrice = -1;
         public EventHandler changeToStockInScr;
         public scrStore(string gara, Account account)
         {
@@ -36,7 +39,7 @@ namespace Gara_Management.GUI
             this.acc = account;
             LoadListComponent();
         }
-        
+
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
             bd_exit.Background = new SolidColorBrush(color4);
@@ -61,7 +64,7 @@ namespace Gara_Management.GUI
         // chuyển sang màn hình phiếu nhập kho
         private void bd_stockIn_scr_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            changeToStockInScr?.Invoke(this, EventArgs.Empty); 
+            changeToStockInScr?.Invoke(this, EventArgs.Empty);
         }
 
         // tạo phiếu nhập kho
@@ -74,10 +77,80 @@ namespace Gara_Management.GUI
         // lọc
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            filter.Visibility = Visibility.Visible;
+            if (filter.Visibility == Visibility.Hidden)
+            {
+                if (minPrice == -1 && maxPrice == -1)
+                {
+                    rangeSlider.LowerValue = rangeSlider.Minimum;
+                    rangeSlider.HigherValue = rangeSlider.Maximum;
+                    ckb_price.IsChecked = false;
+                }
+                else
+                {
+                    rangeSlider.LowerValue = minPrice;
+                    rangeSlider.HigherValue = maxPrice;
+                    ckb_price.IsChecked = true;
+                }
+                if (minQuan == -1 && maxQuan == -1)
+                {
+                    rangeSlider2.LowerValue = rangeSlider2.Minimum;
+                    rangeSlider2.HigherValue = rangeSlider2.Maximum;
+                    ckb_quantity.IsChecked = false;
+                }
+                else
+                {
+                    rangeSlider2.LowerValue = minQuan;
+                    rangeSlider2.HigherValue = maxQuan;
+                    ckb_quantity.IsChecked = true;
+                }
+                filter.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                filter.Visibility = Visibility.Hidden;
+            }
         }
         private void apply_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            txtb_findComponent.Text = "";
+            if (ckb_quantity.IsChecked == true && ckb_price.IsChecked == false)
+            {
+                minPrice = -1;
+                maxPrice = -1;
+                minQuan = (int)rangeSlider2.LowerValue;
+                maxQuan = (int)rangeSlider2.HigherValue;
+                LoadCarComponentListByQuantity();
+            }
+            else
+            {
+                if (ckb_quantity.IsChecked == false && ckb_price.IsChecked == true)
+                {
+                    minQuan = -1;
+                    maxQuan = -1;
+                    minPrice = (int)rangeSlider.LowerValue;
+                    maxPrice = (int)rangeSlider.HigherValue;
+                    LoadCarComponentListByPrice();
+                }
+                else
+                {
+                    if (ckb_quantity.IsChecked == true && ckb_price.IsChecked == true)
+                    {
+                        minQuan = (int)rangeSlider2.LowerValue;
+                        maxQuan = (int)rangeSlider2.HigherValue;
+                        minPrice = (int)rangeSlider.LowerValue;
+                        maxPrice = (int)rangeSlider.HigherValue;
+                        LoadCarComponentListByQuantityAndPrice();
+                    }
+                    else
+                    {
+                        minQuan = -1;
+                        maxQuan = -1;
+                        minPrice = -1;
+                        maxPrice = -1;
+                        LoadListComponent();
+                    }
+                }
+            }
             filter.Visibility = Visibility.Hidden;
             //
 
@@ -87,15 +160,82 @@ namespace Gara_Management.GUI
         {
             List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentList(gara);
             ds_phutung.Children.Clear();
-            foreach (CarComponent car in list) 
+            foreach (CarComponent car in list)
             {
-                itSupplies it = new itSupplies(car, gara,acc);
+                itSupplies it = new itSupplies(car, gara, acc);
                 ds_phutung.Children.Add(it);
             }
         }
+
         private void LoadListComponentByName()
         {
             List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentListByName(gara, txtb_findComponent.Text);
+            ds_phutung.Children.Clear();
+            foreach (CarComponent car in list)
+            {
+                itSupplies it = new itSupplies(car, gara, acc);
+                ds_phutung.Children.Add(it);
+            }
+        }
+
+        private void LoadCarComponentListByQuantity()
+        {
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentListByQuantity(gara, minQuan, maxQuan);
+            ds_phutung.Children.Clear();
+            foreach (CarComponent car in list)
+            {
+                itSupplies it = new itSupplies(car, gara, acc);
+                ds_phutung.Children.Add(it);
+            }
+        }
+
+        private void LoadCarComponentListByPrice()
+        {
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentListByPrice(gara, minPrice, maxPrice);
+            ds_phutung.Children.Clear();
+            foreach (CarComponent car in list)
+            {
+                itSupplies it = new itSupplies(car, gara, acc);
+                ds_phutung.Children.Add(it);
+            }
+        }
+
+        private void LoadCarComponentListByQuantityAndPrice()
+        {
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentListByQuantityAndPrice(gara, minQuan, maxQuan, minPrice, maxPrice);
+            ds_phutung.Children.Clear();
+            foreach (CarComponent car in list)
+            {
+                itSupplies it = new itSupplies(car, gara, acc);
+                ds_phutung.Children.Add(it);
+            }
+        }
+
+        private void LoadCarComponentListByNameAndQuantity()
+        {
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentListByNameAndQuantity(gara, txtb_findComponent.Text, minQuan, maxQuan);
+            ds_phutung.Children.Clear();
+            foreach (CarComponent car in list)
+            {
+                itSupplies it = new itSupplies(car, gara, acc);
+                ds_phutung.Children.Add(it);
+            }
+        }
+
+        private void LoadCarComponentListByNameAndPrice()
+        {
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentListByNameAndPrice(gara, txtb_findComponent.Text, minPrice, maxPrice);
+            ds_phutung.Children.Clear();
+            foreach (CarComponent car in list)
+            {
+                itSupplies it = new itSupplies(car, gara, acc);
+                ds_phutung.Children.Add(it);
+            }
+        }
+
+        private void LoadCarComponentListByNamePriceAndQuantity()
+        {
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentListByNamePriceAndQuantity(gara, txtb_findComponent.Text, minPrice, maxPrice, minQuan, maxQuan);
             ds_phutung.Children.Clear();
             foreach (CarComponent car in list)
             {
@@ -108,12 +248,54 @@ namespace Gara_Management.GUI
         {
             if (txtb_findComponent.Text == "")
             {
-                LoadListComponent();
-            }    
+                if (ckb_quantity.IsChecked == true && ckb_price.IsChecked == false)
+                {
+                    LoadCarComponentListByQuantity();
+                }
+                else
+                {
+                    if (ckb_quantity.IsChecked == false && ckb_price.IsChecked == true)
+                    {
+                        LoadCarComponentListByPrice();
+                    }
+                    else
+                    {
+                        if (ckb_quantity.IsChecked == true && ckb_price.IsChecked == true)
+                        {
+                            LoadCarComponentListByQuantityAndPrice();
+                        }
+                        else
+                        {
+                            LoadListComponent();
+                        }
+                    }
+                }
+            }
             else
             {
-                LoadListComponentByName();
-            }    
+                if (ckb_quantity.IsChecked == true && ckb_price.IsChecked == false)
+                {
+                    LoadCarComponentListByNameAndQuantity();
+                }
+                else
+                {
+                    if (ckb_quantity.IsChecked == false && ckb_price.IsChecked == true)
+                    {
+                        LoadCarComponentListByNameAndPrice();
+                    }
+                    else
+                    {
+                        if (ckb_quantity.IsChecked == true && ckb_price.IsChecked == true)
+                        {
+                            LoadCarComponentListByNamePriceAndQuantity();
+                        }
+                        else
+                        {
+                            LoadListComponentByName();
+                        }
+                    }
+                }
+            }
         }
     }
 }

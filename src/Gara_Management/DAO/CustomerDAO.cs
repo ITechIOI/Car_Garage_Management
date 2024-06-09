@@ -91,8 +91,8 @@ namespace Gara_Management.DAO
 
         public bool UpdateCustomer(string id, string name, string phone, string address)
         {
-            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_UPDATECUSTOMER @id = '" + "', @name = N'" + name
-                + "', @phone = '" + phone + "', @address = N'" + address + "'") > 0);
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_UPDATECUSTOMER '" + id + "', N'" + name
+                + "', '" + phone + "', N'" + address + "'") > 0);
         }
 
         public bool DeleteCustomer(string gara, string id)
@@ -121,6 +121,64 @@ namespace Gara_Management.DAO
                 customerList.Add(customer);
             }
             return customerList;
+        }
+        public List<Customer> LoadCustomerListByDebt(string gara, int minDebt, int maxDebt)
+        {
+            List<Customer> customerList = new List<Customer>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT CUSTOMERS.ID_CUS, NAME_CUS, PHONE_NUMBER_CUS," +
+                " ADDRESS_CUS, DEBT, STATUS_CUSD FROM CUSTOMERS JOIN CUSTOMER_DETAILS " +
+                "ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS  " +
+                "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0 " +
+                "AND DEBT BETWEEN " + minDebt + " AND " + maxDebt);
+            foreach (DataRow item in data.Rows)
+            {
+                Customer customer = new Customer(item);
+                customerList.Add(customer);
+            }
+            return customerList;
+        }
+        public List<Customer> LoadCustomerListByDebtAndName(string gara, string name, int minDebt, int maxDebt)
+        {
+            List<Customer> customerList = new List<Customer>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT CUSTOMERS.ID_CUS, NAME_CUS, PHONE_NUMBER_CUS," +
+                " ADDRESS_CUS, DEBT, STATUS_CUSD FROM CUSTOMERS JOIN CUSTOMER_DETAILS " +
+                "ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS  " +
+                "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0 " +
+                "AND DBO.[non_unicode_convert](NAME_CUS) LIKE DBO.[non_unicode_convert](N'%" + name + "%') " +
+                "AND DEBT BETWEEN " + minDebt + " AND " + maxDebt);
+            foreach (DataRow item in data.Rows)
+            {
+                Customer customer = new Customer(item);
+                customerList.Add(customer);
+            }
+            return customerList;
+        }
+        public int GetMaxDebt(string gara)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT MAX( DEBT) DEBT " +
+                "FROM CUSTOMERS JOIN CUSTOMER_DETAILS ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS " +
+                "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0");
+
+            string s = data.Rows[0]["DEBT"].ToString();
+            decimal d;
+            if (Decimal.TryParse(s, out d))
+            {
+                return (int)d;
+            }
+            return 0;
+        }
+        public int GetMinDebt(string gara)
+        {
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT MIN( DEBT) DEBT " +
+                "FROM CUSTOMERS JOIN CUSTOMER_DETAILS ON CUSTOMERS.ID_CUS = CUSTOMER_DETAILS.ID_CUS " +
+                "WHERE STATUS_CUS = 0 AND ID_GARA = '" + gara + "' AND STATUS_CUSD = 0");
+            string s = data.Rows[0]["DEBT"].ToString();
+            decimal d;
+            if (Decimal.TryParse(s, out d))
+            {
+                return (int)d;
+            }
+            return 0;
         }
 
     }

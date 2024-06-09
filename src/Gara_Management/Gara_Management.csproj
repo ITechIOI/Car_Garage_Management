@@ -99,7 +99,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\Card\cardCarBrand.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\cardChangepass.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\cardComponentDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,6 +155,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Card\crdMoney.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\crdReceipt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Card\crdStockIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Item\itCarBrand.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -255,6 +271,7 @@
     <Compile Include="DAO\CustomerDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\EndingInventoryDAO.cs" />
+    <Compile Include="DAO\FluctuationDAO.cs" />
     <Compile Include="DAO\GaraQuantityRuleDAO.cs" />
     <Compile Include="DAO\GoodReceivedNoteDAO.cs" />
     <Compile Include="DAO\GRNDetailDAO.cs" />
@@ -273,6 +290,7 @@
     <Compile Include="DTO\CarGara.cs" />
     <Compile Include="DTO\Customer.cs" />
     <Compile Include="DTO\EndingInventory.cs" />
+    <Compile Include="DTO\Fluctuation.cs" />
     <Compile Include="DTO\GaraQuantityRule.cs" />
     <Compile Include="DTO\GoodReceivedNote.cs" />
     <Compile Include="DTO\GRNDetail.cs" />
@@ -284,8 +302,14 @@
     <Compile Include="DTO\Revenue.cs" />
     <Compile Include="DTO\RevenueDetail.cs" />
     <Compile Include="DTO\Staff.cs" />
+    <Compile Include="GUI\Card\cardCarBrand.xaml.cs">
+      <DependentUpon>cardCarBrand.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Card\cardChangepass.xaml.cs">
       <DependentUpon>cardChangepass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardComponentDetail.xaml.cs">
+      <DependentUpon>cardComponentDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Card\cardInfoStaff.xaml.cs">
       <DependentUpon>cardInfoStaff.xaml</DependentUpon>
@@ -320,6 +344,9 @@
     <Compile Include="GUI\Card\crdCustomer.xaml.cs">
       <DependentUpon>crdCustomer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Card\crdMoney.xaml.cs">
+      <DependentUpon>crdMoney.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Card\crdReceipt.xaml.cs">
       <DependentUpon>crdReceipt.xaml</DependentUpon>
     </Compile>
@@ -328,6 +355,9 @@
     </Compile>
     <Compile Include="GUI\Card\crdStockIn.xaml.cs">
       <DependentUpon>crdStockIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Item\itCarBrand.xaml.cs">
+      <DependentUpon>itCarBrand.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\scrMoney.xaml.cs">
       <DependentUpon>scrMoney.xaml</DependentUpon>

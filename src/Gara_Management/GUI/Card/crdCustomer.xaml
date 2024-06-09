@@ -79,19 +79,19 @@
                     <Grid Height="auto">
 
                         <TextBlock Text="Địa chỉ: " VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" />
-                        <TextBox x:Name="txtb_address1" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Foreground="{StaticResource sColor1}"  Margin="82,0,0,136"/>
+                        <TextBox x:Name="txtb_address1" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Foreground="{StaticResource sColor1}"  Margin="104,0,0,136"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,31,0,0"/>
 
-                        <TextBlock Text="Phường/xã: " FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="77,41,0,0" />
-                        <TextBox x:Name="txtb_address2" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Foreground="{StaticResource sColor1}"  Margin="210,41,0,96"/>
+                        <TextBlock Text="Phường/xã: " FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,41,0,0" />
+                        <TextBox x:Name="txtb_address2" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Foreground="{StaticResource sColor1}"  Margin="135,41,0,96"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,74,0,0"/>
 
-                        <TextBlock Text="Quận/huyện: " FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="77,83,0,0" />
-                        <TextBox x:Name="txtb_address3" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Foreground="{StaticResource sColor1}"  Margin="223,83,0,54"/>
+                        <TextBlock Text="Quận/huyện: " FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,83,0,0" />
+                        <TextBox x:Name="txtb_address3" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Foreground="{StaticResource sColor1}"  Margin="148,83,0,54"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,117,0,0"/>
 
-                        <TextBlock Text="Tỉnh/thành phố: " FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="77,126,0,0" />
-                        <TextBox x:Name="txtb_address4" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Foreground="{StaticResource sColor1}" Margin="256,126,0,11"/>
+                        <TextBlock Text="Tỉnh/thành phố: " FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="2,126,0,0" Width="172" />
+                        <TextBox x:Name="txtb_address4" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Foreground="{StaticResource sColor1}" Margin="181,126,0,11"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,160,0,0"/>
 
 
@@ -109,10 +109,16 @@
             </Grid>
 
 
-            <Border x:Name="bd_save" MouseDown="bd_save_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="296,25,297,24">
+            <Border x:Name="bd_save" MouseDown="bd_save_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="524,25,69,24">
 
                 <TextBlock x:Name="tbx_save" Text="Lưu" FontWeight="Bold" TextAlignment="Center"/>
             </Border>
+
+            <Border x:Name="bt_delete" MouseDown="bt_delete_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="68,25,525,24">
+
+                <TextBlock x:Name="txtb_delete" Text="Xóa" FontWeight="Bold" TextAlignment="Center" Height="32" VerticalAlignment="Center" HorizontalAlignment="Left" Width="78"/>
+            </Border>
+
 
         </Grid>
     </Border>

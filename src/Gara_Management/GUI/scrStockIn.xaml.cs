@@ -76,7 +76,18 @@ namespace Gara_Management.GUI
         private void LoadListGoodReceivedNote()
         {
             List<GoodReceivedNote> list = GoodReceivedNoteDAO.Instance.LoadGoodReceivedNoteList(gara);
+            ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list) 
+            {
+                itStockIn it = new itStockIn(good);
+                ds_phieunhap.Children.Add(it);
+            }
+        }
+        private void LoadListGoodReceivedNoteBySupplier()
+        {
+            List<GoodReceivedNote> list = GoodReceivedNoteDAO.Instance.LoadGoodReceivedNoteListBySupplier(gara, txtb_findGRN.Text);
+            ds_phieunhap.Children.Clear();
+            foreach (GoodReceivedNote good in list)
             {
                 itStockIn it = new itStockIn(good);
                 ds_phieunhap.Children.Add(it);
@@ -88,6 +99,18 @@ namespace Gara_Management.GUI
             //
 
 
+        }
+
+        private void txtb_findGRN_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtb_findGRN.Text == "")
+            {
+                LoadListGoodReceivedNote();
+            }    
+            else
+            {
+                LoadListGoodReceivedNoteBySupplier();
+            }    
         }
     }
 }

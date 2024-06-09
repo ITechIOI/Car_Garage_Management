@@ -93,30 +93,16 @@
                                 HorizontalContentAlignment="Left"
                                 VerticalContentAlignment="Center"  />
                     </StackPanel>
-                    <!-- Revenue -->
-                    <StackPanel x:Name="menuRevenue" Orientation="Horizontal" Cursor="Hand"
-                                MouseDown="menuRevenue_MouseDown" MouseEnter="menuRevenue_MouseEnter"
-                                MouseLeave="menuRevenue_MouseLeave">
-                        <Border Width="66">
-                            <Image Source="/Images/ic_revenue.png"  Margin="6,0,6,0" Height="42" Width="42"/>
-
-                        </Border>
-                        <Label Content="Doanh thu" Background="Transparent"
-                                Height="66" FontSize="24" Width="123"
-                                BorderThickness="0"
-                                HorizontalContentAlignment="Left"
-                                VerticalContentAlignment="Center"   />
-                    </StackPanel>
                     <!-- Customers -->
                     <StackPanel x:Name="menuCustomers" Orientation="Horizontal" Cursor="Hand"
                                 MouseDown="menuCustomers_MouseDown" MouseEnter="menuCustomers_MouseEnter"
                                 MouseLeave="menuCustomers_MouseLeave">
-                        <Border Width="66">
+                        <Border Width="57">
                             <Image Source="/Images/ic_customer.png" Margin="6,0,6,0" Height="42" Width="42"/>
 
                         </Border>
                         <Label Content="Khách hàng" Background="Transparent"
-                                Height="66" FontSize="24" Width="123"
+                                Height="66" FontSize="24" Width="146"
                                 BorderThickness="0"
                                 HorizontalContentAlignment="Left"
                                 VerticalContentAlignment="Center" 
@@ -136,6 +122,7 @@
                                 HorizontalContentAlignment="Left"
                                 VerticalContentAlignment="Center" />
                     </StackPanel>
+                    <!--Staff-->
                     <StackPanel x:Name="menuStaff" Orientation="Horizontal" Cursor="Hand"
             MouseEnter="menuStaff_MouseEnter" MouseDown="menuStaff_MouseDown"
             MouseLeave="menuStaff_MouseLeave">
@@ -148,6 +135,21 @@
                                HorizontalContentAlignment="Left"
                                VerticalContentAlignment="Center"/>
                     </StackPanel>
+                    <!-- Revenue -->
+                    <StackPanel x:Name="menuRevenue" Orientation="Horizontal" Cursor="Hand"
+                                MouseDown="menuRevenue_MouseDown" MouseEnter="menuRevenue_MouseEnter"
+                                MouseLeave="menuRevenue_MouseLeave">
+                        <Border Width="66">
+                            <Image Source="/Images/ic_revenue.png"  Margin="6,0,6,0" Height="42" Width="42"/>
+
+                        </Border>
+                        <Label Content="Doanh thu" Background="Transparent"
+                                Height="66" FontSize="24" Width="123"
+                                BorderThickness="0"
+                                HorizontalContentAlignment="Left"
+                                VerticalContentAlignment="Center"   />
+                    </StackPanel>
+
                 </StackPanel>
             </Border>
 

@@ -37,6 +37,20 @@ namespace Gara_Management.DAO
             }
             return goodReceivedNoteList;
         }
+        public List<GoodReceivedNote> LoadGoodReceivedNoteListBySupplier(string gara, string supplier)
+        {
+            List<GoodReceivedNote> goodReceivedNoteList = new List<GoodReceivedNote>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT LOTNUMBER, SUPPLIER, IMPORT_TIME, " +
+                "DATA_ENTRY_STAFF, TOTAL_PAYMENT_GRN, STATUS_GRN FROM GOOD_RECEIVED_NOTES " +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_GRN = 0 " +
+                "AND [DBO].[non_unicode_convert](SUPPLIER) LIKE [DBO].[non_unicode_convert]('%" + supplier + "%')");
+            foreach (DataRow item in data.Rows)
+            {
+                GoodReceivedNote goodReceivedNote = new GoodReceivedNote(item);
+                goodReceivedNoteList.Add(goodReceivedNote);
+            }
+            return goodReceivedNoteList;
+        }
         public bool InsertGoodReceivedNote(string lotNumber, string supplier, string gara, string importTime, string staff)
         {
             string query = "EXEC USP_INSERTGRN '" + lotNumber + "', N'" + supplier + "', '" + gara + "', '" +

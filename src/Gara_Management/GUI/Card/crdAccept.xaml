@@ -62,7 +62,7 @@
                 <Border Grid.Row="2"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="SĐT: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="tbx_PhoneCus" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="54,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox x:Name="tbx_PhoneCus" TextChanged="tbx_PhoneCus_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="54,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
                     </Grid>
                 </Border>
@@ -92,7 +92,7 @@
                 </Border>
             </Grid>
 
-            
+
             <Border x:Name="bd_save" MouseDown="bd_save_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="90,25,275,24">
 
                 <TextBlock x:Name="tbx_save" Text="Lưu" TextAlignment="Center"/>

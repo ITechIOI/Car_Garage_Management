@@ -279,7 +279,7 @@
             <Border Grid.Row="1" Margin="75,0,207,0" CornerRadius="20" Height="48" Background="{StaticResource sColor1}">
                 <Grid>
                     <TextBox x:Name="txtb_findBill" Height="48" BorderThickness="0" Background="Transparent"
-                  FontSize="20" VerticalContentAlignment="Center" Padding="20,0,0,0" Margin="0,0,51,0"/>
+                  FontSize="20" VerticalContentAlignment="Center" Padding="20,0,0,0" Margin="0,0,51,0" TextChanged="txtb_findBill_TextChanged"/>
                     <Image Cursor="Hand" Source="/Images/ic_search.png" Margin="555,0,0,0"/>
                 </Grid>
             </Border>
@@ -337,51 +337,41 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40*"/>
                         <RowDefinition Height="40*"/>
-                        <RowDefinition Height="40*"/>
                         <RowDefinition Height="85*"/>
 
                         <RowDefinition Height="40*"/>
                     </Grid.RowDefinitions>
-                    <!-- lọc biển số -->
-                    <Grid Grid.Row="0" Margin="0,0,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="160"/>
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <CheckBox Content="Đầu biển số" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" Margin="8,5,0,0"/>
-                        <ComboBox Grid.Column="1" ItemTemplate="{StaticResource ComboBoxItemTemplate}"
-           HorizontalAlignment="Center" VerticalAlignment="Center"
-          ItemsSource="{Binding Items}"  Background="{StaticResource sColor2}" Width="158" Height="29">
-
-                        </ComboBox>
-                    </Grid>
+                    
                     <!-- lọc ngày sửa -->
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="175*"/>
                             <ColumnDefinition Width="162*"/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Content="Ngày sửa" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="136" Margin="10,5,0,0"/>
-                        <DatePicker Margin="168,9,10,9" Grid.ColumnSpan="2" />
+                        <CheckBox x:Name="ckb_date" Click="ckb_date_Click" Content="Ngày sửa" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="136" Margin="10,5,0,0"/>
+                        <DatePicker x:Name="dpk_date" Margin="168,9,10,9" SelectedDateChanged="dpk_date_SelectedDateChanged" Grid.ColumnSpan="2" />
                     </Grid>
                     <!-- đến ngày (  nếu chọn ngày sửa mới được chọn đến ngày )-->
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="1">
 
-                        <CheckBox Content="Đến ngày"  FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="38" HorizontalAlignment="Left" Width="156" Margin="10,0,0,0" />
-                        <DatePicker Margin="166,12,10,0" />
+                        <CheckBox x:Name="ckb_endDate" IsEnabled="false" Content="Đến ngày"  FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="38" HorizontalAlignment="Left" Width="156" Margin="10,0,0,0" />
+                        <DatePicker x:Name="dpk_endDate" SelectedDateChanged="dpk_date_SelectedDateChanged_1" IsEnabled="false" Margin="166,12,10,0" />
                     </Grid>
                     <!-- lọc tiền  -->
-                    <Grid Grid.Row="3">
+                    <Grid Grid.Row="2">
 
-                        <CheckBox Content="Tổng tiền" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="115" Margin="10,0,0,0"/>
+                        <CheckBox x:Name="ckb_money" Content="Tổng tiền" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="115" Margin="10,0,0,0"/>
                         <Grid>
                             <xctk:RangeSlider  x:Name="rangeSlider" 
-                        Minimum="0" 
-                        Maximum="100000000" 
-                        LowerValue="20000" 
-                        HigherValue="80000000"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center" Width="316"/>
+                                               LowerValueChanged="rangeSlider_LowerValueChanged"
+                                               HigherValueChanged="rangeSlider_LowerValueChanged"
+                                                Minimum="0" 
+                                               Step="1000"
+                                                Maximum="100000000" 
+                                                LowerValue="20000" 
+                                                HigherValue="80000000"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center" Width="316"/>
                             <TextBlock FontSize="16" Text="{Binding ElementName=rangeSlider, Path=LowerValue, StringFormat='Min: {0:N0}'}"
                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,73,0,0" />
 
@@ -391,7 +381,7 @@
                         </Grid>
                     </Grid>
                     <!-- ok-->
-                    <Border Cursor="Hand" Grid.Row="4" x:Name="apply"  MouseDown="apply_MouseDown" Margin="110,7,127,10" CornerRadius="10" Background="{StaticResource sColor3}">
+                    <Border Cursor="Hand" Grid.Row="3" x:Name="apply"  MouseDown="apply_MouseDown" Margin="110,7,127,10" CornerRadius="10" Background="{StaticResource sColor3}">
                         <TextBlock  Text="Áp dụng" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"  Background="Transparent" />
                     </Border>
                 </Grid>

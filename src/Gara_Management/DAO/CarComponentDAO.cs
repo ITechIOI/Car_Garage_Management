@@ -55,7 +55,108 @@ namespace Gara_Management.DAO
                 carComponentList.Add(carComponent);
             }
             return carComponentList;
-        } 
+        }
+
+        public List<CarComponent> LoadCarComponentListByQuantity(string gara, int minQuan, int maxQuan)
+        {
+            List<CarComponent> carComponentList = new List<CarComponent>();
+            string query = "SELECT CC.ID_COM, CC.NAME_COM, CC.STATUS_COM, IM.COM_QUANTITY, CD.WAGE, CD.CUR_PRICE, CD.STATUS_DETAILS " +
+                "FROM INVENTORY_MANAGEMENT IM, CAR_COMPONENTS CC, COMPONENT_DETAILS CD " +
+                "WHERE IM.ID_GARA = CD.ID_GARA AND CD.ID_COM = CC.ID_COM AND CC.ID_COM = IM.ID_COM AND CC.STATUS_COM = 0 AND CD.STATUS_DETAILS = 0 AND " +
+                "CD.ID_GARA = '" + gara + "' AND (IM.COM_QUANTITY BETWEEN " + minQuan + " AND " + maxQuan + ")";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                CarComponent carComponent = new CarComponent(item);
+                carComponentList.Add(carComponent);
+            }
+            return carComponentList;
+        }
+
+        public List<CarComponent> LoadCarComponentListByPrice(string gara, int minPrice, int maxPrice)
+        {
+            List<CarComponent> carComponentList = new List<CarComponent>();
+            string query = "SELECT CC.ID_COM, CC.NAME_COM, CC.STATUS_COM, IM.COM_QUANTITY, CD.WAGE, CD.CUR_PRICE, CD.STATUS_DETAILS " +
+                "FROM INVENTORY_MANAGEMENT IM, CAR_COMPONENTS CC, COMPONENT_DETAILS CD " +
+                "WHERE IM.ID_GARA = CD.ID_GARA AND CD.ID_COM = CC.ID_COM AND CC.ID_COM = IM.ID_COM AND CC.STATUS_COM = 0 AND CD.STATUS_DETAILS = 0 AND " +
+                "CD.ID_GARA = '" + gara + "' AND (CD.CUR_PRICE BETWEEN " + minPrice + " AND " + maxPrice + ")";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                CarComponent carComponent = new CarComponent(item);
+                carComponentList.Add(carComponent);
+            }
+            return carComponentList;
+        }
+
+        public List<CarComponent> LoadCarComponentListByQuantityAndPrice(string gara, int minQuan, int maxQuan, int minPrice, int maxPrice)
+        {
+            List<CarComponent> carComponentList = new List<CarComponent>();
+            string query = "SELECT CC.ID_COM, CC.NAME_COM, CC.STATUS_COM, IM.COM_QUANTITY, CD.WAGE, CD.CUR_PRICE, CD.STATUS_DETAILS " +
+                "FROM INVENTORY_MANAGEMENT IM, CAR_COMPONENTS CC, COMPONENT_DETAILS CD " +
+                "WHERE IM.ID_GARA = CD.ID_GARA AND CD.ID_COM = CC.ID_COM AND CC.ID_COM = IM.ID_COM AND CC.STATUS_COM = 0 AND CD.STATUS_DETAILS = 0 AND " +
+                "CD.ID_GARA = '" + gara + "' AND (IM.COM_QUANTITY BETWEEN " + minQuan + " AND " + maxQuan + ") " +
+                "AND (CD.CUR_PRICE BETWEEN " + minPrice + " AND " + maxPrice + ")";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                CarComponent carComponent = new CarComponent(item);
+                carComponentList.Add(carComponent);
+            }
+            return carComponentList;
+        }
+
+        public List<CarComponent> LoadCarComponentListByNameAndQuantity(string gara, string name, int minQuan, int maxQuan)
+        {
+            List<CarComponent> carComponentList = new List<CarComponent>();
+            string query = "SELECT CC.ID_COM, CC.NAME_COM, CC.STATUS_COM, IM.COM_QUANTITY, CD.WAGE, CD.CUR_PRICE, CD.STATUS_DETAILS " +
+                "FROM INVENTORY_MANAGEMENT IM, CAR_COMPONENTS CC, COMPONENT_DETAILS CD " +
+                "WHERE IM.ID_GARA = CD.ID_GARA AND CD.ID_COM = CC.ID_COM AND CC.ID_COM = IM.ID_COM AND CC.STATUS_COM = 0 AND CD.STATUS_DETAILS = 0 AND " +
+                "CD.ID_GARA = '" + gara + "' AND (IM.COM_QUANTITY BETWEEN " + minQuan + " AND " + maxQuan + ") " +
+                "AND DBO.[non_unicode_convert](CC.NAME_COM) LIKE DBO.[non_unicode_convert](N'%" + name + "%')";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                CarComponent carComponent = new CarComponent(item);
+                carComponentList.Add(carComponent);
+            }
+            return carComponentList;
+        }
+
+        public List<CarComponent> LoadCarComponentListByNameAndPrice(string gara, string name, int minPrice, int maxPrice)
+        {
+            List<CarComponent> carComponentList = new List<CarComponent>();
+            string query = "SELECT CC.ID_COM, CC.NAME_COM, CC.STATUS_COM, IM.COM_QUANTITY, CD.WAGE, CD.CUR_PRICE, CD.STATUS_DETAILS " +
+                "FROM INVENTORY_MANAGEMENT IM, CAR_COMPONENTS CC, COMPONENT_DETAILS CD " +
+                "WHERE IM.ID_GARA = CD.ID_GARA AND CD.ID_COM = CC.ID_COM AND CC.ID_COM = IM.ID_COM AND CC.STATUS_COM = 0 AND CD.STATUS_DETAILS = 0 AND " +
+                "CD.ID_GARA = '" + gara + "' AND (CD.CUR_PRICE BETWEEN " + minPrice + " AND " + maxPrice + ") " +
+                "AND DBO.[non_unicode_convert](CC.NAME_COM) LIKE DBO.[non_unicode_convert](N'%" + name + "%')";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                CarComponent carComponent = new CarComponent(item);
+                carComponentList.Add(carComponent);
+            }
+            return carComponentList;
+        }
+
+        public List<CarComponent> LoadCarComponentListByNamePriceAndQuantity(string gara, string name, int minPrice, int maxPrice, int minQuan, int maxQuan)
+        {
+            List<CarComponent> carComponentList = new List<CarComponent>();
+            string query = "SELECT CC.ID_COM, CC.NAME_COM, CC.STATUS_COM, IM.COM_QUANTITY, CD.WAGE, CD.CUR_PRICE, CD.STATUS_DETAILS " +
+                "FROM INVENTORY_MANAGEMENT IM, CAR_COMPONENTS CC, COMPONENT_DETAILS CD " +
+                "WHERE IM.ID_GARA = CD.ID_GARA AND CD.ID_COM = CC.ID_COM AND CC.ID_COM = IM.ID_COM AND CC.STATUS_COM = 0 AND CD.STATUS_DETAILS = 0 AND " +
+                "CD.ID_GARA = '" + gara + "' AND (IM.COM_QUANTITY BETWEEN " + minQuan + " AND " + maxQuan + ") " +
+                "AND (CD.CUR_PRICE BETWEEN " + minPrice + " AND " + maxPrice + ") " +
+                "AND DBO.[non_unicode_convert](CC.NAME_COM) LIKE DBO.[non_unicode_convert](N'%" + name + "%')";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                CarComponent carComponent = new CarComponent(item);
+                carComponentList.Add(carComponent);
+            }
+            return carComponentList;
+        }
 
         public string GetComponentIDByInfo(string idGara, string name, string wage, string price)
         {
@@ -80,7 +181,7 @@ namespace Gara_Management.DAO
             {
                 return null;
             }
-            return new CarComponent(data.Rows[0]);            
+            return new CarComponent(data.Rows[0]);
         }
 
         public string GetComponentIDByName(string gara, string name)
@@ -96,6 +197,21 @@ namespace Gara_Management.DAO
                 return null;
             }
             return new CarComponent(data.Rows[0]).IDCom;
+        }
+
+        public bool InsertCarComponent(string name, string gara, decimal wage)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("EXEC INSERT_CARCOMPONENT N'" + name + "', '" + gara + "', " + wage) > 0;
+        }
+
+        public bool UpdateCarComponent(string id, string name, string gara, decimal wage, decimal curPrice)
+        {
+            string query = "EXEC UPDATE_CARCOMPONENT '" + id + "', N'" + name + "', '" + gara + "', " + wage + ", " + curPrice;
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
+        }
+        public bool DeleteCarComponent(string id, string gara)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("EXEC DELETE_CARCOMPONENT '" + id + "', '" + gara + "'") > 0;
         }
 
     }

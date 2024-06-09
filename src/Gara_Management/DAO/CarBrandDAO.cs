@@ -43,7 +43,7 @@ namespace Gara_Management.DAO
         {
             string query = "SELECT CAR_BRANDS.ID_BRAND, NAME_BRAND, STATUS_DETAILS " +
                 "FROM CAR_BRANDS JOIN BRAND_DETAILS ON CAR_BRANDS.ID_BRAND = BRAND_DETAILS.ID_BRAND " +
-                "WHERE ID_GARA = '" + gara + "' AND STATUS_BRAND = 0 AND STATUS_DETAILS = 0  ";
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_BRAND = 0 AND STATUS_DETAILS = 0   AND CAR_BRANDS.ID_BRAND ='" + id + "'";
             CarBrand carBrand = new CarBrand(DataProvider.Instance.ExecuteQuery(query).Rows[0]);
             return carBrand;
         }
@@ -68,12 +68,17 @@ namespace Gara_Management.DAO
 
         public bool InsertCarBrand(string name, string gara)
         {
-            return DataProvider.Instance.ExecuteNonQuery("EXEC USP_INSERT_CARBRAND N'" + name + "', '" + gara + "'") > 0;
+            return DataProvider.Instance.ExecuteNonQuery("EXEC INSERT_CAR_BRANDS N'" + name + "', '" + gara + "'") > 0;
         }
 
         public bool DeleteCarBrand(string brand, string gara)
         {
-            return DataProvider.Instance.ExecuteNonQuery("EXEC USP_DELETE_CARBRAND '" + brand + "', '" + gara + "'") > 0;
+            return DataProvider.Instance.ExecuteNonQuery("EXEC DELETE_CAR_BRANDS '" + brand + "', '" + gara + "'") > 0;
+        }
+
+        public bool UpdateCarBrand(string id, string name)
+        {
+            return DataProvider.Instance.ExecuteNonQuery("EXEC UPDATE_CAR_BRANDS '" + id + "', N'" + name + "'" ) > 0;
         }
     }
 }

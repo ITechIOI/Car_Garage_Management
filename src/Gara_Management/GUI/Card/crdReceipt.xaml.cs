@@ -128,7 +128,14 @@ namespace Gara_Management.GUI.Card
 
         private void txtb_phoneCus_TextChanged(object sender, TextChangedEventArgs e)
         {
-            this.cus = CustomerDAO.Instance.GetCustomerByPhone(txtb_phoneCus.Text, gara)[0];
+            List<Customer> listCustomer = CustomerDAO.Instance.GetCustomerByPhone(txtb_phoneCus.Text, gara);
+            if (listCustomer.Count == 0)
+            {
+                MessageBox.Show("Khách hàng không tồn tại!");
+            } else
+            {
+                this.cus = listCustomer[0];
+            }
             txtb_nameCus.Text = cus.NameCus;
             txtb_debtCus.Text = cus.Debt.ToString();
         }

@@ -27,15 +27,21 @@ namespace Gara_Management.GUI.Item
         Account account;
         Customer customer;
         string idRec;
-        public itCar(string gara, Account acc, Customer cus, string idRec)
+        public itCar(string gara, Account acc, Customer cus, string idRec, int i)
         {
             InitializeComponent();
             this.gara = gara;
             this.account = acc;
             this.customer = cus;
             this.idRec = idRec;
+            ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(idRec);
             RepairPaymentBill bill = RepairPaymentBillDAO.Instance.GetRepairPaymentBillByIDRec(gara, idRec);
-            txtb_total.Text = bill.TotalPayment.ToString();
+            if (bill != null) { txtb_total.Text = bill.TotalPayment.ToString(); }
+            else { txtb_total.Text = "0"; }
+            txtb_ordinalNum.Text = i.ToString();
+            txtb_carBrand.Text =CarBrandDAO.Instance.LoadCarBrandByID(recept.IDBrand, gara).NameBrand;
+            txtb_numberPlate.Text = recept.NumberPlate;
+            txtb_cus.Text = CustomerDAO.Instance.LoadCustomerByID(recept.IDCus, gara).NameCus;
         }
         
 

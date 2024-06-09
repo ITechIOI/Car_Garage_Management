@@ -27,11 +27,15 @@ namespace Gara_Management.GUI
         Color color3 = (Color)ColorConverter.ConvertFromString("#5790AB");
         Color color4 = (Color)ColorConverter.ConvertFromString("#064469");
         string gara;
+        int minDebt = -1;
+        int maxDebt = -1;
         public scrCustomer(string gara)
         {
             InitializeComponent();
             this.gara = gara;
             LoadListCustomer();
+            rangeSlider.Maximum = CustomerDAO.Instance.GetMaxDebt(gara);
+            ckb_Debt.IsChecked = false;
                   
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
@@ -65,7 +69,20 @@ namespace Gara_Management.GUI
 
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            filter.Visibility = Visibility.Visible;
+            if (minDebt == -1 && maxDebt == -1)
+            {
+                rangeSlider.LowerValue = rangeSlider.Minimum;
+                rangeSlider.HigherValue = rangeSlider.Maximum;
+                ckb_Debt.IsChecked = false;
+                filter.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                rangeSlider.LowerValue = minDebt;
+                rangeSlider.HigherValue = maxDebt;
+                ckb_Debt.IsChecked = true;
+                filter.Visibility = Visibility.Visible;
+            }
         }
         private void LoadListCustomer()
         {
@@ -79,10 +96,43 @@ namespace Gara_Management.GUI
         }
         private void apply_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            txtb_findCustomer.Text = "";
             filter.Visibility = Visibility.Hidden;
-            //
+            if (ckb_Debt.IsChecked == true)
+            {
+                maxDebt = (int)rangeSlider.HigherValue;
+                minDebt = (int)rangeSlider.LowerValue;
+                LoadListCustomerByDebt();
+            }   
+            else
+            {
+                maxDebt = -1;
+                minDebt = -1;
+                LoadListCustomer();
+            }    
 
 
+        }
+        private void LoadListCustomerByDebt()
+        {
+            List<Customer> customers = CustomerDAO.Instance.LoadCustomerListByDebt(this.gara, minDebt, maxDebt);
+            ds_khachhang.Children.Clear();
+            foreach (Customer customer in customers)
+            {
+                itCustomer it = new itCustomer(customer, this.gara);
+                ds_khachhang.Children.Add(it);
+            }
+        }
+        private void LoadListCustomerByDebtAndName()
+        {
+            List<Customer> customers = CustomerDAO.Instance.LoadCustomerListByDebtAndName(this.gara, txtb_findCustomer.Text,
+                minDebt, maxDebt);
+            ds_khachhang.Children.Clear();
+            foreach (Customer customer in customers)
+            {
+                itCustomer it = new itCustomer(customer, this.gara);
+                ds_khachhang.Children.Add(it);
+            }
         }
         private void LoadListCustomerByName()
         {
@@ -99,12 +149,31 @@ namespace Gara_Management.GUI
         {
             if (txtb_findCustomer.Text == "")
             {
-                LoadListCustomer();
+                if (ckb_Debt.IsChecked == true)
+                {
+                    LoadListCustomerByDebt();
+                }
+                else
+                {
+                    LoadListCustomer();
+                }
             }    
             else
             {
-                LoadListCustomerByName();
+                if (ckb_Debt.IsChecked == true)
+                {
+                    LoadListCustomerByDebtAndName();
+                }
+                else
+                {
+                    LoadListCustomerByName();
+                }
             }    
+        }
+
+        private void rangeSlider_HigherValueChanged(object sender, RoutedEventArgs e)
+        {
+            ckb_Debt.IsChecked = true;
         }
     }
 }

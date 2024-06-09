@@ -28,7 +28,7 @@ namespace Gara_Management.GUI.Card
             this.gara = gara;
             LoadCarBrand();
             dpk_RecDate.SelectedDate = DateTime.Now;
-          
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -93,8 +93,13 @@ namespace Gara_Management.GUI.Card
             //nếu khách hàng chưa đăng ký thì không tiếp nhận
             if (CustomerDAO.Instance.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text) == null)
             {
-                MessageBox.Show("Người dùng chưa đăng ký!", "Lỗi!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBoxResult result = MessageBox.Show("Người dùng chưa đăng ký! Bạn có muốn tạo khách hàng mới không?", "Lỗi!", MessageBoxButton.OKCancel, MessageBoxImage.Error);
                 //chuyển qua form đăng ký
+                if (result == MessageBoxResult.OK)
+                {
+                    crdCustomer crdCustomer = new crdCustomer(gara, tbx_NameCus.Text, tbx_PhoneCus.Text);
+                    crdCustomer.ShowDialog();
+                }
                 return false;
             }
 
@@ -246,7 +251,7 @@ namespace Gara_Management.GUI.Card
             string iDRec = tbx_IDRec.Text;
             string iDCus = CustomerDAO.Instance.GetIDCusByNameAndPhone(tbx_NameCus.Text, tbx_PhoneCus.Text);
             string iDBrand = CarBrandDAO.Instance.GetIDBrandByName(cbx_CarBrand.Text, gara);
-            string iDGara = "GR1";
+            string iDGara = this.gara;
             string numberPlate = tbx_NumberPlate.Text;
             DateTime receptionDate = Convert.ToDateTime(dpk_RecDate.ToString());
             bool statusRec = false;
@@ -269,6 +274,14 @@ namespace Gara_Management.GUI.Card
             {
                 cbx_CarBrand.Items.Add(item.NameBrand);
             }
+        }
+
+        //hiển thị họ tên khách hàng khi nhập sdt
+        private void tbx_PhoneCus_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            isChanged = true;
+            Customer customer = CustomerDAO.Instance.GetCustomerByPhone(tbx_PhoneCus.Text, gara)[0];
+            tbx_NameCus.Text = customer.NameCus;
         }
     }
 }

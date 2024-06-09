@@ -1,5 +1,4 @@
-﻿using Gara_Management.GUI.Item;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Gara_Management.GUI.Card
+namespace Gara_Management.GUI.Item
 {
     /// <summary>
-    /// Interaction logic for scrMoney.xaml
+    /// Interaction logic for itCarBrand.xaml
     /// </summary>
-    public partial class scrMoney : UserControl
+    public partial class itCarBrand : UserControl
     {
-        public scrMoney()
+        public itCarBrand()
         {
-           
+            InitializeComponent();
         }
-       
-     
     }
 }
-

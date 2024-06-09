@@ -1,4 +1,5 @@
-﻿using Gara_Management.GUI.Card;
+﻿using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,27 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itRepairCard : UserControl
     {
+        ReceptionForm recept;
+        RepairPaymentBill bill;
         public itRepairCard()
         {
             InitializeComponent();
+        }
+        public itRepairCard(ReceptionForm recept, RepairPaymentBill bill)
+        {
+            InitializeComponent();
+            this.recept = recept;
+            this.bill = bill;
+            txtb_idRec.Text = bill.IDRec;
+            txtb_numberPlate.Text = recept.NumberPlate;
+            txtb_completeDate.Text = bill.CompletionDate.ToString("dd/MM/yyyy");
+            txtb_totalBill.Text = bill.TotalPayment.ToString();
         }
 
         // xem chi tiết phiếu sửa chữa
         private void bd_repair_detail_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdRepair crdRepair = new crdRepair();
+            crdRepair crdRepair = new crdRepair(bill.IDRec);
             crdRepair.ShowDialog();
         }
     }
