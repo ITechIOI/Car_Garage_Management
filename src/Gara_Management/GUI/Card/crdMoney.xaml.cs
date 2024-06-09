@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,14 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class crdMoney : Window
     {
-        public crdMoney()
+        string gara;
+        Customer customer;
+        public crdMoney(string gara, Customer customer)
         {
             InitializeComponent();
+            this.gara = gara;
+            this.customer = customer;
+            
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -32,6 +38,10 @@ namespace Gara_Management.GUI.Card
         {
            
             this.Close();
+        }
+        private void LoadListMoney()
+        {
+
         }
     }
 }

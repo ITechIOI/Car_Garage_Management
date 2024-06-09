@@ -79,7 +79,10 @@ namespace Gara_Management.GUI
             // tiếp nhận sửa chửa (giống bên home)
             crdAccept newCar = new crdAccept(gara);
             newCar.ShowDialog();
+            LoadListReceipt();
         }
+
+        
 
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
