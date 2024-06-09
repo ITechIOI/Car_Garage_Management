@@ -23,6 +23,7 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itStockIn : UserControl
     {
+        
         GoodReceivedNote grn;
         public itStockIn(GoodReceivedNote grn)
         {
@@ -31,7 +32,8 @@ namespace Gara_Management.GUI.Item
             txtb_idLot.Text = this.grn.LotNumber;
             txtb_namesupplier.Text = grn.Supplier;
             txtb_date.Text = this.grn.ImportTime.ToString();
-            txtb_sumofmoney.Text=this.grn.TotalPaymentGRN.ToString();
+            txtb_sumofmoney.Text = this.grn.TotalPaymentGRN.ToString();
+            
         }
 
         private void bd_StockInInfor_MouseDown(object sender, MouseButtonEventArgs e)

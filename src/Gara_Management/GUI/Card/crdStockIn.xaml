@@ -308,12 +308,10 @@
             <Border x:Name="bd_add" MouseDown="bd_add_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="100,17,612,17">
                 <TextBlock x:Name="add_button" Text="Thêm" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
             </Border>
-            <Border x:Name="bd_pay" MouseDown="bd_pay_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="465,17,247,17">
+            <Border x:Name="bd_pay" MouseDown="bd_pay_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="611,17,101,17">
                 <TextBlock Text="Thanh toán" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
             </Border>
-            <Border x:Name="bd_print" MouseDown="bd_print_MouseDown" Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="611,17,101,17">
-                <TextBlock Text="In phiếu" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
-            </Border>
+      
         </Grid>
     </Border>
 

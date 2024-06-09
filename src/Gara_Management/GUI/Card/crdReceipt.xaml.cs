@@ -172,7 +172,7 @@ namespace Gara_Management.GUI.Card
             if (printDialog.ShowDialog() == true)
             {
                 // In hóa đơn
-                printDialog.PrintDocument(((IDocumentPaginatorSource)flowDocument).DocumentPaginator, "Hóa đơn"); 
+                printDialog.PrintDocument(((IDocumentPaginatorSource)flowDocument).DocumentPaginator, "PHIẾU THU TIỀN"); 
                 
             }
         }
