@@ -362,13 +362,13 @@ ItemsSource="{Binding Items}"  Background="{StaticResource sColor2}" Width="158"
                             <ColumnDefinition Width="162*"/>
                         </Grid.ColumnDefinitions>
                         <CheckBox x:Name="ckb_startDate" Content="Từ ngày" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="136" Margin="10,5,0,0"/>
-                        <DatePicker x:Name="dpk_startDate" Margin="168,9,10,9" Grid.ColumnSpan="2" />
+                        <DatePicker x:Name="dpk_startDate" Margin="168,9,10,9" Grid.ColumnSpan="2" SelectedDateChanged="dpk_startDate_SelectedDateChanged" />
                     </Grid>
                     <!-- đến ngày (  nếu chọn ngày nhập mới được chọn đến ngày )-->
                     <Grid Grid.Row="2">
 
                         <CheckBox x:Name="ckb_endDate" Content="Đến ngày"  FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="38" HorizontalAlignment="Left" Width="156" Margin="10,0,0,0" />
-                        <DatePicker x:Name="dpk_endDate" Margin="166,12,10,0" />
+                        <DatePicker x:Name="dpk_endDate" Margin="166,12,10,0" SelectedDateChanged="dpk_endDate_SelectedDateChanged" />
                     </Grid>
                     <!-- lọc tiền  -->
                     <Grid Grid.Row="3">
@@ -381,7 +381,7 @@ ItemsSource="{Binding Items}"  Background="{StaticResource sColor2}" Width="158"
               LowerValue="20000" 
               HigherValue="80000000"
               HorizontalAlignment="Center"
-              VerticalAlignment="Center" Width="316"/>
+              VerticalAlignment="Center" Width="316" LowerValueChanged="rangeSlider_LowerValueChanged" HigherValueChanged="rangeSlider_HigherValueChanged"/>
                             <TextBlock FontSize="16" Text="{Binding ElementName=rangeSlider, Path=LowerValue, StringFormat='Min: {0:N0}'}"
       HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,73,0,0" />
 

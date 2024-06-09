@@ -38,6 +38,7 @@ namespace Gara_Management.GUI
             this.gara = gara;
             this.acc = account;
             LoadListComponent();
+            SetSliderMaxValue();
         }
 
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
@@ -156,6 +157,42 @@ namespace Gara_Management.GUI
 
 
         }
+
+        private void SetSliderMaxValue()
+        {
+            int quantity = 0;
+            decimal price = 0;
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentList(gara);
+            foreach (CarComponent car in list)
+            {
+                if (car.CurPrice > price)
+                    price = car.CurPrice;
+                if (car.ComQuantity > quantity)
+                    quantity = car.ComQuantity;
+                rangeSlider.Maximum = Convert.ToDouble(price);
+                rangeSlider2.Maximum = quantity;
+            }
+        }
+        private void rangeSlider_HigherValueChanged(object sender, RoutedEventArgs e)
+        {
+            ckb_price.IsChecked = true;
+        }
+
+        private void rangeSlider_LowerValueChanged(object sender, RoutedEventArgs e)
+        {
+            ckb_price.IsChecked = true;
+        }
+
+        private void rangeSlider2_HigherValueChanged(object sender, RoutedEventArgs e)
+        {
+            ckb_quantity.IsChecked = true;
+        }
+
+        private void rangeSlider2_LowerValueChanged(object sender, RoutedEventArgs e)
+        {
+            ckb_quantity.IsChecked = true;
+        }
+
         private void LoadListComponent()
         {
             List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentList(gara);

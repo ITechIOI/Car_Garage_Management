@@ -42,6 +42,7 @@ namespace Gara_Management.GUI
             this.acc = acc;
             LoadSupplier();
             LoadListGoodReceivedNote();
+            SetSliderMaxValue();
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -133,6 +134,18 @@ namespace Gara_Management.GUI
             {
                 filter.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void SetSliderMaxValue()
+        {
+            List<GoodReceivedNote> list = GoodReceivedNoteDAO.Instance.LoadGoodReceivedNoteList(gara);
+            decimal price = 0;
+            foreach (GoodReceivedNote grn in list)
+            {
+                if (grn.TotalPaymentGRN > price)
+                    price = grn.TotalPaymentGRN;
+            }
+            rangeSlider.Maximum = Convert.ToDouble(price);
         }
 
         private void LoadListGoodReceivedNote()
@@ -502,6 +515,26 @@ namespace Gara_Management.GUI
             {
                 LoadListGoodReceivedNoteBySupplier();
             }
+        }
+
+        private void dpk_startDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ckb_startDate.IsChecked = true;
+        }
+
+        private void dpk_endDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ckb_endDate.IsChecked = true;
+        }
+
+        private void rangeSlider_LowerValueChanged(object sender, RoutedEventArgs e)
+        {
+            ckb_price.IsChecked = true;
+        }
+
+        private void rangeSlider_HigherValueChanged(object sender, RoutedEventArgs e)
+        {
+            ckb_price.IsChecked = true;
         }
 
         private void LoadSupplier()
