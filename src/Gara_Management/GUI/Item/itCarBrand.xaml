@@ -13,9 +13,9 @@
                     <ColumnDefinition Width="124"/>
                     <ColumnDefinition Width="260"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="ITM001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_idCarBrand" Text="ITM001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="122,0,0,0"/>
-                <TextBlock Grid.Column="1" Text="Đèn pha màu mè" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txtb_nameBrand" Grid.Column="1" Text="Đèn pha màu mè" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </Border>
     </Grid>
