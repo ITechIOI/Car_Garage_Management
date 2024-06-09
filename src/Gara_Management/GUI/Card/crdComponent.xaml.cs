@@ -38,5 +38,10 @@ namespace Gara_Management.GUI.Card
         {
             
         }
+
+        private void bd_delete_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

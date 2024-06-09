@@ -150,11 +150,15 @@ ItemsSource="{Binding Items}"  Background="{StaticResource sColor3}" Width="336"
             </Grid>
 
 
-            <Border x:Name="bd_save" MouseDown="bd_save_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="242,25,243,24">
+            <Border x:Name="bd_save" MouseDown="bd_save_MouseDown" Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="115,25,370,24">
 
                 <TextBlock x:Name="tbx_save" Text="OK" TextAlignment="Center"/>
             </Border>
-           
+            <Border x:Name="bd_delete" MouseDown="bd_delete_MouseDown"  Grid.Row="2" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="365,25,120,24">
+
+                <TextBlock x:Name="tbx_delete" Text="Xóa" TextAlignment="Center"/>
+            </Border>
+
         </Grid>
     </Border>
 
