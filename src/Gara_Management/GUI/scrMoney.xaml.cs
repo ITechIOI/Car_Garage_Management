@@ -25,8 +25,11 @@ namespace Gara_Management.GUI.Card
         {
            
         }
-       
-     
+
+        private void bd_exit_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            App.Current.Shutdown();
+        }
     }
 }
 

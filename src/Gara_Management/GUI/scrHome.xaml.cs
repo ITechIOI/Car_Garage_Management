@@ -91,13 +91,15 @@ namespace Gara_Management.GUI
 
         private void bd_reportCreate_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // tạo báo cáo
-            DateTime now = DateTime.Now;
-            var startDate = new DateTime(now.Year, now.Month, 1);
-            var endDate = startDate.AddMonths(1).AddDays(-1);
-            cardRevenue revenue = new cardRevenue("GR1", startDate, endDate);
-            revenue.Show();
+            //// tạo báo cáo
+            //DateTime now = DateTime.Now;
+            //var startDate = new DateTime(now.Year, now.Month, 1);
+            //var endDate = startDate.AddMonths(1).AddDays(-1);
+            //cardRevenue revenue = new cardRevenue("GR1", startDate, endDate);
+            //revenue.Show();
 
+            cardChooseReport card = new cardChooseReport();
+            card.Show();
         }
 
         private void bd_customerAdd_MouseDown(object sender, MouseButtonEventArgs e)
