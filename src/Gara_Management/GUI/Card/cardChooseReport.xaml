@@ -1,0 +1,33 @@
+﻿<Window x:Class="Gara_Management.GUI.Card.cardChooseReport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gara_Management.GUI.Card"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" Background="Transparent" AllowsTransparency="True" 
+        Title="cardChooseReport" Height="200" Width="500"
+        x:Name="Successful"
+        Loaded="Window_Loaded"
+        >
+    <Window.Resources>
+        <Storyboard x:Key="FadeInStoryboard">
+            <DoubleAnimation Storyboard.TargetName="Successful"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.5"/>
+        </Storyboard>
+    </Window.Resources>
+    <Border CornerRadius="20" Background="White" BorderThickness="5" BorderBrush="{StaticResource sColor5}">
+        <Grid>
+            <Border x:Name="Reveune" MouseDown="Reveune_MouseDown" CornerRadius="10" Background="{StaticResource sColor4}" Margin="45,46,279,46">
+                <TextBlock Text="Doanh thu" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <Border x:Name="Invetory" MouseDown="Invetory_MouseDown" CornerRadius="10" Background="{StaticResource sColor4}" Margin="279,46,45,46">
+                <TextBlock Text="Báo cáo tồn" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
+        </Grid>
+    </Border>
+
+</Window>
