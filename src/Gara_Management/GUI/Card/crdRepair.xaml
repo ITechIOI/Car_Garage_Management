@@ -308,12 +308,10 @@
             <Border x:Name="bd_add" MouseDown="bd_add_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}"  Margin="101,19,621,16">
                 <TextBlock x:Name="tbx_add" Text="Thêm" TextAlignment="Center"/>
             </Border>
-            <Border x:Name="bd_modify" MouseDown="bd_modify_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}"  Margin="486,19,236,16">
+            <Border x:Name="bd_modify" MouseDown="bd_modify_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}"  Margin="622,19,100,16">
                 <TextBlock x:Name="tbx_modify" Text="Sửa" TextAlignment="Center"/>
             </Border>
-            <Border x:Name="bd_print" MouseDown="bd_print_MouseDown" Grid.Row="3" Cursor="Hand" CornerRadius="10" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="622,19,100,16">
-                <TextBlock Text="In" TextAlignment="Center"/>
-            </Border>
+            
         </Grid>
     </Border>
 </Window>

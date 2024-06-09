@@ -78,7 +78,7 @@ namespace Gara_Management.GUI
         private void bd_repairInvoice_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Lập phiếu sửa chữa
-            crdRepair crdRepair = new crdRepair();
+            crdRepair crdRepair = new crdRepair(gara);
             crdRepair.ShowDialog();
         }
 

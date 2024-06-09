@@ -222,9 +222,7 @@ namespace Gara_Management.GUI.Card
             flowDocument.Blocks.Add(info);
 
             Table table = new Table();
-            table.BorderThickness = new Thickness(1);
-            table.BorderBrush = new SolidColorBrush(Colors.Black);
-            table.Columns.Add(new TableColumn() { Width = new GridLength(50) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(50) }) ; // Thêm cột
             table.Columns.Add(new TableColumn() { Width = new GridLength(220) }); // Thêm cột
             table.Columns.Add(new TableColumn() { Width = new GridLength(200) }); // Thêm cột
             table.Columns.Add(new TableColumn() { Width = new GridLength(100) }); // Thêm cột
