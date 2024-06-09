@@ -18,13 +18,13 @@
                     <ColumnDefinition/>
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="ITM001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txbl_id"  Text="ITM001" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="118,0,0,0"/>
-                <TextBlock Grid.Column="1" Text="Nguyễn Văn Dũng" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txbl_content" Grid.Column="1" Text="Nguyễn Văn Dũng" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="278,0,0,0"/>
-                <TextBlock Grid.Column="2" Text="28/03/2024" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txbl_date" Grid.Column="2" Text="28/03/2024" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="138,0,0,0"/>
-                <TextBlock Grid.Column="3" Text="29.870.000" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:Name="txbl_money" Grid.Column="3" Text="29.870.000" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="138,0,0,0"/>
                 <Border x:Name="bd_Infor"  Grid.Column="4" Cursor="Hand">
                     <TextBlock  Text="..." FontSize="36" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top"

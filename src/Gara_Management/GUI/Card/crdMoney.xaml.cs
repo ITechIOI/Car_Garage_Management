@@ -46,7 +46,7 @@ namespace Gara_Management.GUI.Card
             List<Fluctuation> fluctuations = FluctuationDAO.Instance.LoadListFluctuationOfCus(customer.IDCus, gara);
             foreach (Fluctuation fluctuation in fluctuations) 
             { 
-                itMoney it = new itMoney(fluctuation, customer);
+                itMoney it = new itMoney(fluctuation);
             }
         }
     }
