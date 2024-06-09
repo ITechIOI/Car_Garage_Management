@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itCarBrand : UserControl
     {
-        public itCarBrand()
+        public itCarBrand(CarBrand carbrand)
         {
             InitializeComponent();
+            txtb_idCarBrand.Text = carbrand.IDBrand;
+            txtb_nameBrand.Text = carbrand.NameBrand;
         }
     }
 }

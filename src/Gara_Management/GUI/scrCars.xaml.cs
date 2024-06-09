@@ -368,7 +368,7 @@ namespace Gara_Management.GUI
 
         private void btn_carbrand_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            cardCarBrand cardCarBrand = new cardCarBrand();
+            cardCarBrand cardCarBrand = new cardCarBrand(gara);
             cardCarBrand.ShowDialog();
         }
     }

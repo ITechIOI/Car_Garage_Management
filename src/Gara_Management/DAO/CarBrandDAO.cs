@@ -61,7 +61,7 @@ namespace Gara_Management.DAO
             }
             else
             {
-                id = null;
+                id = "";
             }
             return id;
         }
