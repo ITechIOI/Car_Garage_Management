@@ -1,4 +1,6 @@
-﻿using Gara_Management.DTO;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using Gara_Management.GUI.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +43,11 @@ namespace Gara_Management.GUI.Card
         }
         private void LoadListMoney()
         {
-
+            List<Fluctuation> fluctuations = FluctuationDAO.Instance.LoadListFluctuationOfCus(customer.IDCus, gara);
+            foreach (Fluctuation fluctuation in fluctuations) 
+            { 
+                itMoney it = new itMoney(fluctuation, customer);
+            }
         }
     }
 }

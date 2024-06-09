@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itMoney : UserControl
     {
-        public itMoney()
+       
+        public itMoney (Fluctuation fluc)
         {
             InitializeComponent();
+            txbl_id.Text = fluc.ID;
+            txbl_content.Text = fluc.Content;
+            txbl_date.Text = fluc.Date.ToString("dd/MM/yyyy");
+            txbl_money.Text = fluc.Money.ToString();
         }
     }
 }
