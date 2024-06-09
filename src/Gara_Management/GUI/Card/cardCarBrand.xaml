@@ -32,7 +32,7 @@
                         </Grid>
                     </Border>
                     <ScrollViewer Margin="20,112,26,38">
-                        <StackPanel x:Name="ds_carbrand" >
+                        <StackPanel x:Name="ds_carbrand"  >
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
@@ -46,23 +46,23 @@
                     </Border>
 
                     <TextBlock Foreground="White" Text="THƯƠNG HIỆU XE" FontSize="30" FontWeight="DemiBold" Margin="74,78,67,323"/>
-                    <Border Background="White" Margin="10,173,285,234" CornerRadius="10">
+                    <Border x:Name="bd_idBrand" Background="White" Margin="10,173,285,234" CornerRadius="10">
                         <TextBlock Text="ID:" TextAlignment="Center" Foreground="{StaticResource sColor5}"  FontWeight="DemiBold" FontSize="25" RenderTransformOrigin="0.5,0.5"/>
                     </Border>
                     <Border Background="White" Margin="10,223,215,179" CornerRadius="10">
                         <TextBlock Text="Thương hiệu:" TextAlignment="Center" Foreground="{StaticResource sColor5}"  FontWeight="DemiBold" FontSize="25" RenderTransformOrigin="0.5,0.5"/>
                     </Border>
-                    <Border CornerRadius="10" Background="White" Margin="136,173,114,234">
-                        <TextBox Foreground="{StaticResource sColor5}"  BorderThickness="0" Background="Transparent" FontSize="25" VerticalAlignment="Center" Height="36"/>
+                    <Border x:Name="bd_id" CornerRadius="10" Background="White" Margin="136,173,114,234">
+                        <TextBox x:Name="txtb_id" Foreground="{StaticResource sColor5}"  BorderThickness="0" Background="Transparent" FontSize="25" VerticalAlignment="Center" Height="36"/>
                     </Border>
                     <Border CornerRadius="10" Background="White" Margin="199,223,29,179">
-                        <TextBox Foreground="{StaticResource sColor5}"  BorderThickness="0" Background="Transparent" FontSize="25" VerticalAlignment="Center" Height="36"/>
+                        <TextBox x:Name="txtb_name" Foreground="{StaticResource sColor5}"  BorderThickness="0" Background="Transparent" FontSize="25" VerticalAlignment="Center" Height="36"/>
                     </Border>
                     <Border x:Name="btn_add" Background="White" Margin="136,328,155,78" CornerRadius="10" MouseDown="btn_add_MouseDown">
-                        <TextBlock Text="Thêm" TextAlignment="Center" Foreground="{StaticResource sColor5}"  FontWeight="Bold" FontSize="25" RenderTransformOrigin="0.5,0.5"/>
+                        <TextBlock x:Name="txbl_add" Text="Thêm" TextAlignment="Center" Foreground="{StaticResource sColor5}"  FontWeight="Bold" FontSize="25" RenderTransformOrigin="0.5,0.5"/>
                     </Border>
                     <Border x:Name="btn_delete" Background="White" Margin="262,328,29,78" CornerRadius="10" MouseDown="btn_delete_MouseDown">
-                        <TextBlock Text="Xóa" TextAlignment="Center" Foreground="{StaticResource sColor5}"  FontWeight="Bold" FontSize="25" RenderTransformOrigin="0.5,0.5"/>
+                        <TextBlock x:Name="txbl_delete" Text="Xóa" TextAlignment="Center" Foreground="{StaticResource sColor5}"  FontWeight="Bold" FontSize="25" RenderTransformOrigin="0.5,0.5"/>
                     </Border>
 
                 </Grid>
