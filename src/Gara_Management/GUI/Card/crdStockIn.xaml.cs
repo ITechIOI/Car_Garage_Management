@@ -355,6 +355,11 @@ namespace Gara_Management.GUI.Card
             }
         }
 
+        private void btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
         public void ReceivedData(string idCom, int price, int quantity)
         {
             this.id = idCom;
