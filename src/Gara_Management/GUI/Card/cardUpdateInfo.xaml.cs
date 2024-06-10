@@ -51,7 +51,7 @@ namespace Gara_Management.GUI.Card
 
         private void bt_save_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (txtb_password.Text != account.Password)
+            if (txtb_password.Password != account.Password)
             {
                 MessageBox.Show("Sai mật khẩu vui lòng thử lại");
             }    

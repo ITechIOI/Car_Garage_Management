@@ -54,26 +54,26 @@ namespace Gara_Management.GUI.Card
         private void bt_save_MouseDown(object sender, MouseButtonEventArgs e)
         {
             string idstaff = staff.IDStaff;
-            string password = oldPasswordTextbox.Text;
+            string password = oldPasswordTextbox.Password;
             if (password != account.Password)
             {
                 MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng thử lại.");
             }
             else
             {
-                if (newPasswordTextbox.Text.Length < 8)
+                if (newPasswordTextbox.Password.Length < 8)
                 {
                     MessageBox.Show("Mật khẩu mới phải hơn 8 kí tự.");
                 }
                 else
                 {
-                    if (newPasswordTextbox.Text != retypeNewPasswordTextbox.Text)
+                    if (newPasswordTextbox.Password != retypeNewPasswordTextbox.Password)
                     {
                         MessageBox.Show("Mật khẩu mới không trùng khớp. Vui lòng thử lại.");
                     }
                     else
                     {
-                        AccountDAO.Instance.ChangePassword(account.IDAcc, newPasswordTextbox.Text);
+                        AccountDAO.Instance.ChangePassword(account.IDAcc, newPasswordTextbox.Password);
                         MessageBox.Show("Thay đổi mật khẩu thành công.");
                         this.Close();
                     }
@@ -83,7 +83,7 @@ namespace Gara_Management.GUI.Card
 
         private void retypeNewPasswordTextbox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (retypeNewPasswordTextbox.Text != newPasswordTextbox.Text)
+            if (retypeNewPasswordTextbox.Password != newPasswordTextbox.Password)
             {
                 txtb_warning.Visibility = Visibility.Visible;
             }
@@ -91,6 +91,18 @@ namespace Gara_Management.GUI.Card
             {
                 txtb_warning.Visibility = Visibility.Collapsed;
             }    
+        }
+
+        private void retypeNewPasswordTextbox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (retypeNewPasswordTextbox.Password != newPasswordTextbox.Password)
+            {
+                txtb_warning.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtb_warning.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

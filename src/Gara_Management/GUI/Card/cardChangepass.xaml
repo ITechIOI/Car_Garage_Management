@@ -62,7 +62,7 @@
                 <Border Grid.Row="2"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Mật khẩu cũ:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox Name="oldPasswordTextbox" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="140,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <PasswordBox Name="oldPasswordTextbox" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="140,0,10,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="140,29,10,0"/>
                     </Grid>
                 </Border>
@@ -70,7 +70,7 @@
                 <Border Grid.Row="3"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Mật khẩu mới:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox Name="newPasswordTextbox" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="160,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <PasswordBox Name="newPasswordTextbox" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="160,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="160,29,5,0"/>
                     </Grid>
                 </Border>
@@ -78,7 +78,7 @@
                 <Border Grid.Row="4"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Nhập lại:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox Name="retypeNewPasswordTextbox" TextChanged="retypeNewPasswordTextbox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="111,0,10,0" Foreground="{StaticResource sColor1}"/>
+                        <PasswordBox Name="retypeNewPasswordTextbox" PasswordChanged="retypeNewPasswordTextbox_PasswordChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="111,0,10,0" Foreground="{StaticResource sColor1}"/>
                         <TextBlock Name="txtb_warning" Text="⚠" Visibility="Collapsed" Background="Transparent" Margin="331,2,-23,-1" Foreground="Red" RenderTransformOrigin="3.296,0.505"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="111,29,14,0"/>
                     </Grid>

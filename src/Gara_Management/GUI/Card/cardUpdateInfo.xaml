@@ -61,7 +61,7 @@
                        HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Left"
                        FontWeight="Bold" Width="340"/>
                         <Border CornerRadius="20" Background="{StaticResource sColor1}" Margin="16,42,12,18">
-                            <TextBox x:Name="txtb_password" BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                            <PasswordBox x:Name="txtb_password" BorderThickness="0" Background="Transparent" FontSize="22" VerticalAlignment="Center" Margin="10,0,10,0"/>
                         </Border>
                     </Grid>
                 </Border>
