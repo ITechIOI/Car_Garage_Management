@@ -33,7 +33,7 @@ namespace Gara_Management.GUI.Item
             txt_namecus.Text = this.customer.NameCus;
             txtb_phonenumbercus.Text = this.customer.PhoneNumberCus;
             txtb_addresscus.Text = this.customer.AddressCus;
-            txtb_debtcus.Text = this.customer.Debt.ToString();
+            txtb_debtcus.Text =((int) this.customer.Debt).ToString();
         }
 
         // Hiển thị bảng thông tin khách hàng

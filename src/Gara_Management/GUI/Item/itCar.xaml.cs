@@ -36,7 +36,7 @@ namespace Gara_Management.GUI.Item
             this.idRec = idRec;
             ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(idRec);
             RepairPaymentBill bill = RepairPaymentBillDAO.Instance.GetRepairPaymentBillByIDRec(gara, idRec);
-            if (bill != null) { txtb_total.Text = bill.TotalPayment.ToString(); }
+            if (bill != null) { txtb_total.Text =((int) bill.TotalPayment).ToString(); }
             else { txtb_total.Text = "0"; }
             txtb_ordinalNum.Text = i.ToString();
             txtb_carBrand.Text =CarBrandDAO.Instance.LoadCarBrandByID(recept.IDBrand, gara).NameBrand;

@@ -49,7 +49,7 @@
                 </Grid>
             </Border>
             <Border Grid.Row="1" CornerRadius="10" Margin="10,10,10,10">
-                <DataGrid x:Name="dgr_revenue"/>
+                <DataGrid x:Name="dgr_revenue" AutoGenerateColumns="True"/>
             </Border>
             <Border x:Name="bt_previous" MouseDown="bt_previous_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="10,0,646,35">
                 <TextBlock Text="Trước" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>

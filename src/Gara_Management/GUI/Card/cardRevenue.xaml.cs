@@ -1,8 +1,11 @@
 ﻿using Gara_Management.DAO;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +30,7 @@ namespace Gara_Management.GUI.Card
         private int numberOfRepairs = 0;
         private DateTime startDate;
         private DateTime endDate;
+        private DateTime reportDate;
         public cardRevenue(string gara, DateTime startDate, DateTime dateTime)
         {
             InitializeComponent();
@@ -36,6 +40,7 @@ namespace Gara_Management.GUI.Card
             LoadRevenueList();
             this.Opacity = 0;
         }
+       
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -57,7 +62,7 @@ namespace Gara_Management.GUI.Card
 
         private void bt_report_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            ExportToCSVAndSaveDialog();
         }
 
         private void bt_exit_MouseDown(object sender, MouseButtonEventArgs e)
@@ -83,8 +88,48 @@ namespace Gara_Management.GUI.Card
                 totalRevenue = totalRevenue + Convert.ToDecimal(row.Row[4].ToString());
                 numberOfRepairs = numberOfRepairs + int.Parse(row.Row[2].ToString());
             }
-            tbl_totalRevenue.Text = totalRevenue.ToString("N");
+            tbl_totalRevenue.Text =((int) totalRevenue).ToString("N");
             tbl_numberOfRepairs.Text = numberOfRepairs.ToString();
+        }
+        
+        private void ExportToCSVAndSaveDialog()
+        {
+            var columnNames = new StringBuilder();
+            foreach (var column in dgr_revenue.Columns)
+            {
+                columnNames.Append(column.Header.ToString()).Append(",");
+            }
+            columnNames.Remove(columnNames.Length - 1, 1); // Xóa dấu phẩy cuối cùng
+            columnNames.AppendLine();
+
+            // Tạo chuỗi dữ liệu cho CSV
+            var dataRows = new StringBuilder();
+            foreach (var row in dgr_revenue.Items)
+            {
+                var rowData = new StringBuilder();
+                foreach (var column in dgr_revenue.Columns)
+                {
+                    var cellContent = column.GetCellContent(row); 
+                    rowData.Append(((TextBlock) cellContent).Text).Append(",");
+                }
+                rowData.Remove(rowData.Length - 1, 1); 
+                dataRows.AppendLine(rowData.ToString());
+            }
+            // Kết hợp chuỗi tiêu đề và dữ liệu
+            var csvContent = columnNames.ToString() + dataRows.ToString();
+
+            // Sử dụng SaveFileDialog để lưu tệp CSV
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                // Sử dụng UTF-8 encoding để hỗ trợ các ký tự tiếng Việt
+                using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName, false, Encoding.UTF8))
+                {
+                    writer.Write(csvContent);
+                }
+                MessageBox.Show("Dữ liệu đã được kết xuất thành công.");
+            }
         }
     }
 }

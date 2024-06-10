@@ -39,8 +39,8 @@ namespace Gara_Management.GUI.Card
         private void Reveune_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // tạo báo cáo
-            DateTime now = DateTime.Now;
-            var startDate = new DateTime(now.Year, now.Month, 1);
+            DateTime date = DateTime.Now.AddMonths(-1);
+            var startDate = new DateTime(date.Year, date.Month, 1);
             var endDate = startDate.AddMonths(1).AddDays(-1);
             cardRevenue revenue = new cardRevenue("GR1", startDate, endDate);
             revenue.Show();
