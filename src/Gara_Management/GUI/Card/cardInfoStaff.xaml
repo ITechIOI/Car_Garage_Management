@@ -17,7 +17,7 @@
                              From="0.0" To="1.0" Duration="0:0:0.5"/>
         </Storyboard>
     </Window.Resources>
-    <Border Background="{StaticResource sColor4}" CornerRadius="10" MouseDown="Border_MouseDown">
+    <Border Background="{StaticResource sColor4}" CornerRadius="10" BorderBrush="Black" BorderThickness="2" MouseDown="Border_MouseDown">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="110"/>

@@ -16,7 +16,7 @@
                              From="0.0" To="1.0" Duration="0:0:0.5"/>
         </Storyboard>
     </Window.Resources>
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="20">
+    <Border Background="White" BorderBrush="Black" BorderThickness="3" CornerRadius="20">
         <Grid>
             <Border Background="Transparent" Margin="0,0,398,0">
                 <Grid>
@@ -38,7 +38,7 @@
                 </Grid>
 
             </Border>
-            <Border Background="{StaticResource sColor5}" Margin="398,0,0,0" CornerRadius="20">
+            <Border Background="{StaticResource sColor5}" Margin="401,0,-3,0" CornerRadius="20">
                 <Grid>
                     <Border x:Name="bt_exit" Cursor="Hand" 
                     MouseDown="bt_exit_MouseDown" Margin="354,0,0,409" CornerRadius="5">

@@ -22,7 +22,7 @@
                              From="1.0" To="0.0" Duration="0:0:0.5"/>
         </Storyboard>
     </Window.Resources>
-    <Border Background="White" CornerRadius="20" ClipToBounds="True">
+    <Border Background="White" CornerRadius="20" ClipToBounds="True" BorderBrush="{StaticResource sColor5}" BorderThickness="2">
         <Grid>
             <Rectangle Margin="76,-45,42,225">
                 <Rectangle.Fill>
