@@ -267,8 +267,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="69"/>
                 <RowDefinition Height="48"/>
-                <RowDefinition Height="488*"/>
-                <RowDefinition Height="163*"/>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="8*"/>
             </Grid.RowDefinitions>
             <!-- thoát ứng dụng -->
             <Border x:Name="bd_exit" Cursor="Hand" MouseEnter="bd_exit_MouseEnter" MouseLeave="bd_exit_MouseLeave"
@@ -324,13 +324,13 @@
                 </Grid>
 
             </Border>
-            <Border x:Name="btn_carbrand" Cursor="Hand" MouseDown="btn_carbrand_MouseDown" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="89,20,649,90">
-                <TextBlock Text="Thương hiệu xe" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Border x:Name="btn_carbrand" Cursor="Hand" MouseDown="btn_carbrand_MouseDown" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="80,28,658,87">
+                <TextBlock Text="Thương hiệu xe" FontWeight="DemiBold" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
 
             <!-- xem các phiếu sửa chữa-->
-            <Border x:Name="bt_repair_card_scr" Cursor="Hand" MouseDown="bt_repair_card_scr_MouseDown" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="629,20,109,90">
-                <TextBlock Text="Phiếu sửa chữa" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Border x:Name="bt_repair_card_scr" Cursor="Hand" MouseDown="bt_repair_card_scr_MouseDown" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="641,28,97,87">
+                <TextBlock Text="Phiếu sửa chữa" FontWeight="DemiBold" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
             <TextBlock x:Name="txtb_curNum" Grid.Row="3" Text="Tổng xe hiện tại: 99" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,95,0,0"/>
             <TextBlock x:Name="txtb_dayNum"   Grid.Row="3" Text="Số xe đã nhận hôm nay: 30" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="582,95,0,0"/>
