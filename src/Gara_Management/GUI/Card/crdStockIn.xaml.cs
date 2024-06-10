@@ -42,6 +42,8 @@ namespace Gara_Management.GUI.Card
             InitializeComponent();
             this.Opacity = 0;
             i = 0;
+
+            btn_delete.Visibility = Visibility.Hidden;
             this.gara = gara;
             this.acc = acc;
             txtb_idLot.Text = "LOT" + (GoodReceivedNoteDAO.Instance.GetMaxLotNumber() + 1);
@@ -53,6 +55,7 @@ namespace Gara_Management.GUI.Card
         private void Ds_nhapkho_LayoutUpdated(object sender, EventArgs e)
         {
             i = ds_nhapkho.Children.Count;
+
             List<itStockInDetail> list = getListItem(ds_nhapkho);
             int total = 0; int money;
             foreach (itStockInDetail item in list)
@@ -79,6 +82,7 @@ namespace Gara_Management.GUI.Card
             InitializeComponent();
             this.grn = grn;
             add_button.Text = "Sửa";
+            
             bd_pay.Visibility = Visibility.Hidden;
             ds_nhapkho.LayoutUpdated += Ds_nhapkho_LayoutUpdated;
             txtb_idLot.Text = grn.LotNumber;
@@ -106,6 +110,7 @@ namespace Gara_Management.GUI.Card
             InitializeComponent();
             this.gara = gara;
             this.acc = acc;
+            btn_delete.Visibility = Visibility.Hidden;
             ds_nhapkho.LayoutUpdated += Ds_nhapkho_LayoutUpdated;
             txtb_idLot.Text = "LOT" + (GoodReceivedNoteDAO.Instance.GetMaxLotNumber() + 1);
             txtb_staff.Text = StaffDAO.Instance.GetStaffById(acc.IDStaff).NameStaff;
@@ -357,7 +362,19 @@ namespace Gara_Management.GUI.Card
 
         private void btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (MessageBox.Show("Bạn có muốn xóa phiếu nhập này?", "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                if (GoodReceivedNoteDAO.Instance.DeleteGoodReceivedNote(txtb_idLot.Text))
+                {
+                    MessageBox.Show("Xóa phiếu nhập hàng thành công,", "Thông báo");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa phiếu nhập này không thành công. Vui lòng thử lại sau.", "Thông báo");
+                }
 
+            }
         }
 
         public void ReceivedData(string idCom, int price, int quantity)

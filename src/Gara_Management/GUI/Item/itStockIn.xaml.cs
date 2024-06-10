@@ -23,12 +23,14 @@ namespace Gara_Management.GUI.Item
     /// </summary>
     public partial class itStockIn : UserControl
     {
-        
+
+        string gara;
         GoodReceivedNote grn;
-        public itStockIn(GoodReceivedNote grn)
+        public itStockIn(GoodReceivedNote grn, string gara)
         {
             InitializeComponent();
             this.grn = grn;
+            this.gara = gara;
             txtb_idLot.Text = this.grn.LotNumber;
             txtb_namesupplier.Text = grn.Supplier;
             txtb_date.Text = this.grn.ImportTime.ToString();
@@ -40,6 +42,15 @@ namespace Gara_Management.GUI.Item
         {
             crdStockIn crdStockIn = new crdStockIn(grn);
             crdStockIn.ShowDialog();
+            Panel panel = ((Panel)this.Parent);
+            panel.Children.Clear();
+            List<GoodReceivedNote> list = GoodReceivedNoteDAO.Instance.LoadGoodReceivedNoteList(gara);
+            foreach (GoodReceivedNote note in list)
+            {
+                itStockIn it = new itStockIn(note, gara);
+                panel.Children.Add(it);
+            }
+
         }
     }
 }
