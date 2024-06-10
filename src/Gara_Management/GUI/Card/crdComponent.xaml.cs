@@ -21,9 +21,15 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class crdComponent : Window
     {
-        public crdComponent()
+        bool delete = false;
+        string gara;
+        private static bool check = false;
+        public crdComponent(string gara)
         {
             InitializeComponent();
+            tbx_delete.Text = "Hủy";
+            this.gara = gara;
+            LoadListComponentToComboBox();
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -36,12 +42,32 @@ namespace Gara_Management.GUI.Card
         }
         private void bd_save_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
+
         }
 
         private void bd_delete_MouseDown(object sender, MouseButtonEventArgs e)
         {
+              
+        }
+        private void LoadListComponentToComboBox()
+        {
+            List<CarComponent> carComponents = CarComponentDAO.Instance.LoadCarComponentList(gara);
+            cbx_component.Items.Clear();
+            foreach (CarComponent carComponent in carComponents)
+            {
+                cbx_component.Items.Add(carComponent.NameCom);
+            }
+        }
 
+        private void cbx_component_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string id  = CarComponentDAO.Instance.GetComponentIDByName(gara, cbx_component.SelectedItem.ToString());
+            CarComponent component = CarComponentDAO.Instance.GetCarComponentByID(id, gara);
+            if (component != null)
+            {
+                txtb_price.Text =((int) component.CurPrice).ToString();
+                txtb_wage.Text =((int) component.Wage).ToString();
+            }
         }
     }
 }

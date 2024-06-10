@@ -111,7 +111,7 @@ namespace Gara_Management.GUI.Card
         //
         private void bd_print_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            PrintGoodReceivedNote();
 
         }
 
@@ -127,9 +127,11 @@ namespace Gara_Management.GUI.Card
         {
             if (add_button.Text == "Thêm")
             {
-                i++;
-                itStockInDetail it = new itStockInDetail(i, gara);
-                ds_nhapkho.Children.Add(it);
+                crdComponent component = new crdComponent(gara);
+                //component.bd_save.MouseDown += Bd_save_MouseDown;
+                //component.bd_delete.MouseDown += Bd_delete_MouseDown;
+                component.ShowDialog();
+                
             }
             else
             {
@@ -143,6 +145,53 @@ namespace Gara_Management.GUI.Card
                 }
             }
         }
+
+        private void Bd_delete_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdComponent component = sender as crdComponent;
+            if (component.tbx_delete.Text == "Hủy")
+            {
+                component.Close();
+            }
+            else
+            {
+                if (MessageBox.Show("Bạn có muốn xóa phụ tùng này khỏi phiếu nhập?", "Thông báo", MessageBoxButton.YesNo) ==
+                    MessageBoxResult.Yes)
+                {
+                    i--;
+                    component.Close();
+                }
+            }
+        }
+        private void DeleteComponent(string name)
+        {
+            
+        }
+        private void Bd_save_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            crdComponent component = sender as crdComponent;
+            if (component.cbx_component.SelectedItem == null || component.txtb_amount.Text =="")
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Thông báo");
+            }    
+            else
+            {
+                int amount;
+                if (!int.TryParse(component.txtb_amount.Text, out amount))
+                {
+                    MessageBox.Show("Số lượng phải là một số nguyên");
+                    
+                }
+                else
+                {
+                    i++;
+                    itStockInDetail it = new itStockInDetail(i, gara);
+                    ds_nhapkho.Children.Add(it);
+                }    
+            }    
+            
+        }
+
         public List<itStockInDetail> getListItem(StackPanel stack)
         {
             var list = new List<itStockInDetail>();
@@ -150,6 +199,7 @@ namespace Gara_Management.GUI.Card
             {
                 if (item is itStockInDetail detail)
                 {
+                    
                     list.Add(detail);
                 }   
             }
