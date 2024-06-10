@@ -29,7 +29,8 @@ namespace Gara_Management.GUI.Card
             InitializeComponent();
             this.gara = gara;
             this.customer = customer;
-            
+            txtb_fluctuation.Text = "Lịch sử giao dịch của khách hàng " + customer.NameCus; 
+            LoadListMoney();
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -44,9 +45,11 @@ namespace Gara_Management.GUI.Card
         private void LoadListMoney()
         {
             List<Fluctuation> fluctuations = FluctuationDAO.Instance.LoadListFluctuationOfCus(customer.IDCus, gara);
+            ds_money.Children.Clear();
             foreach (Fluctuation fluctuation in fluctuations) 
             { 
                 itMoney it = new itMoney(fluctuation);
+                ds_money.Children.Add(it);
             }
         }
     }
