@@ -40,7 +40,6 @@ namespace Gara_Management.GUI
             InitializeComponent();
             this.gara = gara;
             this.acc = acc;
-            LoadSupplier();
             LoadListGoodReceivedNote();
             SetSliderMaxValue();
         }
@@ -81,17 +80,6 @@ namespace Gara_Management.GUI
         {
             if (filter.Visibility == Visibility.Hidden)
             {
-                if (supplier == "")
-                {
-                    cbx_supplier.SelectedItem = null;
-                    ckb_supplier.IsChecked = false;
-                }
-                else
-                {
-                    cbx_supplier.SelectedItem = supplier;
-                    ckb_supplier.IsChecked = true;
-                }
-
                 if (startDate == "")
                 {
                     dpk_startDate.Text = "";
@@ -321,11 +309,6 @@ namespace Gara_Management.GUI
         private void apply_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtb_findGRN.Text = "";
-            if (ckb_supplier.IsChecked == true && cbx_supplier.SelectedItem == null)
-            {
-                MessageBox.Show("Vui lòng chọn nhà cung cấp!");
-                return;
-            }
             if (ckb_startDate.IsChecked == true && dpk_startDate.SelectedDate == null)
             {
                 MessageBox.Show("Vui lòng chọn ngày bắt đầu!");
@@ -336,6 +319,41 @@ namespace Gara_Management.GUI
                 MessageBox.Show("Vui lòng chọn ngày kết thúc!");
                 return;
             }
+            filterList();
+            filter.Visibility = Visibility.Hidden;
+            //
+
+
+        }
+
+        private void txtb_findGRN_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            supplier = txtb_findGRN.Text;
+            filterList();
+        }
+
+        private void dpk_startDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ckb_startDate.IsChecked = true;
+        }
+
+        private void dpk_endDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ckb_endDate.IsChecked = true;
+        }
+
+        private void rangeSlider_LowerValueChanged(object sender, RoutedEventArgs e)
+        {
+            ckb_price.IsChecked = true;
+        }
+
+        private void rangeSlider_HigherValueChanged(object sender, RoutedEventArgs e)
+        {
+            ckb_price.IsChecked = true;
+        }
+
+        private void filterList()
+        {
             switch (filter_state())
             {
                 case 0:
@@ -420,7 +438,7 @@ namespace Gara_Management.GUI
                     }
                 case 8:
                     {
-                        supplier = cbx_supplier.SelectedItem.ToString();
+                        supplier = txtb_findGRN.Text;
                         startDate = "";
                         endDate = "";
                         minPrice = -1;
@@ -430,7 +448,7 @@ namespace Gara_Management.GUI
                     }
                 case 9:
                     {
-                        supplier = cbx_supplier.SelectedItem.ToString();
+                        supplier = txtb_findGRN.Text;
                         startDate = "";
                         endDate = "";
                         minPrice = (int)rangeSlider.LowerValue;
@@ -440,7 +458,7 @@ namespace Gara_Management.GUI
                     }
                 case 10:
                     {
-                        supplier = cbx_supplier.SelectedItem.ToString();
+                        supplier = txtb_findGRN.Text;
                         startDate = "";
                         endDate = dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy");
                         minPrice = -1;
@@ -450,7 +468,7 @@ namespace Gara_Management.GUI
                     }
                 case 11:
                     {
-                        supplier = cbx_supplier.SelectedItem.ToString();
+                        supplier = txtb_findGRN.Text;
                         startDate = "";
                         endDate = dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy");
                         minPrice = (int)rangeSlider.LowerValue;
@@ -460,7 +478,7 @@ namespace Gara_Management.GUI
                     }
                 case 12:
                     {
-                        supplier = cbx_supplier.SelectedItem.ToString();
+                        supplier = txtb_findGRN.Text;
                         startDate = dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy");
                         endDate = "";
                         minPrice = -1;
@@ -470,7 +488,7 @@ namespace Gara_Management.GUI
                     }
                 case 13:
                     {
-                        supplier = cbx_supplier.SelectedItem.ToString();
+                        supplier = txtb_findGRN.Text;
                         startDate = dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy");
                         endDate = "";
                         minPrice = (int)rangeSlider.LowerValue;
@@ -480,7 +498,7 @@ namespace Gara_Management.GUI
                     }
                 case 14:
                     {
-                        supplier = cbx_supplier.SelectedItem.ToString();
+                        supplier = txtb_findGRN.Text;
                         startDate = dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy");
                         endDate = dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy");
                         minPrice = -1;
@@ -490,7 +508,7 @@ namespace Gara_Management.GUI
                     }
                 case 15:
                     {
-                        supplier = cbx_supplier.SelectedItem.ToString();
+                        supplier = txtb_findGRN.Text;
                         startDate = dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy");
                         endDate = dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy");
                         minPrice = (int)rangeSlider.LowerValue;
@@ -499,58 +517,12 @@ namespace Gara_Management.GUI
                         break;
                     }
             }
-            filter.Visibility = Visibility.Hidden;
-            //
-
-
-        }
-
-        private void txtb_findGRN_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (txtb_findGRN.Text == "")
-            {
-                LoadListGoodReceivedNote();
-            }
-            else
-            {
-                LoadListGoodReceivedNoteBySupplier();
-            }
-        }
-
-        private void dpk_startDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ckb_startDate.IsChecked = true;
-        }
-
-        private void dpk_endDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ckb_endDate.IsChecked = true;
-        }
-
-        private void rangeSlider_LowerValueChanged(object sender, RoutedEventArgs e)
-        {
-            ckb_price.IsChecked = true;
-        }
-
-        private void rangeSlider_HigherValueChanged(object sender, RoutedEventArgs e)
-        {
-            ckb_price.IsChecked = true;
-        }
-
-        private void LoadSupplier()
-        {
-            List<GoodReceivedNote> list = GoodReceivedNoteDAO.Instance.LoadGoodReceivedNoteList(gara);
-            cbx_supplier.Items.Clear();
-            foreach (GoodReceivedNote item in list)
-            {
-                cbx_supplier.Items.Add(item.Supplier);
-            }
         }
 
         private int filter_state()
         {
             int state;
-            if (ckb_supplier.IsChecked == false)
+            if (supplier == "")
             {
                 if (ckb_startDate.IsChecked == false)
                 {

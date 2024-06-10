@@ -332,10 +332,9 @@
             <TextBlock Grid.Row="3" Text="Chưa đăng ký nhập: 3" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,100,0"/>
 
             <!-- Bộ lọc -->
-            <Border x:Name="filter" CornerRadius="10" Background="{StaticResource sColor5}" HorizontalAlignment="Left" Height="260" Margin="405,10,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="337" Visibility="Visible">
+            <Border x:Name="filter" CornerRadius="10" Background="{StaticResource sColor5}" HorizontalAlignment="Left" Height="260" Margin="405,10,0,0" Grid.Row="2"  VerticalAlignment="Top" Width="337" Visibility="Hidden">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40*"/>
                         <RowDefinition Height="40*"/>
                         <RowDefinition Height="40*"/>
                         <RowDefinition Height="85*"/>
@@ -343,7 +342,7 @@
                         <RowDefinition Height="40*"/>
                     </Grid.RowDefinitions>
                     <!-- lọc NCC -->
-                    <Grid Grid.Row="0" Margin="0,0,0,0">
+                    <!--<Grid Grid.Row="0" Margin="0,0,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="160"/>
                             <ColumnDefinition />
@@ -354,9 +353,9 @@
 ItemsSource="{Binding Items}"  Background="{StaticResource sColor2}" Width="158" Height="29">
 
                         </ComboBox>
-                    </Grid>
+                    </Grid>-->
                     <!-- lọc ngày nhập -->
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="175*"/>
                             <ColumnDefinition Width="162*"/>
@@ -365,13 +364,13 @@ ItemsSource="{Binding Items}"  Background="{StaticResource sColor2}" Width="158"
                         <DatePicker x:Name="dpk_startDate" Margin="168,9,10,9" Grid.ColumnSpan="2" SelectedDateChanged="dpk_startDate_SelectedDateChanged" />
                     </Grid>
                     <!-- đến ngày (  nếu chọn ngày nhập mới được chọn đến ngày )-->
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="1">
 
                         <CheckBox x:Name="ckb_endDate" Content="Đến ngày"  FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="38" HorizontalAlignment="Left" Width="156" Margin="10,0,0,0" />
                         <DatePicker x:Name="dpk_endDate" Margin="166,12,10,0" SelectedDateChanged="dpk_endDate_SelectedDateChanged" />
                     </Grid>
                     <!-- lọc tiền  -->
-                    <Grid Grid.Row="3">
+                    <Grid Grid.Row="2">
 
                         <CheckBox x:Name="ckb_price" Content="Tổng tiền" FontSize="20" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="38" HorizontalAlignment="Left" Width="115" Margin="10,0,0,0"/>
                         <Grid>
@@ -391,7 +390,7 @@ ItemsSource="{Binding Items}"  Background="{StaticResource sColor2}" Width="158"
                         </Grid>
                     </Grid>
                     <!-- ok-->
-                    <Border Cursor="Hand" Grid.Row="4" x:Name="apply"  MouseDown="apply_MouseDown" Margin="110,7,127,10" CornerRadius="10" Background="{StaticResource sColor3}">
+                    <Border Cursor="Hand" Grid.Row="3" x:Name="apply"  MouseDown="apply_MouseDown" Margin="110,7,127,10" CornerRadius="10" Background="{StaticResource sColor3}">
                         <TextBlock  Text="Áp dụng" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"  Background="Transparent" />
                     </Border>
                 </Grid>
