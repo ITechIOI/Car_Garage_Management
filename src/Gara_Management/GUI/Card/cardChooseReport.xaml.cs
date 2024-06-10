@@ -42,7 +42,7 @@ namespace Gara_Management.GUI.Card
             DateTime date = DateTime.Now.AddMonths(-1);
             var startDate = new DateTime(date.Year, date.Month, 1);
             var endDate = startDate.AddMonths(1).AddDays(-1);
-            cardRevenue revenue = new cardRevenue("GR1", startDate, endDate);
+            cardRevenue revenue = new cardRevenue(gara, startDate, endDate);
             revenue.Show();
             this.Close();
 

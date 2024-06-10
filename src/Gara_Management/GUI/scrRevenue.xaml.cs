@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
+using System.Globalization;
 
 namespace Gara_Management.GUI
 {
@@ -65,7 +66,8 @@ namespace Gara_Management.GUI
 
             //also adding values updates and animates the chart automatically
             Labels = new[] { "Tháng " + dpk_startDate.SelectedDate.Value.Month };
-            Formatter = value => value.ToString("N");
+            Formatter = value => ToKMB(value);
+            //Formatter = value => value.ToString("N");
 
             DataContext = this;
         }
@@ -148,6 +150,33 @@ namespace Gara_Management.GUI
             tbl_revenue.Text = revenue.ToString();
             tbl_spend.Text = spend.ToString();
             UpdateChart();
+        }
+
+        private string ToKMB(double num)
+        {
+            if (num > 999999999 || num < -999999999)
+            {
+                return num.ToString("0,,,.###B", CultureInfo.InvariantCulture);
+            }
+            else
+            if (num > 999999 || num < -999999)
+            {
+                return num.ToString("0,,.##M", CultureInfo.InvariantCulture);
+            }
+            else
+            if (num > 999 || num < -999)
+            {
+                return num.ToString("0,.#K", CultureInfo.InvariantCulture);
+            }
+            else
+            if (num < 0.001 && num > -0.001)
+            {
+                return num.ToString("0.", CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                return num.ToString(CultureInfo.InvariantCulture);
+            }
         }
     }
 }
