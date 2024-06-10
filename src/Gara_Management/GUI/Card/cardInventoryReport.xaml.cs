@@ -34,7 +34,6 @@ namespace Gara_Management.GUI.Card
             LoadSpendDetails();
         }
 
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Lấy storyboard từ resource
@@ -65,10 +64,16 @@ namespace Gara_Management.GUI.Card
 
         private void LoadSpendDetails()
         {
+            if (startDate.Date.Month != endDate.Date.Month)
+            {
+                tbl_month.Text = startDate.Date.Month.ToString() + "-" + endDate.Date.Month.ToString();
+            }
+            else
+            {
+                tbl_month.Text = startDate.Date.Month.ToString();
+            }
             dgr_SpendDetails.ItemsSource = RevenueDetailDAO.Instance.LoadSpendDetailListByPeriod(gara, startDate.Date.ToString("MM/dd/yyyy"), endDate.Date.ToString("MM/dd/yyyy")).DefaultView;
         }
-
-        
 
     }
 }

@@ -182,7 +182,7 @@ namespace Gara_Management
         private void menuRevenue_MouseDown(object sender, MouseButtonEventArgs e)
         {
             scr = 4;
-            scrRevenue scrRevenue = new scrRevenue();
+            scrRevenue scrRevenue = new scrRevenue(gara);
             DataContext = scrRevenue;
         
             menuHome.Background = new SolidColorBrush(color5);
