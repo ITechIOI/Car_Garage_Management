@@ -320,6 +320,7 @@
     <Compile Include="DTO\Revenue.cs" />
     <Compile Include="DTO\RevenueDetail.cs" />
     <Compile Include="DTO\Staff.cs" />
+    <Compile Include="grnInterface.cs" />
     <Compile Include="GUI\Card\cardCarBrand.xaml.cs">
       <DependentUpon>cardCarBrand.xaml</DependentUpon>
     </Compile>
