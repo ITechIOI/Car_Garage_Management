@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace Gara_Management.GUI
 {
@@ -25,13 +27,65 @@ namespace Gara_Management.GUI
     {
         private decimal revenue = 0;
         private decimal spend = 0;
-     
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
         public scrRevenue()
         {
             InitializeComponent();
             InitializeInfo();
+            InitializeComponent();
+            LoadChart();
         }
-    
+
+        private void LoadChart()
+        {
+            SeriesCollection = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                    Title = "Doanh thu",
+                    Values = new ChartValues<double> { Convert.ToDouble(revenue) }
+                }
+            };
+
+            //adding series will update and animate the chart automatically
+            SeriesCollection.Add(new ColumnSeries
+            {
+                Title = "Chi phí",
+                Values = new ChartValues<double> { Convert.ToDouble(spend) }
+            });
+
+            SeriesCollection.Add(new ColumnSeries
+            {
+                Title = "Lợi nhuận",
+                Values = new ChartValues<double> { Convert.ToDouble(revenue - spend) }
+            });
+
+            //also adding values updates and animates the chart automatically
+            Labels = new[] { "Tháng " + dpk_startDate.SelectedDate.Value.Month };
+            Formatter = value => value.ToString("N");
+
+            DataContext = this;
+        }
+
+        private void UpdateChart()
+        {
+            if(dpk_startDate.SelectedDate.Value.Month != dpk_endDate.SelectedDate.Value.Month)
+            {
+                Labels[0] = "Tháng " + dpk_startDate.SelectedDate.Value.Month + " - " + dpk_endDate.SelectedDate.Value.Month;
+            }
+            else
+            {
+                Labels[0] = "Tháng " + dpk_startDate.SelectedDate.Value.Month;
+            }
+            SeriesCollection[0].Values = new ChartValues<double> { Convert.ToDouble(revenue) };
+            SeriesCollection[1].Values = new ChartValues<double> { Convert.ToDouble(spend) };
+            SeriesCollection[2].Values = new ChartValues<double> { Convert.ToDouble(revenue - spend) };
+            chart.Update(true, true);
+            DataContext = this;
+        }
+
         private void bt_revenue_MouseDown(object sender, MouseButtonEventArgs e)
         {
             cardRevenue revenue = new cardRevenue("GR1", dpk_startDate.SelectedDate.Value, dpk_endDate.SelectedDate.Value);
@@ -92,6 +146,7 @@ namespace Gara_Management.GUI
             }
             tbl_revenue.Text = revenue.ToString();
             tbl_spend.Text = spend.ToString();
+            UpdateChart();
         }
     }
 }
