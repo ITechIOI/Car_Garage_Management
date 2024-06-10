@@ -16,9 +16,7 @@
                 <Label x:Name="lb_exit" Content="X" Foreground="{StaticResource sColor5}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Width="50" Height="50" Margin="0,-13,-10,0" RenderTransformOrigin="0.43,0.326" />
             </Border>
 
-            <Border Background="{StaticResource sColor5}" CornerRadius="10" Margin="48,0,627,623" Height="93" VerticalAlignment="Bottom">
-                <TextBlock Text="Muốn ghi gì nè" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" Background="Transparent" FontSize="25" Margin="0,22,0,22"/>
-            </Border>
+            <TextBlock Name="txtb_fluctuation" Text="Muốn ghi gì nè" Foreground="{StaticResource sColor5}" TextAlignment="Center" VerticalAlignment="Top" Background="Transparent" FontSize="40" FontWeight="Bold" Margin="10,48,10,0" Height="90"/>
             <Grid Height="54" Margin="84,170,72,534">
                 <Border BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}">
                     <Grid >
