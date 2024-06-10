@@ -41,6 +41,15 @@ namespace Gara_Management.DAO
             }
             return repairPaymentBillList;
         }
+        public int LoadNotFinishedRepairPaymentBillList(string gara)
+        {
+            string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, " +
+                "TOTAL_PAYMENT, PAID, STATUS_BILL FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS " +
+                "ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC WHERE ID_GARA = '" + gara + "' " +
+                "AND STATUS_BILL = 0 AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            return data.Rows.Count;
+        }
 
         public List<RepairPaymentBill> LoadRepairPaymentBillListByNumberPlate(string gara, string numberPlate)
         {

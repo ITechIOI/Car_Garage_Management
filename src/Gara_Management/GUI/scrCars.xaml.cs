@@ -45,6 +45,8 @@ namespace Gara_Management.GUI
             this.account = account;
             LoadListReceipt();
             LoadCarBrand();
+            txtb_curNum.Text = "Tổng xe hiện tại: " + ReceptionFormDAO.Instance.LoadReceptionFormtList(gara).Count;
+            txtb_dayNum.Text = "Số xe đã nhận hôm nay: " + ReceptionFormDAO.Instance.LoadReceptionFormtListToday(gara).Count;
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
