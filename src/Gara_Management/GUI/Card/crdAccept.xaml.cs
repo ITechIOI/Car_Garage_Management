@@ -29,7 +29,6 @@ namespace Gara_Management.GUI.Card
             this.gara = gara;
             LoadCarBrand();
             dpk_RecDate.SelectedDate = DateTime.Now;
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -310,9 +309,8 @@ namespace Gara_Management.GUI.Card
             flowDocument.Blocks.Add(title);
 
             Paragraph info = new Paragraph();
-            string sInfo = "";
-                /*"Mã phiếu: " + txtb_idReceipt.Text + "\nHọ tên: " + cus.NameCus + "\nSố điện thoại: " + cus.PhoneNumberCus + "\nĐịa chỉ: " + cus.AddressCus
-                + "\nNgày thu tiền: " + date.ToString("dd/MM/yyyy") + "\nSố tiền thu: " + txtb_proceeds.Text;*/
+            string sInfo = "Mã phiếu: " + tbx_IDRec.Text + "\nHọ tên: " + tbx_NameCus.Text + "\nSố điện thoại: " + tbx_PhoneCus.Text + "\nBiển số: "
+                + tbx_NumberPlate.Text + "\nHiệu xe: " + cbx_CarBrand.Text + "\nNgày tiếp nhận: " + dpk_RecDate.Text; 
             info.Inlines.Add(sInfo);
             info.Margin = new Thickness(15);
             flowDocument.Blocks.Add(info);

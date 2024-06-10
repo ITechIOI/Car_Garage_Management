@@ -113,7 +113,6 @@ namespace Gara_Management.GUI.Card
             }
             else // đang sửa phiếu
             {
-                bd_add.Visibility = Visibility.Hidden;
                 for (int i = 0; i < ds_suachua.Children.Count; i++)
                 {
                     itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
@@ -122,6 +121,7 @@ namespace Gara_Management.GUI.Card
                 // code
                 SaveRepairCardDetails();
                 isChanged = false;
+                bd_add.Visibility = Visibility.Hidden;
                 tbx_modify.Text = "Sửa";
             }
         }
@@ -151,7 +151,7 @@ namespace Gara_Management.GUI.Card
                 MessageBox.Show("Không tìm thấy mã phiếu sửa chữa!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        private void PrintGoodRepairPaymentBill()
+        private void PrintRepairPaymentBill()
         {
             CarGara carGara = CarGaraDAO.Instance.GetCarGaraByID(this.gara);
             FlowDocument flowDocument = new FlowDocument();
@@ -170,7 +170,8 @@ namespace Gara_Management.GUI.Card
 
             Paragraph info = new Paragraph();
             DateTime date = DateTime.Parse(dpk_RecDate.SelectedDate.ToString());
-            string sInfo = "";
+            string sInfo = "Mã phiếu: " + tbl_IDRec.Text + "\nNgày sửa: " + dpk_RecDate.Text 
+                + "\nBiển số xe: " + tbx_NumberPlate.Text + "\nTổng tiền: " + tbl_totalPayment.Text;
                 /*"Mã lô: " + txtb_idLot.Text + "\nNgày nhập: " + date.ToString("dd/MM/yyyy") + "\nNhà cung cấp: " +
                 txtb_namesupplier.Text + "\nNgười kí nhận: " + txtb_staff.Text + "\nTổng tiền: " + txtb_totalsum.Text;*/
             info.Inlines.Add(sInfo);
@@ -178,29 +179,36 @@ namespace Gara_Management.GUI.Card
             flowDocument.Blocks.Add(info);
 
             Table table = new Table();
-            table.Columns.Add(new TableColumn() { Width = new GridLength(50) }); // Thêm cột
-            table.Columns.Add(new TableColumn() { Width = new GridLength(220) }); // Thêm cột
-            table.Columns.Add(new TableColumn() { Width = new GridLength(200) }); // Thêm cột
-            table.Columns.Add(new TableColumn() { Width = new GridLength(100) }); // Thêm cột
-            table.Columns.Add(new TableColumn() { Width = new GridLength(250) }); // Thêm cột            
+            table.FontSize = 14;
+            table.Columns.Add(new TableColumn() { Width = new GridLength(40) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(180) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(140) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(110) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(70) }); // Thêm cột            
+            table.Columns.Add(new TableColumn() { Width = new GridLength(110) }); // Thêm cột            
+            table.Columns.Add(new TableColumn() { Width = new GridLength(110) }); // Thêm cột            
             TableRowGroup gr = new TableRowGroup();
             TableRow titleRow = new TableRow();
             titleRow.Cells.Add(new TableCell(new Paragraph(new Run("STT")))); // Ô đầu tiên
-            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Tên phụ tùng")))); // Ô thứ hai
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Nội dung")))); // Ô thứ hai
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Vật tư"))));
             titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Đơn giá"))));
             titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Số lượng"))));
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Tiền công"))));
             titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Thành tiền"))));
             gr.Rows.Add(titleRow);
             // Tạo Hàng và Ô
-            List<itStockInDetail> list = new List<itStockInDetail>();
-            foreach (itStockInDetail item in list)
+            //List<itStockInDetail> list = new List<itStockInDetail>();
+            foreach (itRepairCardDetail item in detailList)
             {
                 TableRow row = new TableRow();
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_orderednum.Text))));
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_name.Text))));
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_price.Text))));
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_amount.Text))));
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_sumofmoney.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbl_stt.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_description.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_name.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_price.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_quantity.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_wage.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_total.Text))));
 
                 gr.Rows.Add(row);
             }
@@ -245,10 +253,12 @@ namespace Gara_Management.GUI.Card
             }
             if (status)
             {
+                ds_suachua.Children.Clear();
+                LoadRepairCardDetails(tbl_IDRec.Text);
                 if (MessageBox.Show("Cập nhật phiếu sửa chữa thành công! Bạn có muốn in phiếu sửa chữa không?", 
                     "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    PrintGoodRepairPaymentBill();
+                    PrintRepairPaymentBill();
                     this.Close();
                 }    
             }

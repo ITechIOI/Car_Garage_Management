@@ -27,14 +27,15 @@ namespace Gara_Management.GUI
     {
         private decimal revenue = 0;
         private decimal spend = 0;
+        private string gara;
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> Formatter { get; set; }
-        public scrRevenue()
+        public scrRevenue(string gara)
         {
             InitializeComponent();
+            this.gara = gara;
             InitializeInfo();
-            InitializeComponent();
             LoadChart();
         }
 
@@ -88,13 +89,13 @@ namespace Gara_Management.GUI
 
         private void bt_revenue_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            cardRevenue revenue = new cardRevenue("GR1", dpk_startDate.SelectedDate.Value, dpk_endDate.SelectedDate.Value);
+            cardRevenue revenue = new cardRevenue(gara, dpk_startDate.SelectedDate.Value, dpk_endDate.SelectedDate.Value);
             revenue.Show();
         }
 
         private void bt_inventory_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            cardInventoryReport inventory = new cardInventoryReport("GR1", dpk_startDate.SelectedDate.Value, dpk_endDate.SelectedDate.Value);
+            cardInventoryReport inventory = new cardInventoryReport(gara, dpk_startDate.SelectedDate.Value, dpk_endDate.SelectedDate.Value);
             inventory.Show();
         }
 
@@ -116,8 +117,8 @@ namespace Gara_Management.GUI
             var endDate = startDate.AddMonths(1).AddDays(-1);
             dpk_startDate.Text = startDate.ToString();
             dpk_endDate.Text = endDate.ToString();
-            DataTable revenueList = RevenueDetailDAO.Instance.LoadRevenueDetailListByPeriod("GR1", dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy"), dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy"));
-            DataTable spendList = RevenueDetailDAO.Instance.LoadSpendDetailListByPeriod("GR1", dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy"), dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy"));
+            DataTable revenueList = RevenueDetailDAO.Instance.LoadRevenueDetailListByPeriod(gara, dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy"), dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy"));
+            DataTable spendList = RevenueDetailDAO.Instance.LoadSpendDetailListByPeriod(gara, dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy"), dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy"));
             foreach (DataRow row in revenueList.Rows)
             {
                 revenue = revenue + Convert.ToDecimal(row[4].ToString());
@@ -134,8 +135,8 @@ namespace Gara_Management.GUI
         {
             revenue = 0;
             spend = 0;
-            DataTable revenueList = RevenueDetailDAO.Instance.LoadRevenueDetailListByPeriod("GR1", dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy"), dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy"));
-            DataTable spendList = RevenueDetailDAO.Instance.LoadSpendDetailListByPeriod("GR1", dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy"), dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy"));
+            DataTable revenueList = RevenueDetailDAO.Instance.LoadRevenueDetailListByPeriod(gara, dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy"), dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy"));
+            DataTable spendList = RevenueDetailDAO.Instance.LoadSpendDetailListByPeriod(gara, dpk_startDate.SelectedDate.Value.ToString("MM/dd/yyyy"), dpk_endDate.SelectedDate.Value.ToString("MM/dd/yyyy"));
             foreach (DataRow row in revenueList.Rows)
             {
                 revenue = revenue + Convert.ToDecimal(row[4].ToString());
