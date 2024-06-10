@@ -98,7 +98,7 @@ namespace Gara_Management.GUI
             //cardRevenue revenue = new cardRevenue("GR1", startDate, endDate);
             //revenue.Show();
 
-            cardChooseReport card = new cardChooseReport();
+            cardChooseReport card = new cardChooseReport(gara);
             card.Show();
         }
 

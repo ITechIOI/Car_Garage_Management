@@ -20,10 +20,12 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class cardChooseReport : Window
     {
-        public cardChooseReport()
+        string gara;
+        public cardChooseReport(string gara)
         {
             InitializeComponent();
             this.Opacity = 0;
+            this.gara = gara;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -47,8 +49,8 @@ namespace Gara_Management.GUI.Card
         }
 
         private void Invetory_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            cardStockInfo card = new cardStockInfo();
+        {           
+            cardStockInfo card = new cardStockInfo(gara, DateTime.Now.AddMonths(-1));
             card.Show();
             this.Close();
         }

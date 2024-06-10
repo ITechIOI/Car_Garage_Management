@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gara_Management.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,15 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class cardStockInfo : Window
     {
-        public cardStockInfo()
+        string gara;
+        DateTime reportDate;
+        public cardStockInfo(string gara, DateTime date)
         {
             InitializeComponent();
             this.Opacity = 0;
+            this.gara = gara;
+            this.reportDate = date;
+            LoadInventoryReportDetail();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -52,6 +58,19 @@ namespace Gara_Management.GUI.Card
         private void bt_report_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+        private void LoadInventoryReportDetail()
+        {
+            dgr_SpendDetails.ItemsSource = InventoryReportDAO.Instance.LoadEndingInventoryListByDate(gara, reportDate);
+        }
+
+        private void dgr_SpendDetails_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.Column.Header.ToString() == "Com" || e.Column.Header.ToString() == "BIComQuantity" ||
+                e.Column.Header.ToString() == "EIComQuantity" || e.Column.Header.ToString() == "ICComQuantity")
+            {
+                e.Cancel = true;
+            }    
         }
     }
 }

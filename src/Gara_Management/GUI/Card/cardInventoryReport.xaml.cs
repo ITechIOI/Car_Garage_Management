@@ -34,6 +34,7 @@ namespace Gara_Management.GUI.Card
             LoadSpendDetails();
         }
 
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Lấy storyboard từ resource
@@ -66,6 +67,8 @@ namespace Gara_Management.GUI.Card
         {
             dgr_SpendDetails.ItemsSource = RevenueDetailDAO.Instance.LoadSpendDetailListByPeriod(gara, startDate.Date.ToString("MM/dd/yyyy"), endDate.Date.ToString("MM/dd/yyyy")).DefaultView;
         }
+
+        
 
     }
 }
