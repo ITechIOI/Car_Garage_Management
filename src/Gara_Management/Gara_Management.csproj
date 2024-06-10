@@ -113,6 +113,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Card\cardChooseReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Card\cardComponentDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Card\cardRevenue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\cardStockInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,6 +326,9 @@
     <Compile Include="GUI\Card\cardChangepass.xaml.cs">
       <DependentUpon>cardChangepass.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Card\cardChooseReport.xaml.cs">
+      <DependentUpon>cardChooseReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Card\cardComponentDetail.xaml.cs">
       <DependentUpon>cardComponentDetail.xaml</DependentUpon>
     </Compile>
@@ -332,6 +343,9 @@
     </Compile>
     <Compile Include="GUI\Card\cardRevenue.xaml.cs">
       <DependentUpon>cardRevenue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\cardStockInfo.xaml.cs">
+      <DependentUpon>cardStockInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Card\cardSuccessful.xaml.cs">
       <DependentUpon>cardSuccessful.xaml</DependentUpon>

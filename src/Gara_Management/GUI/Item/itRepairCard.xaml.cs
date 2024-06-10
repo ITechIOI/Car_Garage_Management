@@ -42,7 +42,7 @@ namespace Gara_Management.GUI.Item
         // xem chi tiết phiếu sửa chữa
         private void bd_repair_detail_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdRepair crdRepair = new crdRepair(bill.IDRec);
+            crdRepair crdRepair = new crdRepair(bill.IDRec, recept.IDGara);
             crdRepair.ShowDialog();
         }
     }

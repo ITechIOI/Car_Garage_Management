@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 
@@ -188,7 +189,11 @@ namespace Gara_Management.GUI.Card
                         int i = ReceptionFormDAO.UpdateReceptionForm(receptionForm);
                         if (i == 1)
                         {
-                            MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                            if (MessageBox.Show("Cập nhật thành công! Bạn có muốn in lại phiếu đã được cập nhật không?", "Thông báo", 
+                                MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                            {
+                                PrintAccept();
+                            }    
                             check = receptionForm;
                             isChanged = false;
                         }
@@ -198,7 +203,11 @@ namespace Gara_Management.GUI.Card
                         int i = ReceptionFormDAO.InsertReceptionForm(receptionForm);
                         if (i == 1)
                         {
-                            MessageBox.Show("Thêm phiếu sửa chữa thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                            if (MessageBox.Show("Thêm phiếu sửa chữa thành công! Bạn có muốn in phiếu tiếp nhận không?", "Thông báo", 
+                                MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                            {
+                                PrintAccept();
+                            }    
                             tbx_save.Text = "Sửa";
                             check = receptionForm;
                             isChanged = false;
@@ -282,6 +291,41 @@ namespace Gara_Management.GUI.Card
             isChanged = true;
             Customer customer = CustomerDAO.Instance.GetCustomerByPhone(tbx_PhoneCus.Text, gara)[0];
             tbx_NameCus.Text = customer.NameCus;
+        }
+        private void PrintAccept()
+        {
+            CarGara carGara = CarGaraDAO.Instance.GetCarGaraByID(this.gara);
+            FlowDocument flowDocument = new FlowDocument();
+            Paragraph gara = new Paragraph();
+            gara.Inlines.Add(new Run("GARA OTO\nĐịa chỉ: " + carGara.AddressGara + "\nSố điện thoại: " + carGara.PhoneNumberGara));
+            gara.TextAlignment = TextAlignment.Center;
+            gara.FontSize = 15;
+            flowDocument.Blocks.Add(gara);
+
+            Paragraph title = new Paragraph();
+            title.Inlines.Add(new Run("PHIẾU TIẾP NHẬN SỬA CHỮA"));
+            title.FontSize = 20;
+            title.TextAlignment = TextAlignment.Center;
+            title.FontWeight = FontWeights.Bold;
+            flowDocument.Blocks.Add(title);
+
+            Paragraph info = new Paragraph();
+            string sInfo = "";
+                /*"Mã phiếu: " + txtb_idReceipt.Text + "\nHọ tên: " + cus.NameCus + "\nSố điện thoại: " + cus.PhoneNumberCus + "\nĐịa chỉ: " + cus.AddressCus
+                + "\nNgày thu tiền: " + date.ToString("dd/MM/yyyy") + "\nSố tiền thu: " + txtb_proceeds.Text;*/
+            info.Inlines.Add(sInfo);
+            info.Margin = new Thickness(15);
+            flowDocument.Blocks.Add(info);
+
+
+            // Mở hộp thoại chọn máy in
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                // In hóa đơn
+                printDialog.PrintDocument(((IDocumentPaginatorSource)flowDocument).DocumentPaginator, "PHIẾU TIẾP NHẬN");
+
+            }
         }
     }
 }

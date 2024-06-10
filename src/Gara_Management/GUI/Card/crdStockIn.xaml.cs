@@ -24,7 +24,7 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class crdStockIn : Window
     {
-
+        GoodReceivedNote grn;
         string gara;
         Account acc;
         int i = 0;
@@ -57,11 +57,13 @@ namespace Gara_Management.GUI.Card
         public crdStockIn(GoodReceivedNote grn)
         {
             InitializeComponent();
+            this.grn = grn;
             add_button.Text = "Sửa";
             bd_pay.Visibility = Visibility.Hidden;
             txtb_idLot.Text = grn.LotNumber;
             txtb_date.Text = grn.ImportTime.ToString();
             txtb_namesupplier.Text = grn.Supplier;
+            this.gara = StaffDAO.Instance.GetStaffById(AccountDAO.Instance.GetIDStaffByIDAcc(grn.DataEntryStaff.ToString())).IDGara;
             txtb_staff.Text = StaffDAO.Instance.GetStaffById(AccountDAO.Instance.GetIDStaffByIDAcc(grn.DataEntryStaff.ToString())).NameStaff;
             decimal price = 0;
             list.Clear();
@@ -179,7 +181,11 @@ namespace Gara_Management.GUI.Card
                     }
                     if (res)
                     {
-                        MessageBox.Show("Thêm phiếu nhập thành công.", "Thông báo");
+                        if (MessageBox.Show("Thêm phiếu nhập thành công. Bạn có muốn in phiếu nhập kho không?", 
+                            "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            PrintGoodReceivedNote();
+                        }
                         this.Close();
                     }
                     else
@@ -188,7 +194,72 @@ namespace Gara_Management.GUI.Card
                     }    
 
                 }    
-            }    
+            }
+        }
+        private void PrintGoodReceivedNote()
+        {
+            CarGara carGara = CarGaraDAO.Instance.GetCarGaraByID(this.gara);
+            FlowDocument flowDocument = new FlowDocument();
+            Paragraph gara = new Paragraph();
+            gara.Inlines.Add(new Run("GARA OTO\nĐịa chỉ: " + carGara.AddressGara + "\nSố điện thoại: " + carGara.PhoneNumberGara));
+            gara.TextAlignment = TextAlignment.Center;
+            gara.FontSize = 15;
+            flowDocument.Blocks.Add(gara);
+
+            Paragraph title = new Paragraph();
+            title.Inlines.Add(new Run("PHIẾU NHẬP KHO"));
+            title.FontSize = 20;
+            title.TextAlignment = TextAlignment.Center;
+            title.FontWeight = FontWeights.Bold;
+            flowDocument.Blocks.Add(title);
+
+            Paragraph info = new Paragraph();
+            DateTime date = DateTime.Parse(txtb_date.SelectedDate.ToString());
+            string sInfo = "Mã lô: " + txtb_idLot.Text +"\nNgày nhập: " + date.ToString("dd/MM/yyyy") + "\nNhà cung cấp: " + 
+                txtb_namesupplier.Text + "\nNgười kí nhận: " + txtb_staff.Text + "\nTổng tiền: " + txtb_totalsum.Text;            
+            info.Inlines.Add(sInfo);
+            info.Margin = new Thickness(15);
+            flowDocument.Blocks.Add(info);
+
+            Table table = new Table();
+            table.Columns.Add(new TableColumn() { Width = new GridLength(50) }) ; // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(220) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(200) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(100) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(250) }); // Thêm cột            
+            TableRowGroup gr = new TableRowGroup();
+            TableRow titleRow = new TableRow();
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("STT")))); // Ô đầu tiên
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Tên phụ tùng")))); // Ô thứ hai
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Đơn giá"))));
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Số lượng"))));
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Thành tiền"))));
+            gr.Rows.Add(titleRow);
+            // Tạo Hàng và Ô
+            List<itStockInDetail> list = getListItem(ds_nhapkho);
+            foreach (itStockInDetail item in list)
+            {
+                TableRow row = new TableRow();
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_orderednum.Text)))); 
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_name.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_price.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_amount.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_sumofmoney.Text))));
+
+                gr.Rows.Add(row);
+            }
+            table.RowGroups.Add(gr);
+            flowDocument.ColumnWidth = 830;
+            flowDocument.Blocks.Add(table);
+
+            // Mở hộp thoại chọn máy in
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                // In hóa đơn
+                printDialog.PrintDocument(((IDocumentPaginatorSource)flowDocument).DocumentPaginator, "PHIẾU NHẬP KHO");
+
+            }
         }
         private void UpdateGoodReceivedNote()
         {
@@ -204,9 +275,10 @@ namespace Gara_Management.GUI.Card
                 }
                 else
                 {
+                    
                     DateTime date = DateTime.Parse(txtb_date.SelectedDate.ToString());
                     bool res = GoodReceivedNoteDAO.Instance.UpdateGoodReceivedNote(txtb_idLot.Text, txtb_namesupplier.Text, gara,
-                        date.ToString("dd/MM/yyyy"), acc.IDAcc);
+                        date.ToString("dd/MM/yyyy"), grn.DataEntryStaff);
                     List<itStockInDetail> list = getListItem(ds_nhapkho);
                     foreach (itStockInDetail item in list)
                     {
@@ -224,7 +296,13 @@ namespace Gara_Management.GUI.Card
                     }
                     if (res)
                     {
-                        MessageBox.Show("Cập nhật phiếu nhập thành công.", "Thông báo");
+                        if (MessageBox.Show("Cập nhật phiếu nhập thành công. Bạn có muốn in lại phiếu nhập kho đã thay đổi không", 
+                            "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            PrintGoodReceivedNote();
+                            
+                        }
+                        this.Close();
                     }
                     else
                     {

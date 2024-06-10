@@ -8,7 +8,7 @@ using System.Windows.Navigation;
 
 namespace Gara_Management.DTO
 {
-    internal class Fluctuation
+    public class Fluctuation
     {
         private string idCus;
         public string IDCus { get => idCus; set => idCus = value; }

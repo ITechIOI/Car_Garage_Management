@@ -10,8 +10,9 @@ namespace Gara_Management.DAO
 {
     internal class FluctuationDAO
     {
-        private FluctuationDAO instance;
-        public FluctuationDAO Instance
+        private FluctuationDAO() { }
+        private static FluctuationDAO instance;
+        public static FluctuationDAO Instance
         {
             get
             {

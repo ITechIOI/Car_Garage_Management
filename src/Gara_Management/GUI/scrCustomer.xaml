@@ -228,7 +228,7 @@
             <!-- Thêm khách hàng-->
             <Image x:Name="bd_add_customer" Grid.Row="1" Cursor="Hand" MouseDown="bd_add_customer_MouseDown" Source="/Images/add_customer.png" Margin="760,0,75,0" />
             <!-- BẢng các khách hàng -->
-            <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,174">
+            <Border Grid.Row="2" CornerRadius="10" BorderThickness="0" Margin="75,42,76,54">
                 <Grid>
                     <!-- tên thành phần bảng -->
                     <TextBlock Text="Danh sách khách hàng" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="34" Margin="0,10,0,0"/>

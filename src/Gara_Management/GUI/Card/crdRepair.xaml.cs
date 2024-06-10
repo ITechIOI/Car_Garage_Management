@@ -26,17 +26,19 @@ namespace Gara_Management.GUI.Card
     public partial class crdRepair : Window
     {
         private int stt = 1; /*biến để tạo stt*/
+        string gara;
         private float totalPrice = 0; /*biến để tính tổng tiền*/
         private bool isChanged = false;
         private ReceptionForm receptionForm;
         private List<itRepairCardDetail> detailList = new List<itRepairCardDetail>();
 
         // tạo phiếu mới
-        public crdRepair()
+        public crdRepair(string gara)
         {
             InitializeComponent();
             this.Opacity = 0;
             bd_add.Visibility = Visibility.Hidden;
+            this.gara = gara;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -48,9 +50,10 @@ namespace Gara_Management.GUI.Card
         }
 
         // mở phiếu đã có
-        public crdRepair(string maphieu)
+        public crdRepair(string maphieu, string gara)
         {
             InitializeComponent();
+            this.gara = gara;
             bd_add.Visibility = Visibility.Hidden;
             tbl_IDRec.IsReadOnly = true;
             tbl_IDRec.Text = maphieu;
@@ -75,11 +78,7 @@ namespace Gara_Management.GUI.Card
             this.Close();
         }
 
-        //
-        private void bd_print_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
+        
 
         //thêm dòng chi tiết sửa chữa
         private void bd_add_MouseDown(object sender, MouseButtonEventArgs e)
@@ -152,7 +151,72 @@ namespace Gara_Management.GUI.Card
                 MessageBox.Show("Không tìm thấy mã phiếu sửa chữa!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void PrintGoodRepairPaymentBill()
+        {
+            CarGara carGara = CarGaraDAO.Instance.GetCarGaraByID(this.gara);
+            FlowDocument flowDocument = new FlowDocument();
+            Paragraph gara = new Paragraph();
+            gara.Inlines.Add(new Run("GARA OTO\nĐịa chỉ: " + carGara.AddressGara + "\nSố điện thoại: " + carGara.PhoneNumberGara));
+            gara.TextAlignment = TextAlignment.Center;
+            gara.FontSize = 15;
+            flowDocument.Blocks.Add(gara);
 
+            Paragraph title = new Paragraph();
+            title.Inlines.Add(new Run("PHIẾU SỬA CHỮA"));
+            title.FontSize = 20;
+            title.TextAlignment = TextAlignment.Center;
+            title.FontWeight = FontWeights.Bold;
+            flowDocument.Blocks.Add(title);
+
+            Paragraph info = new Paragraph();
+            DateTime date = DateTime.Parse(dpk_RecDate.SelectedDate.ToString());
+            string sInfo = "";
+                /*"Mã lô: " + txtb_idLot.Text + "\nNgày nhập: " + date.ToString("dd/MM/yyyy") + "\nNhà cung cấp: " +
+                txtb_namesupplier.Text + "\nNgười kí nhận: " + txtb_staff.Text + "\nTổng tiền: " + txtb_totalsum.Text;*/
+            info.Inlines.Add(sInfo);
+            info.Margin = new Thickness(15);
+            flowDocument.Blocks.Add(info);
+
+            Table table = new Table();
+            table.Columns.Add(new TableColumn() { Width = new GridLength(50) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(220) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(200) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(100) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(250) }); // Thêm cột            
+            TableRowGroup gr = new TableRowGroup();
+            TableRow titleRow = new TableRow();
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("STT")))); // Ô đầu tiên
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Tên phụ tùng")))); // Ô thứ hai
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Đơn giá"))));
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Số lượng"))));
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Thành tiền"))));
+            gr.Rows.Add(titleRow);
+            // Tạo Hàng và Ô
+            List<itStockInDetail> list = new List<itStockInDetail>();
+            foreach (itStockInDetail item in list)
+            {
+                TableRow row = new TableRow();
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_orderednum.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_name.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_price.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_amount.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.txtb_sumofmoney.Text))));
+
+                gr.Rows.Add(row);
+            }
+            table.RowGroups.Add(gr);
+            flowDocument.ColumnWidth = 830;
+            flowDocument.Blocks.Add(table);
+
+            // Mở hộp thoại chọn máy in
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                // In hóa đơn
+                printDialog.PrintDocument(((IDocumentPaginatorSource)flowDocument).DocumentPaginator, "PHIẾU SỬA CHỮA");
+
+            }
+        }
 
         //Lưu thông tin vào database
         public void SaveRepairCardDetails()
@@ -180,7 +244,14 @@ namespace Gara_Management.GUI.Card
                 }
             }
             if (status)
-                MessageBox.Show("Cập nhật phiếu sửa chữa thành công!");
+            {
+                if (MessageBox.Show("Cập nhật phiếu sửa chữa thành công! Bạn có muốn in phiếu sửa chữa không?", 
+                    "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    PrintGoodRepairPaymentBill();
+                    this.Close();
+                }    
+            }
             else
                 MessageBox.Show("Cập nhật phiếu sửa chữa thất bại!");
             ds_suachua.Children.Clear();

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
+using Gara_Management.GUI.Item;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +22,15 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class crdMoney : Window
     {
-        public crdMoney()
+        string gara;
+        Customer customer;
+        public crdMoney(string gara, Customer customer)
         {
             InitializeComponent();
+            this.gara = gara;
+            this.customer = customer;
+            txtb_fluctuation.Text = "Lịch sử giao dịch của khách hàng " + customer.NameCus; 
+            LoadListMoney();
         }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -32,6 +41,16 @@ namespace Gara_Management.GUI.Card
         {
            
             this.Close();
+        }
+        private void LoadListMoney()
+        {
+            List<Fluctuation> fluctuations = FluctuationDAO.Instance.LoadListFluctuationOfCus(customer.IDCus, gara);
+            ds_money.Children.Clear();
+            foreach (Fluctuation fluctuation in fluctuations) 
+            { 
+                itMoney it = new itMoney(fluctuation);
+                ds_money.Children.Add(it);
+            }
         }
     }
 }
