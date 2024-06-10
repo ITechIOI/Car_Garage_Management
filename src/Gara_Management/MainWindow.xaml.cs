@@ -68,7 +68,10 @@ namespace Gara_Management
         // move chuột vào nút màn hình Home 
         private void menuHome_MouseEnter(object sender, MouseEventArgs e)
         {
+
             menuHome.Background= new SolidColorBrush(color4);
+
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // clik nút màn hình Home
         private void menuHome_MouseDown(object sender, MouseButtonEventArgs e)
@@ -81,18 +84,23 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color5);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
+
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // move chuột ra khỏi nút màn hình Home
         private void menuHome_MouseLeave(object sender, MouseEventArgs e)
         {
             if(scr!=1)
             menuHome.Background = new SolidColorBrush(color5);
+
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
 
         // move chuột vào nút màn hình Cars
         private void menuCars_MouseEnter(object sender, MouseEventArgs e)
         {
             menuCars.Background = new SolidColorBrush(color4);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // clik nút màn hình Cars
         private void menuCars_MouseDown(object sender, MouseButtonEventArgs e)
@@ -107,6 +115,7 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color5);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // thay đổi từ màn hình repairCard sang Cars 
         private void scrRepairCard_changeToCardScr(object sender, EventArgs e)
@@ -115,6 +124,7 @@ namespace Gara_Management
             scrCars scrCars = new scrCars(gara,acc);       
             DataContext = scrCars;
             scrCars.changeToRepairCardScr += scrCars_changeToRepairCardScr;
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // thay đổi từ màn hình Cars sang repairCard
         public void scrCars_changeToRepairCardScr(object sender, EventArgs e)
@@ -123,18 +133,21 @@ namespace Gara_Management
             scrRepairCard scrRepairCard = new scrRepairCard(gara);
             DataContext = scrRepairCard;
             scrRepairCard.changeToCarsScr += scrRepairCard_changeToCardScr;
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // move chuột ra khỏi nút màn hình Cars
         private void menuCars_MouseLeave(object sender, MouseEventArgs e)
         {
             if (scr != 2)
                 menuCars.Background = new SolidColorBrush(color5);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
 
         // move chuột vào nút màn hình Store
         private void menuStore_MouseEnter(object sender, MouseEventArgs e)
         {
             menuStore.Background = new SolidColorBrush(color4);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // click nút màn hình Store
         private void menuStore_MouseDown(object sender, MouseButtonEventArgs e)
@@ -149,6 +162,7 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color5);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // thay đổi từ màn hình Store sang StockIn
         public void scrStore_changeToStockInScr(object sender, EventArgs e)
@@ -157,6 +171,7 @@ namespace Gara_Management
             scrStockIn scrStockIn = new scrStockIn(gara, acc);
             DataContext = scrStockIn;
             scrStockIn.changeToStoreScr += scrStockIn_changeToStoreScr;
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // thay đổi từ màn hình StockIn sang Store
         public void scrStockIn_changeToStoreScr(object sender, EventArgs e)
@@ -165,18 +180,21 @@ namespace Gara_Management
             scrStore scrStore = new scrStore(gara, acc);
             DataContext = scrStore;
             scrStore.changeToStockInScr += scrStore_changeToStockInScr;
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // move chuột ra khỏi nút màn hình Store
         private void menuStore_MouseLeave(object sender, MouseEventArgs e)
         {
             if (scr != 3)
                 menuStore.Background = new SolidColorBrush(color5);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
 
         // move chuột vào nút màn hình Revenue
         private void menuRevenue_MouseEnter(object sender, MouseEventArgs e)
         {
             menuRevenue.Background = new SolidColorBrush(color4);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // click nút màn hình Revenue
         private void menuRevenue_MouseDown(object sender, MouseButtonEventArgs e)
@@ -191,6 +209,7 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color4);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
    
       
@@ -199,12 +218,14 @@ namespace Gara_Management
         {
             if (scr != 4)
                 menuRevenue.Background = new SolidColorBrush(color5);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
 
         // move chuột vào nút màn hình Customers
         private void menuCustomers_MouseEnter(object sender, MouseEventArgs e)
         {
             menuCustomers.Background = new SolidColorBrush(color4);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // click nút màn hình Customers
         private void menuCustomers_MouseDown(object sender, MouseButtonEventArgs e)
@@ -217,18 +238,21 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color5);
             menuCustomers.Background = new SolidColorBrush(color4);
             menuAccount.Background = new SolidColorBrush(color5);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // move chuột ra khỏi nút màn hình Customers
         private void menuCustomers_MouseLeave(object sender, MouseEventArgs e)
         {
             if (scr != 5)
                 menuCustomers.Background = new SolidColorBrush(color5);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
 
         // move chuột vào nút màn hình Account
         private void menuAccount_MouseEnter(object sender, MouseEventArgs e)
         {
             menuAccount.Background = new SolidColorBrush(color4);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // click nút màn hình Account
         private void menuAccount_MouseDown(object sender, MouseButtonEventArgs e)
@@ -243,6 +267,8 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color5);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color4);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
+
         }
         // chuyển sang màn hình danh sách các nhân viên (chỉ Admin mới làm đc)
         public void ChangetoscrListacc(object sender, EventArgs e)
@@ -252,6 +278,8 @@ namespace Gara_Management
             DataContext = scracc;
             scracc.returntoDetailAcc += ChangetoscrDetailAcc;
             acc = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
+
         }
 
         // chuyển trở về màn hình chi tiết thông tin cá nhân của người đăng nhập
@@ -261,8 +289,10 @@ namespace Gara_Management
             scr = 6;
             scrAccDetail scrAccDetail = new scrAccDetail(staff, acc, gara);
             DataContext = scrAccDetail;
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
             scrAccDetail.returntoListacc += ChangetoscrListacc;
             acc = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
 
 
@@ -271,11 +301,13 @@ namespace Gara_Management
         {
             if (scr != 6)
                 menuAccount.Background = new SolidColorBrush(color5);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
 
         private void menuStaff_MouseEnter(object sender, MouseEventArgs e)
         {
             menuStaff.Background = new SolidColorBrush(color4);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
 
         private void menuStaff_MouseDown(object sender, MouseButtonEventArgs e)
@@ -289,12 +321,14 @@ namespace Gara_Management
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
             menuStaff.Background = new SolidColorBrush(color4);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
 
         private void menuStaff_MouseLeave(object sender, MouseEventArgs e)
         {
             if (scr != 7)
                 menuStaff.Background = new SolidColorBrush(color5);
+            staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
 
         }
     }

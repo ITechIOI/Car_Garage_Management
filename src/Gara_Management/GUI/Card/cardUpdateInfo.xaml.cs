@@ -62,6 +62,7 @@ namespace Gara_Management.GUI.Card
                     staff1.Position))
                 {
                     MessageBox.Show("Cập nhật thông tin thành công.");
+                    
                     this.Close();
                 }    
                 else
