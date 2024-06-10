@@ -41,7 +41,7 @@ namespace Gara_Management.GUI.Card
             txtb_email.Text = this.staff.EmailStaff;
             txtb_phonenumber.Text = this.staff.PhoneNumberStaff;
             cbx_position.Text = this.staff.Position;
-            tbtx_salary.Text = this.staff.Salary.ToString();
+            tbtx_salary.Text =((int) this.staff.Salary).ToString();
             if (this.account != null)
             {
                 txtb_account.Text = this.account.UserName;

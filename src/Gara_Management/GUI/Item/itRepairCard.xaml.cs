@@ -36,7 +36,7 @@ namespace Gara_Management.GUI.Item
             txtb_idRec.Text = bill.IDRec;
             txtb_numberPlate.Text = recept.NumberPlate;
             txtb_completeDate.Text = bill.CompletionDate.ToString("dd/MM/yyyy");
-            txtb_totalBill.Text = bill.TotalPayment.ToString();
+            txtb_totalBill.Text =((int) bill.TotalPayment).ToString();
         }
 
         // xem chi tiết phiếu sửa chữa

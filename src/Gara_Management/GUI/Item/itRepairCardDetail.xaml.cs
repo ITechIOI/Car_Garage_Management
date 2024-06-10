@@ -82,10 +82,10 @@ namespace Gara_Management.GUI.Item
             tbl_stt.Text = id.ToString();
             tbx_description.Text = row["REPAIR_DESCRIPTION"].ToString().Trim();
             tbx_name.Text = row["NAME_COM"].ToString().Trim();
-            tbx_price.Text = (float.Parse(row["CUR_PRICE"].ToString())).ToString("N");
+            tbx_price.Text = ((int)float.Parse(row["CUR_PRICE"].ToString())).ToString("N");
             tbx_quantity.Text = row["COM_QUANTITY"].ToString().Trim();
-            tbx_wage.Text = (float.Parse(row["WAGE"].ToString())).ToString("N");
-            tbx_total.Text = (float.Parse(row["TOTAL_PRICE"].ToString())).ToString("N");
+            tbx_wage.Text = ((int)float.Parse(row["WAGE"].ToString())).ToString("N");
+            tbx_total.Text = ((int)float.Parse(row["TOTAL_PRICE"].ToString())).ToString("N");
         }
 
         //Lấy RPDOrdinalNum

@@ -17,7 +17,7 @@
                              From="0.0" To="1.0" Duration="0:0:0.5"/>
         </Storyboard>
     </Window.Resources>
-    <Border Background="{StaticResource sColor4}" CornerRadius="10">
+    <Border Background="{StaticResource sColor4}" CornerRadius="10" BorderBrush="Black" BorderThickness="2">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="120"/>
@@ -49,7 +49,7 @@
                 </Grid>
             </Border>
             <Border Grid.Row="1" CornerRadius="10" Margin="10,10,10,10">
-                <DataGrid x:Name="dgr_revenue"/>
+                <DataGrid x:Name="dgr_revenue" AutoGenerateColumns="True"/>
             </Border>
             <Border x:Name="bt_previous" MouseDown="bt_previous_MouseDown" Grid.Row="2" Background="{StaticResource sColor1}" CornerRadius="10" Margin="10,0,646,35">
                 <TextBlock Text="Trước" FontSize="20" TextAlignment="Center" Foreground="Black" FontWeight="Bold"></TextBlock>

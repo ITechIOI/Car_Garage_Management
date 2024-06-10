@@ -19,7 +19,7 @@
         </Storyboard>
     </Window.Resources>
 
-    <Border Background="{StaticResource sColor4}" CornerRadius="10" MouseDown="Border_MouseDown" Margin="0,0,0,0">
+    <Border Background="{StaticResource sColor4}" CornerRadius="10" MouseDown="Border_MouseDown" Margin="0,0,0,0" BorderBrush="Black" BorderThickness="2">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="110"/>

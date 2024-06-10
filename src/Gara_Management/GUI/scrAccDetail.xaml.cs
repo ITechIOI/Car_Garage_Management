@@ -52,7 +52,7 @@ namespace Gara_Management.GUI
             {
                 txtb_author.Text = "Nhân viên";
             }
-            txtb_salary.Text = this.staff.Salary.ToString();
+            txtb_salary.Text =((int) this.staff.Salary).ToString();
         }
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {

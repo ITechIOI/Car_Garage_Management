@@ -265,8 +265,13 @@
 
             </Border>
             <Border x:Name="bd_stockIn_scr" MouseDown="bd_stockIn_scr_MouseDown" Cursor="Hand" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="641,28,97,87">
-                <TextBlock Text="Phiếu nhập kho" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock FontWeight="DemiBold" Text="Phiếu nhập kho" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
+
+            <Border Cursor="Hand" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="80,28,658,87">
+                <TextBlock FontWeight="DemiBold" Text="Tổng kết" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+
 
             <!-- xem các phiếu nhập -->
             <TextBlock Grid.Row="3" Text="Tổng loại vật tư: 200" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,95,0,0"/>

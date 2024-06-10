@@ -28,7 +28,7 @@ namespace Gara_Management.GUI.Item
             txbl_id.Text = fluc.ID;
             txbl_content.Text = fluc.Content;
             txbl_date.Text = fluc.Date.ToString("dd/MM/yyyy");
-            txbl_money.Text = fluc.Money.ToString();
+            txbl_money.Text =((int) fluc.Money).ToString();
         }
     }
 }
