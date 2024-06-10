@@ -33,7 +33,7 @@ namespace Gara_Management.GUI.Item
             this.account = account;
             txtb_idComponent.Text = this.com.IDCom;
             txtb_nameComponent.Text = this.com.NameCom;
-            txtb_price.Text = this.com.CurPrice.ToString();
+            txtb_price.Text =((int) this.com.CurPrice).ToString();
             txtb_amount.Text = this.com.ComQuantity.ToString();
         }
 

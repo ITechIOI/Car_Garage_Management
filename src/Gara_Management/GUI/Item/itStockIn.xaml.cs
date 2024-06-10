@@ -32,7 +32,7 @@ namespace Gara_Management.GUI.Item
             txtb_idLot.Text = this.grn.LotNumber;
             txtb_namesupplier.Text = grn.Supplier;
             txtb_date.Text = this.grn.ImportTime.ToString();
-            txtb_sumofmoney.Text = this.grn.TotalPaymentGRN.ToString();
+            txtb_sumofmoney.Text =((int) this.grn.TotalPaymentGRN).ToString();
             
         }
 
