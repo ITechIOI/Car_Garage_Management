@@ -270,6 +270,52 @@ namespace Gara_Management.GUI
             }
         }
 
+        private void bd_summarize_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DateTime now = DateTime.Today;
+            DateTime startMonth = new DateTime(now.Year, now.Month, 1);
+            DateTime endMonth = startMonth.AddMonths(1).AddDays(-1);
+            if (now != startMonth && now !=endMonth)
+            {
+                MessageBox.Show("Hôm nay không thể tổng kết.", "Thông báo");
+            }    
+            else
+            {
+                if (now == startMonth)
+                {
+                    if (InventoryReportDAO.Instance.CheckExistBeginingInventory(gara))
+                    {
+                        MessageBox.Show("Đã tổng kết tồn đầu tháng này.", "Thông báo");
+                    }    
+                    else
+                    {
+                        List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentList(gara);
+                        foreach (CarComponent com in list)
+                        {
+                            InventoryReportDAO.Instance.SummarizeBeginingInventory(gara, com.IDCom, com.ComQuantity);
+                        }
+                        MessageBox.Show("Tổng kết tồn đầu của tháng này.", "Thông báo");
+                    }    
+                }   
+                else
+                {
+                    if (InventoryReportDAO.Instance.CheckExistEndingInventory(gara))
+                    {
+                        MessageBox.Show("Đã tổng kết tồn đầu tháng này.", "Thông báo");
+                    }
+                    else
+                    {
+                        List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentList(gara);
+                        foreach (CarComponent com in list)
+                        {
+                            InventoryReportDAO.Instance.SummarizeEndingInventory(gara, com.IDCom, com.ComQuantity);
+                        }
+                        MessageBox.Show("Tổng kết tồn đầu của tháng này.", "Thông báo");
+                    }
+                }    
+            }    
+        }
+
         private void LoadCarComponentListByNamePriceAndQuantity()
         {
             List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentListByNamePriceAndQuantity(gara, txtb_findComponent.Text, minPrice, maxPrice, minQuan, maxQuan);
