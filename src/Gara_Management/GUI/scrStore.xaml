@@ -268,7 +268,7 @@
                 <TextBlock FontWeight="DemiBold" Text="Phiếu nhập kho" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
 
-            <Border Cursor="Hand" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="80,28,658,87">
+            <Border x:Name="bd_summarize" MouseDown="bd_summarize_MouseDown" Cursor="Hand" Grid.Row="3" CornerRadius="10" Background="{StaticResource sColor4}" Margin="80,28,658,87">
                 <TextBlock FontWeight="DemiBold" Text="Tổng kết" FontSize="20" Foreground="{StaticResource sColor1}" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
 

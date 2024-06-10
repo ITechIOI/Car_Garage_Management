@@ -21,9 +21,7 @@ namespace Gara_Management.GUI.Card
     /// </summary>
     public partial class crdComponent : Window
     {
-        bool delete = false;
         string gara;
-        private static bool check = false;
         public crdComponent(string gara)
         {
             InitializeComponent();
@@ -59,15 +57,16 @@ namespace Gara_Management.GUI.Card
             }
         }
 
-        private void cbx_component_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void txtb_price_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string id  = CarComponentDAO.Instance.GetComponentIDByName(gara, cbx_component.SelectedItem.ToString());
-            CarComponent component = CarComponentDAO.Instance.GetCarComponentByID(id, gara);
-            if (component != null)
+            if (txtb_price.Text!="" && txtb_amount.Text != "")
             {
-                txtb_price.Text =((int) component.CurPrice).ToString();
-                txtb_wage.Text =((int) component.Wage).ToString();
-            }
+                int price, amount;
+                if (int.TryParse(txtb_amount.Text, out amount) && int.TryParse(txtb_price.Text, out price))
+                {
+                    txtb_total.Text = (price * amount).ToString(); 
+                }    
+            }    
         }
     }
 }

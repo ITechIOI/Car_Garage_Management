@@ -105,7 +105,7 @@
                 <Border Grid.Row="0"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Tên phụ tùng: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <ComboBox x:Name="cbx_component"  ItemTemplate="{StaticResource ComboBoxItemTemplate}" SelectionChanged="cbx_component_SelectionChanged"
+                        <ComboBox x:Name="cbx_component"  ItemTemplate="{StaticResource ComboBoxItemTemplate}" 
  HorizontalAlignment="Left" VerticalAlignment="Center"
 ItemsSource="{Binding Items}"  Background="{StaticResource sColor3}" Width="336" Height="29" Margin="144,0,0,0">
 
@@ -117,7 +117,7 @@ ItemsSource="{Binding Items}"  Background="{StaticResource sColor3}" Width="336"
                 <Border Grid.Row="1"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Đơn giá: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_price" IsReadOnly="True" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="87,0,0,0" Foreground="{StaticResource sColor1}" />
+                        <TextBox x:Name="txtb_price" TextChanged="txtb_price_TextChanged" IsReadOnly="True" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="87,0,0,0" Foreground="{StaticResource sColor1}" />
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,55,0,0"/>
                     </Grid>
                 </Border>
@@ -125,15 +125,15 @@ ItemsSource="{Binding Items}"  Background="{StaticResource sColor3}" Width="336"
                 <Border Grid.Row="2"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Số lượng: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_amount"  VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="98,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox x:Name="txtb_amount" TextChanged="txtb_price_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="98,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,55,0,0"/>
                     </Grid>
                 </Border>
                 <!-- thành tiền -->
                 <Border Grid.Row="3"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
-                        <TextBlock Text="Tiền công: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_wage" IsReadOnly="True" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="114,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBlock Text="Thành tiền: " VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <TextBox x:Name="txtb_total" IsReadOnly="True" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="114,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,55,0,0"/>
                     </Grid>
                 </Border>
