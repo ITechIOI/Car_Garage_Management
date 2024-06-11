@@ -98,6 +98,11 @@ namespace Gara_Management.GUI.Card
                 }    
                 else
                 {
+                    if (proceeds<=0)
+                    {
+                        MessageBox.Show("Số tiền thu phải là một số dương.", "Thông báo");
+                        return;
+                    }    
                     decimal debt = decimal.Parse(txtb_debtCus.Text) + decimal.Parse(txtb_bill.Text);
                     if (proceeds > debt)
                     {

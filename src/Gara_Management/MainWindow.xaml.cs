@@ -331,5 +331,26 @@ namespace Gara_Management
             staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
 
         }
+
+        private void logout_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn đăng xuất tài khoản này?", "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                cardLogin cardLogin = new cardLogin();
+                cardLogin.Show();
+                this.Close();
+            }
+        }
+
+        private void logout_MouseEnter(object sender, MouseEventArgs e)
+        {
+            logout.Background= new SolidColorBrush(color4);
+        }
+
+        private void logout_MouseLeave(object sender, MouseEventArgs e)
+        {
+            logout.Background = new SolidColorBrush(color5);
+
+        }
     }
 }

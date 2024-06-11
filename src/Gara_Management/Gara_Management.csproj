@@ -587,5 +587,10 @@
   <ItemGroup>
     <Resource Include="Images\img_welcome.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ic_log_out.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

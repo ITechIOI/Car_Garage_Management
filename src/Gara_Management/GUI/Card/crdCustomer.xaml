@@ -42,6 +42,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <!-- MÃ Khách hàng-->
                 <Border x:Name="idCustomerBorder" Grid.Row="0"  CornerRadius="10" BorderThickness="2"  Margin="0,5,380,5" >
@@ -51,15 +52,7 @@
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
                     </Grid>
                 </Border>
-                <!-- Sđt -->
-                <Border Grid.Row="0"  CornerRadius="10" BorderThickness="2"  Margin="268,5,0,5" >
-                    <Grid>
-                        <TextBlock Text="SĐT: " FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_phone" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="54,0,0,0" Foreground="{StaticResource sColor1}"/>
-                        <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
-
-                    </Grid>
-                </Border>
+                
                 <!-- Họ tên  -->
                 <Border Grid.Row="1"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
@@ -72,10 +65,19 @@
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0" Grid.ColumnSpan="2"/>
                     </Grid>
                 </Border>
+                <!-- Sđt -->
+                <Border Grid.Row="2"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
+                    <Grid>
+                        <TextBlock Text="SĐT: " FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <TextBox x:Name="txtb_phone" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="54,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
+
+                    </Grid>
+                </Border>
 
                 <!-- Địa chỉ -->
 
-                <Border Grid.Row="2"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
+                <Border Grid.Row="3"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid Height="auto">
 
                         <TextBlock Text="Địa chỉ: " VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" />

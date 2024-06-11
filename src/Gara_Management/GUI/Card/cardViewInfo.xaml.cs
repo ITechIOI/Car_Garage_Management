@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Net.Mail;
 
 namespace Gara_Management.GUI.Card
 {
@@ -112,11 +113,12 @@ namespace Gara_Management.GUI.Card
                     }
                     if (res && StaffDAO.Instance.DeleteStaff(staff.IDStaff))
                     {
-                        MessageBox.Show("Xóa nhân viên thành công");
+                        MessageBox.Show("Xóa nhân viên thành công", "Thông báo");
+                        this.Close();
                     }
                     else
                     {
-                        MessageBox.Show("Xóa nhân viên thất bại.");
+                        MessageBox.Show("Xóa nhân viên thất bại.", "Thông báo");
                     }    
                 }    
             }
@@ -126,12 +128,17 @@ namespace Gara_Management.GUI.Card
                     || tbtx_salary.Text == "" || txtb_birthdate.SelectedDate == null || 
                     cbx_position.SelectedItem == null)
                 {
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin");
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin", "Thông báo");
                 }
                 else
                 {
                     if (account != null && txtb_account.Text != "")
                     {
+                        if (!IsEmail(txtb_email.Text))
+                        {
+                            MessageBox.Show("Email không đúng định dạng. Vui lòng thử lại.", "Thông báo");
+                            return;
+                        }
                         bool res = true;
                         bool author;
                         if (cbx_accAuthor.SelectedItem.ToString() == "Admin")
@@ -143,36 +150,76 @@ namespace Gara_Management.GUI.Card
                             birthday.ToString("dd/MM/yyyy"), txtb_address.Text, txtb_email.Text,
                             txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
                         {
-                            MessageBox.Show("Cập nhật thông tin nhân viên thành công.");
+                            MessageBox.Show("Cập nhật thông tin nhân viên thành công.", "Thông báo");
+                            this.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Cập nhật thông tin không thành công.");
+                            MessageBox.Show("Cập nhật thông tin không thành công.", "Thông báo");
                         }
                         
                     }
                     else
                     {
-                        bool author;
-                        if (cbx_accAuthor.SelectedItem.ToString() == "Admin")
-                            author = false;
-                        else author = true;
-                        bool res = AccountDAO.Instance.InsertAccount(txtb_account.Text, staff.IDStaff, author);
-                        DateTime birthday = DateTime.Parse(txtb_birthdate.SelectedDate.ToString());
-                        if (res && StaffDAO.Instance.UpdateStaff(txtb_idStaff.Text, txtb_fullname.Text,
-                            birthday.ToString("dd/MM/yyyy"), txtb_address.Text, txtb_email.Text,
-                            txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
+                        if (account == null && txtb_account.Text != "")
                         {
-                            MessageBox.Show("Thêm tài khoản mới và cập nhật thông tin nhân viên thành công.");
+                            if (cbx_accAuthor.SelectedItem == null)
+                            {
+                                MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Thông báo");
+                                return;
+                            }
+                            if (!IsEmail(txtb_email.Text))
+                            {
+                                MessageBox.Show("Email không đúng định dạng. Vui lòng thử lại.", "Thông báo");
+                                return;
+                            }
+                            bool author;
+                            if (cbx_accAuthor.SelectedItem != null && cbx_accAuthor.SelectedItem.ToString() == "Admin")
+                                author = false;
+                            else author = true;
+                            bool res = AccountDAO.Instance.InsertAccount(txtb_account.Text, staff.IDStaff, author);
+                            DateTime birthday = DateTime.Parse(txtb_birthdate.SelectedDate.ToString());
+                            if (res && StaffDAO.Instance.UpdateStaff(txtb_idStaff.Text, txtb_fullname.Text,
+                                birthday.ToString("dd/MM/yyyy"), txtb_address.Text, txtb_email.Text,
+                                txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
+                            {
+                                MessageBox.Show("Thêm tài khoản mới và cập nhật thông tin nhân viên thành công.", "Thông báo");
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cập nhật thông tin không thành công.", "Thông báo");
+                            }
                         }
                         else
                         {
-                            MessageBox.Show("Cập nhật thông tin không thành công.");
-                        }
+                            if (account == null && txtb_account.Text == "")
+                            {
+                                if (!IsEmail(txtb_email.Text))
+                                {
+                                    MessageBox.Show("Email không đúng định dạng. Vui lòng thử lại.", "Thông báo");
+                                    return;
+                                }    
+                                DateTime birthday = DateTime.Parse(txtb_birthdate.SelectedDate.ToString());
+                                if (StaffDAO.Instance.UpdateStaff(txtb_idStaff.Text, txtb_fullname.Text,
+                                    birthday.ToString("dd/MM/yyyy"), txtb_address.Text, txtb_email.Text,
+                                    txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
+                                {
+                                    MessageBox.Show("Cập nhật thông tin nhân viên thành công.", "Thông báo");
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Cập nhật thông tin không thành công.", "Thông báo");
+                                }
+
+                            }
+                        }    
                     }
                 }
                 
-            }    
+            } 
+                        
         }
         private void LoadAccAuthor()
         {
@@ -216,12 +263,36 @@ namespace Gara_Management.GUI.Card
         {
             if (AccountDAO.Instance.ResetPassword(account.IDAcc))
             {
-                MessageBox.Show("Đặt lại mật khẩu thành công.");
+                MessageBox.Show("Đặt lại mật khẩu thành công.", "Thông báo");
             }    
             else
             {
-                MessageBox.Show("Đặt lại mật khẩu không thành công. Vui lòng thử lại.");
+                MessageBox.Show("Đặt lại mật khẩu không thành công. Vui lòng thử lại.", "Thông báo");
             }    
+        }
+
+        private void txtb_account_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtb_account.Text == "")
+            {
+                cbx_accAuthor.IsEnabled = false;
+            }
+            else
+            {
+                cbx_accAuthor.IsEnabled = true;
+            }
+        }
+        public bool IsEmail(string email)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(email);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
     }
 }

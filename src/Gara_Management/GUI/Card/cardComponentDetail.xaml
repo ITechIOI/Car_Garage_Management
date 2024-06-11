@@ -44,7 +44,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <!-- Mã phụ tùng-->
-                <Border Grid.Row="0"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
+                <Border x:Name="bd_idComponent" Grid.Row="0"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Mã phụ tùng:" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         <TextBlock x:Name="txtb_idcom" Background="Transparent" Margin="150,0,0,0" Foreground="{StaticResource sColor1}" />
@@ -63,7 +63,7 @@
                 <Border Grid.Row="2"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Đơn giá: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_price" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="115,0,0,0" Foreground="{StaticResource sColor5}"/>
+                        <TextBox x:Name="txtb_price" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="115,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="115,0,0,0"/>
                     </Grid>
                 </Border>

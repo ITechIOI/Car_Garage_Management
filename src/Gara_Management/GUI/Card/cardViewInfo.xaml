@@ -120,7 +120,7 @@
                 <Border Grid.Row="8"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Tài khoản: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox x:Name="txtb_account" IsReadOnly="True" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="121,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox TextChanged="txtb_account_TextChanged" x:Name="txtb_account" IsReadOnly="True" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="121,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Bottom" Fill="{StaticResource sColor1}" Margin="121,0,0,0"/>
                     </Grid>
                 </Border>

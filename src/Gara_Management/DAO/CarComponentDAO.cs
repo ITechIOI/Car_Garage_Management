@@ -217,7 +217,8 @@ namespace Gara_Management.DAO
 
         public bool InsertCarComponent(string name, string gara, decimal wage)
         {
-            return DataProvider.Instance.ExecuteNonQuery("EXEC INSERT_CARCOMPONENT N'" + name + "', '" + gara + "', " + wage) > 0;
+            string query = "EXEC INSERT_CARCOMPONENT N'" + name + "', '" + gara + "', " + wage;
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
         }
 
         public bool UpdateCarComponent(string id, string name, string gara, decimal wage, decimal curPrice)

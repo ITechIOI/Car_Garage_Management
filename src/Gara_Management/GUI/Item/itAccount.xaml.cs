@@ -1,4 +1,5 @@
-﻿using Gara_Management.DTO;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
 using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
@@ -45,13 +46,29 @@ namespace Gara_Management.GUI.Item
                 }
             }    
 
-
         }
 
         private void bt_view_info_MouseDown(object sender, MouseButtonEventArgs e)
         {
             cardViewInfo viewinfo = new cardViewInfo(staff, account);
+            viewinfo.btn_delete.MouseDown += Btn_delete_MouseDown;
             viewinfo.Show();
+
+            
+
+        }
+
+        private void Btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            string gara = staff.IDGara;
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Clear();
+            foreach (Staff staff in StaffDAO.Instance.LoadStaffList(gara))
+            {
+                Account acc = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
+                itAccount it = new itAccount(staff, acc);
+                panel.Children.Add(it);
+            }
         }
     }
 }

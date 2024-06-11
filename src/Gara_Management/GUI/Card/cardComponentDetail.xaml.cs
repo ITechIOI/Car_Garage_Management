@@ -29,9 +29,11 @@ namespace Gara_Management.GUI.Card
         { 
             InitializeComponent();
             this.gara = gara;
+            txtb_namecom.IsReadOnly = false;
+            txtb_wage.IsReadOnly = false;
             btn_edit.Visibility = Visibility.Hidden;
             txtb_delete.Text = "Thêm";
-            txtb_idcom.Visibility = Visibility.Collapsed;
+            bd_idComponent.Visibility = Visibility.Collapsed;
             txtb_price.IsReadOnly = true;
             txtb_price.Text = "0";
             txtb_amount.IsReadOnly = true;
@@ -48,9 +50,9 @@ namespace Gara_Management.GUI.Card
             txtb_namecom.IsReadOnly = true;
             txtb_namecom.Text = com.NameCom;
             txtb_wage.IsReadOnly = true;
-            txtb_wage.Text = com.Wage.ToString();
+            txtb_wage.Text =((int) com.Wage).ToString();
             txtb_price.IsReadOnly = true;
-            txtb_price.Text = com.CurPrice.ToString();
+            txtb_price.Text =((int) com.CurPrice).ToString();
             txtb_amount.IsReadOnly = true;
             txtb_amount.Text = com.ComQuantity.ToString();
             this.Opacity = 0;
@@ -126,15 +128,31 @@ namespace Gara_Management.GUI.Card
                         }    
                         else
                         {
-                            if (CarComponentDAO.Instance.InsertCarComponent(txtb_namecom.Text, gara, wage))
+                            decimal price;
+                            if (!decimal.TryParse(txtb_price.Text, out price))
                             {
-                                MessageBox.Show("Thêm phụ tùng mới thành công.", "Thông báo");
-                                this.Close();
-                            }
+                                MessageBox.Show("Đơn giá phải là một con số", "Thông báo");
+                            }    
                             else
                             {
-                                MessageBox.Show("Thêm phụ tùng mới thất bại vui lòng thử lại.", "Thông báo");
-                            }    
+                                if ( wage<=0)
+                                {
+                                    MessageBox.Show("Tiền công và đơn giá phải là một số nguyên dương.");
+                                }    
+                                else
+                                {
+                                    if (CarComponentDAO.Instance.InsertCarComponent(txtb_namecom.Text, gara, wage))
+                                    {
+                                        MessageBox.Show("Thêm phụ tùng mới thành công.", "Thông báo");
+                                        this.Close();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Thêm phụ tùng mới thất bại vui lòng thử lại.", "Thông báo");
+                                    }
+                                }    
+                            }
+                                
                         }    
                     }    
                 }   
@@ -160,14 +178,19 @@ namespace Gara_Management.GUI.Card
                             }
                             else
                             {
+                                if (price <= 0 || wage <= 0)
+                                {
+                                    MessageBox.Show("Tiền công và đơn giá phải là một số nguyên dương.");
+                                    return;
+                                }
                                 if (CarComponentDAO.Instance.UpdateCarComponent(txtb_idcom.Text, txtb_namecom.Text, gara, wage, price))
                                 {
-                                    MessageBox.Show("Thêm phụ tùng mới thành công.", "Thông báo");
+                                    MessageBox.Show("Cập nhật phụ tùng thành công.", "Thông báo");
                                     this.Close();
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Thêm phụ tùng mới thất bại vui lòng thử lại.", "Thông báo");
+                                    MessageBox.Show("Cập nhật phụ tùng thất bại vui lòng thử lại.", "Thông báo");
                                 }
                             }
                         }

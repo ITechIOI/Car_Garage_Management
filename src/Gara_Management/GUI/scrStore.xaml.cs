@@ -81,9 +81,11 @@ namespace Gara_Management.GUI
         // tạo phiếu nhập kho
         private void bd_stockIn_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdStockIn crdStockIn = new crdStockIn(gara, acc);
-            crdStockIn.ShowDialog();
+            cardComponentDetail detail = new cardComponentDetail(gara);
+            detail.ShowDialog();
             LoadListComponent();
+            txtb_total.Text = "Tổng loại vật tư: " + CarComponentDAO.Instance.LoadCarComponentList(gara).Count;
+            txtb_zero.Text = "Số vật tư đã hết: " + CarComponentDAO.Instance.LoadCarComponentListZero(gara).Count;
         }
         // lọc
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
@@ -287,7 +289,7 @@ namespace Gara_Management.GUI
             DateTime endMonth = startMonth.AddMonths(1).AddDays(-1);
             if (now != startMonth && now !=endMonth)
             {
-                MessageBox.Show("Hôm nay không thể tổng kết.", "Thông báo");
+                MessageBox.Show("Bạn chỉ được phép tổng kết vào đầu tháng hoặc cuối tháng", "Thông báo");
             }    
             else
             {
@@ -311,7 +313,7 @@ namespace Gara_Management.GUI
                 {
                     if (InventoryReportDAO.Instance.CheckExistEndingInventory(gara))
                     {
-                        MessageBox.Show("Đã tổng kết tồn đầu tháng này.", "Thông báo");
+                        MessageBox.Show("Đã tổng kết tồn cuối của tháng này.", "Thông báo");
                     }
                     else
                     {
@@ -320,7 +322,7 @@ namespace Gara_Management.GUI
                         {
                             InventoryReportDAO.Instance.SummarizeEndingInventory(gara, com.IDCom, com.ComQuantity);
                         }
-                        MessageBox.Show("Tổng kết tồn đầu của tháng này.", "Thông báo");
+                        MessageBox.Show("Tổng kết tồn cuối của tháng này.", "Thông báo");
                     }
                 }    
             }    
