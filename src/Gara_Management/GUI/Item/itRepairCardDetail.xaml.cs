@@ -1,5 +1,6 @@
 ﻿using Gara_Management.DAO;
 using Gara_Management.DTO;
+using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,6 +28,7 @@ namespace Gara_Management.GUI.Item
         public string recDate;
         public string idGara;
         public string idBill;
+        public bool deleteThis = false;
 
         public itRepairCardDetail()
         {
@@ -55,6 +57,7 @@ namespace Gara_Management.GUI.Item
 
         public void DisableEditing()
         {
+            tbl_stt.IsEnabled = false;
             tbx_description.IsReadOnly = true;
             tbx_name.IsReadOnly = true;
             tbx_price.IsReadOnly = true;
@@ -65,6 +68,7 @@ namespace Gara_Management.GUI.Item
 
         public void EnableEditing()
         {
+            tbl_stt.IsEnabled = true;
             tbx_description.IsReadOnly = false;
             tbx_name.IsReadOnly = false;
             tbx_price.IsReadOnly = false;
@@ -116,6 +120,32 @@ namespace Gara_Management.GUI.Item
                 return true;
             }
             return false;
+        }
+
+        private void tbl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (deleteThis == false) 
+            {
+                deleteThis = true;
+                tbl_stt.FontWeight = FontWeights.Bold;
+                tbx_description.FontWeight = FontWeights.Bold;
+                tbx_name.FontWeight = FontWeights.Bold;
+                tbx_price.FontWeight = FontWeights.Bold;
+                tbx_quantity.FontWeight = FontWeights.Bold;
+                tbx_wage.FontWeight = FontWeights.Bold;
+                tbx_total.FontWeight = FontWeights.Bold;
+            }
+            else
+            {
+                deleteThis = false;
+                tbl_stt.FontWeight = FontWeights.Normal;
+                tbx_description.FontWeight = FontWeights.Normal;
+                tbx_name.FontWeight = FontWeights.Normal;
+                tbx_price.FontWeight = FontWeights.Normal;
+                tbx_quantity.FontWeight = FontWeights.Normal;
+                tbx_wage.FontWeight = FontWeights.Normal;
+                tbx_total.FontWeight= FontWeights.Normal;
+            }
         }
     }
 }

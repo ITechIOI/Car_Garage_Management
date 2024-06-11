@@ -21,7 +21,7 @@
                     <ColumnDefinition/>
 
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="tbl_stt" Text="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" />
+                <TextBlock x:Name="tbl_stt" Text="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" MouseDown="tbl_MouseDown" />
                 <TextBox x:Name="tbx_description"  Grid.Column="1" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"
                           BorderThickness="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" />
                 <TextBox x:Name="tbx_name"  Grid.Column="2" Text="" Foreground="{StaticResource sColor1}" TextWrapping="Wrap" Background="Transparent"

@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace Gara_Management.DAO
 {
@@ -81,5 +82,11 @@ namespace Gara_Management.DAO
             return (DataProvider.Instance.ExecuteNonQuery(query, new object[] { ordinalNum, item.tbx_description.Text, item.tbx_quantity.Text }) > 0);
         }
 
+        //Xóa dữ liệu REPAIR PAYMENT DETAILS
+        public bool DeleteRepairCardDetail(string ordinalNum) 
+        {
+            string query = "EXEC USP_DELETE_REPAIR_CAR_DETAILS @RPD_ORDINAL_NUM";
+            return (DataProvider.Instance.ExecuteNonQuery(query, new object[] { ordinalNum }) > 0);
+        }
     }
 }

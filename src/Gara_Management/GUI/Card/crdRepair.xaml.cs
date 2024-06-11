@@ -100,29 +100,32 @@ namespace Gara_Management.GUI.Card
         //Nút lưu, sửa
         private void bd_modify_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (tbx_modify.Text == "Sửa")// nghhĩa là phiếu đã có
+            if (tbx_NumberPlate.Text != "")
             {
-                bd_add.Visibility = Visibility.Visible;
-                for (int i = 0; i < ds_suachua.Children.Count; i++)
+                if (tbx_modify.Text == "Sửa")// nghhĩa là phiếu đã có
                 {
-                    itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
-                    child.EnableEditing();
+                    bd_add.Visibility = Visibility.Visible;
+                    for (int i = 0; i < ds_suachua.Children.Count; i++)
+                    {
+                        itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
+                        child.EnableEditing();
+                    }
+                    // code 
+                    tbx_modify.Text = "Lưu";
                 }
-                // code 
-                tbx_modify.Text = "Lưu";
-            }
-            else // đang sửa phiếu
-            {
-                for (int i = 0; i < ds_suachua.Children.Count; i++)
+                else // đang sửa phiếu
                 {
-                    itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
-                    child.DisableEditing();
+                    for (int i = 0; i < ds_suachua.Children.Count; i++)
+                    {
+                        itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
+                        child.DisableEditing();
+                    }
+                    // code
+                    SaveRepairCardDetails();
+                    isChanged = false;
+                    bd_add.Visibility = Visibility.Hidden;
+                    tbx_modify.Text = "Sửa";
                 }
-                // code
-                SaveRepairCardDetails();
-                isChanged = false;
-                bd_add.Visibility = Visibility.Hidden;
-                tbx_modify.Text = "Sửa";
             }
         }
 
@@ -227,7 +230,7 @@ namespace Gara_Management.GUI.Card
         }
 
         //Lưu thông tin vào database
-        public void SaveRepairCardDetails()
+        private void SaveRepairCardDetails()
         {
             bool status = true;
             for (int i = 0; i < ds_suachua.Children.Count; i++)
@@ -261,6 +264,36 @@ namespace Gara_Management.GUI.Card
                     PrintRepairPaymentBill();
                     this.Close();
                 }    
+            }
+            else
+                MessageBox.Show("Cập nhật phiếu sửa chữa thất bại!");
+            ds_suachua.Children.Clear();
+            LoadRepairCardDetails(tbl_IDRec.Text);
+        }
+
+        //Xóa các dòng dữ liệu đã chọn 
+        private void DeleteRepairCardDetails()
+        {
+            bool status = true;
+            for (int i = 0; i < ds_suachua.Children.Count; i++)
+            {
+                itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
+                if(child.deleteThis == true)
+                {
+                    if (!RepairPaymentDetailDAO.Instance.DeleteRepairCardDetail(child.GetRPDOrdinalNum()))
+                        status = false;
+                }
+            }
+            if (status)
+            {
+                ds_suachua.Children.Clear();
+                LoadRepairCardDetails(tbl_IDRec.Text);
+                if (MessageBox.Show("Cập nhật phiếu sửa chữa thành công! Bạn có muốn in phiếu sửa chữa không?",
+                    "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    PrintRepairPaymentBill();
+                    this.Close();
+                }
             }
             else
                 MessageBox.Show("Cập nhật phiếu sửa chữa thất bại!");

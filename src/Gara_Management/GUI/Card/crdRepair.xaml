@@ -235,15 +235,15 @@
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Biển số -->
-            <Grid Grid.Row="1" Margin="100,45,516,0">
+            <Grid Grid.Row="1" Margin="100,45,500,0">
                 <TextBlock Text="Biển số xe: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox x:Name="tbx_NumberPlate" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="99,0,0,0" Foreground="{StaticResource sColor1}"/>
+                <TextBox x:Name="tbx_NumberPlate" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="99,0,0,0" Foreground="{StaticResource sColor1}" IsEnabled="False"/>
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Ngày sửa-->
             <Grid Grid.Row="1" Margin="529,0,52,45">
                 <TextBlock Text="Ngày sửa: " VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <DatePicker Foreground="{StaticResource sColor5}" x:Name="dpk_RecDate" VerticalContentAlignment="Center" Background="Transparent" Margin="99,0,0,0"/>
+                <DatePicker Foreground="{StaticResource sColor5}" x:Name="dpk_RecDate" VerticalContentAlignment="Center" Background="Transparent" Margin="99,0,0,0" IsEnabled="False"/>
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- bảng thông tin -->
