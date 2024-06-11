@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Mail;
 
 namespace Gara_Management.GUI
 {
@@ -88,9 +89,14 @@ namespace Gara_Management.GUI
 
         private void bt_update_info_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (txtb_address.Text == "" || txtb_birthday.Text == "" || txtb_phone.Text == "" || txtb_email.Text == ""|| txtb_name.Text == "")
+            if (txtb_address.Text == "" || txtb_birthday.Text == "" || txtb_phone.Text == string.Empty || txtb_email.Text == ""|| txtb_name.Text == "")
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin");
+                return;
+            }  
+            if (!IsEmail(txtb_email.Text))
+            {
+                MessageBox.Show("Email không đúng định dạng. Vui lòng thử lại.");
                 return;
             }    
             Staff staff1 = new Staff(txtb_idStaff.Text, txtb_name.Text, DateTime.Parse(txtb_birthday.Text), txtb_address.Text,
@@ -107,6 +113,18 @@ namespace Gara_Management.GUI
             crdchange.ShowDialog();
             account = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
             account = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
+        }
+        public bool IsEmail(string email)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(email);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
     }
 }

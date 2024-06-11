@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Net.Mail;
 
 namespace Gara_Management.GUI.Card
 {
@@ -71,7 +73,12 @@ namespace Gara_Management.GUI.Card
                         {
                             MessageBox.Show("Lương phải là một số nguyên dương.", "Thông báo");
                             return;
-                        }    
+                        }
+                        if (!IsEmail(staffEmailTextBox.Text))
+                        {
+                            MessageBox.Show("Email không đúng định dạng. Vui lòng thử lại.", "Thông báo");
+                            return;
+                        }
                         if (StaffDAO.Instance.CheckExistIDStaff(staffNameTextBox.Text, staffPhoneTextbox.Text, gara) != "")
                         {
                             MessageBox.Show("Nhân viên đã tồn tại.", "Thông báo");
@@ -133,7 +140,18 @@ namespace Gara_Management.GUI.Card
             //    }
             //}    
         }
-
+        public bool IsEmail(string email)
+        {
+            try
+            {
+                MailAddress m = new MailAddress(email);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
