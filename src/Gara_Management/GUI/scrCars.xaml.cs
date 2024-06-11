@@ -88,29 +88,36 @@ namespace Gara_Management.GUI
 
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (minDebt == -1 && maxDebt == -1)
+            if (filter.Visibility == Visibility.Hidden)
             {
-                rangeSlider.LowerValue = rangeSlider.Minimum;
-                rangeSlider.HigherValue = rangeSlider.Maximum;
-                ckb_debt.IsChecked = false;                
+                if (minDebt == -1 && maxDebt == -1)
+                {
+                    rangeSlider.LowerValue = rangeSlider.Minimum;
+                    rangeSlider.HigherValue = rangeSlider.Maximum;
+                    ckb_debt.IsChecked = false;
+                }
+                else
+                {
+                    rangeSlider.LowerValue = minDebt;
+                    rangeSlider.HigherValue = maxDebt;
+                    ckb_debt.IsChecked = true;
+                }
+                if (brand == "")
+                {
+                    cbx_carBrand.SelectedItem = null;
+                    ckb_carBrand.IsChecked = false;
+                }
+                else
+                {
+                    cbx_carBrand.SelectedItem = brand;
+                    ckb_carBrand.IsChecked = true;
+                }
+                filter.Visibility = Visibility.Visible;
             }
             else
             {
-                rangeSlider.LowerValue = minDebt;
-                rangeSlider.HigherValue = maxDebt;
-                ckb_debt.IsChecked = true;               
+                filter.Visibility = Visibility.Hidden;
             }
-            if (brand == "")
-            {
-                cbx_carBrand.SelectedItem = null;
-                ckb_carBrand.IsChecked = false;
-            }
-            else
-            {
-                cbx_carBrand.SelectedItem = brand;
-                ckb_carBrand.IsChecked = true;
-            }
-            filter.Visibility = Visibility.Visible;
         }
         private void LoadListReceipt()
         {

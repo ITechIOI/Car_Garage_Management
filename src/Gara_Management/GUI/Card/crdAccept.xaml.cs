@@ -235,7 +235,7 @@ namespace Gara_Management.GUI.Card
         //hiển thị dữ liệu từ RECEPTION_FORMS trong database lên phiếu sửa chữa theo id
         private void LoadReceptionFormById(string IDRec, ref ReceptionForm receptionForm)
         {
-            receptionForm = ReceptionFormDAO.Instance.LoadReceptionFormByID(IDRec);
+            receptionForm = ReceptionFormDAO.Instance.LoadReceptionFormByID(IDRec, gara);
             Customer customer = CustomerDAO.Instance.LoadCustomerByID(receptionForm.IDCus, gara);
             CarBrand carBrand = CarBrandDAO.Instance.LoadCarBrandByID(receptionForm.IDBrand, gara);
 

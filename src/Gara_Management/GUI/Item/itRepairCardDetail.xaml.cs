@@ -51,7 +51,7 @@ namespace Gara_Management.GUI.Item
 
         public void CreateNewRepairCardDetail(int id, string idRec)
         {
-            ReceptionForm receptionForm = ReceptionFormDAO.Instance.LoadReceptionFormByID(idRec);
+            ReceptionForm receptionForm = ReceptionFormDAO.Instance.LoadReceptionFormByID(idRec, idGara);
             numberPlate = receptionForm.NumberPlate;
             recDate = receptionForm.ReceptionDate.ToString();
             idGara = receptionForm.IDGara;

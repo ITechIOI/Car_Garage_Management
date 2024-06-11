@@ -84,6 +84,8 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color5);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
+            menuStaff.Background = new SolidColorBrush(color5);
+
 
             staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
@@ -115,6 +117,8 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color5);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
+            menuStaff.Background = new SolidColorBrush(color5);
+
             staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // thay đổi từ màn hình repairCard sang Cars 
@@ -162,6 +166,8 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color5);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
+            menuStaff.Background = new SolidColorBrush(color5);
+
             staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // thay đổi từ màn hình Store sang StockIn
@@ -209,6 +215,8 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color4);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color5);
+            menuStaff.Background = new SolidColorBrush(color5);
+
             staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
    
@@ -238,6 +246,8 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color5);
             menuCustomers.Background = new SolidColorBrush(color4);
             menuAccount.Background = new SolidColorBrush(color5);
+            menuStaff.Background = new SolidColorBrush(color5);
+
             staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
         }
         // move chuột ra khỏi nút màn hình Customers
@@ -267,6 +277,8 @@ namespace Gara_Management
             menuRevenue.Background = new SolidColorBrush(color5);
             menuCustomers.Background = new SolidColorBrush(color5);
             menuAccount.Background = new SolidColorBrush(color4);
+            menuStaff.Background = new SolidColorBrush(color5);
+
             staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);
 
         }

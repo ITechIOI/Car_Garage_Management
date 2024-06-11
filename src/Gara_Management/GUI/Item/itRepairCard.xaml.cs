@@ -53,8 +53,13 @@ namespace Gara_Management.GUI.Item
             List<RepairPaymentBill> list = RepairPaymentBillDAO.Instance.LoadRepairPaymentBillList(gara);
             foreach (RepairPaymentBill bill in list)
             {
+<<<<<<< HEAD
                 ReceptionForm recept1 = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
                 itRepairCard it = new itRepairCard(recept1, bill,staff);
+=======
+                ReceptionForm recept1 = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec, recept.IDGara);
+                itRepairCard it = new itRepairCard(recept1, bill);
+>>>>>>> 8456ff37946a73bc816e53bd413f76c6881c5993
                 panel.Children.Add(it);
             }
         }
