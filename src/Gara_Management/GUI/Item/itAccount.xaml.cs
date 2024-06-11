@@ -62,7 +62,7 @@ namespace Gara_Management.GUI.Item
         {
             string gara = staff.IDGara;
             Panel panel = (Panel)this.Parent;
-            ((Panel)this.Parent).Children.Clear();
+            panel.Children.Clear();
             foreach (Staff staff in StaffDAO.Instance.LoadStaffList(gara))
             {
                 Account acc = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);

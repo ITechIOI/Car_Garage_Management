@@ -87,6 +87,8 @@ namespace Gara_Management.GUI.Card
             ds_nhapkho.LayoutUpdated += Ds_nhapkho_LayoutUpdated;
             txtb_idLot.Text = grn.LotNumber;
             txtb_date.Text = grn.ImportTime.ToString();
+            txtb_date.IsEnabled = false;
+            txtb_namesupplier.IsReadOnly = true;
             txtb_namesupplier.Text = grn.Supplier;
             this.gara = StaffDAO.Instance.GetStaffById(AccountDAO.Instance.GetIDStaffByIDAcc(grn.DataEntryStaff.ToString())).IDGara;
             txtb_staff.Text = StaffDAO.Instance.GetStaffById(AccountDAO.Instance.GetIDStaffByIDAcc(grn.DataEntryStaff.ToString())).NameStaff;
@@ -167,6 +169,8 @@ namespace Gara_Management.GUI.Card
                 {
                     add_button.Text = "Thêm";
                     check = true;
+                    txtb_namesupplier.IsReadOnly = false;
+                    txtb_date.IsEnabled = true;
                     i = ds_nhapkho.Children.Count;
                     bd_pay.Visibility = Visibility.Visible;
                 }
