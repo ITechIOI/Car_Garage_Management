@@ -126,15 +126,31 @@ namespace Gara_Management.GUI.Card
                         }    
                         else
                         {
-                            if (CarComponentDAO.Instance.InsertCarComponent(txtb_namecom.Text, gara, wage))
+                            decimal price;
+                            if (!decimal.TryParse(txtb_price.Text, out price))
                             {
-                                MessageBox.Show("Thêm phụ tùng mới thành công.", "Thông báo");
-                                this.Close();
-                            }
+                                MessageBox.Show("Đơn giá phải là một con số", "Thông báo");
+                            }    
                             else
                             {
-                                MessageBox.Show("Thêm phụ tùng mới thất bại vui lòng thử lại.", "Thông báo");
-                            }    
+                                if (price <=0 || wage<=0)
+                                {
+                                    MessageBox.Show("Tiền công và đơn giá phải là một số nguyên dương.");
+                                }    
+                                else
+                                {
+                                    if (CarComponentDAO.Instance.InsertCarComponent(txtb_namecom.Text, gara, wage))
+                                    {
+                                        MessageBox.Show("Thêm phụ tùng mới thành công.", "Thông báo");
+                                        this.Close();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Thêm phụ tùng mới thất bại vui lòng thử lại.", "Thông báo");
+                                    }
+                                }    
+                            }
+                                
                         }    
                     }    
                 }   
@@ -160,6 +176,11 @@ namespace Gara_Management.GUI.Card
                             }
                             else
                             {
+                                if (price <= 0 || wage <= 0)
+                                {
+                                    MessageBox.Show("Tiền công và đơn giá phải là một số nguyên dương.");
+                                    return;
+                                }
                                 if (CarComponentDAO.Instance.UpdateCarComponent(txtb_idcom.Text, txtb_namecom.Text, gara, wage, price))
                                 {
                                     MessageBox.Show("Thêm phụ tùng mới thành công.", "Thông báo");

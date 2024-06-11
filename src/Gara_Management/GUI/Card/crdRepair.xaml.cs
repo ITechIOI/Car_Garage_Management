@@ -243,6 +243,18 @@ namespace Gara_Management.GUI.Card
                 {
                     if (child.isExist())
                     {
+                        int amount, wage, price;
+                        if (!(int.TryParse(child.tbx_quantity.Text,out amount) && int.TryParse(child.tbx_price.Text, out price) && 
+                            int.TryParse(child.tbx_wage.Text, out wage)))
+                        {
+                            MessageBox.Show("Tiền công, đơn giá và số lượng phải là số nguyên dương.", "Thông báo");
+                            return;
+                        }    
+                        if (wage<=0|| amount<=0 || price<=0)
+                        {
+                            MessageBox.Show("Tiền công, đơn giá và số lượng phải là số nguyên dương.", "Thông báo");
+                            return;
+                        }    
                         if (!RepairPaymentDetailDAO.Instance.UpdateRepairCardDetail(child.GetRPDOrdinalNum(), child))
                             status = false;
                     }

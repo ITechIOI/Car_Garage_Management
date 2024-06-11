@@ -56,20 +56,25 @@ namespace Gara_Management.GUI.Card
                     staffAddressTextBox.Text == "" || staffEmailTextBox.Text == "" || staffPhoneTextbox.Text == ""
                     || cbx_position.SelectedItem == null || staffSalaryTextbox.Text =="")
                 {
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin.");
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin.","Thông báo");
                 }    
                 else
                 {
                     int salary;
                     if (!int.TryParse(staffSalaryTextbox.Text,out salary))
                     {
-                        MessageBox.Show("Lương phải là một số nguyên");
+                        MessageBox.Show("Lương phải là một số nguyên", "Thông báo");
                     }    
                     else
                     {
+                        if (salary<=0)
+                        {
+                            MessageBox.Show("Lương phải là một số nguyên dương.", "Thông báo");
+                            return;
+                        }    
                         if (StaffDAO.Instance.CheckExistIDStaff(staffNameTextBox.Text, staffPhoneTextbox.Text, gara) != "")
                         {
-                            MessageBox.Show("Nhân viên đã tồn tại.");
+                            MessageBox.Show("Nhân viên đã tồn tại.", "Thông báo");
                         }
                         else
                         {
@@ -82,7 +87,7 @@ namespace Gara_Management.GUI.Card
                             {
                                 if (AccountDAO.Instance.CheckExistedUsername(usernameTextBox.Text))
                                 {
-                                    MessageBox.Show("Tài khoản bị trùng vui lòng thử lại.");
+                                    MessageBox.Show("Tài khoản bị trùng vui lòng thử lại.", "Thông báo");
                                 }
                                 else
                                 {
@@ -96,12 +101,12 @@ namespace Gara_Management.GUI.Card
                             }
                             if (res)
                             {
-                                MessageBox.Show("Thêm nhân viên thành công!");
+                                MessageBox.Show("Thêm nhân viên thành công!", "Thông báo");
                                 this.Close();
                             }
                             else
                             {
-                                MessageBox.Show("Thêm nhân viên không thành công. Vui lòng thử lại!");
+                                MessageBox.Show("Thêm nhân viên không thành công. Vui lòng thử lại!", "Thông báo");
                             }
                         }    
                     }    

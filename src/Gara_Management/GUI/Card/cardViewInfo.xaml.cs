@@ -153,21 +153,29 @@ namespace Gara_Management.GUI.Card
                     }
                     else
                     {
-                        bool author;
-                        if (cbx_accAuthor.SelectedItem.ToString() == "Admin")
-                            author = false;
-                        else author = true;
-                        bool res = AccountDAO.Instance.InsertAccount(txtb_account.Text, staff.IDStaff, author);
-                        DateTime birthday = DateTime.Parse(txtb_birthdate.SelectedDate.ToString());
-                        if (res && StaffDAO.Instance.UpdateStaff(txtb_idStaff.Text, txtb_fullname.Text,
-                            birthday.ToString("dd/MM/yyyy"), txtb_address.Text, txtb_email.Text,
-                            txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
+                        if (account == null && txtb_account.Text != "")
                         {
-                            MessageBox.Show("Thêm tài khoản mới và cập nhật thông tin nhân viên thành công.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Cập nhật thông tin không thành công.");
+                            if (cbx_accAuthor.SelectedItem == null)
+                            {
+                                MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Thông báo");
+                                return;
+                            }    
+                            bool author;
+                            if (cbx_accAuthor.SelectedItem != null && cbx_accAuthor.SelectedItem.ToString() == "Admin")
+                                author = false;
+                            else author = true;
+                            bool res = AccountDAO.Instance.InsertAccount(txtb_account.Text, staff.IDStaff, author);
+                            DateTime birthday = DateTime.Parse(txtb_birthdate.SelectedDate.ToString());
+                            if (res && StaffDAO.Instance.UpdateStaff(txtb_idStaff.Text, txtb_fullname.Text,
+                                birthday.ToString("dd/MM/yyyy"), txtb_address.Text, txtb_email.Text,
+                                txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
+                            {
+                                MessageBox.Show("Thêm tài khoản mới và cập nhật thông tin nhân viên thành công.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cập nhật thông tin không thành công.");
+                            }
                         }
                     }
                 }
@@ -222,6 +230,18 @@ namespace Gara_Management.GUI.Card
             {
                 MessageBox.Show("Đặt lại mật khẩu không thành công. Vui lòng thử lại.");
             }    
+        }
+
+        private void txtb_account_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtb_account.Text == "")
+            {
+                cbx_accAuthor.IsEnabled = false;
+            }
+            else
+            {
+                cbx_accAuthor.IsEnabled = true;
+            }
         }
     }
 }

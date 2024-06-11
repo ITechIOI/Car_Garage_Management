@@ -81,8 +81,8 @@ namespace Gara_Management.GUI
         // tạo phiếu nhập kho
         private void bd_stockIn_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdStockIn crdStockIn = new crdStockIn(gara, acc);
-            crdStockIn.ShowDialog();
+            cardComponentDetail detail = new cardComponentDetail(gara);
+            detail.ShowDialog();
             LoadListComponent();
         }
         // lọc
