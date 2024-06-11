@@ -231,7 +231,7 @@
             <!-- Mã phiếu -->
             <Grid Grid.Row="1" Margin="100,0,556,45">
                 <TextBlock Text="Mã phiếu:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox x:Name="tbl_IDRec" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="99,0,0,0" Foreground="{StaticResource sColor1}" KeyDown="tbl_IDRec_KeyDown" CharacterCasing="Upper"/>
+                <TextBox x:Name="tbl_IDRec" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="99,0,0,0" Foreground="{StaticResource sColor1}" KeyDown="tbl_IDRec_KeyDown" CharacterCasing="Upper" TextChanged="tbl_IDRec_TextChanged"/>
                 <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="0,40,0,0"/>
             </Grid>
             <!-- Biển số -->
@@ -283,7 +283,7 @@
 
                     <!-- chứa thông tin chính -->
                     <ScrollViewer Margin="0,48,-16,33" Grid.RowSpan="2">
-                        <StackPanel  x:Name="ds_suachua">
+                        <StackPanel  x:Name="ds_suachua" LayoutUpdated="ds_suachua_LayoutUpdated">
 
                         </StackPanel>
                     </ScrollViewer>
@@ -313,8 +313,8 @@
                 <TextBlock FontWeight="Bold" Text="Xóa" TextAlignment="Center"/>
             </Border>
 
-            <Border x:Name="bd_modify" MouseDown="bd_modify_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}"  Margin="620,17,99,17">
-                <TextBlock x:Name="tbx_modify" FontWeight="Bold" Text="Sửa" TextAlignment="Center"/>
+            <Border x:Name="bd_pay" MouseDown="bd_modify_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}"  Margin="620,17,99,17">
+                <TextBlock x:Name="tbx_pay" FontWeight="Bold" Text="Thanh toán" TextAlignment="Center"/>
             </Border>
             
         </Grid>

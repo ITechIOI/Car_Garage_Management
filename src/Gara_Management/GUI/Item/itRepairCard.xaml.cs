@@ -25,14 +25,16 @@ namespace Gara_Management.GUI.Item
     {
         ReceptionForm recept;
         RepairPaymentBill bill;
+        Staff staff;
         public itRepairCard()
         {
             InitializeComponent();
         }
-        public itRepairCard(ReceptionForm recept, RepairPaymentBill bill)
+        public itRepairCard(ReceptionForm recept, RepairPaymentBill bill, Staff staff)
         {
             InitializeComponent();
             this.recept = recept;
+            this.staff = staff;
             this.bill = bill;
             txtb_idRec.Text = bill.IDRec;
             txtb_numberPlate.Text = recept.NumberPlate;
@@ -43,7 +45,7 @@ namespace Gara_Management.GUI.Item
         // xem chi tiết phiếu sửa chữa
         private void bd_repair_detail_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdRepair crdRepair = new crdRepair(bill.IDRec, recept.IDGara);
+            crdRepair crdRepair = new crdRepair(bill.IDRec,recept.IDGara, staff);
             crdRepair.ShowDialog();
             string gara = recept.IDGara;
             Panel panel = ((Panel)this.Parent);
@@ -52,7 +54,7 @@ namespace Gara_Management.GUI.Item
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept1 = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept1, bill);
+                itRepairCard it = new itRepairCard(recept1, bill,staff);
                 panel.Children.Add(it);
             }
         }

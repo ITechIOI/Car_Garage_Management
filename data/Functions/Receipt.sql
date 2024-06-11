@@ -31,5 +31,4 @@ BEGIN
 	SET @proceeds = -1 * @proceeds
 	EXEC USP_UPDATEDEBTOFCUSTOMER @gara, @idCus,  @proceeds
 END
-
-SELECT * FROM RECEPTION_FORMS WHERE ID_GARA = '' AND STATUS_REC = 0
+GO

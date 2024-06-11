@@ -130,7 +130,7 @@ namespace Gara_Management
         public void scrCars_changeToRepairCardScr(object sender, EventArgs e)
         {
             scr = 2;
-            scrRepairCard scrRepairCard = new scrRepairCard(gara);
+            scrRepairCard scrRepairCard = new scrRepairCard(gara, staff);
             DataContext = scrRepairCard;
             scrRepairCard.changeToCarsScr += scrRepairCard_changeToCardScr;
             staff = StaffDAO.Instance.GetStaffById(staff.IDStaff);

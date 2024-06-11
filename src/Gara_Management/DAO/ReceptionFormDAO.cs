@@ -29,7 +29,7 @@ namespace Gara_Management.DAO
             string query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
                 "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                 "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
-                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL" +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900'" +
                 " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
                 "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_GARA = '" + gara + "'";
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
@@ -47,7 +47,7 @@ namespace Gara_Management.DAO
             string query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
                 "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                 "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
-                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL" +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE = '1/1/1900' AND RECEPTION_DATE = GETDATE()" +
                 " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
                 "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_GARA = '" + gara + "' AND RECEPTION_DATE = GETDATE()";
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
@@ -77,7 +77,7 @@ namespace Gara_Management.DAO
             string query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
                 "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                 "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
-                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_CUS IN " +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900' AND ID_CUS IN " +
                 "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
                 "LIKE [DBO].[non_unicode_convert]('%" + name + "%') AND STATUS_CUS = 0)" +
                 " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
@@ -100,7 +100,7 @@ namespace Gara_Management.DAO
             string query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
                "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
-               "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_BRAND = '" + brand + "'" +
+               "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900' AND ID_BRAND = '" + brand + "'" +
                " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_BRAND = '" + brand + "' AND ID_GARA = '" + gara + "'";
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
@@ -119,7 +119,7 @@ namespace Gara_Management.DAO
             {
                 query = "SELECT RECEPTION_FORMS.ID_REC,  ID_CUS, ID_BRAND, ID_GARA, NUMBER_PLATES,RECEPTION_DATE, STATUS_REC " +
                 "FROM RECEPTION_FORMS JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
-                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND TOTAL_PAYMENT " +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900' AND TOTAL_PAYMENT " +
                 "BETWEEN " + minDebt + " AND "+ maxDebt +" UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN(SELECT ID_REC " +
                 "FROM REPAIR_PAYMENT_BILL WHERE TOTAL_PAYMENT NOT BETWEEN " + minDebt + " AND " + maxDebt + ") AND ID_GARA = '" + gara + "'";
             }
@@ -127,7 +127,7 @@ namespace Gara_Management.DAO
             {
                 query = "SELECT RECEPTION_FORMS.ID_REC,  ID_CUS, ID_BRAND, ID_GARA, NUMBER_PLATES,RECEPTION_DATE, STATUS_REC " +
                 "FROM RECEPTION_FORMS JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
-                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND " +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900' AND " +
                 "TOTAL_PAYMENT BETWEEN " + minDebt + " AND " + maxDebt;
             }    
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
@@ -147,7 +147,7 @@ namespace Gara_Management.DAO
                 query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
                "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
-               "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_BRAND = '" + brand +
+               "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900' AND ID_BRAND = '" + brand +
                "' AND TOTAL_PAYMENT BETWEEN " + minDebt + " AND " + maxDebt +
                " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL WHERE TOTAL_PAYMENT NOT BETWEEN " + minDebt + " AND " + maxDebt +
@@ -158,7 +158,7 @@ namespace Gara_Management.DAO
                 query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
                "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
-               "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_BRAND = '" + brand +
+               "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900' AND ID_BRAND = '" + brand +
                "' AND TOTAL_PAYMENT BETWEEN " + minDebt + " AND " + maxDebt;
             }    
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
@@ -180,7 +180,7 @@ namespace Gara_Management.DAO
                "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
                "WHERE ID_GARA = '" + gara + "' AND ID_CUS IN " + "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
-               "LIKE [DBO].[non_unicode_convert]('%" + cus + "%')) AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_BRAND = '" + brand +
+               "LIKE [DBO].[non_unicode_convert]('%" + cus + "%')) AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900' AND ID_BRAND = '" + brand +
                "' AND TOTAL_PAYMENT BETWEEN " + minDebt + " AND " + maxDebt +
                " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL WHERE TOTAL_PAYMENT NOT BETWEEN " + minDebt + " AND " + maxDebt +
@@ -194,7 +194,7 @@ namespace Gara_Management.DAO
                "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
                "WHERE ID_GARA = '" + gara + "' AND ID_CUS IN (SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) "
-               +"LIKE [DBO].[non_unicode_convert]('%" + cus + "%'))  AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL " +
+               +"LIKE [DBO].[non_unicode_convert]('%" + cus + "%'))  AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900' " +
                "AND ID_BRAND = '" + brand + "' ANDTOTAL_PAYMENT BETWEEN " + minDebt + " AND " + maxDebt;
             }
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
@@ -216,7 +216,7 @@ namespace Gara_Management.DAO
                "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
                "WHERE ID_GARA = '" + gara + "' AND ID_CUS IN " + "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
-               "LIKE [DBO].[non_unicode_convert]('%" + cus + "%')) AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL" +
+               "LIKE [DBO].[non_unicode_convert]('%" + cus + "%')) AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900'" +
                " AND TOTAL_PAYMENT BETWEEN " + minDebt + " AND " + maxDebt +
                " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL WHERE TOTAL_PAYMENT NOT BETWEEN " + minDebt + " AND " + maxDebt +
@@ -230,7 +230,7 @@ namespace Gara_Management.DAO
                "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
                "WHERE ID_GARA = '" + gara + "' AND ID_CUS IN (SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) "
-               + "LIKE [DBO].[non_unicode_convert]('%" + cus + "%'))  AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL " +
+               + "LIKE [DBO].[non_unicode_convert]('%" + cus + "%'))  AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900' " +
                "AND TOTAL_PAYMENT BETWEEN " + minDebt + " AND " + maxDebt;
             }
 
@@ -249,7 +249,7 @@ namespace Gara_Management.DAO
                    "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                    "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
                    "WHERE ID_GARA = '" + gara + "' AND ID_CUS IN " + "(SELECT ID_CUS FROM CUSTOMERS WHERE [DBO].[non_unicode_convert](NAME_CUS) " +
-                   "LIKE [DBO].[non_unicode_convert]('%" + cus + "%')) AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL AND ID_BRAND = '" + brand +
+                   "LIKE [DBO].[non_unicode_convert]('%" + cus + "%')) AND STATUS_REC = 0 AND COMPLETION_DATE ='1/1/1900' AND ID_BRAND = '" + brand +
                    "' UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
                    "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_BRAND = '" + 
                    brand + "' AND ID_GARA = '" + gara + "' AND ID_CUS IN " +

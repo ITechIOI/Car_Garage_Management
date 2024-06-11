@@ -43,10 +43,10 @@ namespace Gara_Management.GUI.Item
             CreateNewRepairCardDetail(stt, idRec);
             string name = CarComponentDAO.Instance.GetCarComponentByID(idCom, idGara).NameCom;
             tbx_name.Text = name;
-            tbx_price.Text = price.ToString("N");
+            tbx_price.Text =((int) price).ToString();
             tbx_quantity.Text = quantity.ToString();
-            tbx_wage.Text = wage.ToString("N");
-            tbx_total.Text = ((price + wage) * quantity).ToString("N");
+            tbx_wage.Text =((int) wage).ToString();
+            tbx_total.Text = ((int)((price + wage) * quantity)).ToString();
         }
 
         public void CreateNewRepairCardDetail(int id, string idRec)
@@ -97,10 +97,10 @@ namespace Gara_Management.GUI.Item
             tbl_stt.Text = id.ToString();
             tbx_description.Text = row["REPAIR_DESCRIPTION"].ToString().Trim();
             tbx_name.Text = row["NAME_COM"].ToString().Trim();
-            tbx_price.Text = ((int)float.Parse(row["CUR_PRICE"].ToString())).ToString("N");
+            tbx_price.Text = ((int)float.Parse(row["CUR_PRICE"].ToString())).ToString();
             tbx_quantity.Text = row["COM_QUANTITY"].ToString().Trim();
-            tbx_wage.Text = ((int)float.Parse(row["WAGE"].ToString())).ToString("N");
-            tbx_total.Text = ((int)float.Parse(row["TOTAL_PRICE"].ToString())).ToString("N");
+            tbx_wage.Text = ((int)float.Parse(row["WAGE"].ToString())).ToString();
+            tbx_total.Text = ((int)float.Parse(row["TOTAL_PRICE"].ToString())).ToString();
         }
 
         //Lấy RPDOrdinalNum
@@ -166,7 +166,7 @@ namespace Gara_Management.GUI.Item
                 decimal price = decimal.Parse(tbx_price.Text);
                 decimal wage = decimal.Parse(tbx_wage.Text);
                 int quantity = int.Parse(tbx_quantity.Text);
-                tbx_total.Text = ((price + wage) * quantity).ToString("N");
+                tbx_total.Text = ((int)(price + wage) * quantity).ToString();
             }
         }
     }

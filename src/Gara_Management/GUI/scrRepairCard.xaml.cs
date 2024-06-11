@@ -35,9 +35,11 @@ namespace Gara_Management.GUI
         string date = "";
         string endDate = "";
         bool t = false;
-        public scrRepairCard(string gara)
+        Staff staff;
+        public scrRepairCard(string gara, Staff staff)
         {
             InitializeComponent();
+            this.staff = staff;
             this.gara = gara;
             dpk_date.SelectedDate = DateTime.Now;
             dpk_endDate.SelectedDate = DateTime.Now;
@@ -77,7 +79,7 @@ namespace Gara_Management.GUI
 
         private void bd_repairInvoice_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdRepair crdRepair = new crdRepair(gara);
+            crdRepair crdRepair = new crdRepair(gara, StaffDAO.Instance.GetStaffById(staff.IDStaff));
             crdRepair.ShowDialog();
             LoadListRepair();
         }
@@ -129,7 +131,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -212,7 +214,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -224,7 +226,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -237,7 +239,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -249,7 +251,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -262,7 +264,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -276,7 +278,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -290,7 +292,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -303,7 +305,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -317,7 +319,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -331,7 +333,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }
@@ -345,7 +347,7 @@ namespace Gara_Management.GUI
             foreach (RepairPaymentBill bill in list)
             {
                 ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
-                itRepairCard it = new itRepairCard(recept, bill);
+                itRepairCard it = new itRepairCard(recept, bill, staff);
                 ds_phieuTN.Children.Add(it);
             }
         }

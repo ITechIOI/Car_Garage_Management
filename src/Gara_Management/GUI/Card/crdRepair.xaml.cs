@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,15 +37,17 @@ namespace Gara_Management.GUI.Card
         private bool isChanged = false;
         private ReceptionForm receptionForm;
         private List<itRepairCardDetail> detailList = new List<itRepairCardDetail>();
-
+        Customer cus;
+        Staff staff;
         // tạo phiếu mới
-        public crdRepair(string gara)
+        public crdRepair(string gara, Staff staff)
         {
             InitializeComponent();
             this.Opacity = 0;
             bd_add.Visibility = Visibility.Hidden;
             btn_delete.Visibility = Visibility.Hidden;
             this.gara = gara;
+            this.staff = staff;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -55,14 +59,16 @@ namespace Gara_Management.GUI.Card
         }
 
         // mở phiếu đã có
-        public crdRepair(string maphieu, string gara)
+        public crdRepair(string maphieu, string gara, Staff staff)
         {
             InitializeComponent();
             this.gara = gara;
-            bd_add.Visibility = Visibility.Hidden;
+            this.staff = staff;
+            tbx_add.Text = "Sửa";
             tbl_IDRec.IsReadOnly = true;
             tbl_IDRec.Text = maphieu;
             LoadRepairCardDetails(tbl_IDRec.Text);
+            
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -100,11 +106,37 @@ namespace Gara_Management.GUI.Card
             //{
             //    MessageBox.Show("Vui lòng lưu thông tin trước khi thêm bản ghi mới");
             //}
-
-            crdRepairComponent component = new crdRepairComponent(gara, this as repairDetailInterface);
-            component.bd_save.MouseDown += Bd_save_MouseDown;
-            component.bd_delete.MouseDown += Bd_delete_MouseDown;
-            component.ShowDialog();
+            if (tbx_NumberPlate.Text != "")
+            {
+                if (tbx_add.Text == "Sửa")// nghhĩa là phiếu đã có
+                {
+                    
+                    btn_delete.Visibility = Visibility.Visible;
+                    for (int i = 0; i < ds_suachua.Children.Count; i++)
+                    {
+                        itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
+                        child.EnableEditing();
+                    }
+                    // code 
+                    tbx_pay.Text = "Lưu";
+                    tbx_add.Text = "Thêm";
+                }
+                else // đang sửa phiếu
+                {
+                    
+                    crdRepairComponent component = new crdRepairComponent(gara, this as repairDetailInterface);
+                    component.bd_save.MouseDown += Bd_save_MouseDown;
+                    component.bd_delete.MouseDown += Bd_delete_MouseDown;
+                    component.ShowDialog();
+                    for (int i = 0; i < ds_suachua.Children.Count; i++)
+                    {
+                        itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
+                        child.DisableEditing();
+                    }
+                    
+                }
+                
+            }
         }
 
         public void Bd_save_MouseDown(object sender, MouseButtonEventArgs e)
@@ -125,35 +157,19 @@ namespace Gara_Management.GUI.Card
         //Nút lưu, sửa
         private void bd_modify_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (tbx_NumberPlate.Text != "")
+            if (tbx_pay.Text =="Lưu")
             {
-                if (tbx_modify.Text == "Sửa")// nghhĩa là phiếu đã có
-                {
-                    bd_add.Visibility = Visibility.Visible;
-                    btn_delete.Visibility = Visibility.Visible;
-                    for (int i = 0; i < ds_suachua.Children.Count; i++)
-                    {
-                        itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
-                        child.EnableEditing();
-                    }
-                    // code 
-                    tbx_modify.Text = "Lưu";
-                }
-                else // đang sửa phiếu
-                {
-                    for (int i = 0; i < ds_suachua.Children.Count; i++)
-                    {
-                        itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
-                        child.DisableEditing();
-                    }
-                    // code
-                    SaveRepairCardDetails();
-                    isChanged = false;
-                    bd_add.Visibility = Visibility.Hidden;
-                    btn_delete.Visibility= Visibility.Hidden;
-                    tbx_modify.Text = "Sửa";
-                }
-            }
+                // code
+                SaveRepairCardDetails();
+                isChanged = false;
+                tbx_add.Text = "Sửa";
+                tbx_pay.Text = "Thanh toán";
+            }   
+            else
+            {
+                crdReceipt crdReceipt = new crdReceipt(gara,staff, cus, decimal.Parse(tbl_totalPayment.Text),tbl_IDRec.Text);
+                crdReceipt.ShowDialog();
+            }    
         }
 
         //Lấy thông tin từ database theo IDREC
@@ -174,87 +190,14 @@ namespace Gara_Management.GUI.Card
                     totalPrice = totalPrice + float.Parse(item.tbx_total.Text.ToString());
                     stt++;
                 }
-                tbl_totalPayment.Text = totalPrice.ToString("N");
+                tbl_totalPayment.Text =((int) totalPrice).ToString();
             }
             else
             {
                 MessageBox.Show("Không tìm thấy mã phiếu sửa chữa!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        private void PrintRepairPaymentBill()
-        {
-            CarGara carGara = CarGaraDAO.Instance.GetCarGaraByID(this.gara);
-            FlowDocument flowDocument = new FlowDocument();
-            Paragraph gara = new Paragraph();
-            gara.Inlines.Add(new Run("GARA OTO\nĐịa chỉ: " + carGara.AddressGara + "\nSố điện thoại: " + carGara.PhoneNumberGara));
-            gara.TextAlignment = TextAlignment.Center;
-            gara.FontSize = 15;
-            flowDocument.Blocks.Add(gara);
-
-            Paragraph title = new Paragraph();
-            title.Inlines.Add(new Run("PHIẾU SỬA CHỮA"));
-            title.FontSize = 20;
-            title.TextAlignment = TextAlignment.Center;
-            title.FontWeight = FontWeights.Bold;
-            flowDocument.Blocks.Add(title);
-
-            Paragraph info = new Paragraph();
-            DateTime date = DateTime.Parse(dpk_RecDate.SelectedDate.ToString());
-            string sInfo = "Mã phiếu: " + tbl_IDRec.Text + "\nNgày sửa: " + dpk_RecDate.Text 
-                + "\nBiển số xe: " + tbx_NumberPlate.Text + "\nTổng tiền: " + tbl_totalPayment.Text;
-                /*"Mã lô: " + txtb_idLot.Text + "\nNgày nhập: " + date.ToString("dd/MM/yyyy") + "\nNhà cung cấp: " +
-                txtb_namesupplier.Text + "\nNgười kí nhận: " + txtb_staff.Text + "\nTổng tiền: " + txtb_totalsum.Text;*/
-            info.Inlines.Add(sInfo);
-            info.Margin = new Thickness(15);
-            flowDocument.Blocks.Add(info);
-
-            Table table = new Table();
-            table.FontSize = 14;
-            table.Columns.Add(new TableColumn() { Width = new GridLength(40) }); // Thêm cột
-            table.Columns.Add(new TableColumn() { Width = new GridLength(180) }); // Thêm cột
-            table.Columns.Add(new TableColumn() { Width = new GridLength(140) }); // Thêm cột
-            table.Columns.Add(new TableColumn() { Width = new GridLength(110) }); // Thêm cột
-            table.Columns.Add(new TableColumn() { Width = new GridLength(70) }); // Thêm cột            
-            table.Columns.Add(new TableColumn() { Width = new GridLength(110) }); // Thêm cột            
-            table.Columns.Add(new TableColumn() { Width = new GridLength(110) }); // Thêm cột            
-            TableRowGroup gr = new TableRowGroup();
-            TableRow titleRow = new TableRow();
-            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("STT")))); // Ô đầu tiên
-            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Nội dung")))); // Ô thứ hai
-            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Vật tư"))));
-            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Đơn giá"))));
-            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Số lượng"))));
-            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Tiền công"))));
-            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Thành tiền"))));
-            gr.Rows.Add(titleRow);
-            // Tạo Hàng và Ô
-            //List<itStockInDetail> list = new List<itStockInDetail>();
-            foreach (itRepairCardDetail item in detailList)
-            {
-                TableRow row = new TableRow();
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbl_stt.Text))));
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_description.Text))));
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_name.Text))));
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_price.Text))));
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_quantity.Text))));
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_wage.Text))));
-                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_total.Text))));
-
-                gr.Rows.Add(row);
-            }
-            table.RowGroups.Add(gr);
-            flowDocument.ColumnWidth = 830;
-            flowDocument.Blocks.Add(table);
-
-            // Mở hộp thoại chọn máy in
-            PrintDialog printDialog = new PrintDialog();
-            if (printDialog.ShowDialog() == true)
-            {
-                // In hóa đơn
-                printDialog.PrintDocument(((IDocumentPaginatorSource)flowDocument).DocumentPaginator, "PHIẾU SỬA CHỮA");
-
-            }
-        }
+        
 
         //Lưu thông tin vào database
         private void SaveRepairCardDetails()
@@ -268,19 +211,25 @@ namespace Gara_Management.GUI.Card
                     if (child.isExist())
                     {
                         int amount, wage, price;
-                        if (!(int.TryParse(child.tbx_quantity.Text,out amount) && int.TryParse(child.tbx_price.Text, out price) && 
+                        if (!(int.TryParse(child.tbx_quantity.Text, out amount) && int.TryParse(child.tbx_price.Text, out price) &&
                             int.TryParse(child.tbx_wage.Text, out wage)))
                         {
                             MessageBox.Show("Tiền công, đơn giá và số lượng phải là số nguyên dương.", "Thông báo");
-                            return;
-                        }    
-                        if (wage<=0|| amount<=0 || price<=0)
+
+                        }
+                        else
                         {
-                            MessageBox.Show("Tiền công, đơn giá và số lượng phải là số nguyên dương.", "Thông báo");
-                            return;
-                        }    
-                        if (!RepairPaymentDetailDAO.Instance.UpdateRepairCardDetail(child.GetRPDOrdinalNum(), child))
-                            status = false;
+                            if (wage <= 0 || amount <= 0 || price <= 0)
+                            {
+                                MessageBox.Show("Tiền công, đơn giá và số lượng phải là số nguyên dương.", "Thông báo");
+
+                            }
+                            else
+                            {
+                                if (!RepairPaymentDetailDAO.Instance.UpdateRepairCardDetail(child.GetRPDOrdinalNum(), child))
+                                    status = false;
+                            }
+                        }
                     }
                     else
                     {
@@ -297,12 +246,8 @@ namespace Gara_Management.GUI.Card
             {
                 ds_suachua.Children.Clear();
                 LoadRepairCardDetails(tbl_IDRec.Text);
-                if (MessageBox.Show("Cập nhật phiếu sửa chữa thành công! Bạn có muốn in phiếu sửa chữa không?", 
-                    "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    PrintRepairPaymentBill();
-                    this.Close();
-                }    
+                MessageBox.Show("Cập nhật phiếu sửa chữa thành công!","Thông báo");
+                
             }
             else
                 MessageBox.Show("Cập nhật phiếu sửa chữa thất bại!");
@@ -327,12 +272,8 @@ namespace Gara_Management.GUI.Card
             {
                 ds_suachua.Children.Clear();
                 LoadRepairCardDetails(tbl_IDRec.Text);
-                if (MessageBox.Show("Cập nhật phiếu sửa chữa thành công! Bạn có muốn in phiếu sửa chữa không?",
-                    "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    PrintRepairPaymentBill();
-                    this.Close();
-                }
+                MessageBox.Show("Cập nhật phiếu sửa chữa thành công! ", "Thông báo");
+                
             }
             else
                 MessageBox.Show("Cập nhật phiếu sửa chữa thất bại!");
@@ -353,9 +294,25 @@ namespace Gara_Management.GUI.Card
         private void btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DeleteRepairCardDetails();
-            bd_add.Visibility = Visibility.Hidden;
-            btn_delete.Visibility = Visibility.Hidden;
-            tbx_modify.Text = "Sửa";
+
+            tbx_pay.Text = "Thanh toán";
+        }
+
+        private void tbl_IDRec_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string idCus = ReceptionFormDAO.Instance.LoadReceptionFormByID(tbl_IDRec.Text).IDCus;
+            cus = CustomerDAO.Instance.LoadCustomerByID(idCus, gara);
+        }
+
+        private void ds_suachua_LayoutUpdated(object sender, EventArgs e)
+        {
+            int total=0;
+            List <itRepairCardDetail> list = RepairPaymentDetailDAO.Instance.LoadItRepairCardDetail(tbl_IDRec.Text);
+            foreach (itRepairCardDetail item in list)
+            {
+                total += int.Parse(item.tbx_total.Text);
+            }
+            tbl_totalPayment.Text = total.ToString();
         }
 
         public void ReceivedData(string idCom, decimal price, int quantity, decimal wage)

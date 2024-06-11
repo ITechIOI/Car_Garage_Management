@@ -42,7 +42,10 @@ namespace Gara_Management.GUI.Item
             txtb_ordinalNum.Text = i.ToString();
             txtb_carBrand.Text =CarBrandDAO.Instance.LoadCarBrandByID(recept.IDBrand, gara).NameBrand;
             txtb_numberPlate.Text = recept.NumberPlate;
-            txtb_cus.Text = CustomerDAO.Instance.LoadCustomerByID(recept.IDCus, gara).NameCus;
+            if (CustomerDAO.Instance.LoadCustomerByID(recept.IDCus, gara) != null)
+            {
+                txtb_cus.Text = CustomerDAO.Instance.LoadCustomerByID(recept.IDCus, gara).NameCus;
+            }
         }
         
 
@@ -50,13 +53,13 @@ namespace Gara_Management.GUI.Item
         private void bd_paymentReceipt_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Staff staff = StaffDAO.Instance.GetStaffById(account.IDStaff);
-            crdReceipt crdReceipt = new crdReceipt(gara, staff,customer, decimal.Parse(txtb_total.Text));
+            crdReceipt crdReceipt = new crdReceipt(gara, staff,customer, decimal.Parse(txtb_total.Text), idRec);
             crdReceipt.ShowDialog();
         }
 
         private void bd_repairInvoice_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdRepair crdRepair = new crdRepair(idRec, gara);
+            crdRepair crdRepair = new crdRepair(idRec, gara, StaffDAO.Instance.GetStaffById(account.IDStaff));
             crdRepair.ShowDialog();
             string gr = gara;
             Account acc = account;

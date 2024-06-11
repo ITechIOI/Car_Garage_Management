@@ -46,7 +46,7 @@ namespace Gara_Management.DAO
             string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, " +
                 "TOTAL_PAYMENT, PAID, STATUS_BILL FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS " +
                 "ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC WHERE ID_GARA = '" + gara + "' " +
-                "AND STATUS_BILL = 0 AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL";
+                "AND STATUS_BILL = 0 AND STATUS_REC = 0 AND COMPLETION_DATE = '1/1/1900'";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             return data.Rows.Count;
         }
@@ -267,6 +267,11 @@ namespace Gara_Management.DAO
         {
             string query = "EXEC USP_CREATE_REPAIRPAYMENTBILL @ID_REC = '" + idRec + "'";
             DataProvider.Instance.ExecuteQuery(query);
+        }
+        public bool SetFinishBill(string id)
+        {
+            string query = "UPDATE REPAIR_PAYMENT_BILL SET COMPLETION_DATE = GETDATE() WHERE ID_REC = '" + id +"'";
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
         }
     }
 }
