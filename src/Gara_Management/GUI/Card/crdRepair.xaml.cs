@@ -316,10 +316,10 @@ namespace Gara_Management.GUI.Card
 
         private void btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DeleteRepairCardDetails();
-            bd_add.Visibility = Visibility.Hidden;
-            btn_delete.Visibility = Visibility.Hidden;
-            tbx_modify.Text = "Sửa";
+                DeleteRepairCardDetails();
+                bd_add.Visibility = Visibility.Hidden;
+                btn_delete.Visibility = Visibility.Hidden;
+                tbx_modify.Text = "Sửa";
+            }
         }
     }
-}
