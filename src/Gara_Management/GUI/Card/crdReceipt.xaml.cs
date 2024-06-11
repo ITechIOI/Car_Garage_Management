@@ -86,6 +86,11 @@ namespace Gara_Management.GUI.Card
         private void bd_save_MouseDown(object sender, MouseButtonEventArgs e)
         {
             int proceeds;
+            if (CustomerDAO.Instance.GetIDCusByNameAndPhone(txtb_nameCus.Text, txtb_phoneCus.Text) == null)
+            {
+                MessageBox.Show("Không tìm thấy thông tin khách hàng", "Thông báo");
+                return;
+            }
             if (txtb_nameCus.Text == "" || txtb_proceeds.Text == "")
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Thông báo");

@@ -88,23 +88,18 @@ namespace Gara_Management.GUI.Card
         //thêm dòng chi tiết sửa chữa
         private void bd_add_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //if (!isChanged)
-            //{
-            //    isChanged = true;
-            //    itRepairCardDetail item = new itRepairCardDetail();
-            //    item.CreateNewRepairCardDetail(stt, tbl_IDRec.Text);
-            //    stt++;
-            //    ds_suachua.Children.Add(item);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Vui lòng lưu thông tin trước khi thêm bản ghi mới");
-            //}
-
-            crdRepairComponent component = new crdRepairComponent(gara, this as repairDetailInterface);
-            component.bd_save.MouseDown += Bd_save_MouseDown;
-            component.bd_delete.MouseDown += Bd_delete_MouseDown;
-            component.ShowDialog();
+            if (!isChanged)
+            {
+                isChanged = true;
+                crdRepairComponent component = new crdRepairComponent(gara, this as repairDetailInterface);
+                component.bd_save.MouseDown += Bd_save_MouseDown;
+                component.bd_delete.MouseDown += Bd_delete_MouseDown;
+                component.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng lưu thông tin trước khi thêm bản ghi mới");
+            }
         }
 
         public void Bd_save_MouseDown(object sender, MouseButtonEventArgs e)
@@ -267,9 +262,10 @@ namespace Gara_Management.GUI.Card
                 {
                     if (child.isExist())
                     {
-                        int amount, wage, price;
-                        if (!(int.TryParse(child.tbx_quantity.Text,out amount) && int.TryParse(child.tbx_price.Text, out price) && 
-                            int.TryParse(child.tbx_wage.Text, out wage)))
+                        int amount;
+                        decimal wage, price;
+                        if (!(int.TryParse(child.tbx_quantity.Text,out amount) && decimal.TryParse(child.tbx_price.Text, out price) &&
+                            decimal.TryParse(child.tbx_wage.Text, out wage)))
                         {
                             MessageBox.Show("Tiền công, đơn giá và số lượng phải là số nguyên dương.", "Thông báo");
                             return;
@@ -314,13 +310,27 @@ namespace Gara_Management.GUI.Card
         private void DeleteRepairCardDetails()
         {
             bool status = true;
+            bool isSelected = false;
+            for (int i = 0; i < ds_suachua.Children.Count; i++)
+            {
+                itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
+                if (child.deleteThis == true)
+                {
+                    isSelected = true;
+                }
+            }
+            if (!isSelected)
+                return;
             for (int i = 0; i < ds_suachua.Children.Count; i++)
             {
                 itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
                 if(child.deleteThis == true)
                 {
                     if (!RepairPaymentDetailDAO.Instance.DeleteRepairCardDetail(child.GetRPDOrdinalNum()))
-                        status = false;
+                    {
+                        MessageBox.Show("Lỗi ở dòng: " + (i + 1).ToString());
+                        status = false; 
+                    }
                 }
             }
             if (status)
@@ -338,6 +348,9 @@ namespace Gara_Management.GUI.Card
                 MessageBox.Show("Cập nhật phiếu sửa chữa thất bại!");
             ds_suachua.Children.Clear();
             LoadRepairCardDetails(tbl_IDRec.Text);
+            bd_add.Visibility = Visibility.Hidden;
+            btn_delete.Visibility = Visibility.Hidden;
+            tbx_modify.Text = "Sửa";
         }
 
         //Sau khi nhập IDRec nhấn enter để load chi tiết sửa chữa tương ứng
@@ -353,9 +366,6 @@ namespace Gara_Management.GUI.Card
         private void btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DeleteRepairCardDetails();
-            bd_add.Visibility = Visibility.Hidden;
-            btn_delete.Visibility = Visibility.Hidden;
-            tbx_modify.Text = "Sửa";
         }
 
         public void ReceivedData(string idCom, decimal price, int quantity, decimal wage)
