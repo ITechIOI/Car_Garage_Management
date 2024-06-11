@@ -129,8 +129,8 @@ namespace Gara_Management.GUI
             {
                 spend = spend + Convert.ToDecimal(row[5].ToString());
             }
-            tbl_revenue.Text = revenue.ToString();
-            tbl_spend.Text = spend.ToString();
+            tbl_revenue.Text =((int) revenue).ToString();
+            tbl_spend.Text =((int) spend).ToString();
         }
 
         private void dpk_CalendarClosed(object sender, RoutedEventArgs e)

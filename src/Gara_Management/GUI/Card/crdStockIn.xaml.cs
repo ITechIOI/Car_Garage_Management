@@ -216,15 +216,51 @@ namespace Gara_Management.GUI.Card
                 }    
                 else
                 {
-                    DateTime date = DateTime.Parse(txtb_date.SelectedDate.ToString());
-                    bool res = GoodReceivedNoteDAO.Instance.InsertGoodReceivedNote(txtb_idLot.Text, txtb_namesupplier.Text, gara,
-                        date.ToString("dd/MM/yyyy"), acc.IDAcc);
                     List<itStockInDetail> list = getListItem(ds_nhapkho);
                     foreach (itStockInDetail item in list)
                     {
-                        res = res && GRNDetailDAO.Instance.InsertGRNDetail(txtb_idLot.Text,
+                        int amount, price;
+                        if (!((int.TryParse(item.txtb_amount.Text, out amount)) && (int.TryParse(item.txtb_price.Text, out price))))
+                        {
+                            
+                            MessageBox.Show("Số lượng và đơn giá phải là số nguyên dương.", "Thông báo");
+                            return;
+                        }
+                        else
+                        {
+                            if (amount <= 0 || price <= 0)
+                            {
+                                MessageBox.Show("Số lượng và đơn giá phải là 1 số nguyên dương.", "Thông báo");
+                                return;
+                            }
+                           
+                        }
+
+                    }
+                    DateTime date = DateTime.Parse(txtb_date.SelectedDate.ToString());
+                    bool res = GoodReceivedNoteDAO.Instance.InsertGoodReceivedNote(txtb_idLot.Text, txtb_namesupplier.Text, gara,
+                        date.ToString("dd/MM/yyyy"), acc.IDAcc);
+                    foreach (itStockInDetail item in list)
+                    {
+                        int amount, price;
+                        if (!((int.TryParse( item.txtb_amount.Text, out amount)) && (int.TryParse(item.txtb_price.Text, out price))))
+                        {
+                            MessageBox.Show("Số lượng và đơn giá phải là số nguyên dương.", "Thông báo");
+                        }
+                        else
+                        {
+                            if (amount<=0 || price<=0)
+                            {
+                                MessageBox.Show("Số lượng và đơn giá phải là 1 số nguyên dương.", "Thông báo");
+                            } 
+                            else
+                            {
+                                res = res && GRNDetailDAO.Instance.InsertGRNDetail(txtb_idLot.Text,
                             CarComponentDAO.Instance.GetComponentIDByName(gara, item.txtb_name.Text),
                             decimal.Parse(item.txtb_price.Text), int.Parse(item.txtb_amount.Text));
+                            }    
+                        }
+                        
                     }
                     if (res)
                     {
@@ -322,11 +358,28 @@ namespace Gara_Management.GUI.Card
                 }
                 else
                 {
-                    
+                    List<itStockInDetail> list = getListItem(ds_nhapkho);
+                    foreach (itStockInDetail item in list)
+                    {
+                        int amount, price;
+                        if (!((int.TryParse(item.txtb_amount.Text, out amount)) && (int.TryParse(item.txtb_price.Text, out price))))
+                        {
+
+                            MessageBox.Show("Số lượng và đơn giá phải là số nguyên dương.", "Thông báo");
+                            return;
+                        }
+                        else
+                        {
+                            if (amount <= 0 || price <= 0)
+                            {
+                                MessageBox.Show("Số lượng và đơn giá phải là 1 số nguyên dương.", "Thông báo");
+                                return;
+                            }
+                        }
+                    }
                     DateTime date = DateTime.Parse(txtb_date.SelectedDate.ToString());
                     bool res = GoodReceivedNoteDAO.Instance.UpdateGoodReceivedNote(txtb_idLot.Text, txtb_namesupplier.Text, gara,
                         date.ToString("dd/MM/yyyy"), grn.DataEntryStaff);
-                    List<itStockInDetail> list = getListItem(ds_nhapkho);
                     foreach (itStockInDetail item in list)
                     {
                         if (GRNDetailDAO.Instance.CheckExistedGRNDetail(txtb_idLot.Text, item.txtb_idStock.Text))
@@ -347,7 +400,6 @@ namespace Gara_Management.GUI.Card
                             "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                         {
                             PrintGoodReceivedNote();
-                            
                         }
                         this.Close();
                     }

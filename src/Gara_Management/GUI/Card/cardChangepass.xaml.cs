@@ -53,29 +53,36 @@ namespace Gara_Management.GUI.Card
 
         private void bt_save_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            string idstaff = staff.IDStaff;
-            string password = oldPasswordTextbox.Password;
-            if (password != account.Password)
+            
+            if (oldPasswordTextbox.Password == string.Empty || newPasswordTextbox.Password == string.Empty || retypeNewPasswordTextbox.Password == string.Empty)
             {
-                MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng thử lại.");
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin.");
             }
             else
             {
-                if (newPasswordTextbox.Password.Length < 8)
+                string idstaff = staff.IDStaff;
+                if (oldPasswordTextbox.Password != account.Password)
                 {
-                    MessageBox.Show("Mật khẩu mới phải hơn 8 kí tự.");
+                    MessageBox.Show("Mật khẩu cũ không đúng. Vui lòng thử lại.");
                 }
                 else
                 {
-                    if (newPasswordTextbox.Password != retypeNewPasswordTextbox.Password)
+                    if (newPasswordTextbox.Password.Length < 8)
                     {
-                        MessageBox.Show("Mật khẩu mới không trùng khớp. Vui lòng thử lại.");
+                        MessageBox.Show("Mật khẩu mới phải hơn 8 kí tự.");
                     }
                     else
                     {
-                        AccountDAO.Instance.ChangePassword(account.IDAcc, newPasswordTextbox.Password);
-                        MessageBox.Show("Thay đổi mật khẩu thành công.");
-                        this.Close();
+                        if (newPasswordTextbox.Password != retypeNewPasswordTextbox.Password)
+                        {
+                            MessageBox.Show("Mật khẩu mới không trùng khớp. Vui lòng thử lại.");
+                        }
+                        else
+                        {
+                            AccountDAO.Instance.ChangePassword(account.IDAcc, newPasswordTextbox.Password);
+                            MessageBox.Show("Thay đổi mật khẩu thành công.");
+                            this.Close();
+                        }
                     }
                 }
             }

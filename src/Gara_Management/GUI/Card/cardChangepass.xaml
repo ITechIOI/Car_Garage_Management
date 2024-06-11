@@ -54,7 +54,7 @@
                 <Border Grid.Row="1"  CornerRadius="10" BorderThickness="2"  Margin="0,5,0,5" >
                     <Grid>
                         <TextBlock Text="Họ tên:" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        <TextBox Name="nameStaffTextbox" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="105,0,0,0" Foreground="{StaticResource sColor1}"/>
+                        <TextBox IsReadOnly="True" Name="nameStaffTextbox" VerticalContentAlignment="Center"  Background="Transparent" BorderThickness="0" Margin="105,0,0,0" Foreground="{StaticResource sColor1}"/>
                         <Rectangle Height="2" VerticalAlignment="Top" Fill="{StaticResource sColor1}" Margin="105,29,6,0"/>
                     </Grid>
                 </Border>
