@@ -113,6 +113,7 @@ namespace Gara_Management.GUI.Card
                     if (res && StaffDAO.Instance.DeleteStaff(staff.IDStaff))
                     {
                         MessageBox.Show("Xóa nhân viên thành công");
+                        this.Close();
                     }
                     else
                     {
@@ -144,6 +145,7 @@ namespace Gara_Management.GUI.Card
                             txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
                         {
                             MessageBox.Show("Cập nhật thông tin nhân viên thành công.");
+                            this.Close();
                         }
                         else
                         {
@@ -171,16 +173,38 @@ namespace Gara_Management.GUI.Card
                                 txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
                             {
                                 MessageBox.Show("Thêm tài khoản mới và cập nhật thông tin nhân viên thành công.");
+                                this.Close();
                             }
                             else
                             {
                                 MessageBox.Show("Cập nhật thông tin không thành công.");
                             }
                         }
+                        else
+                        {
+                            if (account == null && txtb_account.Text == "")
+                            {
+                                
+                                DateTime birthday = DateTime.Parse(txtb_birthdate.SelectedDate.ToString());
+                                if (StaffDAO.Instance.UpdateStaff(txtb_idStaff.Text, txtb_fullname.Text,
+                                    birthday.ToString("dd/MM/yyyy"), txtb_address.Text, txtb_email.Text,
+                                    txtb_phonenumber.Text, int.Parse(tbtx_salary.Text), cbx_position.SelectedItem.ToString()))
+                                {
+                                    MessageBox.Show("Cập nhật thông tin nhân viên thành công.");
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Cập nhật thông tin không thành công.");
+                                }
+
+                            }
+                        }    
                     }
                 }
                 
-            }    
+            } 
+                        
         }
         private void LoadAccAuthor()
         {
