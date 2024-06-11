@@ -38,7 +38,7 @@ namespace Gara_Management.GUI.Card
         {
             // Tạo dispatcher timer để chờ 3 giây trước khi bắt đầu fade out
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Interval = TimeSpan.FromSeconds(1.5);
             timer.Tick += Timer_Tick;
             timer.Start();
         }
