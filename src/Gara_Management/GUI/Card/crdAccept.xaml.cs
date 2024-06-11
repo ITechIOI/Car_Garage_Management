@@ -50,6 +50,7 @@ namespace Gara_Management.GUI.Card
 
             // các hàm lấy thông tin và gán vào UI
             LoadReceptionFormById(a, ref receptionForm);
+            isChanged = false;
         }
 
         // đã có thay đổi ở các text box

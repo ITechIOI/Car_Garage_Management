@@ -23,8 +23,12 @@ namespace Gara_Management.GUI.Card
     /// <summary>
     /// Interaction logic for crdRepair.xaml
     /// </summary>
-    public partial class crdRepair : Window
+    public partial class crdRepair : Window, repairDetailInterface
     {
+        RepairPaymentBill rdi;
+        string idCom;
+        int quantity;
+        decimal price, wage;
         private int stt = 1; /*biến để tạo stt*/
         string gara;
         private float totalPrice = 0; /*biến để tính tổng tiền*/
@@ -84,18 +88,38 @@ namespace Gara_Management.GUI.Card
         //thêm dòng chi tiết sửa chữa
         private void bd_add_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!isChanged)
+            //if (!isChanged)
+            //{
+            //    isChanged = true;
+            //    itRepairCardDetail item = new itRepairCardDetail();
+            //    item.CreateNewRepairCardDetail(stt, tbl_IDRec.Text);
+            //    stt++;
+            //    ds_suachua.Children.Add(item);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Vui lòng lưu thông tin trước khi thêm bản ghi mới");
+            //}
+
+            crdRepairComponent component = new crdRepairComponent(gara, this as repairDetailInterface);
+            component.bd_save.MouseDown += Bd_save_MouseDown;
+            component.bd_delete.MouseDown += Bd_delete_MouseDown;
+            component.ShowDialog();
+        }
+
+        public void Bd_save_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (idCom != "" && quantity > 0)
             {
-                isChanged = true;
-                itRepairCardDetail item = new itRepairCardDetail();
-                item.CreateNewRepairCardDetail(stt, tbl_IDRec.Text);
+                itRepairCardDetail it = new itRepairCardDetail(gara, tbl_IDRec.Text, idCom, stt, price, quantity, wage);
                 stt++;
-                ds_suachua.Children.Add(item);
+                ds_suachua.Children.Add(it);
             }
-            else
-            {
-                MessageBox.Show("Vui lòng lưu thông tin trước khi thêm bản ghi mới");
-            }
+        }
+
+        public void Bd_delete_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
 
         //Nút lưu, sửa
@@ -316,10 +340,18 @@ namespace Gara_Management.GUI.Card
 
         private void btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
         {
-                DeleteRepairCardDetails();
-                bd_add.Visibility = Visibility.Hidden;
-                btn_delete.Visibility = Visibility.Hidden;
-                tbx_modify.Text = "Sửa";
-            }
+            DeleteRepairCardDetails();
+            bd_add.Visibility = Visibility.Hidden;
+            btn_delete.Visibility = Visibility.Hidden;
+            tbx_modify.Text = "Sửa";
+        }
+
+        public void ReceivedData(string idCom, decimal price, int quantity, decimal wage)
+        {
+            this.idCom = idCom;
+            this.price = price;
+            this.quantity = quantity;
+            this.wage = wage;
         }
     }
+}

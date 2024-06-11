@@ -28,11 +28,25 @@ namespace Gara_Management.GUI.Item
         public string recDate;
         public string idGara;
         public string idBill;
+        public RepairPaymentDetail detail;
         public bool deleteThis = false;
 
         public itRepairCardDetail()
         {
             InitializeComponent();
+        }
+
+        public itRepairCardDetail(string idGara, string idRec, string idCom, int stt, decimal price, int quantity, decimal wage)
+        {
+            InitializeComponent();
+            this.idGara = idGara;
+            CreateNewRepairCardDetail(stt, idRec);
+            string name = CarComponentDAO.Instance.GetCarComponentByID(idCom, idGara).NameCom;
+            tbx_name.Text = name;
+            tbx_price.Text = price.ToString("N");
+            tbx_quantity.Text = quantity.ToString();
+            tbx_wage.Text = wage.ToString("N");
+            tbx_total.Text = ((price + wage) * quantity).ToString("N");
         }
 
         public void CreateNewRepairCardDetail(int id, string idRec)
@@ -70,10 +84,7 @@ namespace Gara_Management.GUI.Item
         {
             tbl_stt.IsEnabled = true;
             tbx_description.IsReadOnly = false;
-            tbx_name.IsReadOnly = false;
-            tbx_price.IsReadOnly = false;
             tbx_quantity.IsReadOnly = false;
-            tbx_wage.IsReadOnly = false;
         }
 
         //Tạo itRepairdCardDetail
@@ -124,7 +135,7 @@ namespace Gara_Management.GUI.Item
 
         private void tbl_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (deleteThis == false) 
+            if (deleteThis == false)
             {
                 deleteThis = true;
                 tbl_stt.FontWeight = FontWeights.Bold;
@@ -144,7 +155,18 @@ namespace Gara_Management.GUI.Item
                 tbx_price.FontWeight = FontWeights.Normal;
                 tbx_quantity.FontWeight = FontWeights.Normal;
                 tbx_wage.FontWeight = FontWeights.Normal;
-                tbx_total.FontWeight= FontWeights.Normal;
+                tbx_total.FontWeight = FontWeights.Normal;
+            }
+        }
+
+        private void tbx_quantity_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tbx_price.Text != "" && tbx_wage.Text != "" && tbx_quantity.Text != "")
+            {
+                decimal price = decimal.Parse(tbx_price.Text);
+                decimal wage = decimal.Parse(tbx_wage.Text);
+                int quantity = int.Parse(tbx_quantity.Text);
+                tbx_total.Text = ((price + wage) * quantity).ToString("N");
             }
         }
     }
