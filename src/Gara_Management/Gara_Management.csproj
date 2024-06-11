@@ -105,6 +105,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="repairDetailsInterface.cs" />
     <Page Include="GUI\Card\cardCarBrand.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -182,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Card\crdRepair.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Card\crdRepairComponent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -380,6 +385,9 @@
     </Compile>
     <Compile Include="GUI\Card\crdRepair.xaml.cs">
       <DependentUpon>crdRepair.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Card\crdRepairComponent.xaml.cs">
+      <DependentUpon>crdRepairComponent.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Card\crdStockIn.xaml.cs">
       <DependentUpon>crdStockIn.xaml</DependentUpon>
