@@ -69,19 +69,26 @@ namespace Gara_Management.GUI
 
         private void bd_filter_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (minDebt == -1 && maxDebt == -1)
+            if (filter.Visibility == Visibility.Hidden)
             {
-                rangeSlider.LowerValue = rangeSlider.Minimum;
-                rangeSlider.HigherValue = rangeSlider.Maximum;
-                ckb_Debt.IsChecked = false;
-                filter.Visibility = Visibility.Visible;
+                if (minDebt == -1 && maxDebt == -1)
+                {
+                    rangeSlider.LowerValue = rangeSlider.Minimum;
+                    rangeSlider.HigherValue = rangeSlider.Maximum;
+                    ckb_Debt.IsChecked = false;
+                    filter.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    rangeSlider.LowerValue = minDebt;
+                    rangeSlider.HigherValue = maxDebt;
+                    ckb_Debt.IsChecked = true;
+                    filter.Visibility = Visibility.Visible;
+                }
             }
             else
             {
-                rangeSlider.LowerValue = minDebt;
-                rangeSlider.HigherValue = maxDebt;
-                ckb_Debt.IsChecked = true;
-                filter.Visibility = Visibility.Visible;
+                filter.Visibility = Visibility.Hidden;
             }
         }
         private void LoadListCustomer()
