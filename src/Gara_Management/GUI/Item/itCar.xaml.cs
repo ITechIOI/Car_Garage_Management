@@ -35,7 +35,7 @@ namespace Gara_Management.GUI.Item
             this.account = acc;
             this.customer = cus;
             this.idRec = idRec;
-            ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(idRec);
+            ReceptionForm recept = ReceptionFormDAO.Instance.LoadReceptionFormByID(idRec, gara);
             RepairPaymentBill bill = RepairPaymentBillDAO.Instance.GetRepairPaymentBillByIDRec(gara, idRec);
             if (bill != null) { txtb_total.Text =((int) bill.TotalPayment).ToString(); }
             else { txtb_total.Text = "0"; }

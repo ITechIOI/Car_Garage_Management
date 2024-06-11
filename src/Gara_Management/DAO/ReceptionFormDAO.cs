@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xceed.Wpf.AvalonDock.Themes;
 
 namespace Gara_Management.DAO
 {
@@ -322,9 +323,9 @@ namespace Gara_Management.DAO
         }
 
         //lấy thông tin Reception Form theo ID
-        public ReceptionForm LoadReceptionFormByID(string id)
+        public ReceptionForm LoadReceptionFormByID(string idRec, string idGara)
         {
-            string loadReceptionForm = "SELECT * FROM RECEPTION_FORMS WHERE ID_REC = '" + id + "'";
+            string loadReceptionForm = "SELECT * FROM RECEPTION_FORMS WHERE ID_REC = '" + idRec + "' AND ID_GARA = '" + idGara + "'";
             DataTable data = DataProvider.Instance.ExecuteQuery(loadReceptionForm);
             if (data.Rows.Count == 0)
                 return null;

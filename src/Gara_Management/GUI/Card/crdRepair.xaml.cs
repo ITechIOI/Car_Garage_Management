@@ -154,13 +154,13 @@ namespace Gara_Management.GUI.Card
         //Lấy thông tin từ database theo IDREC
         private void LoadRepairCardDetails(string id)
         {
-            if (ReceptionFormDAO.Instance.LoadReceptionFormByID(id) != null)
+            if (ReceptionFormDAO.Instance.LoadReceptionFormByID(id, gara) != null)
             {
                 stt = 1;
                 totalPrice = 0;
                 string numberPlate = "", recDate = "";
                 detailList = RepairPaymentDetailDAO.Instance.LoadItRepairCardDetail(id);
-                receptionForm = ReceptionFormDAO.Instance.LoadReceptionFormByID(id);
+                receptionForm = ReceptionFormDAO.Instance.LoadReceptionFormByID(id, gara);
                 tbx_NumberPlate.Text = receptionForm.NumberPlate;
                 dpk_RecDate.Text = receptionForm.ReceptionDate.ToString();
                 foreach (itRepairCardDetail item in detailList)
@@ -310,17 +310,6 @@ namespace Gara_Management.GUI.Card
         private void DeleteRepairCardDetails()
         {
             bool status = true;
-            bool isSelected = false;
-            for (int i = 0; i < ds_suachua.Children.Count; i++)
-            {
-                itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
-                if (child.deleteThis == true)
-                {
-                    isSelected = true;
-                }
-            }
-            if (!isSelected)
-                return;
             for (int i = 0; i < ds_suachua.Children.Count; i++)
             {
                 itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
@@ -337,6 +326,7 @@ namespace Gara_Management.GUI.Card
             {
                 ds_suachua.Children.Clear();
                 LoadRepairCardDetails(tbl_IDRec.Text);
+                isChanged = false;
                 if (MessageBox.Show("Cập nhật phiếu sửa chữa thành công! Bạn có muốn in phiếu sửa chữa không?",
                     "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
@@ -348,6 +338,7 @@ namespace Gara_Management.GUI.Card
                 MessageBox.Show("Cập nhật phiếu sửa chữa thất bại!");
             ds_suachua.Children.Clear();
             LoadRepairCardDetails(tbl_IDRec.Text);
+            isChanged = false;
             bd_add.Visibility = Visibility.Hidden;
             btn_delete.Visibility = Visibility.Hidden;
             tbx_modify.Text = "Sửa";
@@ -365,7 +356,22 @@ namespace Gara_Management.GUI.Card
 
         private void btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            DeleteRepairCardDetails();
+            bool isSelected = false;
+            for (int i = 0; i < ds_suachua.Children.Count; i++)
+            {
+                itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
+                if (child.deleteThis == true)
+                {
+                    isSelected = true;
+                }
+            }
+            if (!isSelected)
+                return;
+            MessageBoxResult result = MessageBox.Show("Bạn có muốn xóa các chi tiết đã chọn không?", "Thông báo", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                DeleteRepairCardDetails();
+            }
         }
 
         public void ReceivedData(string idCom, decimal price, int quantity, decimal wage)
