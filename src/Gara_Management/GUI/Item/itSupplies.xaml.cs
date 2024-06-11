@@ -1,4 +1,5 @@
-﻿using Gara_Management.DTO;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
 using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,16 @@ namespace Gara_Management.GUI.Item
             // hiển thị phiếu đăng kí mua vật tư
             crdStockIn crdStockIn = new crdStockIn(com.IDCom, gara, account);// ví dụ
             crdStockIn.ShowDialog();
+            Account acc = account;
+            string gr = gara;
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Clear();
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentList(gr);
+            foreach (CarComponent com in list)
+            {
+                itSupplies it = new itSupplies(com, gara, acc);
+                panel.Children.Add(it);
+            }
 
         }
 
@@ -49,6 +60,16 @@ namespace Gara_Management.GUI.Item
         {
             cardComponentDetail componentDetail=new cardComponentDetail(com, gara);
             componentDetail.ShowDialog();
+            Account acc = account;
+            string gr = gara;
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Clear();
+            List<CarComponent> list = CarComponentDAO.Instance.LoadCarComponentList(gr);
+            foreach (CarComponent com in list)
+            {
+                itSupplies it = new itSupplies(com, gara, acc);
+                panel.Children.Add(it);
+            }
         }
     }
 }

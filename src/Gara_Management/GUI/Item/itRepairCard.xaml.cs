@@ -1,4 +1,5 @@
-﻿using Gara_Management.DTO;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
 using Gara_Management.GUI.Card;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,16 @@ namespace Gara_Management.GUI.Item
         {
             crdRepair crdRepair = new crdRepair(bill.IDRec, recept.IDGara);
             crdRepair.ShowDialog();
+            string gara = recept.IDGara;
+            Panel panel = ((Panel)this.Parent);
+            panel.Children.Clear();
+            List<RepairPaymentBill> list = RepairPaymentBillDAO.Instance.LoadRepairPaymentBillList(gara);
+            foreach (RepairPaymentBill bill in list)
+            {
+                ReceptionForm recept1 = ReceptionFormDAO.Instance.LoadReceptionFormByID(bill.IDRec);
+                itRepairCard it = new itRepairCard(recept1, bill);
+                panel.Children.Add(it);
+            }
         }
     }
 }

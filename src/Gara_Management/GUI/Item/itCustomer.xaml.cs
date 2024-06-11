@@ -1,6 +1,8 @@
-﻿using Gara_Management.DTO;
+﻿using Gara_Management.DAO;
+using Gara_Management.DTO;
 using Gara_Management.GUI.Card;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,13 +42,23 @@ namespace Gara_Management.GUI.Item
         private void bd_customer_MouseDown(object sender, MouseButtonEventArgs e)
         {
             crdCustomer crdCustomer = new crdCustomer(customer, gara);
-            crdCustomer.ShowDialog();   
+            crdCustomer.ShowDialog();
+            string gr = gara;
+            Panel panel = (Panel)this.Parent;
+            panel.Children.Clear();
+            List<Customer> list = CustomerDAO.Instance.LoadCustomerList(gr);
+            foreach (Customer cus in list)
+            {
+                itCustomer it = new itCustomer(cus, gr);
+                panel.Children.Add(it);
+            }
         }
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
             crdMoney crdMoney = new crdMoney(gara, customer);
             crdMoney.ShowDialog();
+            
         }
     }
 }

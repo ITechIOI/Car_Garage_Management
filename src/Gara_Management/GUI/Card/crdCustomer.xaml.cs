@@ -177,6 +177,7 @@ namespace Gara_Management.GUI.Card
                             txtb_address4.IsEnabled = false;
                             txtb_debt.IsEnabled = false;
                             tbx_save.Text = "Sửa";
+                            this.Close();
                         }    
                         else
                         {

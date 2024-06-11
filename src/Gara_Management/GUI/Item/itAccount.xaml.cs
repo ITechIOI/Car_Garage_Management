@@ -51,15 +51,7 @@ namespace Gara_Management.GUI.Item
         private void bt_view_info_MouseDown(object sender, MouseButtonEventArgs e)
         {
             cardViewInfo viewinfo = new cardViewInfo(staff, account);
-            viewinfo.btn_delete.MouseDown += Btn_delete_MouseDown;
-            viewinfo.Show();
-
-            
-
-        }
-
-        private void Btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
-        {
+            viewinfo.ShowDialog();
             string gara = staff.IDGara;
             Panel panel = (Panel)this.Parent;
             panel.Children.Clear();
@@ -69,6 +61,9 @@ namespace Gara_Management.GUI.Item
                 itAccount it = new itAccount(staff, acc);
                 panel.Children.Add(it);
             }
+
         }
+
+        
     }
 }

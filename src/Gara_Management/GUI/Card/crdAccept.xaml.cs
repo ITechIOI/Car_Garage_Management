@@ -210,6 +210,7 @@ namespace Gara_Management.GUI.Card
                             tbx_save.Text = "Sửa";
                             check = receptionForm;
                             isChanged = false;
+                            this.Close();
                         }
                     }
                 }
@@ -288,8 +289,11 @@ namespace Gara_Management.GUI.Card
         private void tbx_PhoneCus_TextChanged(object sender, TextChangedEventArgs e)
         {
             isChanged = true;
-            Customer customer = CustomerDAO.Instance.GetCustomerByPhone(tbx_PhoneCus.Text, gara)[0];
-            tbx_NameCus.Text = customer.NameCus;
+            if (CustomerDAO.Instance.GetCustomerByPhone(tbx_PhoneCus.Text, gara).Count > 0)
+            {
+                Customer customer = CustomerDAO.Instance.GetCustomerByPhone(tbx_PhoneCus.Text, gara)[0];
+                tbx_NameCus.Text = customer.NameCus;
+            }
         }
         private void PrintAccept()
         {

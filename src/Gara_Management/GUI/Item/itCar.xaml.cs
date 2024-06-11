@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace Gara_Management.GUI.Item
 {
@@ -56,7 +57,19 @@ namespace Gara_Management.GUI.Item
         private void bd_repairInvoice_MouseDown(object sender, MouseButtonEventArgs e)
         {
             crdRepair crdRepair = new crdRepair(idRec, gara);
-            crdRepair.ShowDialog(); 
+            crdRepair.ShowDialog();
+            string gr = gara;
+            Account acc = account;
+            Panel panel = ((Panel)this.Parent);
+            panel.Children.Clear();
+            int i = 1;
+            List<ReceptionForm> list = ReceptionFormDAO.Instance.LoadReceptionFormtList(gr);
+            foreach (ReceptionForm recept in list)
+            {
+                Customer cus = CustomerDAO.Instance.LoadCustomerByID(recept.IDCus, gara);
+                itCar it = new itCar(gr, acc, cus, recept.IDRec, i++);
+                panel.Children.Add(it);
+            }
         }
 
    
@@ -65,6 +78,18 @@ namespace Gara_Management.GUI.Item
         {
             crdAccept crdAccept = new crdAccept(idRec, gara);
             crdAccept.ShowDialog();
+            string gr = gara;
+            Account acc = account;
+            Panel panel = ((Panel)this.Parent);
+            panel.Children.Clear();
+            int i = 1;
+            List<ReceptionForm> list = ReceptionFormDAO.Instance.LoadReceptionFormtList(gr);
+            foreach (ReceptionForm recept in list)
+            {
+                Customer cus = CustomerDAO.Instance.LoadCustomerByID(recept.IDCus, gara);
+                itCar it = new itCar(gr, acc, cus, recept.IDRec, i++);
+                panel.Children.Add(it);
+            }
         }
     }
 }
