@@ -67,6 +67,19 @@ namespace Gara_Management.DAO
             }
             return list;
         }
+        public List<RepairPaymentDetail> LoadListRepairDetail(string idRec)
+        {
+            int stt = 1;
+            List<RepairPaymentDetail> list = new List<RepairPaymentDetail>();
+            string query = "SELECT * FROM REPAIR_PAYMENT_DETAILS WHERE ID_BILL = '" + idRec +"' AND STATUS_RPD = 0";
+            DataTable dataTable = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow row in dataTable.Rows)
+            {
+                RepairPaymentDetail detail = new RepairPaymentDetail(row);
+                list.Add(detail);
+            }
+            return list;
+        }
 
         //Thêm dữ liệu vào REPAIR PAYMENT DETAILS
         public bool InsertRepairCardDetail(string idRec, itRepairCardDetail item)

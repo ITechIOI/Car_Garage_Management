@@ -188,7 +188,7 @@ namespace Gara_Management.GUI.Card
 
             Paragraph info = new Paragraph();
             string sInfo = "Mã phiếu: " + idRec + "\nNgày hoàn thành: " + bill.CompletionDate.ToString("dd/MM/yyyy")
-                + "\nBiển số xe: " + ReceptionFormDAO.Instance.LoadReceptionFormByID(idRec).NumberPlate + "\nTổng tiền: " + bill.TotalPayment;
+                + "\nBiển số xe: " + ReceptionFormDAO.Instance.LoadReceptionFormByID(idRec, this.gara).NumberPlate + "\nTổng tiền: " + bill.TotalPayment;
             /*"Mã lô: " + txtb_idLot.Text + "\nNgày nhập: " + date.ToString("dd/MM/yyyy") + "\nNhà cung cấp: " +
             txtb_namesupplier.Text + "\nNgười kí nhận: " + txtb_staff.Text + "\nTổng tiền: " + txtb_totalsum.Text;*/
             info.Inlines.Add(sInfo);
