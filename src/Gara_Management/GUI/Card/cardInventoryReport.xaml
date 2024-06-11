@@ -29,7 +29,7 @@
                 <Label x:Name="lb_exit" Content="X" Foreground="{StaticResource sColor1}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="25" Margin="6,-3,-6,-13"  />
             </Border>
 
-            <Border Grid.Row="0" Background="{StaticResource sColor1}" Margin="15,20,563,3" CornerRadius="10">
+            <Border Grid.Row="0" Background="{StaticResource sColor1}" Margin="518,20,60,3" CornerRadius="10">
                 <Grid>
                     <TextBlock Text="Tháng" FontSize="20" Foreground="Black" Margin="0,0,0,62" TextAlignment="Center" FontWeight="Bold" ></TextBlock>
                     <Rectangle Fill="Black" Height="2" Margin="0,33,0,62"></Rectangle>
