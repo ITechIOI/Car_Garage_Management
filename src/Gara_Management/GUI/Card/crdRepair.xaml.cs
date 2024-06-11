@@ -194,8 +194,96 @@ namespace Gara_Management.GUI.Card
             }
             else
             {
-                crdReceipt crdReceipt = new crdReceipt(gara, staff, cus, decimal.Parse(tbl_totalPayment.Text), tbl_IDRec.Text);
-                crdReceipt.ShowDialog();
+                if (MessageBox.Show("Bạn muốn thanh toán ngay hiện tại?", "Thông báo", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    crdReceipt crdReceipt = new crdReceipt(gara, staff, cus, decimal.Parse(tbl_totalPayment.Text), tbl_IDRec.Text);
+                    crdReceipt.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    RepairPaymentBillDAO.Instance.SetFinishBill(tbl_IDRec.Text);
+                    if (MessageBox.Show("Lưu bill thành công. Bạn có muốn hóa đơn?", "Thông báo",
+                                    MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        PrintRepairPaymentBill();
+                    }
+                    this.Close();
+                }    
+            }
+        }
+        private void PrintRepairPaymentBill()
+        {
+            CarGara carGara = CarGaraDAO.Instance.GetCarGaraByID(this.gara);
+            FlowDocument flowDocument = new FlowDocument();
+            Paragraph gara = new Paragraph();
+            gara.Inlines.Add(new Run("GARA OTO\nĐịa chỉ: " + carGara.AddressGara + "\nSố điện thoại: " + carGara.PhoneNumberGara));
+            gara.TextAlignment = TextAlignment.Center;
+            gara.FontSize = 15;
+            flowDocument.Blocks.Add(gara);
+
+            Paragraph title = new Paragraph();
+            title.Inlines.Add(new Run("PHIẾU SỬA CHỮA"));
+            title.FontSize = 20;
+            title.TextAlignment = TextAlignment.Center;
+            title.FontWeight = FontWeights.Bold;
+            flowDocument.Blocks.Add(title);
+
+            Paragraph info = new Paragraph();
+            DateTime date = DateTime.Parse(dpk_RecDate.SelectedDate.ToString());
+            string sInfo = "Mã phiếu: " + tbl_IDRec.Text + "\nNgày sửa: " + dpk_RecDate.Text
+                + "\nBiển số xe: " + tbx_NumberPlate.Text + "\nTổng tiền: " + tbl_totalPayment.Text;
+            /*"Mã lô: " + txtb_idLot.Text + "\nNgày nhập: " + date.ToString("dd/MM/yyyy") + "\nNhà cung cấp: " +
+            txtb_namesupplier.Text + "\nNgười kí nhận: " + txtb_staff.Text + "\nTổng tiền: " + txtb_totalsum.Text;*/
+            info.Inlines.Add(sInfo);
+            info.Margin = new Thickness(15);
+            flowDocument.Blocks.Add(info);
+
+            Table table = new Table();
+            table.FontSize = 14;
+            table.Columns.Add(new TableColumn() { Width = new GridLength(40) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(180) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(140) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(110) }); // Thêm cột
+            table.Columns.Add(new TableColumn() { Width = new GridLength(70) }); // Thêm cột            
+            table.Columns.Add(new TableColumn() { Width = new GridLength(110) }); // Thêm cột            
+            table.Columns.Add(new TableColumn() { Width = new GridLength(110) }); // Thêm cột            
+            TableRowGroup gr = new TableRowGroup();
+            TableRow titleRow = new TableRow();
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("STT")))); // Ô đầu tiên
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Nội dung")))); // Ô thứ hai
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Vật tư"))));
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Đơn giá"))));
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Số lượng"))));
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Tiền công"))));
+            titleRow.Cells.Add(new TableCell(new Paragraph(new Run("Thành tiền"))));
+            gr.Rows.Add(titleRow);
+            // Tạo Hàng và Ô
+            //List<itStockInDetail> list = new List<itStockInDetail>();
+            foreach (itRepairCardDetail item in detailList)
+            {
+                TableRow row = new TableRow();
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbl_stt.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_description.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_name.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_price.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_quantity.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_wage.Text))));
+                row.Cells.Add(new TableCell(new Paragraph(new Run(item.tbx_total.Text))));
+
+                gr.Rows.Add(row);
+            }
+            table.RowGroups.Add(gr);
+            flowDocument.ColumnWidth = 830;
+            flowDocument.Blocks.Add(table);
+
+            // Mở hộp thoại chọn máy in
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                // In hóa đơn
+                printDialog.PrintDocument(((IDocumentPaginatorSource)flowDocument).DocumentPaginator, "PHIẾU SỬA CHỮA");
+
             }
         }
 
@@ -338,11 +426,29 @@ namespace Gara_Management.GUI.Card
                 }
             }
             if (!isSelected)
-                return;
-            MessageBoxResult result = MessageBox.Show("Bạn có muốn xóa các chi tiết đã chọn không?", "Thông báo", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
             {
-                DeleteRepairCardDetails();
+                if (MessageBox.Show("Bạn có muốn xóa bill này không?", "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    string idBill = RepairPaymentBillDAO.Instance.GetIDBillByIDRec(tbl_IDRec.Text);
+                    if (RepairPaymentBillDAO.Instance.DeleteRepairPaymentBill(idBill))
+                    {
+                        MessageBox.Show("Xóa bill này thành công", "Thông báo");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa bill không thành công hoặc bill này không tồn tại. Vui lòng thử lại.");
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Bạn có muốn xóa các chi tiết đã chọn không?", "Thông báo", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    DeleteRepairCardDetails();
+                }
             }
         }
 

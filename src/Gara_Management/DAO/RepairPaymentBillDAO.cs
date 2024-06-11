@@ -273,5 +273,21 @@ namespace Gara_Management.DAO
             string query = "UPDATE REPAIR_PAYMENT_BILL SET COMPLETION_DATE = GETDATE() WHERE ID_REC = '" + id +"'";
             return DataProvider.Instance.ExecuteNonQuery(query) > 0;
         }
+
+        public bool DeleteRepairPaymentBill(string idBill)
+        {
+            string query = "EXEC DELETEBILL '" + idBill + "'";
+            return DataProvider.Instance.ExecuteNonQuery(query) > 0;
+        }
+        public string GetIDBillByIDRec(string idRec)
+        {
+            string query = "SELECT ID_BILL FROM REPAIR_PAYMENT_BILL WHERE ID_REC = '" + idRec + "'";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            if (data.Rows.Count == 0)
+            {
+                return "";
+            }
+            return data.Rows[0]["ID_BILL"].ToString();
+        }
     }
 }

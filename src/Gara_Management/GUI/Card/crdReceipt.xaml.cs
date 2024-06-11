@@ -133,7 +133,9 @@ namespace Gara_Management.GUI.Card
                                 if (MessageBox.Show("Thanh toán và lập phiếu thu tiền thành công. Bạn có muốn in phiếu thu và hóa đơn?", "Thông báo",
                                     MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                                 {
+                                    MessageBox.Show("In phiếu thu tiền", "Thông báo");
                                     PrintReceipt();
+                                    MessageBox.Show("In phiếu hóa đơn", "Thông báo");
                                     PrintRepairPaymentBill();
                                 }
                                 this.Close();
