@@ -41,12 +41,12 @@ namespace Gara_Management.GUI
 
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)
         {
-            bd_exit.Background = new SolidColorBrush(color4);
+           
         }
 
         private void bd_exit_MouseLeave(object sender, MouseEventArgs e)
         {
-            bd_exit.Background = new SolidColorBrush(color3);
+            
         }
 
         private void bd_exit_MouseDown(object sender, MouseButtonEventArgs e)
