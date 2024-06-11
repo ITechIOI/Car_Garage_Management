@@ -91,13 +91,16 @@ namespace Gara_Management.GUI
             Staff staff1 = new Staff(txtb_idStaff.Text, txtb_name.Text, DateTime.Parse(txtb_birthday.Text), txtb_address.Text,
                 txtb_email.Text, txtb_phone.Text, decimal.Parse(txtb_salary.Text), txtb_position.Text, gara, false);
             cardUpdateInfo crdupdate = new cardUpdateInfo(staff, account, staff1);
+            staff = StaffDAO.Instance.GetStaffById(txtb_idStaff.Text);
             crdupdate.ShowDialog();
+            account = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
         }
 
         private void bt_change_pass_MouseDown(object sender, MouseButtonEventArgs e)
         {
             cardChangepass crdchange = new cardChangepass(staff, account);
             crdchange.ShowDialog();
+            account = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
             account = AccountDAO.Instance.GetAccountByIDStaff(staff.IDStaff);
         }
     }

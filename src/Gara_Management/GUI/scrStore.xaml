@@ -274,8 +274,8 @@
 
 
             <!-- xem các phiếu nhập -->
-            <TextBlock Grid.Row="3" Text="Tổng loại vật tư: 200" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,95,0,0"/>
-            <TextBlock Grid.Row="3" Text="Số vật tư đã hết: 3" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,100,0"/>
+            <TextBlock x:Name="txtb_total" Grid.Row="3" Text="Tổng loại vật tư: 200" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="81,95,0,0"/>
+            <TextBlock x:Name="txtb_zero" Grid.Row="3" Text="Số vật tư đã hết: 3" Foreground="{StaticResource sColor1}" FontSize="18" TextAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,95,100,0"/>
 
 
             <!-- Bộ lọc -->

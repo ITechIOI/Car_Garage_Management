@@ -42,6 +42,24 @@ namespace Gara_Management.DAO
             return receptionFormList;
         }
 
+        public List<ReceptionForm> LoadReceptionFormtListToday(string gara)
+        {
+            string query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
+                "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
+                "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE IS NULL" +
+                " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
+                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_GARA = '" + gara + "' AND RECEPTION_DATE = GETDATE()";
+            List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows)
+            {
+                ReceptionForm receptionForm = new ReceptionForm(item);
+                receptionFormList.Add(receptionForm);
+            }
+            return receptionFormList;
+        }
+
         public int GetMaxDebt(string gara)
         {
             DataTable data = DataProvider.Instance.ExecuteQuery("SELECT DBO.GET_MAX_TOTALPAYMENT('" + gara + "') TOTALPAYMENT");

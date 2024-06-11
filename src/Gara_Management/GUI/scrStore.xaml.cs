@@ -39,6 +39,16 @@ namespace Gara_Management.GUI
             this.acc = account;
             LoadListComponent();
             SetSliderMaxValue();
+            txtb_total.Text = "Tổng loại vật tư: " + CarComponentDAO.Instance.LoadCarComponentList(gara).Count;
+            txtb_zero.Text = "Số vật tư đã hết: " + CarComponentDAO.Instance.LoadCarComponentListZero(gara).Count;
+            if (acc.AccAuthorization)
+            {
+                bd_summarize.Visibility = Visibility.Collapsed;
+            }    
+            else
+            {
+                bd_summarize.Visibility = Visibility.Visible;
+            }    
         }
 
         private void bd_exit_MouseEnter(object sender, MouseEventArgs e)

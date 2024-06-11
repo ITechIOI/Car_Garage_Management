@@ -22,14 +22,18 @@ namespace Gara_Management.GUI.Card
     /// <summary>
     /// Interaction logic for crdStockIn.xaml
     /// </summary>
-    public partial class crdStockIn : Window
+    public partial class crdStockIn : Window, grnInterface
     {
         GoodReceivedNote grn;
         string gara;
         Account acc;
         int i = 0;
         bool check = false;
+        string id;
+        int price, amount;
         List<GRNDetail> list = new List<GRNDetail>();
+        
+
 
         // tùy vào cách dùng mà hiển thị sẽ khác nhau
         // phiếu mới
@@ -37,12 +41,31 @@ namespace Gara_Management.GUI.Card
         {
             InitializeComponent();
             this.Opacity = 0;
+            i = 0;
+
+            btn_delete.Visibility = Visibility.Hidden;
             this.gara = gara;
             this.acc = acc;
             txtb_idLot.Text = "LOT" + (GoodReceivedNoteDAO.Instance.GetMaxLotNumber() + 1);
             txtb_staff.Text = StaffDAO.Instance.GetStaffById(acc.IDStaff).NameStaff;
             txtb_date.SelectedDate = DateTime.Now;
-            
+            ds_nhapkho.LayoutUpdated += Ds_nhapkho_LayoutUpdated;
+        }
+
+        private void Ds_nhapkho_LayoutUpdated(object sender, EventArgs e)
+        {
+            i = ds_nhapkho.Children.Count;
+
+            List<itStockInDetail> list = getListItem(ds_nhapkho);
+            int total = 0; int money;
+            foreach (itStockInDetail item in list)
+            {
+                if (int.TryParse(item.txtb_sumofmoney.Text, out money))
+                {
+                    total += money;
+                }
+            }
+            txtb_totalsum.Text = total.ToString();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -59,7 +82,9 @@ namespace Gara_Management.GUI.Card
             InitializeComponent();
             this.grn = grn;
             add_button.Text = "Sửa";
+            
             bd_pay.Visibility = Visibility.Hidden;
+            ds_nhapkho.LayoutUpdated += Ds_nhapkho_LayoutUpdated;
             txtb_idLot.Text = grn.LotNumber;
             txtb_date.Text = grn.ImportTime.ToString();
             txtb_namesupplier.Text = grn.Supplier;
@@ -68,9 +93,11 @@ namespace Gara_Management.GUI.Card
             decimal price = 0;
             list.Clear();
             list = GRNDetailDAO.Instance.LoadGRNDetailListByLotNumber(grn.LotNumber);
+            i = 1;
+            int sl = 0;
             foreach (GRNDetail detail in list)
             {
-                itStockInDetail it = new itStockInDetail(detail, gara);
+                itStockInDetail it = new itStockInDetail(detail, gara, i++);
                 ds_nhapkho.Children.Add(it);
                 price = price + detail.GRNTotalPayment;
             }
@@ -83,14 +110,13 @@ namespace Gara_Management.GUI.Card
             InitializeComponent();
             this.gara = gara;
             this.acc = acc;
+            btn_delete.Visibility = Visibility.Hidden;
+            ds_nhapkho.LayoutUpdated += Ds_nhapkho_LayoutUpdated;
             txtb_idLot.Text = "LOT" + (GoodReceivedNoteDAO.Instance.GetMaxLotNumber() + 1);
             txtb_staff.Text = StaffDAO.Instance.GetStaffById(acc.IDStaff).NameStaff;
             txtb_date.SelectedDate = DateTime.Now;
-            i++;
-            GRNDetail detail = new GRNDetail(i, txtb_idLot.Text, idComponent, 1000, 1, 1000, false);
-            list.Clear();
-            list.Add(detail);
-            itStockInDetail it = new itStockInDetail(detail, gara);
+            i ++ ;
+            itStockInDetail it = new itStockInDetail( i++, gara, idComponent, 1000, 1);
             // thêm 
             ds_nhapkho.Children.Add(it);
   
@@ -125,11 +151,12 @@ namespace Gara_Management.GUI.Card
 
         private void bd_add_MouseDown(object sender, MouseButtonEventArgs e)
         {
+
             if (add_button.Text == "Thêm")
             {
-                crdComponent component = new crdComponent(gara);
-                //component.bd_save.MouseDown += Bd_save_MouseDown;
-                //component.bd_delete.MouseDown += Bd_delete_MouseDown;
+                crdComponent component = new crdComponent(gara, this as grnInterface);
+                component.bd_save.MouseDown += Bd_save_MouseDown;
+                component.bd_delete.MouseDown += Bd_delete_MouseDown;
                 component.ShowDialog();
                 
             }
@@ -144,52 +171,22 @@ namespace Gara_Management.GUI.Card
                     bd_pay.Visibility = Visibility.Visible;
                 }
             }
+
         }
 
-        private void Bd_delete_MouseDown(object sender, MouseButtonEventArgs e)
+        public void Bd_delete_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            crdComponent component = sender as crdComponent;
-            if (component.tbx_delete.Text == "Hủy")
-            {
-                component.Close();
-            }
-            else
-            {
-                if (MessageBox.Show("Bạn có muốn xóa phụ tùng này khỏi phiếu nhập?", "Thông báo", MessageBoxButton.YesNo) ==
-                    MessageBoxResult.Yes)
-                {
-                    i--;
-                    component.Close();
-                }
-            }
+               
         }
-        private void DeleteComponent(string name)
+        
+        public void Bd_save_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
-        }
-        private void Bd_save_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            crdComponent component = sender as crdComponent;
-            if (component.cbx_component.SelectedItem == null || component.txtb_amount.Text =="")
+            if (id != "" && price!=0 && price!=0)
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin.", "Thông báo");
-            }    
-            else
-            {
-                int amount;
-                if (!int.TryParse(component.txtb_amount.Text, out amount))
-                {
-                    MessageBox.Show("Số lượng phải là một số nguyên");
-                    
-                }
-                else
-                {
-                    i++;
-                    itStockInDetail it = new itStockInDetail(i, gara);
-                    ds_nhapkho.Children.Add(it);
-                }    
-            }    
-            
+                i++;
+                itStockInDetail it = new itStockInDetail(i, gara, id, price, amount);
+                ds_nhapkho.Children.Add(it);
+            }
         }
 
         public List<itStockInDetail> getListItem(StackPanel stack)
@@ -363,6 +360,28 @@ namespace Gara_Management.GUI.Card
             }
         }
 
-        
+        private void btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn xóa phiếu nhập này?", "Thông báo", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                if (GoodReceivedNoteDAO.Instance.DeleteGoodReceivedNote(txtb_idLot.Text))
+                {
+                    MessageBox.Show("Xóa phiếu nhập hàng thành công,", "Thông báo");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa phiếu nhập này không thành công. Vui lòng thử lại sau.", "Thông báo");
+                }
+
+            }
+        }
+
+        public void ReceivedData(string idCom, int price, int quantity)
+        {
+            this.id = idCom;
+            this.price = price;
+            this.amount = quantity;
+        }
     }
 }

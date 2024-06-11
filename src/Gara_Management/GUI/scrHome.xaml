@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Gara_Management.GUI"
         mc:Ignorable="d"
         Height="768" Width="885">
-    <Border Background="{StaticResource sColor1}" CornerRadius="5">
+    <Border Background="{StaticResource sColor3}" CornerRadius="5">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="117"/>

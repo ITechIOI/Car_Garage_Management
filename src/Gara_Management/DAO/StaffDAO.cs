@@ -78,7 +78,7 @@ namespace Gara_Management.DAO
         public bool UpdateStaff (string id, string name, string birthday, string address, string email, string phone, int salary,
             string position)
         {
-            return (DataProvider.Instance.ExecuteNonQuery("EXEC UPDATESTAFF @id='" + id + "', @name=N'" + name + "', @birthday='"
+            return (DataProvider.Instance.ExecuteNonQuery("EXEC USP_UPDATESTAFF @id='" + id + "', @name=N'" + name + "', @birthday='"
                 + birthday + "' , @address=N'" + address + "', @email='" + email + "', @phone = '"
                 + phone + "', @salary=" + salary.ToString() + ", @position=N'" + position + "'") > 0);
         }

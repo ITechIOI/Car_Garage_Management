@@ -142,7 +142,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -154,7 +154,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -165,7 +165,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -176,7 +176,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -187,7 +187,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -197,7 +197,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -208,7 +208,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -219,7 +219,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -229,7 +229,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -239,7 +239,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -249,7 +249,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -260,7 +260,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -270,7 +270,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -280,7 +280,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -290,7 +290,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }
@@ -300,7 +300,7 @@ namespace Gara_Management.GUI
             ds_phieunhap.Children.Clear();
             foreach (GoodReceivedNote good in list)
             {
-                itStockIn it = new itStockIn(good);
+                itStockIn it = new itStockIn(good, gara);
                 ds_phieunhap.Children.Add(it);
             }
         }

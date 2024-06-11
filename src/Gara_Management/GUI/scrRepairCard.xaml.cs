@@ -47,6 +47,7 @@ namespace Gara_Management.GUI
             ckb_money.IsChecked = false;
             t = true;
             LoadListRepair();
+            txtb_isFinish.Text = "Chưa thanh toán: " + RepairPaymentBillDAO.Instance.LoadNotFinishedRepairPaymentBillList(gara);
         }
 
         private void bt_car_scr_MouseDown(object sender, MouseButtonEventArgs e)

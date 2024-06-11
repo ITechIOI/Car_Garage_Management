@@ -285,7 +285,7 @@
                     <Rectangle Height="2" Grid.Row="1" Fill="{StaticResource sColor1}" VerticalAlignment="Bottom" Margin="0,0,0,-1"/>
 
                     <ScrollViewer Margin="0,0,-16,0" Grid.Row="1">
-                        <StackPanel  x:Name="ds_nhapkho">
+                        <StackPanel  x:Name="ds_nhapkho" >
 
                         </StackPanel>
                     </ScrollViewer>
@@ -308,7 +308,12 @@
             <Border x:Name="bd_add" MouseDown="bd_add_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="100,17,612,17">
                 <TextBlock x:Name="add_button" Text="Thêm" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
             </Border>
-            <Border x:Name="bd_pay" MouseDown="bd_pay_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="611,17,101,17">
+            
+            <Border x:Name="btn_delete" MouseDown="btn_delete_MouseDown" Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="230,17,482,17">
+                <TextBlock Text="Xóa" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
+            </Border>
+            
+            <Border x:Name="bd_pay" MouseDown="bd_pay_MouseDown"  Grid.Row="3" Cursor="Hand" CornerRadius="20" BorderThickness="2" BorderBrush="{StaticResource sColor1}" Margin="611,17,82,17">
                 <TextBlock Text="Thanh toán" FontWeight="Bold" TextAlignment="Center" Margin="0,2,0,-2"/>
             </Border>
       

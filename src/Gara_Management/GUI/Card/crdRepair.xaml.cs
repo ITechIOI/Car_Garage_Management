@@ -310,5 +310,10 @@ namespace Gara_Management.GUI.Card
                 LoadRepairCardDetails(tbl_IDRec.Text);
             }
         }
+
+        private void btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
