@@ -38,6 +38,7 @@ namespace Gara_Management.GUI.Card
             InitializeComponent();
             this.Opacity = 0;
             bd_add.Visibility = Visibility.Hidden;
+            btn_delete.Visibility = Visibility.Hidden;
             this.gara = gara;
         }
 
@@ -105,6 +106,7 @@ namespace Gara_Management.GUI.Card
                 if (tbx_modify.Text == "Sửa")// nghhĩa là phiếu đã có
                 {
                     bd_add.Visibility = Visibility.Visible;
+                    btn_delete.Visibility = Visibility.Visible;
                     for (int i = 0; i < ds_suachua.Children.Count; i++)
                     {
                         itRepairCardDetail child = (itRepairCardDetail)ds_suachua.Children[i];
@@ -124,6 +126,7 @@ namespace Gara_Management.GUI.Card
                     SaveRepairCardDetails();
                     isChanged = false;
                     bd_add.Visibility = Visibility.Hidden;
+                    btn_delete.Visibility= Visibility.Hidden;
                     tbx_modify.Text = "Sửa";
                 }
             }
@@ -313,7 +316,10 @@ namespace Gara_Management.GUI.Card
 
         private void btn_delete_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            DeleteRepairCardDetails();
+            bd_add.Visibility = Visibility.Hidden;
+            btn_delete.Visibility = Visibility.Hidden;
+            tbx_modify.Text = "Sửa";
         }
     }
 }
