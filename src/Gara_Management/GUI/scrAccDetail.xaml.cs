@@ -88,6 +88,11 @@ namespace Gara_Management.GUI
 
         private void bt_update_info_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (txtb_address.Text == "" || txtb_birthday.Text == "" || txtb_phone.Text == "" || txtb_email.Text == ""|| txtb_name.Text == "")
+            {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin");
+                return;
+            }    
             Staff staff1 = new Staff(txtb_idStaff.Text, txtb_name.Text, DateTime.Parse(txtb_birthday.Text), txtb_address.Text,
                 txtb_email.Text, txtb_phone.Text, decimal.Parse(txtb_salary.Text), txtb_position.Text, gara, false);
             cardUpdateInfo crdupdate = new cardUpdateInfo(staff, account, staff1);

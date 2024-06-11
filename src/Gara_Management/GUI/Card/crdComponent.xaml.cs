@@ -68,7 +68,7 @@ namespace Gara_Management.GUI.Card
                 int amount;
                 if (!int.TryParse(txtb_amount.Text, out amount))
                 {
-                    MessageBox.Show("Số lượng phải là một số nguyên");
+                    MessageBox.Show("Số lượng phải là một số nguyên", "Thông báo");
 
                 }
                 else
@@ -76,14 +76,21 @@ namespace Gara_Management.GUI.Card
                     int price;
                     if (!int.TryParse(txtb_price.Text, out price))
                     {
-                        MessageBox.Show("Đơn giá phải là một số nguyên");
+                        MessageBox.Show("Đơn giá phải là một số nguyên", "Thông báo");
 
                     }
                     else
                     {
-                        string idCom = CarComponentDAO.Instance.GetComponentIDByName(gara, cbx_component.SelectedItem.ToString());
-                        grn.ReceivedData(idCom, price, amount);
-                        this.Close();
+                        if (amount <= 0 || price <= 0)
+                        {
+                            MessageBox.Show("Đơn giá phải là một số nguyên dương.", "Thông báo");
+                        }
+                        else
+                        {
+                            string idCom = CarComponentDAO.Instance.GetComponentIDByName(gara, cbx_component.SelectedItem.ToString());
+                            grn.ReceivedData(idCom, price, amount);
+                            this.Close();
+                        }
                     }    
                 }
             }
