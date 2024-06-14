@@ -48,9 +48,9 @@ namespace Gara_Management.DAO
             string query = "SELECT RECEPTION_FORMS.ID_REC, ID_CUS, ID_BRAND, ID_GARA, " +
                 "NUMBER_PLATES,RECEPTION_DATE, STATUS_REC FROM RECEPTION_FORMS " +
                 "JOIN REPAIR_PAYMENT_BILL ON RECEPTION_FORMS.ID_REC = REPAIR_PAYMENT_BILL.ID_REC " +
-                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE = '1/1/1900' AND RECEPTION_DATE = GETDATE()" +
+                "WHERE ID_GARA = '" + gara + "' AND STATUS_REC = 0 AND COMPLETION_DATE = '01/01/1900' AND CAST(RECEPTION_DATE AS DATE) = CAST (GETDATE() AS DATE)" +
                 " UNION SELECT * FROM RECEPTION_FORMS WHERE STATUS_REC = 0 AND ID_REC NOT IN " +
-                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_GARA = '" + gara + "' AND RECEPTION_DATE = GETDATE()";
+                "(SELECT ID_REC FROM REPAIR_PAYMENT_BILL) AND ID_GARA = '" + gara + "' AND CAST(RECEPTION_DATE AS DATE) = CAST (GETDATE() AS DATE)";
             List<ReceptionForm> receptionFormList = new List<ReceptionForm>();
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)

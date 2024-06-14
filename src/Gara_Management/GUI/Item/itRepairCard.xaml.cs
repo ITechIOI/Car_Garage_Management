@@ -38,10 +38,14 @@ namespace Gara_Management.GUI.Item
             this.bill = bill;
             txtb_idRec.Text = bill.IDRec;
             txtb_numberPlate.Text = recept.NumberPlate;
-            if (bill.CompletionDate != new DateTime(1900, 1, 1))
+            if (bill.CompletionDate.ToString("dd/MM/yyyy") != "01/01/1900")
             {
                 txtb_completeDate.Text = bill.CompletionDate.ToString("dd/MM/yyyy");
             }
+            else
+            {
+                txtb_completeDate.Text = "";
+            }    
             txtb_totalBill.Text =((int) bill.TotalPayment).ToString();
         }
 

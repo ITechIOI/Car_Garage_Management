@@ -41,6 +41,7 @@ namespace Gara_Management.DTO
         {
             this.IDBill = row["ID_BILL"].ToString();
             this.IDRec = row["ID_REC"].ToString();
+              
             this.CompletionDate = Convert.ToDateTime(row["COMPLETION_DATE"].ToString());
             this.TotalPayment = Convert.ToDecimal(row["TOTAL_PAYMENT"].ToString());
             this.Paid = Convert.ToDecimal(row["PAID"].ToString());

@@ -383,5 +383,11 @@ namespace Gara_Management.GUI
             cardCarBrand cardCarBrand = new cardCarBrand(gara);
             cardCarBrand.ShowDialog();
         }
+
+        private void ds_acc_LayoutUpdated(object sender, EventArgs e)
+        {
+            txtb_curNum.Text = "Tổng xe hiện tại: " + ReceptionFormDAO.Instance.LoadReceptionFormtList(gara).Count;
+            txtb_dayNum.Text = "Số xe đã nhận hôm nay: " + ReceptionFormDAO.Instance.LoadReceptionFormtListToday(gara).Count;
+        }
     }
 }

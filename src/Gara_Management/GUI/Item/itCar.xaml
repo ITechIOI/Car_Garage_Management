@@ -10,22 +10,22 @@
         <Border  BorderBrush="{StaticResource sColor5}" BorderThickness="2" CornerRadius="10" Background="{StaticResource sColor4}">
             <Grid >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="110"/>
-                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="145"/>
                     <ColumnDefinition Width="205"/>
                     <ColumnDefinition Width="175"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <!-- STT -->
                 <TextBlock x:Name="txtb_ordinalNum" Text="99" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  />
-                <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="48,0,0,0"/>
+                <Rectangle Width="2" Fill="{StaticResource sColor5}" Margin="58,0,0,0"/>
                 <!-- Biển số -->
                 <TextBlock x:Name="txtb_numberPlate" Grid.Column="1" Text="38-AA 99999" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="108,0,0,0"/>
+                <Rectangle Grid.Column="1" Width="2" Fill="{StaticResource sColor5}" Margin="128,0,0,0"/>
                 <!-- Hiệu xe -->
                 <TextBlock x:Name="txtb_carBrand" Grid.Column="2" Text="Mitsubiki" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="138,0,0,0"/>
+                <Rectangle Grid.Column="2" Width="2" Fill="{StaticResource sColor5}" Margin="143,0,0,0"/>
                 <!-- Tên chủ xe -->
                 <TextBlock x:Name="txtb_cus" Grid.Column="3" Text="Nguyễn Thị Minh Kha Kha" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <Rectangle Grid.Column="3" Width="2" Fill="{StaticResource sColor5}" Margin="203,0,0,0"/>

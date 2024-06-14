@@ -454,8 +454,11 @@ namespace Gara_Management.GUI.Card
 
         private void tbl_IDRec_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string idCus = ReceptionFormDAO.Instance.LoadReceptionFormByID(tbl_IDRec.Text, gara).IDCus;
-            cus = CustomerDAO.Instance.LoadCustomerByID(idCus, gara);
+            if (ReceptionFormDAO.Instance.LoadReceptionFormByID(tbl_IDRec.Text, gara) != null)
+            {
+                string idCus = ReceptionFormDAO.Instance.LoadReceptionFormByID(tbl_IDRec.Text, gara).IDCus;
+                cus = CustomerDAO.Instance.LoadCustomerByID(idCus, gara);
+            }
         }
 
         private void ds_suachua_LayoutUpdated(object sender, EventArgs e)

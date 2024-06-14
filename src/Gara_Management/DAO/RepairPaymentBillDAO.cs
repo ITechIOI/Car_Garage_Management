@@ -31,7 +31,7 @@ namespace Gara_Management.DAO
             string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, " +
                 "TOTAL_PAYMENT, PAID, STATUS_BILL FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS " +
                 "ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC WHERE ID_GARA = '" + gara + "' " +
-                "AND STATUS_BILL = 0 AND STATUS_REC = 0";
+                "AND STATUS_BILL = 0 AND STATUS_REC = 0 ORDER BY RECEPTION_DATE DESC";
             List<RepairPaymentBill> repairPaymentBillList = new List<RepairPaymentBill>();
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
@@ -46,7 +46,7 @@ namespace Gara_Management.DAO
             string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, " +
                 "TOTAL_PAYMENT, PAID, STATUS_BILL FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS " +
                 "ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC WHERE ID_GARA = '" + gara + "' " +
-                "AND STATUS_BILL = 0 AND STATUS_REC = 0 AND COMPLETION_DATE = '1/1/1900'";
+                "AND STATUS_BILL = 0 AND STATUS_REC = 0 AND COMPLETION_DATE = '1/1/1900' ORDER BY RECEPTION_DATE DESC";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             return data.Rows.Count;
         }
@@ -56,7 +56,7 @@ namespace Gara_Management.DAO
             string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, " +
                 "TOTAL_PAYMENT, PAID, STATUS_BILL FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS " +
                 "ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC WHERE ID_GARA = '" + gara + "' " +
-                "AND STATUS_BILL = 0 AND STATUS_REC = 0 AND NUMBER_PLATES LIKE '%" + numberPlate + "%'";
+                "AND STATUS_BILL = 0 AND STATUS_REC = 0 AND NUMBER_PLATES LIKE '%" + numberPlate + "%' ORDER BY RECEPTION_DATE DESC";
             List<RepairPaymentBill> repairPaymentBillList = new List<RepairPaymentBill>();
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
@@ -97,7 +97,7 @@ namespace Gara_Management.DAO
             string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, TOTAL_PAYMENT, PAID, STATUS_BILL " +
                 "FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC " +
                 "WHERE ID_GARA = '" + gara + "' AND STATUS_BILL = 0 AND STATUS_REC = 0 " +
-                "AND TOTAL_PAYMENT BETWEEN " + minMoney + " AND " + maxMoney;
+                "AND TOTAL_PAYMENT BETWEEN " + minMoney + " AND " + maxMoney+ " ORDER BY RECEPTION_DATE DESC";
             List<RepairPaymentBill> repairPaymentBillList = new List<RepairPaymentBill>();
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
@@ -113,7 +113,7 @@ namespace Gara_Management.DAO
             string query = "SELECT ID_BILL, REPAIR_PAYMENT_BILL.ID_REC, COMPLETION_DATE, TOTAL_PAYMENT, PAID, STATUS_BILL " +
                 "FROM REPAIR_PAYMENT_BILL JOIN RECEPTION_FORMS ON REPAIR_PAYMENT_BILL.ID_REC = RECEPTION_FORMS.ID_REC " +
                 "WHERE ID_GARA = '" + gara + "' AND STATUS_BILL = 0 AND STATUS_REC = 0 " +
-                "AND TOTAL_PAYMENT BETWEEN " + minMoney + " AND " + maxMoney + " AND NUMBER_PLATES LIKE '%" + num + "%'";
+                "AND TOTAL_PAYMENT BETWEEN " + minMoney + " AND " + maxMoney + " AND NUMBER_PLATES LIKE '%" + num + "%' ORDER BY RECEPTION_DATE DESC";
             List<RepairPaymentBill> repairPaymentBillList = new List<RepairPaymentBill>();
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)

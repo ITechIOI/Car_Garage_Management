@@ -316,7 +316,7 @@
                     </Border>
 
                     <ScrollViewer Margin="0,66,0,0">
-                        <StackPanel x:Name="ds_acc" >
+                        <StackPanel x:Name="ds_acc" LayoutUpdated="ds_acc_LayoutUpdated" >
 
                         </StackPanel>
 
