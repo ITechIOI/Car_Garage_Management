@@ -39,7 +39,7 @@ namespace Gara_Management.DAO
         }
 
         //Lấy RPDOrdinalNum theo IDBill và IDCom
-        public static string GetRPDOrdinalNum(string idBill, string idCom)
+        public string GetRPDOrdinalNum(string idBill, string idCom)
         {
             string query = "SELECT dbo.GET_RPD_ORDINALNUM('" + idBill + "', '" + idCom + "')";
             object ordinalNum = DataProvider.Instance.ExecuteScalar(query);

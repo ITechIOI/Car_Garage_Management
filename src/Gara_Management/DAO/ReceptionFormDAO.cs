@@ -268,7 +268,7 @@ namespace Gara_Management.DAO
         }
 
         //lấy số id cao nhất từ RECEPTION_FORMS
-        public static int GetMaxID()
+        public int GetMaxID()
         {
             string query = "SELECT dbo.GET_MAX_IDRECEPTION()";
             int maxID = int.Parse(DataProvider.Instance.ExecuteScalar(query).ToString());
@@ -276,7 +276,7 @@ namespace Gara_Management.DAO
         }
 
         //lấy id Rec trong database theo thông tin có sẵn
-        public static string GetReceptionFormIDByInfo(ReceptionForm receptionForm)
+        public string GetReceptionFormIDByInfo(ReceptionForm receptionForm)
         {
             string query = "EXEC USP_GET_IDRECEPTION @ID_CUS , @ID_GARA , @NUMBER_PLATES , @ID_BRAND , @RECEPTION_DATE";
             string id = DataProvider.Instance.ExecuteScalar(query, new object[] { receptionForm.IDCus, receptionForm.IDGara, receptionForm.NumberPlate, receptionForm.IDBrand, receptionForm.ReceptionDate }).ToString().Trim();
@@ -284,7 +284,7 @@ namespace Gara_Management.DAO
         }
 
         //thêm dữ liệu từ phiếu sửa chữa vào RECEPTION_FORMS
-        public static int InsertReceptionForm(ReceptionForm receptionForm)
+        public int InsertReceptionForm(ReceptionForm receptionForm)
         {
             int result = 0;
             string query = "EXEC USP_INSERT_RECEPTIONFORM @ID_CUS , @ID_BRAND , @ID_GARA , @NUMBER_PLATES , @RECEPTION_DATE";
@@ -293,7 +293,7 @@ namespace Gara_Management.DAO
         }
 
         //chỉnh sửa dữ liệu của RECEPTION_FORMS
-        public static int UpdateReceptionForm(ReceptionForm receptionForm)
+        public int UpdateReceptionForm(ReceptionForm receptionForm)
         {
             int result = 0;
             string query = "EXEC USP_UPDATE_RECEPTIONFORM @ID_REC , @ID_CUS , @ID_BRAND , @ID_GARA , @NUMBER_PLATES , @RECEPTION_DATE";
@@ -302,7 +302,7 @@ namespace Gara_Management.DAO
         }
 
         //kiểm tra xem thông tin có trùng lặp không 
-        public static int IsExist(ReceptionForm receptionForm)
+        public int IsExist(ReceptionForm receptionForm)
         {
             string IDCheck = "SELECT * FROM RECEPTION_FORMS WHERE ID_REC = '" + receptionForm.IDRec + "'";
             object i = DataProvider.Instance.ExecuteScalar(IDCheck);

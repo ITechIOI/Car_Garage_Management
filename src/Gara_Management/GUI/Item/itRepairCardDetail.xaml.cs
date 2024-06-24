@@ -107,7 +107,7 @@ namespace Gara_Management.GUI.Item
         public string GetRPDOrdinalNum()
         {
             string idCom = CarComponentDAO.Instance.GetComponentIDByInfo(this.idGara, this.tbx_name.Text, this.tbx_wage.Text, this.tbx_price.Text);
-            string ordinalNum = RepairPaymentDetailDAO.GetRPDOrdinalNum(idBill, idCom);
+            string ordinalNum = RepairPaymentDetailDAO.Instance.GetRPDOrdinalNum(idBill, idCom);
             return ordinalNum;
         }
 

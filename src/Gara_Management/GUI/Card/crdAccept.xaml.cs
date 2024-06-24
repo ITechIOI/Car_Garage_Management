@@ -114,14 +114,14 @@ namespace Gara_Management.GUI.Card
             //xử lý thông tin trùng lặp ở phiếu mới
             if (tbx_save.Text == "Lưu")
             {
-                int i = ReceptionFormDAO.IsExist(receptionForm);
+                int i = ReceptionFormDAO.Instance.IsExist(receptionForm);
                 switch (i)
                 {
                     case 1:
                         MessageBoxResult result1 = MessageBox.Show("Bạn có muốn tạo mã phiếu mới?", "Mã phiếu trùng lặp!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         if (result1 == MessageBoxResult.Yes)
                         {
-                            tbx_IDRec.Text = "REC" + (ReceptionFormDAO.GetMaxID() + 1).ToString();
+                            tbx_IDRec.Text = "REC" + (ReceptionFormDAO.Instance.GetMaxID() + 1).ToString();
                             tbx_save.Text = "Lưu";
                         }
                         else if (result1 == MessageBoxResult.No)
@@ -151,7 +151,7 @@ namespace Gara_Management.GUI.Card
             //xử lý thông tin trùng lặp ở phiếu cũ
             if (tbx_save.Text == "Sửa")
             {
-                int i = ReceptionFormDAO.IsExist(receptionForm);
+                int i = ReceptionFormDAO.Instance.IsExist(receptionForm);
                 if (i == 0)
                 {
                     MessageBoxResult result = MessageBox.Show("Bạn có muốn tải lại phiếu đã có?", "Thông tin trùng lặp!", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -186,7 +186,7 @@ namespace Gara_Management.GUI.Card
                 {
                     if (tbx_save.Text == "Sửa")
                     {
-                        int i = ReceptionFormDAO.UpdateReceptionForm(receptionForm);
+                        int i = ReceptionFormDAO.Instance.UpdateReceptionForm(receptionForm);
                         if (i == 1)
                         {
                             if (MessageBox.Show("Cập nhật thành công! Bạn có muốn in lại phiếu đã được cập nhật không?", "Thông báo", 
@@ -200,7 +200,7 @@ namespace Gara_Management.GUI.Card
                     }
                     else if (tbx_save.Text == "Lưu")
                     {
-                        int i = ReceptionFormDAO.InsertReceptionForm(receptionForm);
+                        int i = ReceptionFormDAO.Instance.InsertReceptionForm(receptionForm);
                         if (i == 1)
                         {
                             if (MessageBox.Show("Thêm phiếu sửa chữa thành công! Bạn có muốn in phiếu tiếp nhận không?", "Thông báo", 
@@ -250,7 +250,7 @@ namespace Gara_Management.GUI.Card
         //hiển thị id Rec trong database lên phiếu sửa chữa theo thông tin có sẵn
         private string LoadReceptionFormByInfo()
         {
-            string id = ReceptionFormDAO.GetReceptionFormIDByInfo(receptionForm);
+            string id = ReceptionFormDAO.Instance.GetReceptionFormIDByInfo(receptionForm);
             LoadReceptionFormById(id, ref receptionForm);
             return id;
         }
@@ -271,7 +271,7 @@ namespace Gara_Management.GUI.Card
         //khởi tạo id Rec và ngày tiếp nhận
         private void InitializeIDAndDate()
         {
-            tbx_IDRec.Text = "REC" + (ReceptionFormDAO.GetMaxID() + 1).ToString();
+            tbx_IDRec.Text = "REC" + (ReceptionFormDAO.Instance.GetMaxID() + 1).ToString();
             dpk_RecDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
         }
 
